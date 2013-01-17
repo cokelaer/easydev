@@ -1,0 +1,18 @@
+0.5.5: add checkParam function
+0.5.4: slight improvement in the strandard CSS themes.
+0.5.3: fixing path module install/develop mode to obtain share directory.
+0.5.2: add doc and paths modules
+0.5.1: remove useless .coverage and update a test
+0.5.0: renamed cnolab.deploy to easydev and remove dependencies over rpy2 (no
+  more distribute or multidistribute modules that will be part of rtools instead)
+0.4.5: fix bug in setup.py to include the standard themes properly.
+0.4.5: fix bug in distribute module. shellcmd does not print error messages. add tests.
+0.4.4: fix distribute typos
+0.4.3: add new themes
+0.4.2:
+0.4.1:
+0.4.0: add copybutton.py and javascript in the share directory, complete documentation.
+0.3.0: add distribute and multidistribute (to distribute R packages)
+0.2.0: add console and multisetup module
+0.1.0: add sphinx_themes
+
