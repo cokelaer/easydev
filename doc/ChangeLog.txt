@@ -1,3 +1,4 @@
+0.5.6: fixing the headers. added version in the header. added new module logging_tools 
 0.5.5: add checkParam function
 0.5.4: slight improvement in the strandard CSS themes.
 0.5.3: fixing path module install/develop mode to obtain share directory.

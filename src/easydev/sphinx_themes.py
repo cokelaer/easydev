@@ -1,18 +1,21 @@
 # -*- python -*-
+# -*- coding: utf-8 -*-
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2012 - EBI
+#  Copyright (c) 2011-2013 
 #
-#  File author(s): Thomas Cokelaer <cokelaer@ebi.ac.uk>
+#  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv2 License.
+#  Distributed under the GPLv3 License.
 #  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-2.0.html
+#      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  website: http://www.ebi.ac.uk/~cokelaer/easydev
+#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
+# $:Id $
 """Common tools to ease access to a common sphinx theme."""
 import os
 from os.path import join as pj

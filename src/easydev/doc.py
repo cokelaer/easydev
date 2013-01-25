@@ -1,16 +1,21 @@
 # -*- python -*-
+# -*- coding: utf-8 -*-
 #
-#  Copyright (c) 2011-2012 - EBI
+#  This file is part of the easydev software
 #
-#  File author(s): Thomas Cokelaer <cokelaer@ebi.ac.uk>
+#  Copyright (c) 2011-2013 
+#
+#  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
 #  Distributed under the GPLv3 License.
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  website: http://www.ebi.ac.uk/~cokelaer/easydev
+#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
+# $:Id $
 
 __all__ = ["underline"]
 

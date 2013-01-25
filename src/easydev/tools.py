@@ -1,20 +1,22 @@
 # -*- python -*-
+# -*- coding: utf-8 -*-
 #
-#  This file is part of easydev software
+#  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2012 - EBI
+#  Copyright (c) 2011-2013 
 #
-#  File author(s): Thomas Cokelaer <cokelaer@ebi.ac.uk>
+#  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
 #  Distributed under the GPLv3 License.
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  website: http://www.ebi.ac.uk/~cokelaer/easydev
+#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
 # $:Id $
-"""tool kits for all cinapps applications."""
+"""toolkit to ease development"""
 import os
 import subprocess
 import tempfile

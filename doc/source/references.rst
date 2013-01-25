@@ -4,6 +4,23 @@ references
 .. contents::
 
 
+doc
+===================================================================
+
+.. automodule:: easydev.doc
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 
+
+logging_tools
+===================================================================
+
+.. automodule:: easydev.logging_tools
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 
 
 sphinx themes
 ===================================================================
@@ -42,14 +59,6 @@ tools
     :inherited-members:
     :synopsis: 
 
-doc
-===================================================================
-
-.. automodule:: easydev.doc
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :synopsis: 
 
 paths
 ===================================================================
