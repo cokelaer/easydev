@@ -54,3 +54,8 @@ References
     :numbered:
 
     references
+
+How to join ?
+##################
+
+The project is hosted  here together with a SVN: https://www.assembla.com/spaces/pyeasydev/wiki

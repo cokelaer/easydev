@@ -30,7 +30,7 @@ version = pkg_resources.require("easydev")[0].version
 release = version
 author = "Thomas Cokelaer"
 title = "easydev"
-copyright = author + ", 2012"
+copyright = author + ", 2013"
 project = "easydev"
 
 
