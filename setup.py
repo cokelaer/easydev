@@ -75,7 +75,7 @@ setup(
     install_requires = ['sphinx'],
     data_files = datafiles,
 
-    use_2to3 = True,
+    #use_2to3 = True, # causes issue with nosetests
 )
 
 

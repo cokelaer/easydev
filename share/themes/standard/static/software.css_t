@@ -90,7 +90,6 @@ h1, h2, h3, h4 {
   font-weight: normal;
   color: #3465a4;
   margin-bottom: .2em;
-  clear:both;
 }
 
 h1 {
@@ -152,10 +151,7 @@ div.admonition {
     width:80%;
     font-size:      0.8em;
     line-height:1em;
-    border-radius:15px
 }
-
-
 div.admonition p.last{
     padding-left:   10px;   /*for the text*/
     padding-right:   10px;   /*for the text*/
@@ -174,7 +170,6 @@ div.admonition p.admonition-title {
     padding-bottom: 0.2em;
     padding-top:    0.2em;
     min-width:      120px;
-    border-radius:15px
 }
 
 /* the warning box has its own class names */
@@ -200,13 +195,6 @@ div.admonition ul, div.admonition ol,
 div.warning ul, div.warning ol {
     margin: 0.1em 0.5em 0.5em 1em;
     padding: 0;
-}
-
-
-div.note {
-  /*float:right;*/
-  margin-left:1%;
-  width:70%;
 }
 
 /* TODO box ---------------------------------------- */
@@ -379,7 +367,9 @@ div.document .docutils.xref.literal {
 }
 
 div.document blockquote {
-  margin: 1em;
+  margin: 1.5em;
+  font-style: italic;
+  
 }
 
 div.document ol {
@@ -670,7 +660,6 @@ dl.class, dl.function, dl.exception{
 
 dl.method, dl.attribute {
     border-top: 1px solid #aaa;
-    clear:both;
 }
 
 img.inheritance {

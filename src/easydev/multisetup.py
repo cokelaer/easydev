@@ -32,7 +32,7 @@ Based on OpenAlea.Misc http://openalea.gforge.inria.f
 """
 
 __license__ = "GPLv3"
-__revision__ = " $Id: multisetup.py 2555 2012-10-16 14:58:23Z cokelaer $"
+__revision__ = " $Id$"
 
 import sys, os
 from optparse import OptionParser

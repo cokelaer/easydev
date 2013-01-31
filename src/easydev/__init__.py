@@ -5,11 +5,12 @@
 #  File author(s): Thomas Cokelaer <cokelaer@ebi.ac.uk>
 #
 """Common tools to get the correct filename and pathname. """
+__version__ = "$Rev$"
 import pkg_resources
 try:
     version = pkg_resources.require("easydev")[0].version
 except:
-    version = "unknown but installed somehow..."
+    version = __version__
 
 import copybutton
 from copybutton import *
