@@ -16,7 +16,7 @@ metainfo = {
     'version': version,
     'license' : 'GPL',
     'download_url' : ['http://pypi.python.org/pypi/easydev'],
-    'url' : ['http://www.ebi.ac.uk/~cokelaer/easydev'],
+    'url' : ["http://packages.python.org/easydev/"],
     'description':'Common utilities to ease the development of Python packages' ,
     'platforms' : ['Linux', 'Unix', 'MacOsX', 'Windows'],
     'keywords' : ['sphinx'],
