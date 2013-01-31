@@ -6,5 +6,6 @@ spectrum). It also provides tools such as multisetup that ease the development o
 several packages within a single namespce. And, functions that are used often such as
 type checking...
 
-For a full documentation, see the sphinx documentation in the ./doc directory.
+For a full documentation, see the sphinx documentation at
+`<http://packages.python.org/easydev/>`_
 
