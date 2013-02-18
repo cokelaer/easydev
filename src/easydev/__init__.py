@@ -24,13 +24,10 @@ from logging_tools import *
 import sphinx_themes
 from sphinx_themes import *
 
-
 import tools
 from tools import *
 
 import multisetup
-
-
 
 import paths
 from paths import *

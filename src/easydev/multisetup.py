@@ -16,25 +16,30 @@
 #
 ##############################################################################
 # $:Id $
-"""A script to call setup.py recursively in a set of packages.
+"""Calling setup.py recursively and/or in multi python packages.
 
 The commands are similar to those expected by setup.py. In addition,
 there are a few commands dedicated to multisetup (see --help).
 
 :Example:
 
->>> python multisetup install
->>> python multisetup install sdist --dist-dir ../dist
->>> python multisetup --quiet --keep-going install sdist --dist-dir ../dist
+    .. doctest::
+        :options: +SKIP
 
-Based on OpenAlea.Misc http://openalea.gforge.inria.f
+        >>> python multisetup install --quiet
+        >>> python multisetup install sdist --dist-dir ../dist
+        >>> python multisetup --keep-going install sdist --dist-dir ../dist
+
+
+Based on OpenAlea.Misc http://openalea.gforge.inria.fr
 
 """
 
 __license__ = "GPLv3"
 __revision__ = " $Id$"
 
-import sys, os
+import sys
+import os
 from optparse import OptionParser
 from subprocess import call, PIPE, Popen
 
@@ -59,25 +64,42 @@ except:
 """
 
 class Multisetup(object):
+    """The main base class to build Multisetup instances
 
+
+    In practice, you create a python script with this kind of code::
+
+        if __name__ == "__main__"
+            from easydev.multisetup import Multisetup
+            import sys
+            packages = ['pkg1', 'pkg2']
+            mysetup = Multisetup(commands=sys.argv[1:], packages=packages)
+            mysetup.run()
+
+
+    """
     def __init__(self, commands, packages=None, curdir='.', verbose=True):
-        """
+        """.. rubric:: Constructor
 
         :param commands: list of user commands or command (see :meth:`parse_commands`)
            accepted commands are --packages, --exclude-packages, -quiet, --keep-going
-        :param packages: list of packages to process
-        :param curdir: current directory default is .
-        :param verbose: verbose option
+        :param list packages: list of packages to process
+        :param str curdir: current directory default is .
+        :param bool verbose: verbose option
 
         :type commands: a string or list of strings
 
         The argument `commands` must be a list of strings combining arguments
         from multisetup and setup.
 
-        **Examples**
+        :Examples:
+
+        .. doctest::
+            :options: +SKIP
 
             >>> Multisetup("install --keep-going", ['pkg1', 'pkg2'], '.', verbose=True)
             >>> Multisetup(["install","--keep-going"], ['pkg1', 'pkg2'], '.', verbose=True)
+
         """
         if len(commands) == 1 and commands[0] in ['-h', '--help']:
             Multisetup.help()
@@ -219,6 +241,7 @@ class Multisetup(object):
         if '-k' in self.commands:
             self.force = True
             self.commands.remove('-k')
+
         if '--keep-going' in self.commands:
             self.force = True
             self.commands.remove('--keep-going')
@@ -240,12 +263,7 @@ class Multisetup(object):
 
 
     def run(self, color=True):
-        """Enter in all package defined and Executing 'python setup.py' with
-           user command.
-
-        """
-        import sys
-        import os
+        """Executes 'python setup.py' with the user commands on all packages. """
         if color:
             try:
                 from easydev.console import bold, red, green, \

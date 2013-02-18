@@ -16,11 +16,30 @@
 #
 ##############################################################################
 # $:Id $
+"""Module related to documentation
 
+
+.. testsetup::
+
+    from easydev.doc import *
+
+"""
 __all__ = ["underline"]
 
-def underline(text):
-    """return underlined text. used in sphinx text."""
+def underline(text, symbol="="):
+    """Underlines a string with a specific character
+
+    :param str text: the text to underline
+    :param str symbol: the character to be used to underline the text
+    :return: underlined text.
+
+    .. doctest::
+
+        >>> print(underline("test"))
+        test
+        ====
+
+    """
     l = len(text)
-    return text + "\n" + l*"="
+    return text + "\n" + l * symbol
 

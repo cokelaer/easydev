@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 #  This file is part of the easydev software
+#  It is a modified version of console.py from the sphinx software
 #
 #  Copyright (c) 2011-2013 
 #
@@ -20,8 +21,7 @@
 
 .. doctest::
 
-    from easydev.console import bold, red, green, \
-           color_terminal, nocolor, underline, purple
+    from easydev.console import *
     print red("test")
 
 """
@@ -29,10 +29,13 @@
 import os
 import sys
 
+__all__ = ["color_terminal", "coloron", "nocolor", "get_terminal_width", "term_width_line"]
+# colors and other functions from the attributes codes are added dynamically to
+# this __all__ variable
 codes = {}
 
 def get_terminal_width():
-    """Borrowed from the py lib."""
+    """Returns the current terminal width"""
     try:
         import termios, fcntl, struct
         call = fcntl.ioctl(0, termios.TIOCGWINSZ,
@@ -46,9 +49,14 @@ def get_terminal_width():
         terminal_width = int(os.environ.get('COLUMNS', 80)) - 1
     return terminal_width
 
-_tw = get_terminal_width()
 
 def term_width_line(text):
+    """prints pruned version of the input text (limited to terminal width)
+
+    :param str text:
+    :return str text:
+    """
+    _tw = get_terminal_width()
     if not codes:
         # if no coloring, don't output fancy backspaces
         return text + '\n'
@@ -56,6 +64,9 @@ def term_width_line(text):
         return text.ljust(_tw) + '\r'
 
 def color_terminal():
+    """Does terminal allows coloring
+
+    :return: boolean"""
     if not hasattr(sys.stdout, 'isatty'):
         return False
     if not sys.stdout.isatty():
@@ -69,17 +80,19 @@ def color_terminal():
 
 
 def nocolor():
+    """set color codes off"""
     codes.clear()
 
 def coloron():
+    """Set color codes on"""
     codes.update(_orig_codes)
 
-def colorize(name, text):
+def _colorize(name, text):
     return codes.get(name, '') + text + codes.get('reset', '')
 
-def create_color_func(name):
+def _create_color_func(name):
     def inner(text):
-        return colorize(name, text)
+        return _colorize(name, text)
     globals()[name] = inner
 
 _attrs = {
@@ -112,4 +125,7 @@ for i, (dark, light) in enumerate(_colors):
 _orig_codes = codes.copy()
 
 for _name in codes:
-    create_color_func(_name)
+    _create_color_func(_name)
+
+for x in codes.keys(): __all__.append(x)
+

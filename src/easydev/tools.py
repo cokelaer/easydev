@@ -48,16 +48,16 @@ def checkParam(param, valid_values):
         raise ValueError(msg)
     
 
-def shellcmd(cmd, show=True, verbose=False):
+def shellcmd(cmd, show=False, verbose=False):
     """An alias to run system commands.
 
-    Based on subprocess.
+    Based on subprocess.Popen.
 
-    :param cmd: the command to call
-    :param show: print the command
-    :param verbose: print the output
+    :param str cmd: the command to call
+    :param bool show: print the command
+    :param bool verbose: print the output
 
-    :return: the output
+    :return: the output as a string
     """
     if show:
         print(cmd)

@@ -1,5 +1,5 @@
-references
-################
+Module References
+##################
 
 .. contents::
 

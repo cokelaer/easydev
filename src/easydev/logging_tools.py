@@ -15,6 +15,7 @@
 ##############################################################################
 import logging
 
+__all__ = ["Logging"]
 
 class Logging(object):
     """logging utility.
@@ -67,7 +68,7 @@ class Logging(object):
     def _get_level(self):
         return self._debugLevel
     debugLevel = property(_get_level, _set_level, 
-        doc="One of INFO, DEBUG, WARNING, CRITICAL, ERROR")
+        doc="Read/Write access to the debug level. Must be one of INFO, DEBUG, WARNING, CRITICAL, ERROR")
     level = property(_get_level, _set_level, 
-        doc="One of INFO, DEBUG, WARNING, CRITICAL, ERROR")
+        doc="alias to :attr:`~easydev.logging_tools.Logging.debugLevel` (Read-only access)")
 

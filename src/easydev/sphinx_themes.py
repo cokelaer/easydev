@@ -16,27 +16,46 @@
 #
 ##############################################################################
 # $:Id $
-"""Common tools to ease access to a common sphinx theme."""
+"""Common tools to ease access to a easydev sphinx themes."""
 import os
 from os.path import join as pj
 
-__all__ = ["get_path_sphinx_themes"]
+__all__ = ["get_path_sphinx_themes", "get_sphinx_themes"]
+
 
 def get_path_sphinx_themes():
-    """Return the path where the sphinx themes can be found
+    """Returns the path where the sphinx themes can be found
 
     .. doctest::
 
         >>> from easydev import sphinx_themes
-        >>> themes = sphinx_themes.get_path_sphinx_themes()
-        >>> 'cno' in themes
-        True
+        >>> themes_path = sphinx_themes.get_path_sphinx_themes()
 
     """
     import easydev
     sharedir = easydev.get_shared_directory_path("easydev")
     sharedir = os.path.join(sharedir, "themes")
     return sharedir
+
+
+def get_sphinx_themes():
+    """Returns the sphinx themes found in easydev
+
+    .. doctest::
+
+        >>> from easydev import sphinx_themes
+        >>> themes = sphinx_themes.get_sphinx_themes()
+        >>> "standard" in themes
+        True
+
+    """
+    from easydev import get_shared_directory_path
+    sharedir = get_shared_directory_path("easydev")
+    sharedir = pj(sharedir, "themes")
+    themes = [x for x in os.listdir(sharedir) if x.startswith(".")==False]
+    return themes
+
+
 
 
 

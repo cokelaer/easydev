@@ -29,6 +29,7 @@ def get_shared_directory_path(package):
 
 
     ::
+
         sharedir = get_shared_directory_path("easydev")
 
 
@@ -67,20 +68,18 @@ def get_shared_directory_path(package):
 
 
 
-
-
-
 def get_shared_directories(package, datadir="data"):
-    """Return the path of all directories found in the share/data directory of a
-package.
+    """Returns all directory paths found in the package share/datadir directory
 
-
-    If it does not exists, the list returned is empty.
+    :param str datadir: scans package/share/<datadir> where datadir is "data" by
+        default. If it does not exists, the list returned is empty.
 
     .. doctest::
 
         >>> from easydev import get_shared_directories
-        >>> shared_directories = get_shared_directories()
+        >>> shared_directories = get_shared_directories("easydev", "themes")
+        >>> len(shared_directories)>=2
+        True
 
     """
     packagedir = get_shared_directory_path(package)

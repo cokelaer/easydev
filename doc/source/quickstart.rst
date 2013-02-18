@@ -64,3 +64,12 @@ Simply create a python file that contains the following code::
         mysetup.run()
     
 
+Check Parameter value
+======================
+
+The module :mod:`~easydev.tools` provides a few simple functions amongst which,
+the `checkParam` is used to check the validity of a parameter::
+
+    >>> mode = "on"
+    >>> checkParam(mode, ["on", "off"])
+    True
