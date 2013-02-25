@@ -73,3 +73,22 @@ the `checkParam` is used to check the validity of a parameter::
     >>> mode = "on"
     >>> checkParam(mode, ["on", "off"])
     True
+
+
+Create a package layout in one command
+=======================================
+
+The package :mod:`~easydev.package` can build a package layout automatically. The type of layout is quite simple but alloas a quickstart::
+
+    >>> from easydev import PackageBuilder
+    >>> p = PackageBuilder("myPackage")
+    >>> p.buildPackage()
+
+a package is built in the directory "myPackage". You can go in it and type::
+
+    python setup.py install
+
+Of course, no modules are to be found but it is a valid package. Besides, you should edit the setup.py file to set the version, author, email and so on.
+
+You can also use the executable **easydev_buildPackage** provided with easydev.
+

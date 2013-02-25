@@ -11,7 +11,8 @@ Motivation
 The package `easydev <http://pypi.python.org/pypi/easydev/>`_ provides 
 
 
- #. Easy access to the share directory of a python package
+ #. Builds python package layout with :mod:`~easydev.package`
+ #. Ease access to the share directory of a python package
  #. sphinx themes being used in different package documentations (e.g., `rtools <http://pypi.python.org/pypi/rtools>`_, `CellNOpt <http://www.cellnopt.org>`_).
  #. Set of tools to manipulate multi packaging under Python (see e.g., :mod:`~easydev.multisetup`).
  #. A simple interface to run shell command (see :mod:`~easydev.tools`).

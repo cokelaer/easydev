@@ -1,3 +1,8 @@
+
+.. rubric:: 0.5.8
+
+* add the package module (buildPackage)
+
 .. rubric:: 0.5.7
 
 

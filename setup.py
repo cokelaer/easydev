@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 5
-_MICRO               = 7
+_MICRO               = 8
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -74,6 +74,13 @@ setup(
 
     install_requires = ['sphinx'],
     data_files = datafiles,
+
+    entry_points = {
+        'console_scripts': [
+            'easydev_buildPackage=easydev.package:buildPackage',
+        ]
+        },
+
 
     #use_2to3 = True, # causes issue with nosetests
 )

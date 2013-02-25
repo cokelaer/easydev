@@ -40,6 +40,16 @@ multisetup
     :inherited-members:
     :synopsis: 
 
+Package
+===================================================================
+
+.. automodule:: easydev.package
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 
+
+
 console
 ===================================================================
 

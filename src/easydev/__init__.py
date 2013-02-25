@@ -32,3 +32,8 @@ import multisetup
 import paths
 from paths import *
 
+import package
+from package import *
+
+import config_tools
+from config_tools import *
