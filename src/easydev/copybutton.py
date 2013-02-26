@@ -33,6 +33,34 @@ from sphinx.ext.mathbase import setup_math as mathbase_setup
 __all__ = ["get_copybutton_path", ]
 
 
+def copy_javascript_into_static_path(static="_static", filepath="copybutton.js"):
+    """This script can be included in a sphinx configuration file to copy the
+    copybutton in the static directory
+
+    :param str static: name of the static path (_static by default)
+    :param filename: full path of the file to copy
+
+    :Details: If the path *static* does not exists, it is created. If the
+        filename in filepath is already in the path *static*, nothing need to be done.
+        Otherwise, the file is copied in *static* directory.
+
+    """
+    import os
+    import shutil
+
+    if os.path.isdir(static):
+        pass
+    else:
+        os.mkdir(static)
+
+    filename = os.path.split(filepath)[1]
+    if os.path.isfile(static + os.sep + filename):
+        pass
+    else:
+        shutil.copy(filepath, static + os.sep + filename)
+
+
+
 def get_copybutton_path():
     """Return the path where the to find the copybutton javascript
 

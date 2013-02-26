@@ -1,7 +1,12 @@
 
+
+
 .. rubric:: 0.5.8
 
-* add the package module (buildPackage)
+* add copy_javascript_into_static_path function to add into a sphinx config file.
+* add the package module (buildPackage) and tool easy_buildPackage to create
+  template layout.
+* add the module config_tools to ease manipulation of configuration file
 
 .. rubric:: 0.5.7
 
