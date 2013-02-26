@@ -19,9 +19,9 @@ metainfo = {
     'url' : ["http://packages.python.org/easydev/"],
     'description':'Common utilities to ease the development of Python packages' ,
     'platforms' : ['Linux', 'Unix', 'MacOsX', 'Windows'],
-    'keywords' : ['sphinx'],
+    'keywords' : ['sphinx', "package", "multisetup", "logging", "config"],
     'classifiers' : [
-          'Development Status :: 4 - Beta',
+          'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Developers',
           'Intended Audience :: Science/Research',
           'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
