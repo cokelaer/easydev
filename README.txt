@@ -7,5 +7,5 @@ several packages within a single namespace), get_share_directory of any package,
 functions that are used often such as type checking...
 
 For a full documentation, see the sphinx documentation at
-`<http://packages.python.org/easydev/>`_
+`<http://pythonhosted.org/easydev/>`_
 
