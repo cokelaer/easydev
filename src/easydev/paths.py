@@ -21,7 +21,8 @@ from os.path import join as pj
 import pkg_resources
 
 
-__all__ = ["get_shared_directory_path", "get_shared_directories"]
+__all__ = ["get_shared_directory_path", "get_shared_directories", 
+    "get_share_file"]
 
 
 def get_shared_directory_path(package):
@@ -96,4 +97,22 @@ def get_shared_directories(package, datadir="data"):
             directories_to_process.append(fullpath)
     directories_to_process.sort()
     return directories_to_process
+
+def get_share_file(package, datadir, filename):
+    """Creates the full path of a file to be found in the share directory of a package
+
+    """
+    packagedir = get_shared_directory_path(package)
+    fullpath = os.path.join(packagedir, datadir)
+    # check that it exists
+    if os.path.isdir(fullpath) == False:
+        raise ValueError("The directory %s in package %s does not seem to exist" % (packagedir, fullpath))
+    filenamePath = os.path.join(fullpath, filename)
+    if os.path.isfile(filenamePath)==False:
+        raise ValueError("The file %s does not exists" % filenamePath)
+    return filenamePath
+
+
+
+
 
