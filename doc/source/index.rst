@@ -8,12 +8,18 @@ EASYDEV documentation
 Motivation 
 ###########
 
-The package `easydev <http://pypi.python.org/pypi/easydev/>`_ provides 
 
+The package `easydev <http://pypi.python.org/pypi/easydev/>`_ provides some
+functions and files that are repeatidly used in other packages. It also provides
+executables that ease the development of new packages. The targetted audience is
+developers.
 
- #. Builds python package layout with :mod:`~easydev.package`
- #. Ease access to the share directory of a python package
- #. sphinx themes being used in different package documentations (e.g., `rtools <http://pypi.python.org/pypi/rtools>`_, `CellNOpt <http://www.cellnopt.org>`_).
+Here are some features:
+
+ #. Builds python package layout with an executalbe. See :mod:`~easydev.package`
+ #. Some functions to access to the share/data directories of python packages
+    installed in develop or install modes.
+ #. Gather sphinx themes being used in different package documentations (e.g., `rtools <http://pypi.python.org/pypi/rtools>`_, `CellNOpt <http://www.cellnopt.org>`_).
  #. Set of tools to manipulate multi packaging under Python (see e.g., :mod:`~easydev.multisetup`).
  #. A simple interface to run shell command (see :mod:`~easydev.tools`).
  #. A logging class to ease manipulation of the logging standard Python module (see :mod:`~easydev.logging_tools`).
