@@ -15,7 +15,7 @@
             {%- endif %}
 
             {%- block headertitle %}
-            <h1><a href="http://www.cellnopt.org"> CellNopt homepage|</a><a href="{{ pathto(master_doc) }}">{{ docstitle|e }}</a>
+            <h1><a href="http://www.cellnopt.org"> CellNOpt homepage|</a><a href="{{ pathto(master_doc) }}">{{ docstitle|e }}</a>
             </h1>
             <div class="rel">
               {%- for rellink in rellinks|reverse %}
@@ -43,6 +43,16 @@
 
 {% block extrahead %}
 {% include 'google_head.html' %}
+<script type="text/javascript"><!--
+    function gen_mail_to_link(lhs,rhs)
+    {
+        document.write("<A HREF=\"mailto");
+        document.write(":" + lhs + "@");
+        document.write(rhs   "\">" + lhs + "@" + rhs + "<\/A>");
+    } 
+// --> </script>
+
+
 {% endblock %}
 
 {% block footer %}
@@ -105,7 +115,8 @@
           	{%- block sidebarsearch %}
           		{{ super() }}
    	       	<hr />
-   	       	Authors: <a href="http://www.ebi.ac.uk/saezrodriguez/cno/developers.html">CNO developers</a>
+   	       	<a href="authors.html">Authors and Contacts</a><hr>
+   	       	<a href="contribute.html">How to contribute ?</a>
 	          <hr />
           {%- if show_source and has_source and sourcename %}
             This page: <a href="{{ pathto('_sources/' + sourcename, true)|e }}">Show source.</a>
