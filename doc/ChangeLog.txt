@@ -1,4 +1,8 @@
 
+.. rubric:: 0.6.1 / July 2013
+
+* update cno sphinx themes
+
 
 .. rubric:: 0.6.0 / June 2013
 
