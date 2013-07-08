@@ -1,4 +1,8 @@
 
+.. rubric:: 0.6.2:
+    * add swapdict function in tools module
+
+
 .. rubric:: 0.6.1 / July 2013
 
 * update cno sphinx themes

@@ -25,7 +25,7 @@ import glob
 import time
 
 
-__all__ = ["shellcmd", "checkParam"]
+__all__ = ["shellcmd", "checkParam", "swapdict"]
 
 
 def checkParam(param, valid_values):
@@ -81,4 +81,10 @@ def shellcmd(cmd, show=False, verbose=False):
         raise Exception("Error:: Command (%s) failed. Error message is %s" % (cmd, e))
 
 
+
+def swapdict(dic):
+    """Swap keys afor values in a dictionary"""
+    # this version is more elegant but slightly slower : return {v:k for k,v in dic.items()}
+    assert len(set(dic.keys())) == len(set(dic.values())), "values is not a set. ambiguities for keys."
+    return dict(zip(dic.values(),dic.keys()))
 

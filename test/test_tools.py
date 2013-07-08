@@ -1,5 +1,8 @@
 from easydev import tools
 
+def test_swapdict():
+    assert {1:'a'} == tools.swapdict({'a':1})
+
 def test_tools():
     tools.shellcmd('ls')
     tools.shellcmd('ls', show=False)
