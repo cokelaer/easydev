@@ -363,6 +363,8 @@ class OptionsBuildPackage(argparse.ArgumentParser):
     def add_general_options(self):
         self.add_argument("--pkgname", dest="pkgname", 
             help="Name of the package to be created")
+        self.add_argument("--package", dest="pkgname", 
+            help="Name of the package to be created")
         self.add_argument("--namespace", dest="namespace", default=None,
             help="If provided, creates a namespace.")
         self.add_argument("--no-share-directory", action="store_false", 
@@ -375,6 +377,7 @@ def buildPackage():
     import sys
     if len(sys.argv) >1:
         parser = OptionsBuildPackage(sys.argv[1:])
+
         p = PackageBuilder(
             name=parser.options.pkgname, 
             share=parser.options.no_share_directory,
