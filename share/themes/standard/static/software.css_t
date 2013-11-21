@@ -90,6 +90,7 @@ h1, h2, h3, h4 {
   font-weight: normal;
   color: #3465a4;
   margin-bottom: .2em;
+  line-height: 1.1em;
 }
 
 h1 {
@@ -228,7 +229,9 @@ dt:target, .highlighted {
 
 div.header {
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
+  margin-bottom:10px;
+  margin-top:0px;
 }
 
 div.header h1 {
@@ -236,6 +239,7 @@ div.header h1 {
   font-weight: normal;
   font-size: 180%;
   letter-spacing: .08em;
+  width:80%;
 }
 
 div.header h1 a {
@@ -387,7 +391,7 @@ div.sidebar {
     position:fixed;
     margin-left:70%;
     margin-right:8%;
-    top:54px; /*size of the top bgk image + 4px for the bar*/
+    top:62px; /*size of the top bgk image + 4px for the bar*/
     border-radius:16px 16px  16px 16px;
     margin-bottom:48px;
     /*max-height:400px;*/
