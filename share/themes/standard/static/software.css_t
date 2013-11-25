@@ -29,8 +29,9 @@ body {
   font-family: "Verdana", Arial, sans-serif;
   line-height: 1.4em;
   color: black;
-  background-color: #eeeeec;
-  height:auto;
+  background-color: #FFFFFF;
+/*  height:auto;*/
+position:relative;
 }
 
 
@@ -228,7 +229,7 @@ dt:target, .highlighted {
 /* Header */
 
 div.header {
-  padding-top: 10px;
+  padding-top: 0px;
   padding-bottom: 0px;
   margin-bottom:10px;
   margin-top:0px;
@@ -273,9 +274,7 @@ img.logo {
 div.content-wrapper {
   background-color: white;
   padding-top: 20px;
-  padding-bottom: 20px;
-  height:90%;
-  /*position:absolute;*/
+  padding-bottom: 6em; /* place for the header*/
 }
 
 div.document {
@@ -391,7 +390,7 @@ div.sidebar {
     position:fixed;
     margin-left:70%;
     margin-right:8%;
-    top:62px; /*size of the top bgk image + 4px for the bar*/
+    top:7em; /* em is more robust than pixels..*/
     border-radius:16px 16px  16px 16px;
     margin-bottom:48px;
     /*max-height:400px;*/
@@ -469,8 +468,8 @@ div.footer-wrapper {
   border-right: 2px solid #babdb6;
   width:70%;                    /* with respect to the entire window*/
   font-size:0.7em;
-  height:50px;
-  /*position:fixed;*/
+  height:6em; /*place for the header must match the botton-margin of the content */
+  position:fixed;  /*to stay at the bottom*/
   bottom:0px;
 /*
   margin-bottom:0px;
