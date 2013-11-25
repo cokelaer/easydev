@@ -83,7 +83,15 @@ def shellcmd(cmd, show=False, verbose=False):
 
 
 def swapdict(dic):
-    """Swap keys afor values in a dictionary"""
+    """Swap keys for values in a dictionary
+    
+    ::
+
+        >>> d = {'a':1}
+        >>> swapdict(d)
+        {1:'a'}
+
+    """
     # this version is more elegant but slightly slower : return {v:k for k,v in dic.items()}
     assert len(set(dic.keys())) == len(set(dic.values())), "values is not a set. ambiguities for keys."
     return dict(zip(dic.values(),dic.keys()))
