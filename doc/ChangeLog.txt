@@ -2,6 +2,7 @@
 .. rubric:: 0.6.3 Nov/2013
 
 * add url module
+* add dependencies module
 
 .. rubric:: 0.6.2:
 * add swapdict function in tools module

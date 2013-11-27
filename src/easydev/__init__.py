@@ -40,3 +40,6 @@ from config_tools import *
 
 import url
 from url import *
+
+#import dependencies
+from dependencies import get_dependencies
