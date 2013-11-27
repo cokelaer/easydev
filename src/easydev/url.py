@@ -27,8 +27,13 @@ def isurl(url):
 
 
     """
+    if url.startswith("http://"):
+        url = url.split("http://")[1]
     c = httplib.HTTPConnection(url)
-    c.request("HEAD", '')
+    try:
+        c.request("HEAD", '')
+    except:
+        return False
     if c.getresponse().status == 200:
         return True
     else:
