@@ -9,10 +9,10 @@ Motivation
 ###########
 
 
-The package `easydev <http://pypi.python.org/pypi/easydev/>`_ provides some
-functions and files that are repeatidly used in other packages. It also provides
-executables that ease the development of new packages. The targetted audience is
-developers.
+The package `easydev <http://pypi.python.org/pypi/easydev/>`_ provides
+miscellaneous functions and files that are repeatidly used in other packages. 
+It also provides executables that ease the development of new packages. 
+The targetted audience is therefore developers of Python packages.
 
 Here are some features:
 
@@ -23,6 +23,8 @@ Here are some features:
  #. Set of tools to manipulate multi packaging under Python (see e.g., :mod:`~easydev.multisetup`).
  #. A simple interface to run shell command (see :mod:`~easydev.tools`).
  #. A logging class to ease manipulation of the logging standard Python module (see :mod:`~easydev.logging_tools`).
+
+I'm using this package in other Python packages such as `bioservices <https://pypi.python.org/pypi/bioservices>`_.
 
 Installation
 ###################

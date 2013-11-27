@@ -1,8 +1,8 @@
 # -*- python -*-
 #
-#  Copyright 2011 EBI
+#  Copyright 2013
 #
-#  File author(s): Thomas Cokelaer <cokelaer@ebi.ac.uk>
+#  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
 """Common tools to get the correct filename and pathname. """
 __version__ = "$Rev$"
@@ -37,3 +37,6 @@ from package import *
 
 import config_tools
 from config_tools import *
+
+import url
+from url import *

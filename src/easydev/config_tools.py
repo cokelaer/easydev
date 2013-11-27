@@ -1,16 +1,16 @@
 # -*- python -*-
 #
-#  This file is part of the CNO software
+#  This file is part of easydev software
 #
-#  Copyright (c) 2011-2012 - EBI
+#  Copyright (c) 2012-2013
 #
-#  File author(s): Thomas Cokelaer <cokelaer@ebi.ac.uk>
+#  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv2 License.
+#  Distributed under the GPLv3 License.
 #  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-2.0.html
+#      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  CNO website: http://www.ebi.ac.uk/saezrodriguez/software.html
+#  website: https://pypi.python.org/pypi/easydev
 #
 ##############################################################################
 # $Id: config.py 2002 2012-08-06 16:19:09Z cokelaer $

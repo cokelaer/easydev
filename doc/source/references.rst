@@ -79,3 +79,11 @@ paths
     :inherited-members:
     :synopsis: 
 
+ 
+url
+=====
+.. automodule:: easydev.url
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 

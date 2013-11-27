@@ -1,16 +1,16 @@
 # -*- python -*-
 #
-#  This file is part of XXX software
+#  This file is part of easydev software
 #
-#  Copyright (c) 2011-2012 - EBI-EMBL
+#  Copyright (c) 2012-2013
 #
-#  File author(s): Thomas Cokelaer <cokelaer@ebi.ac.uk>
+#  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
 #  Distributed under the GPLv3 License.
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  website: http://www.ebi.ac.uk/~cokelaer/XXX
+#  website: https://pypi.python.org/pypi/easydev
 #
 ##############################################################################
 import logging
