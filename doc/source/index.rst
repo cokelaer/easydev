@@ -10,21 +10,28 @@ Motivation
 
 
 The package `easydev <http://pypi.python.org/pypi/easydev/>`_ provides
-miscellaneous functions and files that are repeatidly used in other packages. 
-It also provides executables that ease the development of new packages. 
+miscellaneous functions and files that are repeatidly used in other packages but
+have no common semantic or purpose. It also provides executables that ease the development of new packages.
 The targetted audience is therefore developers of Python packages.
+
+.. warning:: I'm not pretending to provide universal and bug-free tools. The
+    tools provided may also change. However, since I'm using the tools provided
+    in easydev in many other packages, it tends to be stable. 
+    I'm using **easydev** in other Python packages such as 
+    `bioservices <https://pypi.python.org/pypi/bioservices>`_.
+
 
 Here are some features:
 
- #. Builds python package layout with an executalbe. See :mod:`~easydev.package`
+ #. Builds a python package layout automatically with an executable. See :mod:`~easydev.package`
  #. Some functions to access to the share/data directories of python packages
     installed in develop or install modes.
  #. Gather sphinx themes being used in different package documentations (e.g., `rtools <http://pypi.python.org/pypi/rtools>`_, `CellNOpt <http://www.cellnopt.org>`_).
  #. Set of tools to manipulate multi packaging under Python (see e.g., :mod:`~easydev.multisetup`).
  #. A simple interface to run shell command (see :mod:`~easydev.tools`).
  #. A logging class to ease manipulation of the logging standard Python module (see :mod:`~easydev.logging_tools`).
+ #. Check if an url exists (see :mod:`~easydev.url.isurl`)
 
-I'm using this package in other Python packages such as `bioservices <https://pypi.python.org/pypi/bioservices>`_.
 
 Installation
 ###################

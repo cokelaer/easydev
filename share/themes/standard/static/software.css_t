@@ -605,6 +605,7 @@ width:80%;
 
 /*box around the parameters created wihh :param x: */
 table.docutils{
+margin:2px;
 border-left: 1px solid gray;
 border-right: 1px solid gray;
 border-top: 1px solid gray;

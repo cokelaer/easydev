@@ -34,7 +34,9 @@ def isurl(url):
         c.request("HEAD", '')
     except:
         return False
-    if c.getresponse().status == 200:
+    # 302 is a redirection
+    # 200 is okay
+    if c.getresponse().status in [200, 302]:
         return True
     else:
         return False
