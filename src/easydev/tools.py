@@ -64,10 +64,10 @@ def shellcmd(cmd, show=False, verbose=False):
     try:
         ret = subprocess.Popen([cmd], stdout=subprocess.PIPE, 
             stderr=subprocess.PIPE, shell=True)
-        ret.wait()
 
         output = ret.stdout.read().strip()
         error = ret.stderr.read().strip()
+        ret.wait()
 
         if len(error)>0:
             raise Exception(error)
