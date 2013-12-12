@@ -90,6 +90,7 @@ h1, h2, h3, h4 {
   font-weight: normal;
   color: #3465a4;
   margin-bottom: .2em;
+  line-height: 1.1em;
 }
 
 h1 {
@@ -135,6 +136,7 @@ dt:hover > a.headerlink {
 /* ---------------------------------------------*/
 img {
   border: 0;
+  width:100%;
 }
 
 /* ---------------------------------------------*/
@@ -600,6 +602,7 @@ width:80%;
 
 /*box around the parameters created wihh :param x: */
 table.docutils{
+margin:2px;
 border-left: 1px solid gray;
 border-right: 1px solid gray;
 border-top: 1px solid gray;
