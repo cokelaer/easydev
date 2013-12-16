@@ -43,3 +43,6 @@ from url import *
 
 #import dependencies
 from dependencies import get_dependencies
+
+import multicore
+from multicore import *
