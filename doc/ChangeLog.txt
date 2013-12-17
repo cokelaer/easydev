@@ -1,4 +1,12 @@
 
+.. rubric:: 0.6.5 
+
+* add multicore module
+
+.. rubric:: 0.6.4
+
+* some fixes in url modules and cleanup
+
 .. rubric:: 0.6.3 Nov/2013
 
 * add url module

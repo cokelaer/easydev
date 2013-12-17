@@ -166,6 +166,7 @@ class PackageBuilder(object):
     """simple class to automatically build a package layout
 
 
+        >>> from easydev import PackageBuilder
         >>> p = PackageBuilder(name="testpackage")
         >>> p.buildPackage()
 

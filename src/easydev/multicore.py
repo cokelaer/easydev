@@ -2,7 +2,7 @@ from math import sqrt
 from threading import Thread
 from multiprocessing import cpu_count, Process, Queue, Pool
 
-__all__ = ["MultiProcessing", "test_func"]
+__all__ = ["MultiProcessing"]
 
 class MultiProcessing(object):
     """Class to run jobs in an asynchronous manner.
@@ -73,42 +73,5 @@ class MultiProcessing(object):
 
 
     
-def test_func(n=400, *args, **kargs):
-    """A simple test function to play with MultiProcessing class
-
-    :param n: 400 takes about 5 seconds
-
-    """
-    print "inside func", args, kargs
-    for i in range(0,n):
-        for j in range(0,n):
-            for k in range(0,n):
-                sqrt(float(i))
-    d = {'id':n}
-    return d
-
-"""
-def test():
-    t = MultiProcessing()
-    t.add_job(func, 400)
-    t.add_job(func, 300)
-    t.add_job(func, 200)
-    t.add_job(func, 100)
-    t.run()
-    print t.results
-
-def test2():
-    t = MultiProcessing()
-
-    model = "../../results_test/model.sif"
-    midas = "../../results_test/MD_CD3+CD4-CD45RO-_donor1_CD3-CD28-CD2__row_and_exp.csv"
-    method = "essm"
-
-    t.add_job(tcellanalysis, model, midas, method)
-    t.add_job(tcellanalysis, model, midas, method)
-    t.run()
-    print t.results
-    return t
-"""
 
 

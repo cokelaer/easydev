@@ -16,7 +16,7 @@ def func(n=400, *args, **kargs):
     return d
 
 def test_func():
-    t = MultiProcessing()
+    t = MultiProcessing(verbose=True)
     t.add_job(func, 400)
     t.add_job(func, 300)
     t.add_job(func, 200)

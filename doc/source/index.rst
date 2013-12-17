@@ -24,13 +24,14 @@ The targetted audience is therefore developers of Python packages.
 Here are some features:
 
  #. Builds a python package layout automatically with an executable. See :mod:`~easydev.package`
+ #. A user interface to run multiple jobs with :mod:`~easydev.multicore`
  #. Some functions to access to the share/data directories of python packages
     installed in develop or install modes.
  #. Gather sphinx themes being used in different package documentations (e.g., `rtools <http://pypi.python.org/pypi/rtools>`_, `CellNOpt <http://www.cellnopt.org>`_).
  #. Set of tools to manipulate multi packaging under Python (see e.g., :mod:`~easydev.multisetup`).
  #. A simple interface to run shell command (see :mod:`~easydev.tools`).
  #. A logging class to ease manipulation of the logging standard Python module (see :mod:`~easydev.logging_tools`).
- #. Check if an url exists (see :mod:`~easydev.url.isurl`)
+ #. Quickly check if an url exists (see :mod:`~easydev.url.isurl`)
 
 
 Installation

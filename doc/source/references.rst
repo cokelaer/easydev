@@ -87,3 +87,12 @@ url
     :undoc-members:
     :inherited-members:
     :synopsis: 
+
+ 
+multicore
+==================
+.. automodule:: easydev.multicore
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 
