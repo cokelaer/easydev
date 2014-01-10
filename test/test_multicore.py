@@ -8,19 +8,19 @@ def func(n=400, *args, **kargs):
 
     """
     print "inside func", args, kargs
+    import math
     for i in range(0,n):
         for j in range(0,n):
             for k in range(0,n):
-                sqrt(float(i))
+                math.sqrt(float(i))
     d = {'id':n}
     return d
 
 def test_func():
     t = MultiProcessing(verbose=True)
-    t.add_job(func, 400)
-    t.add_job(func, 300)
     t.add_job(func, 200)
     t.add_job(func, 100)
+    t.add_job(func, 50)
     t.run()
     print t.results
 
