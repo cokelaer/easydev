@@ -2,6 +2,7 @@
 .. rubric:: 0.6.5 
 
 * add multicore module
+* remove duplicated entries in the get_dependencies  (dependencies module)
 
 .. rubric:: 0.6.4
 
