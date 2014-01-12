@@ -110,8 +110,11 @@ def get_share_file(package, datadir, filename):
     filenamePath = os.path.join(fullpath, filename)
     if os.path.isfile(filenamePath)==False:
         correct_files = [x for x in os.listdir(fullpath) if os.path.isfile(x)]
-        raise ValueError("The file %s does not exists. Correct filenames are %s"
-            % (filenamePath,correct_files))
+        msg = "The file %s does not exists. Correct filenames found in %s/%s are:\n" % (filenamePath, package, datadir)
+        for f in correct_files:
+            msg += "%s\n" % f
+
+        raise ValueError(msg)
     return filenamePath
 
 
