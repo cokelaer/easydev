@@ -1,3 +1,7 @@
+.. rubric:: 0.6.6
+
+* add module setuptools: provide tools to recursively create the datafiles required by setuptools
+
 
 .. rubric:: 0.6.5 
 
@@ -14,6 +18,7 @@
 * add dependencies module
 
 .. rubric:: 0.6.2:
+
 * add swapdict function in tools module
 
 
@@ -30,14 +35,12 @@
 .. rubric:: 0.5.9
 
 * add a copy method inside the logging.Logging class to allow a deepcopy
-* add get_share_file in paths module to retieve full path of a file contained in
-  share/data directory of a package in one function call.
+* add get_share_file in paths module to retieve full path of a file contained in  share/data directory of a package in one function call.
 
 .. rubric:: 0.5.8
 
 * add copy_javascript_into_static_path function to add into a sphinx config file.
-* add the package module (buildPackage) and tool easy_buildPackage to create
- template layout.
+* add the package module (buildPackage) and tool easy_buildPackage to create  template layout.
 * add the module config_tools to ease manipulation of configuration file
 
 .. rubric:: 0.5.7

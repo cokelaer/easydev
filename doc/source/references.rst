@@ -96,3 +96,12 @@ multicore
     :undoc-members:
     :inherited-members:
     :synopsis: 
+
+ 
+setuptools
+==================
+.. automodule:: easydev.setuptools
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 
