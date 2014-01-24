@@ -140,6 +140,10 @@ img {
   width:100%;
 }
 
+img.math{
+ width:auto;
+ }
+
 /* ---------------------------------------------*/
 /* general shape of todo/seealso/warning/note boxes*/
 div.admonition {
