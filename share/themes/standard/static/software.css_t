@@ -135,14 +135,12 @@ dt:hover > a.headerlink {
 
 
 /* ---------------------------------------------*/
+/* !! changing width affects all img.class */
 img {
   border: 0;
-  width:100%;
+  width:auto;
 }
 
-img.math{
- width:auto;
- }
 
 /* ---------------------------------------------*/
 /* general shape of todo/seealso/warning/note boxes*/

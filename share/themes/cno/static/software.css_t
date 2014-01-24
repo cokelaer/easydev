@@ -136,8 +136,9 @@ dt:hover > a.headerlink {
 /* ---------------------------------------------*/
 img {
   border: 0;
-  width:100%;
-}
+  width:auto;
+  }
+
 
 /* ---------------------------------------------*/
 /* general shape of todo/seealso/warning/note boxes*/
