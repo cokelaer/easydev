@@ -798,6 +798,11 @@ text-align:justify;
 line-height:1.2em;
 }
 
+div.figure img {
+    width:100%;
+}
+
+
 
 
 /* This is for the linenos option of literalinclude directive */

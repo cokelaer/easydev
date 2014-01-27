@@ -134,10 +134,11 @@ dt:hover > a.headerlink {
 
 
 /* ---------------------------------------------*/
+/* !! changing width affects all img.class */
 img {
   border: 0;
   width:auto;
-  }
+}
 
 
 /* ---------------------------------------------*/
@@ -792,6 +793,11 @@ margin-right:10%;
 text-align:justify;
 line-height:1.2em;
 }
+
+div.figure img {
+    width:100%;
+}
+
 
 
 
