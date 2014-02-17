@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 6
-_MICRO               = 5
+_MICRO               = 8
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -43,6 +43,7 @@ datadirs = [
         os.path.join('share', 'themes', 'cno', 'static'),
         os.path.join('share', 'themes', 'standard'),
         os.path.join('share', 'themes', 'standard', 'static')]
+
 for datadir in datadirs:
     datafiles.append(
         (
@@ -50,6 +51,8 @@ for datadir in datadirs:
             [f for f in glob.glob(os.path.join(datadir, '*')) if not os.path.isdir(f)]
         )
     )
+
+
 
 
 setup(
@@ -73,6 +76,16 @@ setup(
     packages = ['easydev'],
 
     install_requires = ['sphinx'],
+
+
+    # somehow, the google_head.html is found in themes/standard and themese/cno
+    # directories thanks to the contents of datafiles variable but the ones from
+    # themes/standard directory are not copied inside the distribution ?
+    # using the MANIFEST.in solve the issue. However, data_files=datafiles is
+    # still required for python setup.py install or pip install to copy the
+    # share directory in the proper place . sure there will be a neat solution
+    # one day 
+    # using a MANIFEST.in
     data_files = datafiles,
 
     entry_points = {

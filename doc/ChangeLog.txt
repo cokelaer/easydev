@@ -1,3 +1,9 @@
+
+
+.. rubric 0.6.7, 0.6.8:
+
+* fix missing google_heade.html missing in the distribution for the theme called "standard"
+
 .. rubric:: 0.6.6
 
 * add module setuptools: provide tools to recursively create the datafiles required by setuptools
