@@ -41,8 +41,9 @@ class Logging(object):
     def __init__(self, level):
         """.. rubric:: constructor
 
-        :param str level: valid levels are ["INFO", "DEBUG", "WARNING", 
-            "CRITICAL", "ERROR"]
+        :param str level: valid levels are ["INFO", "DEBUG", "WARNING",
+            "CRITICAL", "ERROR"]. If set to True, level is internally set to
+            INFO. If set to False, level is seet internally to ERROR.
         """
         self._debugLevel = None
         self.debugLevel = level
@@ -54,7 +55,11 @@ class Logging(object):
         self.debug = logging.debug
 
     def _set_level(self, level):
-        valid_level = ["INFO", "DEBUG", "WARNING", "CRITICAL", "ERROR"]
+        valid_level = [True, False, "INFO", "DEBUG", "WARNING", "CRITICAL", "ERROR"]
+        if level is True:
+            level = "INFO"
+        if level is False:
+            level = "ERROR"
         if level in valid_level:
             self._debugLevel = level
         else:
