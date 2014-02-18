@@ -15,6 +15,9 @@ except:
 import copybutton
 from copybutton import *
 
+import decorators
+from decorators import *
+
 import doc
 from doc import *
 

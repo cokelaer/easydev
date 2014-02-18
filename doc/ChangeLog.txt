@@ -1,7 +1,9 @@
 
 
+
 .. rubric 0.6.7, 0.6.8:
 
+* add decorator module
 * fix missing google_heade.html missing in the distribution for the theme called "standard"
 
 .. rubric:: 0.6.6
