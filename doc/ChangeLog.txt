@@ -3,6 +3,8 @@
 
 .. rubric 0.6.7, 0.6.8:
 
+* add check_range function in tools module
+* add colors module
 * add decorator module
 * fix missing google_heade.html missing in the distribution for the theme called "standard"
 

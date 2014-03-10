@@ -3,9 +3,18 @@ from easydev import tools
 def test_swapdict():
     assert {1:'a'} == tools.swapdict({'a':1})
 
+    # if the are non-unique values, we can catch the error or no:
+    try:
+        tools.swapdict({'a':1, 'b':1})
+        assert False
+    except:
+        assert True
+    tools.swapdict({'a':1, 'b':1}, check_ambiguity=False)
+
 def test_tools():
     tools.shellcmd('ls')
     tools.shellcmd('ls', show=False)
+    tools.shellcmd('ls', show=True)
     output = tools.shellcmd('ls', verbose=True)
 
 
