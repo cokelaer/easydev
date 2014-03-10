@@ -12,6 +12,9 @@ try:
 except:
     version = __version__
 
+import colors
+from colors import *
+
 import copybutton
 from copybutton import *
 

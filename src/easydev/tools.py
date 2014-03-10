@@ -25,10 +25,38 @@ import glob
 import time
 
 
-__all__ = ["shellcmd", "checkParam", "swapdict"]
+__all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list", "check_range"]
 
+
+def check_range(value, a, b, strict=False):
+    """Check that a value lies in a given range
+
+    :param value: value to test
+    :param a: lower bound 
+    :param b: upper bound
+    :return nothing
+    .. doctest::
+    
+        >>> from easydev.tools import check_range
+        >>> check_range(1,0, 2)
+
+    """
+    if strict==True:
+        if value <= a:
+            raise ValueError(" {} must be greater (or equal) than {}".format(value, a))
+        if value >= b:
+            raise ValueError(" {} must be less (or less) than {}".format(value, b))
+    elif strict==False:
+        if value < a:
+            raise ValueError(" {} must be greater than {}".format(value, a))
+        if value > b:
+            raise ValueError(" {} must be less than {}".format(value, b))
 
 def checkParam(param, valid_values):
+    print("easydev WARNING:: deprecated; use check_param_in_list instead.")
+    check_param_in_list(param, valid_values)
+
+def check_param_in_list(param, valid_values):
     """Checks that the value of param is amongst valid
 
     :param param: a parameter to be checked
@@ -36,8 +64,8 @@ def checkParam(param, valid_values):
 
     ::
 
-        checkParam(1, [1,2,3])
-        checkParam(mode, ["on", "off"])
+        check_param_in_list(1, [1,2,3])
+        check_param_in_list(mode, ["on", "off"])
     """
     if isinstance(valid_values, list) == False:
         raise TypeError("the valid_values second argument must be a list of valid values")
@@ -82,7 +110,7 @@ def shellcmd(cmd, show=False, verbose=False):
 
 
 
-def swapdict(dic):
+def swapdict(dic, check_ambiguity=True):
     """Swap keys for values in a dictionary
     
     ::
@@ -93,6 +121,7 @@ def swapdict(dic):
 
     """
     # this version is more elegant but slightly slower : return {v:k for k,v in dic.items()}
-    assert len(set(dic.keys())) == len(set(dic.values())), "values is not a set. ambiguities for keys."
+    if check_ambiguity:
+        assert len(set(dic.keys())) == len(set(dic.values())), "values is not a set. ambiguities for keys."
     return dict(zip(dic.values(),dic.keys()))
 
