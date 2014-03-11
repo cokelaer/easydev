@@ -35,6 +35,7 @@ def check_range(value, a, b, strict=False):
     :param a: lower bound 
     :param b: upper bound
     :return nothing
+
     .. doctest::
     
         >>> from easydev.tools import check_range
