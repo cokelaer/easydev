@@ -32,8 +32,8 @@ Here are some features:
  #. A simple interface to run shell command (see :mod:`~easydev.tools`).
  #. A logging class to ease manipulation of the logging standard Python module (see :mod:`~easydev.logging_tools`).
  #. Quickly check if an url exists (see :mod:`~easydev.url.isurl`)
+ #. Color convertors (e.g., rgb2hex, hsv2rgb, 
  #. Decorators: :mod:`~easydev.decorators`
-
 
 Installation
 ###################

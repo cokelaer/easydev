@@ -1,8 +1,15 @@
-Module References
-##################
 
 .. contents::
 
+
+
+colors
+==========
+
+.. automodule:: easydev.colors
+    :members:
+    :inherited-members:
+    :synopsis: 
 
 decorators
 ===============
@@ -21,7 +28,6 @@ dependencies
     :undoc-members:
     :inherited-members:
     :synopsis: 
-
 
 
 doc

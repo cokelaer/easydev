@@ -15,8 +15,7 @@ from xfree86 import XFree86_colors
 
 __all__ = ["HEX", "Color", "hex2web", "web2hex", "hex2rgb", 
     "rgb2hex", "rgb2hsv", "hsv2rgb", "rgb2hls", "hls2rgb","yuv2rgb", "rgb2yuv", 
-    "green", "green_r", "heat", "heat_r", "rainbow", "rainbow_r", "to_intensity",
-    "ColorMapTools"
+    "to_intensity", "ColorMapTools"
     ]
 
 
@@ -578,30 +577,54 @@ class Color(HEX):
 
 
 class ColorMapTools(object):
-    """
+    """Class to create matplotlib colormaps
+
+    This example show how to get the pre-defined colormap called *heat*
+    and how to define your own colormap in 2 steps.
 
     .. plot::
-        :include_source:
+        :include-source:
         :width: 80%
 
         from pylab import *
         from easydev.colors import ColorMapTools
 
         c = ColorMapTools()
-        cmap = c.get_heat()
+        cmap = c.get_cmap_heat()
         c.test_cmap(cmap)
 
-        # design your own cmap
+        # design your own colormap
         d = {'blue': [0,0,0,1,1,1,0], 
                 'green':[0,1,1,1,0,0,0], 
-                'red':  [1,1,0,0,0,1,1]})
+                'red':  [1,1,0,0,0,1,1]}
         cmap = c.get_cmap(d, reverse=False)
+
+        # see the results
         c.test_cmap(cmap)
 
 
 
     """
     def plot_rgb_from_hex_list(self, cols):
+        """This functions takes a list of hexadecimal values and plots
+        the RGB curves. This can be handy to figure out the RGB functions
+        to be used in the :meth:`get_cmap`.
+
+        .. plot::
+            :include-source:
+            :width: 60%
+
+            from easydev.colors import ColorMapTools
+            c = ColorMapTools()
+            t = ['#FF0000FF', '#FF4D00FF', '#FF9900FF', '#FFE500FF',
+                 '#CCFF00FF', '#80FF00FF', '#33FF00FF', '#00FF19FF', 
+                 '#00FF66FF', '#00FFB2FF', '#00FFFFFF', '#00B3FFFF',
+                 '#0066FFFF', '#001AFFFF', '#3300FFFF', '#7F00FFFF', 
+                 '#CC00FFFF','#FF00E6FF','#FF0099FF', '#FF004DFF']
+            c.plot_rgb_from_hex_list(t)
+
+
+        """
         import pylab
         red = [hex2rgb(x)[0]/255. for x in cols]
         blue = [hex2rgb(x)[2]/255. for x in cols]
@@ -613,10 +636,14 @@ class ColorMapTools(object):
         pylab.plot(x,blue,'bo-')
         pylab.ylim([-0.1,1.1])
 
-    def get_cmap(self, colors=None, reverse=True, N=10):
-        """
-    
-        colors is a list of hexa colors as returned by rainbow, heat, get_hexmap
+    def get_cmap(self, colors=None, reverse=False, N=50):
+        """Return a colormap object to be used within matplotlib
+
+        :param dict colors: a dictionary that defines the RGB colors to be 
+            used in the colormap. See :meth:`get_cmap_heat` for an example.
+        :param bool reverse: reverse the colormap is  set to True (defaults to False)
+        :param int N: Defaults to 50
+        
     
         """
         # Keep these dependencies inside the function to allow 
@@ -643,12 +670,34 @@ class ColorMapTools(object):
 
 
     def get_cmap_heat(self):
+        """Return a heat colormap matplotlib-compatible colormap 
+
+        This heat colormap should be equivalent to heat.colors() in R.
+        
+        ::
+
+            >>> from easydev.colors import ColorMapTools
+            >>> cmap = ColorMapTools.get_cmap_heat()
+        
+        You can generate the colormap based solely on this information for the RGB
+        functions along::
+
+            d=  {   'blue':[0,0,0,0,1], 
+                    'green':[0,.35,.7,1,1], 
+                    'red':[1,1,1,1,1]}
+            cmap = ColorMapTools.get_cmap(d)
+
+        """
         return self.get_cmap(
                 {   'blue':[0,0,0,0,1], 
                     'green':[0,.35,.7,1,1], 
                     'red':[1,1,1,1,1]}, reverse=False)
     
     def get_cmap_heat_r(self):
+        """Return a heat colormap matplotlib-compatible colormap
+        
+        Same as :meth:`get_cmap_heat` but reversed
+        """ 
         return self.get_cmap(
                 {   'blue':[0,0,0,0,1], 
                     'green':[0,.35,.7,1,1], 
@@ -661,22 +710,23 @@ class ColorMapTools(object):
             this looks like what is coded in R 3.0.1
     
         """
-        return get_cmap(
+        return self.get_cmap(
                 {   'blue': [0,0,0,1,1,1,0], 
                     'green':[0,1,1,1,0,0,0], 
                     'red':  [1,1,0,0,0,1,1]}, reverse=False)
 
 
     def get_cmap_red_green(self):         
-        return get_cmap(
+        return self.get_cmap(
                 {   'green': [0,0.4,0.6,.75,.8,.9,1,.9,.8,.6], 
                     'blue' : [0,.4,.6,.75,.8,.7,.6,.35,.17,.1], 
                     'red':   [1,1,1,1,1,.9,.8,.6,.3,.1]}, reverse=True)
 
     def test_cmap(self, cmap):
         import numpy as np
-        from pylab import pcolor, colorbar, show, linspace 
+        from pylab import clf, pcolor, colorbar, show, linspace 
         A,B = np.meshgrid(linspace(0,10,100), linspace(0,10,100))
+        clf()
         pcolor((A-5)**2+(B-5)**2, cmap=self.get_cmap_heat()); 
         colorbar()
         show()

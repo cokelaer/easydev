@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 6
-_MICRO               = 9
+_MICRO               = 10
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -19,7 +19,10 @@ metainfo = {
     'url' : ["http://packages.python.org/easydev/"],
     'description':'Common utilities to ease the development of Python packages' ,
     'platforms' : ['Linux', 'Unix', 'MacOsX', 'Windows'],
-    'keywords' : ['sphinx', "package", "multisetup", "logging", "config"],
+    'keywords' : ['sphinx', "package", "multisetup", "logging", "config"
+        "hex2web", "web2hex", "hex2rgb", "rgb2hex", "rgb2hsv", "hsv2rgb", 
+        "rgb2hls", "hls2rgb", 
+        ],
     'classifiers' : [
           'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Developers',

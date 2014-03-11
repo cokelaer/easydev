@@ -54,6 +54,9 @@ def check_range(value, a, b, strict=False):
             raise ValueError(" {} must be less than {}".format(value, b))
 
 def checkParam(param, valid_values):
+    """
+    .. warning:: deprecated since 0.6.10 use :meth:`check_param_in_list` instead
+    """
     print("easydev WARNING:: deprecated; use check_param_in_list instead.")
     check_param_in_list(param, valid_values)
 

@@ -6,6 +6,9 @@ spectrum). It provides tools such as multisetup (to ease the development of
 several packages within a single namespace), get_share_directory of any package,
 functions that are used often such as type checking...
 
+In addition, common tools are provided. For instance, convertor to common color representation (e.g., RGB, HSV).
+
+
 For a full documentation, see the sphinx documentation at
 `<http://pythonhosted.org/easydev/>`_
 
