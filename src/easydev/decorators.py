@@ -16,11 +16,14 @@
 ##############################################################################
 # $Id: tools.py 2963 2012-12-17 14:31:26Z cokelaer $
 """Handy decorators"""
-__all__ = ['require']
+import sys
+from functools import partial, wraps, update_wrapper
+import inspect
+__all__ = [ 'requires']
 
 
 # decorator with arguments and optional arguments for a method
-def require(*args_deco, **kwds_deco):
+def _require(*args_deco, **kwds_deco):
     """Decorator for class method to check if an attribute exist
 
     .. doctest::
@@ -37,6 +40,7 @@ def require(*args_deco, **kwds_deco):
         t.print()
 
 
+    .. todo:: first argument could be a list 
     """
     if len(args_deco) != 2:
         raise ValueError("require decorator expects 2 parameter. First one is" +
@@ -76,8 +80,55 @@ def require(*args_deco, **kwds_deco):
     return decorator
 
 
+# for book keeping, could be useful:
+def _blocking(not_avail):
+    def blocking(f, *args, **kw):
+        if not hasattr(f, "thread"): # no thread running
+            def set_result(): f.result = f(*args, **kw)
+            f.thread = threading.Thread(None, set_result)
+            f.thread.start()
+            return not_avail
+        elif f.thread.isAlive():
+            return not_avail
+        else: # the thread is ended, return the stored result
+            del f.thread
+            return f.result
+    return blocking
 
 
 
+# same as require decorator but works with list of stirngs of 
+# single string and uses the functools utilities
+def requires(requires, msg=""):
+    """Decorator for class method to check if an attribute exist
 
+    .. doctest::
+
+        >>> from easydev.decorators import requires
+        >>> class Test(object):
+        ...     def __init__(self):
+        ...         self.m = 1
+        ...     @requires('m', "set the m attribute first")
+        ...     def printthis(self):
+        ...         print(self.m)
+        >>> t = Test()
+        >>> t.printthis()
+        1
+    """
+    if isinstance(requires, str):
+        requires = [requires]
+    elif isinstance(requires, list) == False:
+        raise TypeError("First argument of the /requires/ decorator must be a" +
+                "string or list of string representing the required attributes" +
+                "to be found in your class. Second argument is a " +
+                "complementary message. ")
+    def actualDecorator(f):
+        @wraps(f)
+        def wrapper(*args, **kwds):
+            for require in requires:
+                if hasattr(args[0], require) == False:
+                    raise AttributeError("{} not found in {}. ".format(require, args[0]) + msg) 
+            return f(*args, **kwds)
+        return wrapper
+    return actualDecorator
 

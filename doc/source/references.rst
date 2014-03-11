@@ -4,6 +4,26 @@ Module References
 .. contents::
 
 
+decorators
+===============
+
+.. automodule:: easydev.decorators
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 
+
+dependencies
+===============
+
+.. automodule:: easydev.dependencies
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 
+
+
+
 doc
 ===================================================================
 
