@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 6
-_MICRO               = 10
+_MICRO               = 11
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -21,8 +21,7 @@ metainfo = {
     'platforms' : ['Linux', 'Unix', 'MacOsX', 'Windows'],
     'keywords' : ['sphinx', "package", "multisetup", "logging", "config"
         "hex2web", "web2hex", "hex2rgb", "rgb2hex", "rgb2hsv", "hsv2rgb", 
-        "rgb2hls", "hls2rgb", 
-        ],
+        "rgb2hls", "hls2rgb", "color", "pypi downloads" , "decorators"],
     'classifiers' : [
           'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Developers',
@@ -30,11 +29,8 @@ metainfo = {
           'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
           'Operating System :: OS Independent',
           'Programming Language :: Python :: 2.7',
-          'Topic :: Software Development :: Libraries :: Python Modules',
-          'Topic :: Scientific/Engineering :: Bio-Informatics',
-          'Topic :: Scientific/Engineering :: Information Analysis',
-          'Topic :: Scientific/Engineering :: Mathematics',
-          'Topic :: Scientific/Engineering :: Physics']
+          'Topic :: Software Development :: Libraries :: Python Modules'
+          ]
     }
 
 
