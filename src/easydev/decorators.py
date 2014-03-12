@@ -108,9 +108,10 @@ def requires(requires, msg=""):
         >>> class Test(object):
         ...     def __init__(self):
         ...         self.m = 1
-        ...     @requires('m', "set the m attribute first")
+        ...         self.x = 1
+        ...     @requires(['m','x'], "set the m attribute first")
         ...     def printthis(self):
-        ...         print(self.m)
+        ...         print(self.m+self.x)
         >>> t = Test()
         >>> t.printthis()
         1

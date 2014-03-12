@@ -2,8 +2,8 @@
 standard Python module called :mod:`colorsys` or in matplotlib.colors (e.g rgb2hex)
 or are original to this module (e.g., rgb2huv)
 
-The dependencies to matplotlib are minimal.
-299-300, 335, 337, 340, 350, 355-358, 424, 430-442, 465, 469, 498-499, 504, 506-507, 512, 514-515, 520, 522-523, 528, 530-531, 536, 538-539, 544, 546-547, 552, 554-555, 560, 562
+The dependencies to matplotlib are minimal and within the function. So, if
+you do not use the class ColorMapTools, you do not need matplotlib.
 
 """
 
