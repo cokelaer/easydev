@@ -1,5 +1,17 @@
 from easydev import tools
 
+
+def test_check_range():
+    tools.check_range(1, 0,1)
+
+    try:
+        tools.check_range(1, 0,1, strict=True)
+        assert False
+    except:
+        assert True
+
+
+
 def test_swapdict():
     assert {1:'a'} == tools.swapdict({'a':1})
 

@@ -1,4 +1,5 @@
 from easydev import colors
+from easydev.colors import *
 
 
 def assert_almost_equal_tuples(first, second):
@@ -6,18 +7,39 @@ def assert_almost_equal_tuples(first, second):
     for x,y in zip(first, second):
         assert_almost_equal(x,y)
 
+
+def test_hex2web():
+    assert hex2web("#FFAA11") == "#FA1"
+
+def test_web2hex():
+    assert web2hex("#FA1") == "#FFAA11"
+
+def test_rgb2yuv():
+    assert_almost_equal_tuples(rgb2yuv(1,1,1) , (1,0,0))
+    assert_almost_equal_tuples(rgb2yuv_int(255,255,255) , (255,0,0))
+
+    assert_almost_equal_tuples(yuv2rgb(1,0,0) , (1,1,1))
+    assert_almost_equal_tuples(yuv2rgb_int(255,0,0) , (255,255,255))
+
+
 def test_rgb2hsv():
-    assert colors.rgb2hsv(0,1,1) == (0.5,1,1)
-    assert colors.hsv2rgb(0.5,1,1) == (0,1,1)
-    colors.hsv2rgb(180,100,100, normalised=False)
+    assert_almost_equal_tuples( colors.rgb2hsv(0,1,1) , (0.5,1,1))
+    assert_almost_equal_tuples(colors.rgb2hsv(0,255,255, normalised=False) , (0.5,1,1))
+
+    assert_almost_equal_tuples(hsv2rgb(0.5,1,1) , (0,1,1))
+    assert_almost_equal_tuples(colors.hsv2rgb(180,100,100, normalised=False), (0,1,1))
 
 def test_rgb2hls():
     assert_almost_equal_tuples(colors.rgb2hls(0,1,1) , (0.5,0.5,1))
+    assert_almost_equal_tuples(colors.rgb2hls(0,255,255,normalised=False) ,
+            (0.5,0.5,1))
+
     assert_almost_equal_tuples(colors.hls2rgb(0.5,0.5,1), (0,1,1))
+    assert_almost_equal_tuples(colors.hls2rgb(180, 50, 100, normalised=False),
+            (0.,1,1))
 
-    assert_almost_equal_tuples(colors.rgb2hls(0, 255, 255, normalised=False), (0.5,0.5,1))
-
-
+def test_hex2dec():
+    assert colors.hex2dec("FF") == 1
 
 def test_rgb2hex():
     colors.rgb2hex(0,0,255)
@@ -49,6 +71,25 @@ def test_rgb2hex():
 
 
 def testColors():
+    # test constructors
+    c = colors.Color("#FFF")
+    c = colors.Color(rgb=(0,0,0))
+    c = colors.Color(hls=(0,0,0))
+    c = colors.Color(hsv=(0,0,0))
+    c = colors.Color(c)
+    try:
+        colors.Color()
+        assert False
+    except:
+        assert True
+    try:
+        colors.Color(object)
+        assert False
+    except:
+        assert True
+
+    
+    # test setter/getter
     c = colors.Color("Blue")
     assert c.rgb == (0, 0 ,1)
     assert c.hex == "#0000FF"
@@ -84,6 +125,33 @@ def testColors():
     assert c.hex == "#F8F8FF"
     assert c.name == "Ghost White"  # non official but works
     assert c.hex == "#F8F8FF"
+    c.saturation_hls = 0.5
+    assert c.saturation_hls == 0.5
+
+    c.lightness = 0.5
+    assert c.lightness == 0.5
+    c.hue = 0.5
+    assert c.hue == 0.5
+
+    c.hex = "#FF1F1F"
+    assert c.name == "undefined"
+    try:
+        c.hex = "ZFF1F1F"
+        assert False
+    except:
+        assert True
+
+    c = colors.Color("red")
+    assert c.red == 1
+    assert c.green == 0
+    assert c.blue == 0
+    c.blue = 0.
+    c.green=0.
+    c.red = 0
+    assert c.name == "Black"
+    c.value
+    c.value = 0.5
+    c.yiq
 
 
 def test_normalise():
@@ -93,7 +161,8 @@ def test_normalise():
     colors._denormalise(*(1,1,1), mode='rgb') == (255,255,255)
     colors._denormalise(*(1,1,1), mode='hls') == (360,100,100)
 
-
+def test_to_intensity():
+    to_intensity(0.5)
 
 
 def test_colormap():
@@ -122,3 +191,39 @@ def test_colormap():
                                 '#CC00FFFF','#FF00E6FF','#FF0099FF', '#FF004DFF']
     c.plot_rgb_from_hex_list(t)
     close()
+
+
+def test_HEX():
+
+    h = HEX()
+    h.get_standard_hex_color("0xFFF")
+    try:
+        h.get_standard_hex_color(22)
+        assert False
+    except:
+        assert True
+
+    try:
+        h.get_standard_hex_color("r")
+        assert False
+    except:
+        assert True
+
+
+    try:
+        h.get_standard_hex_color("rrrrrrrrrrrr")
+        assert False
+    except:
+        assert True
+
+    try:
+        h.get_standard_hex_color("#AAAZZZ")
+        assert False
+    except:
+        assert True
+
+    try:
+        h.get_standard_hex_color("#AAAA")
+        assert False
+    except:
+        assert True

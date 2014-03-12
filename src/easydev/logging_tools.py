@@ -17,6 +17,7 @@ import logging
 
 __all__ = ["Logging"]
 
+
 class Logging(object):
     """logging utility.
 

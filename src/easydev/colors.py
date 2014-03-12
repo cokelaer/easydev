@@ -3,7 +3,7 @@ standard Python module called :mod:`colorsys` or in matplotlib.colors (e.g rgb2h
 or are original to this module (e.g., rgb2huv)
 
 The dependencies to matplotlib are minimal.
-
+299-300, 335, 337, 340, 350, 355-358, 424, 430-442, 465, 469, 498-499, 504, 506-507, 512, 514-515, 520, 522-523, 528, 530-531, 536, 538-539, 544, 546-547, 552, 554-555, 560, 562
 
 """
 
@@ -13,9 +13,9 @@ from tools import check_param_in_list, swapdict, check_range
 from xfree86 import XFree86_colors
 
 
-__all__ = ["HEX", "Color", "hex2web", "web2hex", "hex2rgb", 
+__all__ = ["HEX", "Color", "hex2web", "web2hex", "hex2rgb", "hex2dec",
     "rgb2hex", "rgb2hsv", "hsv2rgb", "rgb2hls", "hls2rgb","yuv2rgb", "rgb2yuv", 
-    "to_intensity", "ColorMapTools"
+    "to_intensity", "ColorMapTools", "yuv2rgb_int", "rgb2yuv_int"
     ]
 
 
@@ -182,8 +182,8 @@ def hsv2rgb(h, s, v, normalised=True):
     :param bool normalised: If *normalised* is True, the input HSV triplet
         should be in the range 0-1; otherwise, H in the range 0-360 and LS
         in the range 0-100.
-    :return: the RGB triplet. If *normalised* parameter is True, the output 
-        triplet is in the range 0-1; otherwise, in the range 0-255.
+    :return: the RGB triplet. The output 
+        triplet is in the range 0-1 whether the input is normalised or not.
     
     .. doctest::
 
@@ -215,8 +215,9 @@ def hls2rgb(h, l, s, normalised=True):
     :param bool normalised: If *normalised* is True, the input HLS triplet
         should be in the range 0-1; otherwise, H in the range 0-360 and LS
         in the range 0-100.
-    :return: the RGB triplet. If *normalised* parameter is True, the output 
-        triplet is in the range 0-1; otherwise, in the range 0-255.
+    
+    :return: the RGB triplet. The output 
+        triplet is in the range 0-1 whether the input is normalised or not.
 
     .. doctest::
 
@@ -246,28 +247,79 @@ def hex2dec(data):
     return int(data, 16)/255.
 
 
-def rgb2yuv(r, g, b):
+def rgb2yuv(r,g,b):
     """Convert RGB triplet into YUV
+    
+    :return: YUV triplet with values between 0 and 1
     
     `YUV wikipedia <http://en.wikipedia.org/wiki/YUV>`_
     
-    .. warning:: expected input must be between 0 and 255 (not normalised)
-    .. todo:: not tested yet
+    .. warning:: expected input must be between 0 and 1
+    .. note:: the constants referenc used is  Rec. 601
     """
-    y = int(0.299 * r + 0.587 * g + 0.114 * b)
-    u = int(-0.14713 * r + -0.28886 * g + 0.436 * b)
-    v = int(0.615 * r + -0.51499 * g + -0.10001 * b)
+    check_range(r, 0, 1)
+    check_range(g, 0, 1)
+    check_range(b, 0, 1)
+    
+    #y = int(0.299 * r + 0.587 * g + 0.114 * b)
+    #u = int(-0.14713 * r + -0.28886 * g + 0.436 * b)
+    #v = int(0.615 * r + -0.51499 * g + -0.10001 * b)
+    
+    
+    
+    y = 0.299 * r + 0.587 * g + 0.114 * b
+    u = -32591.0/221500.0 * r + -63983.0/221500.0 * g + 0.436 * b
+    v = 0.615 * r + -72201./140200 * g + -7011/70100. * b
     return (y, u, v)
- 
-
-def yuv2rgb(y, u, v):
+    
+def yuv2rgb(y,u,v):
     """Convert YUV triplet into RGB
     
     `YUV <http://en.wikipedia.org/wiki/YUV>`_
 
     .. warning:: expected input must be between 0 and 255 (not normalised)
-    .. todo:: not tested yet
+    
     """
+    check_range(y, 0,1)
+    check_range(u, 0, 1)
+    check_range(v, 0, 1)
+    A, B, C, D = 701.0/615.0, 25251.0/63983.0, 209599.0/361005.0, 443.0/218.0 
+    r = y + A * v
+    g = y - B * u - C * v
+    b = y + D * u
+    return (r, g, b)
+    
+
+def rgb2yuv_int(r, g, b):
+    """Convert RGB triplet into YUV
+    
+    `YUV wikipedia <http://en.wikipedia.org/wiki/YUV>`_
+    
+    .. warning:: expected input must be between 0 and 255 (not normalised)
+    
+    """
+    check_range(r, 0, 255)
+    check_range(g, 0, 255)
+    check_range(b, 0, 255)
+
+    y = int(0.299 * r + 0.587 * g + 0.114 * b)
+    u = int(-32591.0/221500.0 * r + -63983.0/221500.0 * g + 0.436 * b)
+    v = int(0.615 * r + -72201./140200 * g + -7011/70100. * b)
+   
+    return (y, u, v)
+ 
+
+def yuv2rgb_int(y, u, v):
+    """Convert YUV triplet into RGB
+    
+    `YUV <http://en.wikipedia.org/wiki/YUV>`_
+
+    .. warning:: expected input must be between 0 and 255 (not normalised)
+    
+    """
+    check_range(y, 0, 255)
+    check_range(u, 0, 255)
+    check_range(v, 0, 255)
     r = int(y + 1.13983 * v)
     g = int(y - 0.39465 * u - 0.58060 * v)
     b = int(y + 2.03211 * u)
@@ -296,7 +348,7 @@ def to_intensity(n):
     :param n: value between 0 and 1
     :return: value between 0 and 255; round(n*127.5+127.5)
     """
-    check_range(b, 0, 1, normalise=True)
+    check_range(n, 0, 1)
     return int(round(n * 127.5 + 127.5))
     
 
@@ -366,7 +418,7 @@ class Color(HEX):
     human-readable name as long as it is part of the 
     `XFree86 list <http://en.wikipedia.org/wiki/X11_color_names>`_
     You can also provide a hexadecimal string (either 3 or 6 digits). You can 
-    use triplets of values corresponding to the RGB, HSV or HSL conventions. 
+    use triplets of values corresponding to the RGB, HSV or HLS conventions. 
 
     Here are some examples:
 
@@ -378,13 +430,13 @@ class Color(HEX):
         Color("#f00")          # standard 3 hex digits
         Color("#ff0000")       # standard 6 hex digits
         Color(hsv=(0,1,0.5))
-        Color(hsl=(0, 1, 0.5)) # HSL triplet
+        Color(hls=(0, 1, 0.5)) # HLS triplet
         Color(rgb=(1, 0, 0))   # RGB triplet
         Color(Color("red"))    # using an instance of :class:`Color`
 
-    Note that the RGB, HSL and HSV triplets use normalised values. If you need 
+    Note that the RGB, HLS and HSV triplets use normalised values. If you need 
     to normalise the triplet, you can use :mod:`easydev.colors._normalise` that 
-    provides a function to normalise RGB, HSL and HSV triplets::
+    provides a function to normalise RGB, HLS and HSV triplets::
 
         colors._normalise(*(255, 255, 0), mode="rgb")
         colors._normalise(*(360, 50, 100), mode="hls")
@@ -409,7 +461,7 @@ class Color(HEX):
     # keep track of all possible names
     color_names = sorted(list(set(colors.keys() + aliases.keys())))
 
-    def __init__(self, name=None, rgb=None, hsl=None, hsv=None):
+    def __init__(self, name=None, rgb=None, hls=None, hsv=None):
         super(Color, self).__init__()
         self._name = None
         self._mode = None
@@ -430,8 +482,8 @@ class Color(HEX):
         elif name == None:
             if rgb:
                 self.rgb = rgb
-            elif hsl:
-                self.hsl = hsl
+            elif hls:
+                self.hls = hls
             elif hsv:
                 self.hsv = hsv
             else:
@@ -558,8 +610,6 @@ class Color(HEX):
 
     def _get_yiq(self):
         return colorsys.rgb_to_yiq(*self.rgb)
-    def _set_yiq(self, value):
-        raise NotImplementedError
     yiq = property(_get_yiq, doc="Getter for the YIQ triplet")
 
     def __str__(self):

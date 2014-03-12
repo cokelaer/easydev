@@ -60,6 +60,7 @@ def checkParam(param, valid_values):
     print("easydev WARNING:: deprecated; use check_param_in_list instead.")
     check_param_in_list(param, valid_values)
 
+
 def check_param_in_list(param, valid_values):
     """Checks that the value of param is amongst valid
 
