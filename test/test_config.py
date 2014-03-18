@@ -1,10 +1,6 @@
 from easydev.config_tools import *
-from easydev.config_tools import _set_section
 
 
-def test_section():
-    s = _set_section()
-    print s
 
 
 def test_configExample():
@@ -31,5 +27,24 @@ def test_DynamicConfig():
     assert 'GA' not in dc.sections()
     print dc
 
+
+
+def test_DynamicConfig_setter():
+
+    dc = DynamicConfigParser()
+    dc.add_section("GA")
+    dc.add_option("GA", "test", 1)
+    dc.save("test.ini")
+
+    dc2 = DynamicConfigParser("test.ini")
+    assert dc == dc2
+    dc2.GA.test == 1 
+
+
+    dc.GA.test = 10
+    dc.save("test.ini")
+    dc2 = DynamicConfigParser("test.ini")
+    assert dc == dc2
+    #assert dc2.GA.test == 10
 
 

@@ -20,14 +20,31 @@
 
     from easydev.config_tools import *
 
-
 """
 from ConfigParser import ConfigParser
 import os
+from collections import OrderedDict
 
 __all__ = ["DynamicConfigParser", "ConfigExample"]
 
 
+class DictAttribute(OrderedDict):
+    def __init__(self, *args, **kwds):
+        super(DictAttribute, self).__init__(*args, **kwds)
+
+    def __getattr__(self, attr):
+        if self.has_key(attr):
+            return super(DictAttribute, self).__getitem__(attr)
+        else:
+            return super(DictAttribute, self).__getattr__(attr)
+    def __setattr__(self, attr, value):
+        if self.has_key(attr):
+            return super(DictAttribute, self).__setitem__(attr, value)
+        else:
+            return super(DictAttribute, self).__setattr__(attr, value)
+
+    
+                     
 
 class ConfigExample(object):
     """Create a simple example of ConfigParser instance to play with
@@ -67,22 +84,7 @@ class ConfigExample(object):
         self.config.set('GA', 'popsize', '50')
 
 
-class _set_section(object):
-    """utility to set attributes in a dictionary
 
-    Used by :class:`~easydev.config_tools.ConfigParams`
-    """
-    def __init__(self, **kargs):
-        for name, value in kargs.items():
-            setattr(self, name, value)
-
-    def __str__(self):
-        str_ = ''
-        for k, v in self.__dict__.iteritems():
-            str_+= str(k) + " = " + str(v) + '\n'
-        return str_
-
-        
 
 class DynamicConfigParser(ConfigParser):
     """Enhanced version of Config Parser
@@ -111,12 +113,14 @@ class DynamicConfigParser(ConfigParser):
 
     >>> print c
 
-    .. warning:: if you set options manually, the save/write does not work at
-        the moment
+    .. warning:: if you set options manually (e.G. self.GA.test =1 if GA is a 
+        section and test one of its options), then the save/write does not work
+        at the moment even though if you typoe self.GA.test, it has the correct value
 
     """
     def __init__(self, config_or_filename=None):
         ConfigParser.__init__(self)
+        self._sections = DictAttribute()
 
         self._config = None
         # set the sections and options
@@ -130,18 +134,17 @@ class DynamicConfigParser(ConfigParser):
         else:
             raise TypeError("config_or_filename must be a valid filename or valid ConfigParser instance")
 
+
     def load(self, filename):
         self.load_ini(filename)
 
     def load_ini(self, filename):
-        """Load an new config from a filename (remove all previous sections)"""
+        """Load a new config from a filename (remove all previous sections)"""
         config = ConfigParser()
         try:
             config.read(filename)
         except IOError, e:
             print e
-        for section in self.sections():
-            self.remove_section(section)
         self.replace_config(config)
 
     def replace_config(self, config):
@@ -159,7 +162,7 @@ class DynamicConfigParser(ConfigParser):
                 self.set(section, option, data)
 
     def get_options(self, section):
-        """Alias to get options of asection
+        """Alias to get options of a section
 
         One would normally do::
 
@@ -195,6 +198,10 @@ class DynamicConfigParser(ConfigParser):
 
             >>> d_dict.general.step
 
+        .. note:: a value (string) found to be True, Yes, true, yes is transformed to True
+        .. note:: a value (string) found to be False, No, no, false is transformed to False
+        .. note:: a value (string) found to be None; none, "" (empty string) is set to None
+        .. note:: an integer, or float is transformed to float
         """
         options = {}
         for option in self.options(section):
@@ -212,36 +219,30 @@ class DynamicConfigParser(ConfigParser):
                     options[option] = self.get(section, option, raw=True)
         return options
 
-
     def save(self, filename):
-        """Save the original ConfigParser instance in  a file.
-
-        :param str filename: a valid filename
-
-        >>> config = ConfigParams('config.ini') #doctest: +SKIP
-        >>> config.save('config2.ini') #doctest: +SKIP
-
         """
 
+        :param str filename: a valid filename
+  
+          >>> config = ConfigParams('config.ini') #doctest: +SKIP
+          >>> config.save('config2.ini') #doctest: +SKIP
+   
+        """
         try:
             if os.path.exists(filename) == True:
                 print "Warning: over-writing %s " % filename
-
+     
             fp = open(filename,'w')
         except Exception, e:
             print e
             raise Exception('filename could not be opened')
-
+     
+          
         self.write(fp)
         fp.close()
 
 
-    def update(self):
-        """makes each section an attribute in the class."""
-        sections = self.sections()
-        for section in sections:
-            self.__dict__[section] = _set_section(**self._section2dict(section))
-        #      raise SyntaxError("Could not convert sections from the ConfigParser instance !!")
+
 
 
     def add_section(self, section):
@@ -254,8 +255,11 @@ class DynamicConfigParser(ConfigParser):
 
 
         """
-        ConfigParser.add_section(self, section)
-        self.update()
+        if section in self._sections.keys():
+            raise ValueError()
+        else:
+            self._sections[section] = DictAttribute()
+        
 
     def add_option(self, section, option, value=None):
         """add an option in an existing section (with a value)
@@ -269,37 +273,16 @@ class DynamicConfigParser(ConfigParser):
         assert section in self.sections(), "unknown section"
         self.set(section, option, value=value)
 
-
     def set(self, section, option, value=None):
         ConfigParser.set(self, section, option, value=value)
-        self.update()
-
-
-    def _config2dict(self, section):
-        options = {}
-        for option in self.options(section):
-            data = self.get(section, option, raw=True)
-            if data in ['True', 'Yes', 'true', 'yes', True]:
-                options[option] = True
-            elif data in ['False', 'false', 'no', 'No', False]:
-                options[option] = False
-            else:
-                try: # numbers
-                    options[option] = self.getfloat(section, option)
-                except: #string
-                    options[option] = self.get(section, option)
-        return options
-
 
     def remove_option(self, section, option):
         """Remove an option from a section"""
         ConfigParser.remove_option(self, section, option)
-        self.update()
 
     def remove_section(self, section):
         """Remove a section"""
         ConfigParser.remove_section(self, section)
-        del self.__dict__[section]   # replace the call to update()
 
     def __str__(self):
         str_ = ""
@@ -312,6 +295,11 @@ class DynamicConfigParser(ConfigParser):
 
         return str_
 
+    def __getattr__(self, key):
+        if self._sections.has_key(key):
+            return self._sections[key]
+        else:
+            return super(DynamicConfigParser, self).__getattr__(attr)
 
     def __eq__(self, data):
         if data.sections() != self.sections():
