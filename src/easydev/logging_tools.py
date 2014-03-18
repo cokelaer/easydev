@@ -2,7 +2,7 @@
 #
 #  This file is part of easydev software
 #
-#  Copyright (c) 2012-2013
+#  Copyright (c) 2012-2014
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -21,12 +21,12 @@ __all__ = ["Logging"]
 class Logging(object):
     """logging utility.
 
-    When using the logging utility, it seems to work like a singleton.
-    So, once logging level is set, you can not set it again easily. 
+    When using the logging utility, it works like a singleton.
+    So, once logging level is set, you cannot set it again easily. 
     Here is a class that allows to do that. 
 
-    .. warning:: this is a bit of hack.Maybe this is not a proper solution but
-        it seems to do the work.
+    .. warning:: this is a bit of a hack. Maybe this is not a proper solution but
+        it seems to do the job.
 
     ::
 

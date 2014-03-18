@@ -17,12 +17,7 @@
 ##############################################################################
 # $:Id $
 """toolkit to ease development"""
-import os
 import subprocess
-import tempfile
-from os.path import join as pj
-import glob
-import time
 
 
 __all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list", "check_range"]
@@ -61,7 +56,7 @@ def checkParam(param, valid_values):
     check_param_in_list(param, valid_values)
 
 
-def check_param_in_list(param, valid_values):
+def check_param_in_list(param, valid_values, name=None):
     """Checks that the value of param is amongst valid
 
     :param param: a parameter to be checked
@@ -76,7 +71,10 @@ def check_param_in_list(param, valid_values):
         raise TypeError("the valid_values second argument must be a list of valid values")
 
     if param not in valid_values:
-        msg = "Incorrect value provided (%s)" % param
+        if name:
+            msg = "Incorrect value provided for {} ({})".format(name, param)
+        else:
+            msg = "Incorrect value provided (%s)" % param
         msg += "    Correct values are %s" % valid_values
         raise ValueError(msg)
     

@@ -22,7 +22,6 @@
 
 
 """
-import ConfigParser
 from ConfigParser import ConfigParser
 import os
 
@@ -80,7 +79,7 @@ class _set_section(object):
     def __str__(self):
         str_ = ''
         for k, v in self.__dict__.iteritems():
-            str_+= str(k)+" = "+str(v)+'\n'
+            str_+= str(k) + " = " + str(v) + '\n'
         return str_
 
         
@@ -93,7 +92,7 @@ class DynamicConfigParser(ConfigParser):
 
     ::
 
-        >>> from easydev..config_tools import ConfigExample
+        >>> from easydev.config_tools import ConfigExample
         >>> standard_config_file = ConfigExample().config
         >>> c = DynamicConfigParser(standard_config_file)
         >>>
@@ -183,7 +182,7 @@ class DynamicConfigParser(ConfigParser):
         Let us build up  a standard config file::
 
             >>> import ConfigParser
-            >>> config = ConfigParser.ConfigParser()
+            >>> c = ConfigParser.ConfigParser()
             >>> c.add_section('general')
             >>> c.set('general', 'step', str(1))
             >>> c.set('general', 'verbose', 'True')

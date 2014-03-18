@@ -11,6 +11,15 @@ colors
     :inherited-members:
     :synopsis: 
 
+
+config
+==========
+
+.. automodule:: easydev.config_tools
+    :members:
+    :inherited-members:
+    :synopsis: 
+
 decorators
 ===============
 
