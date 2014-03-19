@@ -25,23 +25,73 @@ from ConfigParser import ConfigParser
 import os
 from collections import OrderedDict
 
-__all__ = ["DynamicConfigParser", "ConfigExample"]
+__all__ = ["OrderedDictAttribute", "DynamicConfigParser", "ConfigExample"]
 
 
-class DictAttribute(OrderedDict):
+class OrderedDictAttribute(OrderedDict):
+    """This is an extension of :class:`~collections.OrderedDict` class with key as read/write attribute
+    
+    Consider the following example. The key **test** can be altered
+    as a normal attribute. 
+    
+    .. doctest::
+
+        >>> from easydev.config_tools import OrderedDictAttribute   
+        >>> o = OrderedDictAttribute()    
+        >>> o['test'] = 1
+        >>> o.test   # equivalent to o['test']
+        1
+        >>> o.test = 1 # equivalent to o['test'] = 1
+        
+    .. warning:: the key-attribute can be altered **only** if already
+        added in the dictionary itself.
+        
+    .. doctest::
+
+        >>> from easydev.config_tools import OrderedDictAttribute
+        >>> o = OrderedDictAttribute()    
+        # o['test'] = 1     # let us omit this required step
+        >>> o.test = 1 
+        >>> o.test          # this is an attribute (not a key)
+        1
+        >>> o.has_key("test")
+        False 
+        
+    .. todo:: when setting an attribute that is not a key, we could
+        add it in the dictionary.
+        
+    """
     def __init__(self, *args, **kwds):
-        super(DictAttribute, self).__init__(*args, **kwds)
+        super(OrderedDictAttribute, self).__init__(*args, **kwds)
+        
+        # The spirit of this class is to have a mapping between keys and 
+        # an attribute with the same name. Yet, one can set an attribute
+        # while the key hasnot yet been set, which is not expected usage
+        
+        # FIXME one could solve this issue by creating the key on the fly.
+        
+        # meanwhile, we will use a print statement to inform the user that this attribute
+        # is not yet a key. 
+        
+        # Yet, when we create an instance of this class, the message will 
+        # be printed. To prevent this, we use th e _init attribute below
+        # and catch its presence in the __setattr__ method
+        self._init = True  # used in set attributete to figure out if
 
     def __getattr__(self, attr):
         if self.has_key(attr):
-            return super(DictAttribute, self).__getitem__(attr)
+            return super(OrderedDictAttribute, self).__getitem__(attr)
         else:
-            return super(DictAttribute, self).__getattr__(attr)
+            return super(OrderedDictAttribute, self).__getattr__(attr)
     def __setattr__(self, attr, value):
         if self.has_key(attr):
-            return super(DictAttribute, self).__setitem__(attr, value)
+            return super(OrderedDictAttribute, self).__setitem__(attr, value)
         else:
-            return super(DictAttribute, self).__setattr__(attr, value)
+            if "_init" in self.__dict__.keys():
+                print("warning: attribute {} not in the dictionary yet.".format(attr))
+                print("If you want this attribute to be in the dictionary, you must add it first as a key")
+            
+            return super(OrderedDictAttribute, self).__setattr__(attr, value)
 
     
                      
@@ -72,7 +122,7 @@ class ConfigExample(object):
 
         >>> from ConfigParser import ConfigParser
         >>> config = ConfigParser()
-        >>> config.read(filename)
+        >>> config.read("file.ini")
 
 
     """
@@ -116,38 +166,55 @@ class DynamicConfigParser(ConfigParser):
     .. warning:: if you set options manually (e.G. self.GA.test =1 if GA is a 
         section and test one of its options), then the save/write does not work
         at the moment even though if you typoe self.GA.test, it has the correct value
+        
 
+    Methods inhereited from ConfigParser are available:
+
+    ::
+    
+        # set value of an option in a section
+        c.set(section, option, value=None)
+        # but with this class, you can also use the attribute
+        c.section.option = value
+        
+        # set value of an option in a section
+        c.remove_option(section, option)
+        c.remove_section(section)
+        
+    
     """
     def __init__(self, config_or_filename=None):
+        # why not a super usage here ? Maybe there wee issues related to old style class ?
         ConfigParser.__init__(self)
-        self._sections = DictAttribute()
+        
+        # I'm hacking the ConfigParser to replace the _sections OrderedDict
+        # by an OrderedDictAttribute to easily access to sections.
+        self._sections = OrderedDictAttribute()
 
+        
         self._config = None
         # set the sections and options
         if type(config_or_filename) == str:
-            self.load_ini(config_or_filename)
+            self.read(config_or_filename)
         elif isinstance(config_or_filename, ConfigParser):
             config = config_or_filename
-            self.replace_config(config)
+            self._replace_config(config)
         elif config_or_filename == None:
             pass
         else:
             raise TypeError("config_or_filename must be a valid filename or valid ConfigParser instance")
 
-
-    def load(self, filename):
-        self.load_ini(filename)
-
-    def load_ini(self, filename):
+    def read(self, filename):
         """Load a new config from a filename (remove all previous sections)"""
+        if os.path.isfile("test.ini")==False:
+            raise IOError("filename {} not found".format(filename))
+            
         config = ConfigParser()
-        try:
-            config.read(filename)
-        except IOError, e:
-            print e
-        self.replace_config(config)
+        config.read(filename)
+        
+        self._replace_config(config)
 
-    def replace_config(self, config):
+    def _replace_config(self, config):
         """Remove all sections and add those from the input config file
 
         :param config:
@@ -155,6 +222,7 @@ class DynamicConfigParser(ConfigParser):
         """
         for section in self.sections():
             self.remove_section(section)
+            
         for section in config.sections():
             self.add_section(section)
             for option in config.options(section):
@@ -162,19 +230,23 @@ class DynamicConfigParser(ConfigParser):
                 self.set(section, option, data)
 
     def get_options(self, section):
-        """Alias to get options of a section
-
-        One would normally do::
+        """Alias to get all options of a section in a dictionary
+    
+        One would normally need to extra each option manually::
 
             for option in config.options(section):
-                config.get(section, option, raw=True)
+                config.get(section, option, raw=True)#
+                
+        then, populate a dictionary and finally take care of the types.
+        
+        .. warning:: types may be changed .For instance the string "True" 
+            is interepreted as a True boolean.
 
-        taking care of types as well.
-
+        ..  seealso:: internally, this method uses :meth:`section2dict` 
         """
-        return getattr(self, section).__dict__
+        return self.section2dict(section)
 
-    def _section2dict(self, section):
+    def section2dict(self, section):
         """utility that extract options of a ConfigParser section into a dictionary
 
         :param ConfigParser config: a ConfigParser instance
@@ -220,18 +292,19 @@ class DynamicConfigParser(ConfigParser):
         return options
 
     def save(self, filename):
-        """
+        """Save all sections/options to a file.
 
         :param str filename: a valid filename
   
-          >>> config = ConfigParams('config.ini') #doctest: +SKIP
-          >>> config.save('config2.ini') #doctest: +SKIP
+        ::
+         
+            config = ConfigParams('config.ini') #doctest: +SKIP
+            config.save('config2.ini') #doctest: +SKIP
    
         """
         try:
             if os.path.exists(filename) == True:
                 print "Warning: over-writing %s " % filename
-     
             fp = open(filename,'w')
         except Exception, e:
             print e
@@ -241,10 +314,6 @@ class DynamicConfigParser(ConfigParser):
         self.write(fp)
         fp.close()
 
-
-
-
-
     def add_section(self, section):
         """add a section in the configuration file
 
@@ -253,16 +322,18 @@ class DynamicConfigParser(ConfigParser):
             >>> c = DynamicConfigParser()
             >>> c.add_section("general")
 
+        .. note:: this method overloads the parent's method to make sure
+            that OrderedDict instance are AttributeOrdredDict.
+        .. note:: here the section added is an :class:`OrderedDictAttribute`
 
         """
         if section in self._sections.keys():
-            raise ValueError()
+            raise ValueError("Section {} already in the dictionary".format(section))
         else:
-            self._sections[section] = DictAttribute()
+            self._sections[section] = OrderedDictAttribute()
         
-
     def add_option(self, section, option, value=None):
-        """add an option in an existing section (with a value)
+        """add an option to an existing section (with a value)
 
         ::
 
@@ -272,17 +343,20 @@ class DynamicConfigParser(ConfigParser):
         """
         assert section in self.sections(), "unknown section"
         self.set(section, option, value=value)
+    
+    
+    # no need for those methods anymore
+    #def set(self, section, option, value=None):
+    #    ConfigParser.set(self, section, option, value=value)
 
-    def set(self, section, option, value=None):
-        ConfigParser.set(self, section, option, value=value)
+    # no need for those methods anymore
+    #def remove_option(self, section, option):
+    #    """Remove an option from a section"""
+    #    ConfigParser.remove_option(self, section, option)
 
-    def remove_option(self, section, option):
-        """Remove an option from a section"""
-        ConfigParser.remove_option(self, section, option)
-
-    def remove_section(self, section):
-        """Remove a section"""
-        ConfigParser.remove_section(self, section)
+    #def remove_section(self, section):
+    #    """Remove a section"""
+    #    ConfigParser.remove_section(self, section)
 
     def __str__(self):
         str_ = ""
@@ -299,20 +373,20 @@ class DynamicConfigParser(ConfigParser):
         if self._sections.has_key(key):
             return self._sections[key]
         else:
-            return super(DynamicConfigParser, self).__getattr__(attr)
+            return getattr(ConfigParser, key)
+            #.__dict__[key]
+            # does not work probably because old-style class
+            #return super(DynamicConfigParser, self).__getattribute__(key)
+             
 
     def __eq__(self, data):
-        if data.sections() != self.sections():
-            print("sections differ")
+        # FIXME if you read file, the string "True" is a string
+        # but you may want it to be converted to a True boolean value
+        if sorted(data.sections()) != sorted(self.sections()):
+            print("Sections differ")
             return False
         for section in self.sections():
-            try:
-                if section not in data.sections():
-                    print("sections differ2")
-                    return False
-            except:
-                print "%s not in RHS config file" % section
-                return False
+
             for option in self.options(section):
                 try:
                     if str(self.get(section, option,raw=True)) != \

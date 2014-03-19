@@ -29,7 +29,7 @@ def check_range(value, a, b, strict=False):
     :param value: value to test
     :param a: lower bound 
     :param b: upper bound
-    :return nothing
+    :return: nothing
 
     .. doctest::
     

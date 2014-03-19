@@ -1,3 +1,7 @@
+.. rubric:: 0.6.10
+* add config_tools in the doc
+* add an optional argument in check_range_in_list
+
 
 .. rubric:: 0.6.10
 

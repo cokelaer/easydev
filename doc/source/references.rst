@@ -17,7 +17,6 @@ config
 
 .. automodule:: easydev.config_tools
     :members:
-    :inherited-members:
     :synopsis: 
 
 decorators
