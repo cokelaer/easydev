@@ -19,6 +19,15 @@ config
     :members:
     :synopsis: 
 
+console
+===================================================================
+
+.. automodule:: easydev.console
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 
+
 decorators
 ===============
 
@@ -47,19 +56,21 @@ doc
     :inherited-members:
     :synopsis: 
 
-logging_tools
-===================================================================
+easytest
+==========
 
-.. automodule:: easydev.logging_tools
+.. automodule:: easydev.easytest
     :members:
     :undoc-members:
     :inherited-members:
     :synopsis: 
 
-sphinx themes
+
+
+logging_tools
 ===================================================================
 
-.. automodule:: easydev.sphinx_themes
+.. automodule:: easydev.logging_tools
     :members:
     :undoc-members:
     :inherited-members:
@@ -83,11 +94,21 @@ Package
     :inherited-members:
     :synopsis: 
 
-
-console
+paths
 ===================================================================
 
-.. automodule:: easydev.console
+.. automodule:: easydev.paths
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 
+
+
+
+sphinx themes
+===================================================================
+
+.. automodule:: easydev.sphinx_themes
     :members:
     :undoc-members:
     :inherited-members:
@@ -103,15 +124,6 @@ tools
     :inherited-members:
     :synopsis: 
 
-
-paths
-===================================================================
-
-.. automodule:: easydev.paths
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :synopsis: 
 
  
 url

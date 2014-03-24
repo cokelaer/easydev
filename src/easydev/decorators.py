@@ -114,7 +114,8 @@ def requires(requires, msg=""):
         ...         print(self.m+self.x)
         >>> t = Test()
         >>> t.printthis()
-        1
+        2
+
     """
     if isinstance(requires, str):
         requires = [requires]

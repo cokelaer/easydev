@@ -78,7 +78,11 @@ class Logging(object):
     level = property(_get_level, _set_level, 
         doc="alias to :attr:`~easydev.logging_tools.Logging.debugLevel` (Read-only access)")
 
+
+
+    # Used copy/deepcopy module
     def __copy__(self):
+        print("WARNING: easydev.logging_tools.__copy__ deprecated. use copy() instead")
         s = Logging(self.level)
         return s
 

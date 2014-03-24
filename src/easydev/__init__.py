@@ -28,6 +28,9 @@ from decorators import *
 import doc
 from doc import *
 
+import easytest
+from easytest import *
+
 import logging_tools
 from logging_tools import *
 

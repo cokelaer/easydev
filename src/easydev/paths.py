@@ -22,7 +22,8 @@ import pkg_resources
 
 
 __all__ = ["get_shared_directory_path", "get_shared_directories", 
-    "get_share_file"]
+    "get_share_file", "gsf"]
+
 
 
 def get_shared_directory_path(package):
@@ -52,6 +53,7 @@ def get_shared_directory_path(package):
     else:
         #print("no. searching for share dir as if in develop mode")
         # let us try a couple of directories
+        # FIXME: do we need the 3 cases ??
         sharedir = os.path.realpath(pj(location, '..',  'share'))
         if os.path.isdir(sharedir) == True:
             return sharedir
@@ -97,6 +99,10 @@ def get_shared_directories(package, datadir="data"):
             directories_to_process.append(fullpath)
     directories_to_process.sort()
     return directories_to_process
+
+
+def gsf(package, datadir, filename):
+    return get_share_file(package, datadir, filename)
 
 def get_share_file(package, datadir, filename):
     """Creates the full path of a file to be found in the share directory of a package

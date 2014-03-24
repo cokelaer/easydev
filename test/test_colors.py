@@ -1,11 +1,6 @@
 from easydev import colors
 from easydev.colors import *
-
-
-def assert_almost_equal_tuples(first, second):
-    from nose.tools import assert_almost_equal
-    for x,y in zip(first, second):
-        assert_almost_equal(x,y)
+from easydev.easytest import assert_list_almost_equal
 
 
 def test_hex2web():
@@ -15,27 +10,27 @@ def test_web2hex():
     assert web2hex("#FA1") == "#FFAA11"
 
 def test_rgb2yuv():
-    assert_almost_equal_tuples(rgb2yuv(1,1,1) , (1,0,0))
-    assert_almost_equal_tuples(rgb2yuv_int(255,255,255) , (255,0,0))
+    assert_list_almost_equal(rgb2yuv(1,1,1) , (1,0,0))
+    assert_list_almost_equal(rgb2yuv_int(255,255,255) , (255,0,0))
 
-    assert_almost_equal_tuples(yuv2rgb(1,0,0) , (1,1,1))
-    assert_almost_equal_tuples(yuv2rgb_int(255,0,0) , (255,255,255))
+    assert_list_almost_equal(yuv2rgb(1,0,0) , (1,1,1))
+    assert_list_almost_equal(yuv2rgb_int(255,0,0) , (255,255,255))
 
 
 def test_rgb2hsv():
-    assert_almost_equal_tuples( colors.rgb2hsv(0,1,1) , (0.5,1,1))
-    assert_almost_equal_tuples(colors.rgb2hsv(0,255,255, normalised=False) , (0.5,1,1))
+    assert_list_almost_equal( colors.rgb2hsv(0,1,1) , (0.5,1,1))
+    assert_list_almost_equal(colors.rgb2hsv(0,255,255, normalised=False) , (0.5,1,1))
 
-    assert_almost_equal_tuples(hsv2rgb(0.5,1,1) , (0,1,1))
-    assert_almost_equal_tuples(colors.hsv2rgb(180,100,100, normalised=False), (0,1,1))
+    assert_list_almost_equal(hsv2rgb(0.5,1,1) , (0,1,1))
+    assert_list_almost_equal(colors.hsv2rgb(180,100,100, normalised=False), (0,1,1))
 
 def test_rgb2hls():
-    assert_almost_equal_tuples(colors.rgb2hls(0,1,1) , (0.5,0.5,1))
-    assert_almost_equal_tuples(colors.rgb2hls(0,255,255,normalised=False) ,
+    assert_list_almost_equal(colors.rgb2hls(0,1,1) , (0.5,0.5,1))
+    assert_list_almost_equal(colors.rgb2hls(0,255,255,normalised=False) ,
             (0.5,0.5,1))
 
-    assert_almost_equal_tuples(colors.hls2rgb(0.5,0.5,1), (0,1,1))
-    assert_almost_equal_tuples(colors.hls2rgb(180, 50, 100, normalised=False),
+    assert_list_almost_equal(colors.hls2rgb(0.5,0.5,1), (0,1,1))
+    assert_list_almost_equal(colors.hls2rgb(180, 50, 100, normalised=False),
             (0.,1,1))
 
 def test_hex2dec():
@@ -93,8 +88,8 @@ def testColors():
     c = colors.Color("Blue")
     assert c.rgb == (0, 0 ,1)
     assert c.hex == "#0000FF"
-    assert_almost_equal_tuples( c.hsv, (0.66666666666666,1,1))
-    assert_almost_equal_tuples(c.hls, (0.666666666666666, .5,1))
+    assert_list_almost_equal( c.hsv, (0.66666666666666,1,1))
+    assert_list_almost_equal(c.hls, (0.666666666666666, .5,1))
     print(c)
 
     c.normalised = True
@@ -176,8 +171,8 @@ def test_colormap():
     
     # design your own colormap
     d = {'blue': [0,0,0,1,1,1,0],
-                    'green':[0,1,1,1,0,0,0],
-                            'red':  [1,1,0,0,0,1,1]}
+         'green':[0,1,1,1,0,0,0],
+         'red':  [1,1,0,0,0,1,1]}
     cmap = c.get_cmap(d, reverse=True)
     cmap = c.get_cmap_rainbow()
     cmap = c.get_cmap_red_green()
@@ -185,12 +180,12 @@ def test_colormap():
 
 
     t = ['#FF0000FF', '#FF4D00FF', '#FF9900FF', '#FFE500FF',
-                 '#CCFF00FF', '#80FF00FF', '#33FF00FF', '#00FF19FF',
-                      '#00FF66FF', '#00FFB2FF', '#00FFFFFF', '#00B3FFFF',
-                           '#0066FFFF', '#001AFFFF', '#3300FFFF', '#7F00FFFF',
-                                '#CC00FFFF','#FF00E6FF','#FF0099FF', '#FF004DFF']
-    c.plot_rgb_from_hex_list(t)
-    close()
+         '#CCFF00FF', '#80FF00FF', '#33FF00FF', '#00FF19FF',
+         '#00FF66FF', '#00FFB2FF', '#00FFFFFF', '#00B3FFFF',
+         '#0066FFFF', '#001AFFFF', '#3300FFFF', '#7F00FFFF',
+         '#CC00FFFF','#FF00E6FF','#FF0099FF', '#FF004DFF']
+    # FIXME: need to find a way to close the plot. close('all') does not work
+    # c.plot_rgb_from_hex_list(t) 
 
 
 def test_HEX():

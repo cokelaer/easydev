@@ -49,10 +49,9 @@ class OrderedDictAttribute(OrderedDict):
     .. doctest::
 
         >>> from easydev.config_tools import OrderedDictAttribute
-        >>> o = OrderedDictAttribute()    
-        # o['test'] = 1     # let us omit this required step
-        >>> o.test = 1 
-        >>> o.test          # this is an attribute (not a key)
+        >>> o = OrderedDictAttribute() # o['test'] = 1; let us omit this required step
+        >>> o.test = 1 #doctst: +SKIP
+        >>> o.test     #doctest: +SKIP this is an attribute (not a key)
         1
         >>> o.has_key("test")
         False 

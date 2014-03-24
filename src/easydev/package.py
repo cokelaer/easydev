@@ -165,6 +165,8 @@ upload_dir=doc/build/html/
 class PackageBuilder(object):
     """simple class to automatically build a package layout
 
+    .. doctest::
+        :options: +SKIP
 
         >>> from easydev import PackageBuilder
         >>> p = PackageBuilder(name="testpackage")

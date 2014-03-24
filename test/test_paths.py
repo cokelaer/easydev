@@ -1,4 +1,5 @@
 from easydev.paths import *
+from easydev.easytest import trysetattr
 import os
 
 
@@ -15,5 +16,13 @@ def test_get_share_directories():
     a = get_shared_directories("easydev", "themes")
 
 def test_get_share_file():
-    f = get_share_file("easydev", os.sep.join(["themes", "standard"]),
-"theme.conf")
+    f = get_share_file("easydev", os.sep.join(["themes", "standard"]), "theme.conf")
+
+
+def test_gsf():
+    f = gsf("easydev", os.sep.join(["themes", "standard"]), "theme.conf")
+    try:
+        f = gsf("easydev", os.sep.join(["themes", "standard"]), "theme.conf.dummy")
+        assert False
+    except:
+        assert True

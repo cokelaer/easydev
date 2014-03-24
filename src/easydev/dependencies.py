@@ -3,6 +3,7 @@ import pkg_resources
 
 __all__ = ["get_dependencies"]
 
+
 def get_dependencies(pkgname):
     """Return dependencies of a package as a sorted list
     

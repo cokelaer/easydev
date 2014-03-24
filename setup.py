@@ -19,7 +19,7 @@ metainfo = {
     'url' : ["http://packages.python.org/easydev/"],
     'description':'Common utilities to ease the development of Python packages' ,
     'platforms' : ['Linux', 'Unix', 'MacOsX', 'Windows'],
-    'keywords' : ['sphinx', "package", "multisetup", "logging", "config"
+    'keywords' : ['sphinx', "package", "multisetup", "logging", "config",
         "hex2web", "web2hex", "hex2rgb", "rgb2hex", "rgb2hsv", "hsv2rgb", 
         "rgb2hls", "hls2rgb", "color", "pypi downloads" , "decorators"],
     'classifiers' : [

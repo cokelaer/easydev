@@ -16,10 +16,16 @@
 import httplib
 
 
-__all__= ["isurl"]
+__all__= ["isurl", "isurl_reachable"]
+
+
 
 
 def isurl(url):
+    return isurl_reachable(url)
+
+
+def isurl_reachable(url):
     """Checks if an URL exists or nor
 
     :param str url: the url to look for
@@ -27,6 +33,7 @@ def isurl(url):
 
 
     """
+    print("warning:: use isurl_reachable function instead")
     if url.startswith("http://"):
         url = url.split("http://")[1]
     c = httplib.HTTPConnection(url)

@@ -1,4 +1,7 @@
-.. rubric:: 0.6.10
+.. rubric:: 0.6.11
+
+* added an alias called gsf to get_share_file function.
+* rename url.isurl into url.isurl_reachable
 * add config_tools in the doc
 * add an optional argument in check_range_in_list
 
