@@ -19,28 +19,33 @@ There is a test suite, which can be run using nosetests. The tests are in the
 The latests coverage was about 70% of the code::
 
 
-    Name                    Stmts   Miss  Cover   Missing
-    -----------------------------------------------------
-    easydev                    32      2    94%   12-13
-    easydev.config_tools      140     52    63%   83, 129-132, 135, 142-143, 145, 173, 206, 208, 212-213, 229, 232-234, 270-271, 280-292, 297-298, 318-337
-    easydev.console            53     12    77%   45-49, 62, 71, 74-79
-    easydev.copybutton         60     28    53%   90-91, 97-99, 102-123, 126-129, 133-135
-    easydev.decorators         52     33    37%   45-80, 85-96, 106
-    easydev.dependencies       10      7    30%   7-13
-    easydev.doc                 5      0   100%   
-    easydev.logging_tools      33      6    82%   60, 62, 81-82, 85-86
-    easydev.multicore          31      0   100%   
-    easydev.multisetup        154     55    64%   50-53, 105, 108, 119, 136,  220-223, 242-243, 271-277, 282, 315-359, 363-364
-    easydev.package           127     23    82%   224, 245, 251-266, 350, 378-389
-    easydev.paths              49     14    71%   51, 58-68, 88, 109, 112-113
-    easydev.setuptools         12      0   100%   
-    easydev.sphinx_themes      15      0   100%   
-    easydev.tools              33      1    97%   63
-    easydev.url                13      1    92%   42
-    -----------------------------------------------------
-    TOTAL                     819    234    71%   
+    Name                     Stmts   Miss  Cover   Missing
+    ------------------------------------------------------
+    easydev                     38      2    95%   12-13
+    easydev.colors             305     17    94%   678-687, 776-782
+    easydev.config_tools       114     11    90%   209, 283, 285, 289-290, 308-310, 330, 395-396
+    easydev.console             53     12    77%   45-49, 62, 71, 74-79
+    easydev.copybutton          60     28    53%   90-91, 97-99, 102-123, 126-129, 133-135
+    easydev.decorators          52     33    37%   45-80, 85-96, 123
+    easydev.dependencies        10      0   100%   
+    easydev.doc                  5      0   100%   
+    easydev.easytest            16      4    75%   57-58, 62-63
+    easydev.logging_tools       34      0   100%   
+    easydev.multicore           32      0   100%   
+    easydev.multisetup         154     55    64%   50-53, 105, 108, 119, 136, 220-223, 242-243, 271-277, 282, 315-359, 363-364
+    easydev.package            127     27    79%   226-227, 240, 247, 253-268, 279, 343, 352, 380-391
+    easydev.paths               54     13    76%   52, 60-70, 90, 115, 121
+    easydev.pypi_downloads      19      0   100%   
+    easydev.setuptools          12      0   100%   
+    easydev.sphinx_themes       15      0   100%   
+    easydev.tools               45      2    96%   42, 75
+    easydev.url                 16      1    94%   49
+    easydev.xfree86              2      0   100%   
+    ------------------------------------------------------
+    TOTAL                     1163    205    82%   
     ----------------------------------------------------------------------
-    Ran 32 tests in 24.763s
+    Ran 52 tests in 8.392s
+
 
 
 

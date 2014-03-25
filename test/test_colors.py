@@ -166,8 +166,11 @@ def test_colormap():
 
     c = ColorMapTools()
     cmap = c.get_cmap_heat()
-    c.test_cmap(cmap)
-    close()
+    #c.test_cmap(cmap)
+    from pylab import clf, gcf
+    f = gcf()
+    #f.close()
+    
     
     # design your own colormap
     d = {'blue': [0,0,0,1,1,1,0],
