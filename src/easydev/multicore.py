@@ -1,5 +1,5 @@
-from math import sqrt
-from threading import Thread
+#from threading import Thread
+import time
 from multiprocessing import cpu_count, Process, Queue, Pool
 
 __all__ = ["MultiProcessing"]
@@ -19,6 +19,13 @@ class MultiProcessing(object):
         t.results[0] # contain returned object from the function *func*.
 
 
+    .. warning:: the function must be a function, not a method. This is inherent 
+        to multiprocess in the multiprocessing module.
+        
+    .. warning:: the order in the results list may not be the same as the
+        list of jobs. see :meth:`run` for details
+        
+
     """
     def __init__(self, maxcpu=None, verbose=False):
         """
@@ -28,8 +35,9 @@ class MultiProcessing(object):
 
 
         """
-        maxcpu = cpu_count()
-        #self.counter = 0
+        if maxcpu == None:
+            maxcpu = cpu_count()
+
         self.maxcpu = maxcpu
         self.reset()
         self.verbose = verbose
@@ -53,10 +61,19 @@ class MultiProcessing(object):
         self.results.append(results)
         #self.counter += 1
 
-    def run(self):
+    def run(self, delay=0.1):
         """Run all the jobs in the Pool until all have finished.
 
-
+        Jobs that have been added to the job list in :meth:`add_job`
+        are now processed in this method by using a Pool. Here, we add
+        all jobs using the apply_async method from multiprocess module.
+        
+        In order to ensure that the jobs are run sequentially in the same
+        order as in :attr:`jobs`, we introduce a delay between 2 calls
+        to apply_async (see http://docs.python.org/2/library/multiprocessing.html)
+        
+        A better way may be t use a Manager but for now, this works.
+        
         """
         self.results = []
         #self.counter = 0
@@ -64,7 +81,9 @@ class MultiProcessing(object):
 
         for process in self.jobs:
             self.po.apply_async(process._target, process._args, 
-                process._kwargs, callback=self._cb)
+                    process._kwargs, callback=self._cb)
+            time.sleep(delay) # to ensure that the results have smae order as jobs
+            
         self.po.close()
         self.po.join()
         #print "\n", self.counter    
