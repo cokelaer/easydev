@@ -162,12 +162,13 @@ def test_to_intensity():
 
 def test_colormap():
     from easydev.colors import ColorMapTools
-    from pylab import close
-
+    try:
+        from pylab import close, clf, gcf
+    except:
+        return
     c = ColorMapTools()
     cmap = c.get_cmap_heat()
     #c.test_cmap(cmap)
-    from pylab import clf, gcf
     f = gcf()
     #f.close()
     

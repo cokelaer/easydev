@@ -3,9 +3,16 @@ from easydev import tools
 
 def test_check_range():
     tools.check_range(1, 0,1)
+    tools.check_range(0, 0,1)
+    tools.check_range(0.5, 0,1)
 
     try:
         tools.check_range(1, 0,1, strict=True)
+        assert False
+    except:
+        assert True
+    try:
+        tools.check_range(0, 0,1, strict=True)
         assert False
     except:
         assert True
@@ -51,3 +58,7 @@ def test_checkParams():
         assert False
     except TypeError:
         assert True
+
+def test_check_param_in_list():
+    tools.check_param_in_list(1, [0,1,5], "test")
+
