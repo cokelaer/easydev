@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 6
-_MICRO               = 11
+_MICRO               = 12
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -37,6 +37,7 @@ metainfo = {
 # TODO: files in share/data. Need a smarter mechanism (recursive)
 datafiles = []
 datadirs = [
+        os.path.join('share'), 
         os.path.join('share', 'themes'), 
         os.path.join('share', 'themes', 'cno'),
         os.path.join('share', 'themes', 'cno', 'static'),
@@ -50,8 +51,6 @@ for datadir in datadirs:
             [f for f in glob.glob(os.path.join(datadir, '*')) if not os.path.isdir(f)]
         )
     )
-
-
 
 
 setup(
@@ -74,6 +73,8 @@ setup(
     package_dir = {'':'src'},
     packages = ['easydev'],
 
+    # sphinx is not stricly speaking required but this is very useful to build documentation
+    # once installed, one can just build the doc himself
     install_requires = ['sphinx'],
 
 
@@ -84,7 +85,6 @@ setup(
     # still required for python setup.py install or pip install to copy the
     # share directory in the proper place . sure there will be a neat solution
     # one day 
-    # using a MANIFEST.in
     data_files = datafiles,
 
     entry_points = {

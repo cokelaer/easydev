@@ -1,6 +1,8 @@
 # keep nose inside the functions to avoid dependencies
 
-__all__ = ["assert_list_almost_equal", "trysetattr"]
+import tempfile
+
+__all__ = ["assert_list_almost_equal", "trysetattr", "TempFile"]
 
 
 def assert_list_almost_equal(first, second, places=None):
@@ -61,4 +63,33 @@ def trysetattr(this, attrname, value, possible):
         assert a1    # if the setattr is possible, this should be True
     except:
         assert a2
+
+
+
+
+class TempFile():
+    """A small wrapper around tempfile.NamedTemporaryFile function
+
+
+    ::
+
+        f = TempFile(suffix="csv")
+        f.name
+        f.delete() # alias to delete=False and close() calls
+
+
+    """
+    def __init__(self, suffix=''):
+        self.temp = tempfile.NamedTemporaryFile(suffix=suffix, delete=False)
+
+    def delete(self):
+        self.temp.delete = True
+        self.temp.close()
+
+    def _get_name(self):
+        return self.temp.name
+    name = property(_get_name)
+
+
+
 

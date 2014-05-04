@@ -1,3 +1,10 @@
+.. rubric:: 0.6.12
+
+* make sure that installation works from a distribution without any libraries
+  (e.g. pandas)
+* fix copybutton module for the install mode
+* add TempFile class in misc module 
+
 .. rubric:: 0.6.11
 
 * added an alias called gsf to get_share_file function.

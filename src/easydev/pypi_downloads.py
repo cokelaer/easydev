@@ -1,5 +1,4 @@
-
-
+import datetime
 
 
 def plot_pypi_downloads(package):
@@ -15,7 +14,12 @@ def plot_pypi_downloads(package):
         
     .. warnings:: requires pandas and vanity packages
     """
-    import vanity
+    try:
+        import vanity
+        import pandas as pd
+    except:
+        print("This function requires pandas and vanity packages available on pypi.")
+        return
     releases = list(vanity.package_releases([package]))[0][1]
     downloads = []
     times = []
@@ -27,8 +31,6 @@ def plot_pypi_downloads(package):
             tt = dt.timetuple()
             times.append([tt[0], tt[1], tt[2]])
             downloads.append(download)
-    import pandas as pd
-    import datetime
     df = pd.Series(downloads, [datetime.datetime(*x) for x in times],
             name=package)
     df = df.sort_index()

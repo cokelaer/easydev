@@ -16,8 +16,11 @@ import xfree86
 from xfree86 import *
 
 
-import colors
-from colors import *
+try:
+    import colors
+    from colors import *
+except:
+    print("colors module depends on pylab, which does not seem to be installed. skipped")
 
 import copybutton
 from copybutton import *
