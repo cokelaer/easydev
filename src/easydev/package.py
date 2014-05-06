@@ -1,5 +1,22 @@
+# -*- python -*-
+# -*- coding: utf-8 -*-
+#
+#  This file is part of the easydev software
+#
+#  Copyright (c) 2011-2014
+#
+#  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
+#
+#  Distributed under the GPLv3 License.
+#  See accompanying file LICENSE.txt or copy at
+#      http://www.gnu.org/licenses/gpl-3.0.html
+#
+#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Documentation: http://packages.python.org/easydev
+#
+##############################################################################
+# $:Id $
 import os
-
 from easydev.logging_tools import Logging
 
 __all__ = ["PackageBuilder"]
@@ -62,7 +79,7 @@ setup(
     description      = metainfo['description'],
     license          = metainfo['license'],
     platforms        = metainfo['platforms'],
-    url              = metainfo['url'],      
+    url              = metainfo['url'],
     download_url     = metainfo['download_url'],
     classifiers      = metainfo['classifiers'],
 
@@ -101,7 +118,7 @@ setup(
     description      = metainfo['description'],
     license          = metainfo['license'],
     platforms        = metainfo['platforms'],
-    url              = metainfo['url'],      
+    url              = metainfo['url'],
     download_url     = metainfo['download_url'],
     classifiers      = metainfo['classifiers'],
 
@@ -202,7 +219,7 @@ class PackageBuilder(object):
 
 
         :param str name:
-        :param str share: 
+        :param str share:
         """
         self.pkgname = name   # can be only the pkg name without namespace
         self.name = name      # can be pkg or namespace.pkg
@@ -229,7 +246,6 @@ class PackageBuilder(object):
                     #self.init()
 
     def init(self, force=False):
-        import os
         self.logging.info("Creating the package directory")
         if os.path.isdir(self.pkgname):
             self.logging.warning("Directory %s already exists." % self.pkgname)
@@ -303,7 +319,7 @@ class PackageBuilder(object):
     def create_test_directory(self):
         """Create a test directory"""
         self._mkdir("test")
-        
+
     def _mkdir(self, name):
         filename = self.pkgname + os.sep
         self.logging.info("Creating a directory %s " % (filename + name))
@@ -335,7 +351,7 @@ except:
     def buildPackage(self, force=False):
         """Builds the entire package
 
-        This function removes the directory "pkgname" if it exists, 
+        This function removes the directory "pkgname" if it exists,
         to create it back (empty), and then calsl the methods starting with "create" word.
         """
         res = self.init(force=force)
@@ -347,7 +363,7 @@ except:
         self.create_test_directory()
         self.create_src_directory()
         if self.share:
-             self.create_share_directory()
+            self.create_share_directory()
         if self.namespace:
             self.create_namespace()
 
@@ -364,25 +380,25 @@ class OptionsBuildPackage(argparse.ArgumentParser):
         self.options = self.parse_args(args)
 
     def add_general_options(self):
-        self.add_argument("--pkgname", dest="pkgname", 
+        self.add_argument("--pkgname", dest="pkgname",
             help="Name of the package to be created")
-        self.add_argument("--package", dest="pkgname", 
+        self.add_argument("--package", dest="pkgname",
             help="Name of the package to be created")
         self.add_argument("--namespace", dest="namespace", default=None,
             help="If provided, creates a namespace.")
-        self.add_argument("--no-share-directory", action="store_false", 
+        self.add_argument("--no-share-directory", action="store_false",
             help="if five, the share directory is not created")
-        self.add_argument("--verbosity", dest="verbosity", default="INFO", 
+        self.add_argument("--verbosity", dest="verbosity", default="INFO",
             help="set verbosity to INFO, WARNING or ERROR")
 
 def buildPackage():
     """The executable easydev_buildPackage """
     import sys
-    if len(sys.argv) >1:
+    if len(sys.argv) > 1:
         parser = OptionsBuildPackage(sys.argv[1:])
 
         p = PackageBuilder(
-            name=parser.options.pkgname, 
+            name=parser.options.pkgname,
             share=parser.options.no_share_directory,
             namespace=parser.options.namespace)
         p.logging.debugLevel = parser.options.verbosity

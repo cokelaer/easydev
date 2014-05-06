@@ -3,7 +3,7 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2013 
+#  Copyright (c) 2011-2014
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -25,6 +25,7 @@
 """
 import os
 from os.path import join as pj
+import shutil
 from docutils import nodes
 
 from sphinx.application import ExtensionError
@@ -45,8 +46,6 @@ def copy_javascript_into_static_path(static="_static", filepath="copybutton.js")
         Otherwise, the file is copied in *static* directory.
 
     """
-    import os
-    import shutil
 
     if os.path.isdir(static):
         pass

@@ -34,6 +34,7 @@ Here are some features:
  #. Quickly check if an url exists (see :mod:`~easydev.url.isurl`)
  #. Color convertors (e.g., rgb2hex, hsv2rgb; see :mod:`~easydev.colors`) 
  #. Decorators: :mod:`~easydev.decorators`
+ #. and many more. See reference for details.
 
 Installation
 ###################
@@ -43,6 +44,10 @@ Prerequisites
 
 Of course, you will need to install `Python <http://www.python.org/download/>`_
 (linux and mac users should have it installed already). We recommend also to install `ipython <http://ipython.org/>`_, which provides a more flexible shell alternative to the python shell itself.
+
+**easydev** require no external dependencies to be installed. However, 
+some modules requires dependencies to work. For instance pylab for the
+:mod:`easydev.colors` module, pandas for the :mod:`easydev.pypi_downloads` module.
 
 Installation
 ================

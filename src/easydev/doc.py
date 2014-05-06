@@ -3,7 +3,7 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2013 
+#  Copyright (c) 2011-2014
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -40,6 +40,6 @@ def underline(text, symbol="="):
         ====
 
     """
-    l = len(text)
-    return text + "\n" + l * symbol
+    length = len(text)
+    return text + "\n" + length * symbol
 

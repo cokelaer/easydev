@@ -3,7 +3,7 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2012-2014 - EBI
+#  Copyright (c) 2012-2014 - 
 #
 #  File author(s): Thomas Cokelaer (cokelaer, gmail.com)
 #
@@ -16,9 +16,7 @@
 ##############################################################################
 # $Id: tools.py 2963 2012-12-17 14:31:26Z cokelaer $
 """Handy decorators"""
-import sys
 from functools import partial, wraps, update_wrapper
-import inspect
 __all__ = [ 'requires']
 
 
@@ -82,6 +80,7 @@ def _require(*args_deco, **kwds_deco):
 
 # for book keeping, could be useful:
 def _blocking(not_avail):
+    import threading
     def blocking(f, *args, **kw):
         if not hasattr(f, "thread"): # no thread running
             def set_result(): f.result = f(*args, **kw)

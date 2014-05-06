@@ -3,7 +3,7 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2013 
+#  Copyright (c) 2011-2014
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -20,29 +20,30 @@
 import subprocess
 
 
-__all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list", "check_range"]
+__all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list",
+    "check_range"]
 
 
 def check_range(value, a, b, strict=False):
     """Check that a value lies in a given range
 
     :param value: value to test
-    :param a: lower bound 
+    :param a: lower bound
     :param b: upper bound
     :return: nothing
 
     .. doctest::
-    
+
         >>> from easydev.tools import check_range
         >>> check_range(1,0, 2)
 
     """
-    if strict==True:
+    if strict == True:
         if value <= a:
             raise ValueError(" {} must be greater (or equal) than {}".format(value, a))
         if value >= b:
             raise ValueError(" {} must be less (or less) than {}".format(value, b))
-    elif strict==False:
+    elif strict == False:
         if value < a:
             raise ValueError(" {} must be greater than {}".format(value, a))
         if value > b:
@@ -60,7 +61,7 @@ def check_param_in_list(param, valid_values, name=None):
     """Checks that the value of param is amongst valid
 
     :param param: a parameter to be checked
-    :param list valid_values: a list of values 
+    :param list valid_values: a list of values
 
     ::
 
@@ -77,7 +78,7 @@ def check_param_in_list(param, valid_values, name=None):
             msg = "Incorrect value provided (%s)" % param
         msg += "    Correct values are %s" % valid_values
         raise ValueError(msg)
-    
+
 
 def shellcmd(cmd, show=False, verbose=False):
     """An alias to run system commands.
@@ -93,29 +94,29 @@ def shellcmd(cmd, show=False, verbose=False):
     if show:
         print(cmd)
     try:
-        ret = subprocess.Popen([cmd], stdout=subprocess.PIPE, 
+        ret = subprocess.Popen([cmd], stdout=subprocess.PIPE,
             stderr=subprocess.PIPE, shell=True)
 
         output = ret.stdout.read().strip()
         error = ret.stderr.read().strip()
         ret.wait()
 
-        if len(error)>0:
+        if len(error) > 0:
             raise Exception(error)
 
         if verbose == True:
             print output
 
         return output
-    except Exception, e:
+    except Exception, err:
         #if verbose: print e
-        raise Exception("Error:: Command (%s) failed. Error message is %s" % (cmd, e))
+        raise Exception("Error:: Command (%s) failed. Error message is %s" % (cmd, err))
 
 
 
 def swapdict(dic, check_ambiguity=True):
     """Swap keys for values in a dictionary
-    
+
     ::
 
         >>> d = {'a':1}
@@ -126,5 +127,5 @@ def swapdict(dic, check_ambiguity=True):
     # this version is more elegant but slightly slower : return {v:k for k,v in dic.items()}
     if check_ambiguity:
         assert len(set(dic.keys())) == len(set(dic.values())), "values is not a set. ambiguities for keys."
-    return dict(zip(dic.values(),dic.keys()))
+    return dict(zip(dic.values(), dic.keys()))
 

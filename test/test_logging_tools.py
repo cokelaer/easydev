@@ -20,6 +20,7 @@ def test_logging():
     except:
         assert True
 
+    # FIXME is this working ??wierd syntax in loggibg_tools.
     import copy
     copy.copy(l)
     copy.deepcopy(l)

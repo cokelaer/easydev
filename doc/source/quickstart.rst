@@ -9,30 +9,27 @@ Quick Start
 Sphinx tools
 ===============
 
-Sphinx is a framework that ease the development of HTML documentation. In cnolab and associated projects, we use Sphinx to create documentation. In order to have a uniform documentation a theme called **cno** is provided in the share/ directory of **easydev**. Moreover, **easydev** provides an easy way to obtained the path of this theme::
+Sphinx is a framework that ease the development of HTML documentation. I personally use Sphinx for all kind of proects, not only documentation of software. In order to have a uniform documentation a theme called **standard** is provided in the share/ directory of **easydev**. Moreover, **easydev** provides an easy way to obtained the path of this theme::
 
     >>> from easydev import *
     >>> p = get_path_sphinx_themes()
 
-you can then check the presence of the cno themes::
+you can then check the presence of the themes::
  
     >>> import os
     >>> themes = os.listdir(p)
-    >>> 'cno' in themes
+    >>> 'standard' in themes
     True
-
 
 You can then use this path in your sphinx configuration file (conf.py). Here is a
 piece of code extracted from the **conf.py** of this package::
 
     >>> import easydev
-    >>> html_theme = 'cno' # one theme provided in easydev
+    >>> html_theme = 'standard' # one theme provided in easydev
     >>> html_theme_path = [easydev.get_path_sphinx_themes()]
 
 Sphinx configuration file comes with lot of extensions from Sphinx itself or other packages (e.g., numpy or
-matplotlib). A useful extension is called copybutton (I do not remember where I found it...sorry for the author).
-For now, we provide it within easydev so that it can be used easily by all
-the package::
+matplotlib). A useful extension is called copybutton (I do not remember where I found it...). For now, we provide it within easydev so that it can be used easily by all the packages::
 
     >>> from easydev import copybutton
     >>> p = copybutton.get_copybutton_path()

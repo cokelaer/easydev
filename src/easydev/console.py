@@ -4,7 +4,7 @@
 #  This file is part of the easydev software
 #  It is a modified version of console.py from the sphinx software
 #
-#  Copyright (c) 2011-2013 
+#  Copyright (c) 2011-2014
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -29,7 +29,8 @@
 import os
 import sys
 
-__all__ = ["color_terminal", "coloron", "nocolor", "get_terminal_width", "term_width_line"]
+__all__ = ["color_terminal", "coloron", "nocolor", "get_terminal_width", 
+"term_width_line"]
 # colors and other functions from the attributes codes are added dynamically to
 # this __all__ variable
 codes = {}
@@ -127,5 +128,6 @@ _orig_codes = codes.copy()
 for _name in codes:
     _create_color_func(_name)
 
+# dynamically set the colors
 for x in codes.keys(): __all__.append(x)
 

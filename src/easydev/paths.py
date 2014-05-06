@@ -3,7 +3,7 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2013 
+#  Copyright (c) 2011-2013
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -16,12 +16,13 @@
 #
 ##############################################################################
 # $:Id $
+"""Utilities to ease access to share data paths"""
 import os
 from os.path import join as pj
 import pkg_resources
 
 
-__all__ = ["get_shared_directory_path", "get_shared_directories", 
+__all__ = ["get_shared_directory_path", "get_shared_directories",
     "get_share_file", "gsf"]
 
 
@@ -54,6 +55,7 @@ def get_shared_directory_path(package):
         #print("no. searching for share dir as if in develop mode")
         # let us try a couple of directories
         # FIXME: do we need the 3 cases ??
+        # probably just 2 are required, one for develop and one for install mode
         sharedir = os.path.realpath(pj(location, '..',  'share'))
         if os.path.isdir(sharedir) == True:
             return sharedir
@@ -63,7 +65,7 @@ def get_shared_directory_path(package):
         sharedir = os.path.realpath(pj(location, '..',  '..', '..', 'share'))
         if os.path.isdir(sharedir) == True:
             return sharedir
-        # could not be found, 
+        # could not be found,
         sharedir = []
         print ("could not find any share directory in %s" % package)
 
@@ -90,7 +92,7 @@ def get_shared_directories(package, datadir="data"):
         return []
     packagedir = pj(packagedir, datadir)
     directories = os.listdir(packagedir)
-    
+
     # get rid of .svn (for the packages installed with develop)
     directories_to_process = []
     for directory in directories:
@@ -113,15 +115,15 @@ def get_share_file(package, datadir, filename):
     # check that it exists
     if os.path.isdir(fullpath) == False:
         raise ValueError("The directory %s in package %s does not seem to exist" % (packagedir, fullpath))
-    filenamePath = os.path.join(fullpath, filename)
-    if os.path.isfile(filenamePath)==False:
+    filename_path = os.path.join(fullpath, filename)
+    if os.path.isfile(filename_path)==False:
         correct_files = [x for x in os.listdir(fullpath) if os.path.isfile(x)]
-        msg = "The file %s does not exists. Correct filenames found in %s/%s are:\n" % (filenamePath, package, datadir)
+        msg = "The file %s does not exists. Correct filenames found in %s/%s are:\n" % (filename_path, package, datadir)
         for f in correct_files:
             msg += "%s\n" % f
 
         raise ValueError(msg)
-    return filenamePath
+    return filename_path
 
 
 

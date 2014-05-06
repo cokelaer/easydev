@@ -1,3 +1,21 @@
+# -*- python -*-
+# -*- coding: utf-8 -*-
+#
+#  This file is part of the easydev software
+#
+#  Copyright (c) 2011-2013 
+#
+#  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
+#
+#  Distributed under the GPLv3 License.
+#  See accompanying file LICENSE.txt or copy at
+#      http://www.gnu.org/licenses/gpl-3.0.html
+#
+#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Documentation: http://packages.python.org/easydev
+#
+##############################################################################
+# $:Id $
 """Utilities provided in this module can be found either in the
 standard Python module called :mod:`colorsys` or in matplotlib.colors (e.g rgb2hex)
 or are original to this module (e.g., rgb2huv)

@@ -3,7 +3,7 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2013 
+#  Copyright (c) 2011-2013
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -52,7 +52,7 @@ def get_sphinx_themes():
     from easydev import get_shared_directory_path
     sharedir = get_shared_directory_path("easydev")
     sharedir = pj(sharedir, "themes")
-    themes = [x for x in os.listdir(sharedir) if x.startswith(".")==False]
+    themes = [x for x in os.listdir(sharedir) if x.startswith(".") == False]
     return themes
 
 

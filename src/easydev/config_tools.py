@@ -1,8 +1,9 @@
 # -*- python -*-
+# -*- coding: utf-8 -*-
 #
-#  This file is part of easydev software
+#  This file is part of the easydev software
 #
-#  Copyright (c) 2012-2013
+#  Copyright (c) 2011-2014
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -10,12 +11,12 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  website: https://pypi.python.org/pypi/easydev
+#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
-# $Id: config.py 2002 2012-08-06 16:19:09Z cokelaer $
+# $:Id $
 """
-
 .. testsetup::
 
     from easydev.config_tools import *

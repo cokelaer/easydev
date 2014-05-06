@@ -40,8 +40,8 @@ __revision__ = " $Id$"
 
 import sys
 import os
-from optparse import OptionParser
-from subprocess import call, PIPE, Popen
+#from optparse import OptionParser
+from subprocess import PIPE, Popen
 
 
 try:

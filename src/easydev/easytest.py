@@ -1,3 +1,22 @@
+# -*- python -*-
+# -*- coding: utf-8 -*-
+#
+#  This file is part of the easydev software
+#
+#  Copyright (c) 2011-2014
+#
+#  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
+#
+#  Distributed under the GPLv3 License.
+#  See accompanying file LICENSE.txt or copy at
+#      http://www.gnu.org/licenses/gpl-3.0.html
+#
+#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Documentation: http://packages.python.org/easydev
+#
+##############################################################################
+# $:Id $
+
 # keep nose inside the functions to avoid dependencies
 
 import tempfile
@@ -12,7 +31,7 @@ def assert_list_almost_equal(first, second, places=None):
     The equality between pair of items is checked with assert_almost_equal
     function, which means you can check for the places argument
 
-    .. note:: there may be already some tools to 
+    .. note:: there may be already some tools to
         check that either in nosetests or unittest
         but could not find.
 
@@ -21,18 +40,18 @@ def assert_list_almost_equal(first, second, places=None):
         >>> from easydev.easytest import assert_list_almost_equal as assert_list
         >>> assert_list([0,0,1], [0,0,0.9999], places=3)
 
-    
+
     """
     from nose.tools import assert_almost_equal
-    for x,y in zip(first, second):
-        assert_almost_equal(x,y, places=places)
+    for x, y in zip(first, second):
+        assert_almost_equal(x, y, places=places)
 
 
 def trysetattr(this, attrname, value, possible):
     """A common test pattern: try to set a non-writable attribute
-    
+
     ::
-    
+
         class A(object):
             def __iinit__(self):
                 self._a = 1
@@ -50,7 +69,7 @@ def trysetattr(this, attrname, value, possible):
         >>> trysetattr(A, "a", 1, possible=True)
         >>> trysetattr(A, "b", 1, False)
         AssertionError
-    
+
     """
     if possible == True:
         a1 = True
@@ -67,7 +86,7 @@ def trysetattr(this, attrname, value, possible):
 
 
 
-class TempFile():
+class TempFile(object):
     """A small wrapper around tempfile.NamedTemporaryFile function
 
 

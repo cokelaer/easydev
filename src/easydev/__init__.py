@@ -1,10 +1,20 @@
 # -*- python -*-
+# -*- coding: utf-8 -*-
 #
-#  Copyright 2013
+#  This file is part of the easydev software
+#
+#  Copyright (c) 2011-2014
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-"""Common tools to get the correct filename and pathname. """
+#  Distributed under the GPLv3 License.
+#  See accompanying file LICENSE.txt or copy at
+#      http://www.gnu.org/licenses/gpl-3.0.html
+#
+#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Documentation: http://packages.python.org/easydev
+#
+##############################################################################
 __version__ = "$Rev$"
 import pkg_resources
 try:

@@ -13,15 +13,19 @@
 #  website: https://pypi.python.org/pypi/easydev
 #
 ##############################################################################
+"""Utilities related to the web
+
+"""
 import httplib
 
 
-__all__= ["isurl", "isurl_reachable"]
-
+__all__ = ["isurl", "isurl_reachable"]
 
 
 
 def isurl(url):
+    """.. deprecated:: 0.6.12 use :param:`isurl_reachable instead`."""
+    print("warning:: use isurl_reachable function instead")
     return isurl_reachable(url)
 
 
@@ -33,17 +37,16 @@ def isurl_reachable(url):
 
 
     """
-    print("warning:: use isurl_reachable function instead")
     if url.startswith("http://"):
         url = url.split("http://")[1]
-    c = httplib.HTTPConnection(url)
+    request = httplib.HTTPConnection(url)
     try:
-        c.request("HEAD", '')
+        request.request("HEAD", '')
     except:
         return False
     # 302 is a redirection
     # 200 is okay
-    if c.getresponse().status in [200, 302]:
+    if request.getresponse().status in [200, 302]:
         return True
     else:
         return False
