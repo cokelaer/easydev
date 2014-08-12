@@ -21,7 +21,7 @@ import subprocess
 
 
 __all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list",
-    "check_range"]
+    "check_range", "transform_into_list"]
 
 
 def check_range(value, a, b, strict=False):
@@ -128,4 +128,24 @@ def swapdict(dic, check_ambiguity=True):
     if check_ambiguity:
         assert len(set(dic.keys())) == len(set(dic.values())), "values is not a set. ambiguities for keys."
     return dict(zip(dic.values(), dic.keys()))
+
+
+def transform_into_list(data):
+    import types
+    if isinstance(data, list) or isinstance(data, tuple):
+        return data #nothing to do
+    elif isinstance(data, int) or isinstance(data,float) or isinstance(data,
+            str):
+        return [data]
+    else:
+        raise TypeError("Should be a list (or tuple) or single type (float, int, string)")
+
+
+
+
+
+
+
+
+
 

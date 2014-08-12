@@ -790,11 +790,13 @@ class ColorMapTools(object):
                     'blue' : [0,.4,.6,.75,.8,.7,.6,.35,.17,.1], 
                     'red':   [1,1,1,1,1,.9,.8,.6,.3,.1]}, reverse=True)
 
-    def test_cmap(self, cmap):
+    def test_cmap(self, cmap=None):
+        if cmap==None:
+            cmap = self.get_cmap_heat()
         import numpy as np
         from pylab import clf, pcolor, colorbar, show, linspace 
         A,B = np.meshgrid(linspace(0,10,100), linspace(0,10,100))
         clf()
-        pcolor((A-5)**2+(B-5)**2, cmap=self.get_cmap_heat()); 
+        pcolor((A-5)**2+(B-5)**2, cmap=cmap)
         colorbar()
         show()

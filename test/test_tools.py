@@ -62,3 +62,10 @@ def test_checkParams():
 def test_check_param_in_list():
     tools.check_param_in_list(1, [0,1,5], "test")
 
+
+def test_transform_into_list():
+    assert tools.transform_into_list(1) == [1]
+    assert tools.transform_into_list(1.) == [1.]
+    assert tools.transform_into_list('1') == ['1']
+    assert tools.transform_into_list([1]) == [1]
+    assert tools.transform_into_list([1,2]) == [1,2]
