@@ -37,16 +37,21 @@ def isurl_reachable(url):
 
 
     """
-    if url.startswith("http://"):
-        url = url.split("http://")[1]
+    if url.startswith("http://") or url.startswith("https://"):
+        url = url.split("//")[1]
     request = httplib.HTTPConnection(url)
     try:
-        request.request("HEAD", '')
+        request.request("HEAD", '/')
     except:
         return False
     # 302 is a redirection
     # 200 is okay
-    if request.getresponse().status in [200, 302]:
+    try:
+        r1 = request.getresponse()
+    except:
+        return False
+
+    if r1.status in [200, 302]:
         return True
     else:
         return False
