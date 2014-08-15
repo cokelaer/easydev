@@ -206,7 +206,7 @@ class DynamicConfigParser(ConfigParser):
 
     def read(self, filename):
         """Load a new config from a filename (remove all previous sections)"""
-        if os.path.isfile("test.ini")==False:
+        if os.path.isfile(filename)==False:
             raise IOError("filename {} not found".format(filename))
             
         config = ConfigParser()
@@ -273,20 +273,23 @@ class DynamicConfigParser(ConfigParser):
         .. note:: a value (string) found to be True, Yes, true, yes is transformed to True
         .. note:: a value (string) found to be False, No, no, false is transformed to False
         .. note:: a value (string) found to be None; none, "" (empty string) is set to None
-        .. note:: an integer, or float is transformed to float
+        .. note:: an integer is cast into an int
         """
         options = {}
         for option in self.options(section):
             data = self.get(section, option, raw=True)
-            if data in ['True', 'Yes', 'true', 'yes']:
+            if data.lower() in ['true', 'yes']:
                 options[option] = True
-            elif data in ['False', 'false', 'no', 'No']:
+            elif data.lower() in ['false', 'no']:
                 options[option] = False
             elif data in ['None', None, 'none', '']:
                 options[option] = None
             else:
                 try: # numbers
-                    options[option] = self.getfloat(section, option)
+                    try:
+                        options[option] = self.getint(section, option)
+                    except:
+                        options[option] = self.getfloat(section, option)
                 except: #string
                     options[option] = self.get(section, option, raw=True)
         return options
