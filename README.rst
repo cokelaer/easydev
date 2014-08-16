@@ -1,3 +1,15 @@
+easydev
+##########
+
+.. image:: https://badge.fury.io/py/easydev.svg
+    :target: http://badge.fury.io/py/easydev
+
+.. image:: https://pypip.in/d/easydev/badge.png
+    :target: https://crate.io/packages/easydev/
+
+
+
+
 The package **easydev** provides utilities that are of general usage
 for the development of Python packages. For instance, it provides the
 sphinx templates being used for this documentation. It is also used by
