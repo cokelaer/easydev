@@ -22,7 +22,11 @@
     from easydev.config_tools import *
 
 """
-from ConfigParser import ConfigParser
+try:
+    from ConfigParser import ConfigParser
+except ImportError:
+    from configparser import ConfigParser
+
 import os
 import sys
 
@@ -314,8 +318,8 @@ class DynamicConfigParser(ConfigParser):
             if os.path.exists(filename) == True:
                 print("Warning: over-writing %s " % filename)
             fp = open(filename,'w')
-        except Exception, e:
-            print(e)
+        except Exception as err:
+            print(err)
             raise Exception('filename could not be opened')
      
           

@@ -108,7 +108,7 @@ def shellcmd(cmd, show=False, verbose=False):
             print(output)
 
         return output
-    except Exception, err:
+    except Exception as err:
         #if verbose: print e
         raise Exception("Error:: Command (%s) failed. Error message is %s" % (cmd, err))
 

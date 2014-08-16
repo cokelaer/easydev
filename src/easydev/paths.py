@@ -40,9 +40,9 @@ def get_shared_directory_path(package):
     try:
         info = pkg_resources.get_distribution(package)
         location = info.location
-    except pkg_resources.DistributionNotFound, e:
+    except pkg_resources.DistributionNotFound as err:
         print("package provided (%s) not installed." % package)
-        raise(e)
+        raise
 
 
     #print("install  mode ? ")

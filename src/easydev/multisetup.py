@@ -129,7 +129,7 @@ class Multisetup(object):
     def help(cls):
         """help: to get more help and usage
         """
-        print """
+        print("""
 
         MultiSetup allows to build and install all the packages found in this
         directory usinf the same commands and setuptools.
@@ -159,7 +159,7 @@ class Multisetup(object):
           --exclude-packages             list of packages to not run
 
         print "usage: multisetup.py [global_opts] cmd1 [cmd1_opts] [cmd2 [cmd2_opts] ...]
-        """
+        """)
 
 
     def parse_packages(self):
@@ -297,12 +297,12 @@ class Multisetup(object):
                     print(underline('Entering %s package'
                           % os.path.basename(directory)))
                           #          % directory.basename())
-                except OSError, e:
+                except OSError as err:
                     print(underline('Entering %s package'
                               % os.path.basename(directory)))
                     print(red("cannot find this directory (%s)"
                               % os.path.basename(directory)))
-                    print(e)
+                    print(err)
 
                 print('Python exec : ' , sys.executable)
 

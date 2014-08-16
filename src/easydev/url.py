@@ -16,7 +16,10 @@
 """Utilities related to the web
 
 """
-import httplib
+try:
+    import httplib
+except ImportError:
+    import http as httplib
 
 
 __all__ = ["isurl", "isurl_reachable"]
