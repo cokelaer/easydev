@@ -281,39 +281,39 @@ class Multisetup(object):
         else:
             bold = purple = red = green = underline = str
 
-        print bold("Running multisetup version %s" % __revision__.split()[2])
+        print(bold("Running multisetup version %s" % __revision__.split()[2]))
 
         #project_dir = self.curdir.basename()
         directories = [package for package in self.packages]
 
 
-        print 'Will process the following directories: ',
+        print('Will process the following directories: ',)
         for directory in directories:
             print(bold(directory)),
             #print bold(directory.basename()),
-        print ''
+        print('')
 
 
         try:
             for directory in directories:
                 try:
                     os.chdir(directory)
-                    print underline('Entering %s package'
-                          % os.path.basename(directory))
+                    print(underline('Entering %s package'
+                          % os.path.basename(directory)))
                           #          % directory.basename())
                 except OSError, e:
-                    print underline('Entering %s package'
-                              % os.path.basename(directory))
-                    print red("cannot find this directory (%s)"
-                              % os.path.basename(directory))
-                    print e
+                    print(underline('Entering %s package'
+                              % os.path.basename(directory)))
+                    print(red("cannot find this directory (%s)"
+                              % os.path.basename(directory)))
+                    print(e)
 
-                print 'Python exec : ' , sys.executable
+                print('Python exec : ' , sys.executable)
 
                 #print underline('Entering %s package' % directory.basename())
                 for cmd in self.commands:
                     setup_command = '%s setup.py %s ' % (sys.executable,cmd)
-                    print "\tExecuting " + setup_command + '...processing',
+                    print("\tExecuting " + setup_command + '...processing',)
 
 
                     #Run setup.py with user commands
@@ -329,11 +329,11 @@ class Multisetup(object):
                         #status = process.wait()
                         outputs, errors = process.communicate()
                     if process.returncode == 0:
-                        print green('done')
+                        print(green('done'))
                     else:
                         if not self.verbose:
-                            print red('\tFailed. ( error code %s) ' %
-                                  (process.returncode))
+                            print(red('\tFailed. ( error code %s) ' %
+                                  (process.returncode)))
                             os.chdir(self.curdir)
 
                         if not self.force:
@@ -343,20 +343,20 @@ class Multisetup(object):
                         if outputs is not None:
                             for x in outputs.split('\n'):
                                 if x.startswith('Your code has been'):
-                                    print purple('\t%s' % x)
+                                    print(purple('\t%s' % x))
                     if 'nosetests' in cmd:
                         if errors is not None:
                             for x in errors.split('\n'):
                                 if x.startswith('TOTAL'):
                                     res = x.replace('TOTAL', 'Total coverage')
                                     res = " ".join (res.split())
-                                    print purple('\t%s' % res)
+                                    print(purple('\t%s' % res))
                                 if x.startswith('Ran'):
-                                    print purple('\t%s' % x)
+                                    print(purple('\t%s' % x))
                                 if x.startswith('FAILED'):
-                                    print purple('\t%s' % x)
+                                    print(purple('\t%s' % x))
                         else:
-                            print purple('all right')
+                            print(purple('all right'))
 
                 os.chdir(self.curdir)
 

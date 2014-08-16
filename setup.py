@@ -75,7 +75,9 @@ setup(
 
     # sphinx is not stricly speaking required but this is very useful to build documentation
     # once installed, one can just build the doc himself
-    install_requires = ['sphinx'],
+    install_requires = ['sphinx', 'ordereddict'],
+
+    # ordereddict is for python2.6 and below 
 
     # somehow, the google_head.html is found in themes/standard and themese/cno
     # directories thanks to the contents of datafiles variable but the ones from
@@ -93,7 +95,8 @@ setup(
         },
 
 
-    #use_2to3 = True, # causes issue with nosetests
+    use_2to3 = True, # causes issue with nosetests
+    #use_2to3_on_doctests = False.
 )
 
 

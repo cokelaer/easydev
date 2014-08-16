@@ -105,7 +105,7 @@ def shellcmd(cmd, show=False, verbose=False):
             raise Exception(error)
 
         if verbose == True:
-            print output
+            print(output)
 
         return output
     except Exception, err:

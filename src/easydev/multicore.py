@@ -69,14 +69,14 @@ class MultiProcessing(object):
     def add_job(self, func, *args, **kargs):
         """add a job in the pool"""
         if self.verbose:
-            print "Adding jobs in the queue..",
+            print("Adding jobs in the queue..",)
         #self.counter += 1
         t = Process(target=func, args=args, kwargs=kargs)
         self.jobs.append(t)
 
     def _cb(self, results):
         if self.verbose:
-            print "callback", results
+            print("callback", results)
         self.results.append(results)
         #self.counter += 1
 

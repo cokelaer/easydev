@@ -22,7 +22,7 @@
 .. doctest::
 
     from easydev.console import *
-    print red("test")
+    print(red("test"))
 
 """
 

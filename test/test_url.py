@@ -1,4 +1,4 @@
-from easydev import isurl, isurl_reachable
+from easydev import isurl_reachable
 
 
 def test_isurl():

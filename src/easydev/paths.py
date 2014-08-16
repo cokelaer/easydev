@@ -67,7 +67,7 @@ def get_shared_directory_path(package):
             return sharedir
         # could not be found,
         sharedir = []
-        print ("could not find any share directory in %s" % package)
+        print("could not find any share directory in %s" % package)
 
     return sharedir
 

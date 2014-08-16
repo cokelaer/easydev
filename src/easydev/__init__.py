@@ -15,7 +15,10 @@
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
+from __future__ import print_function
+
 __version__ = "$Rev$"
+
 import pkg_resources
 try:
     version = pkg_resources.require("easydev")[0].version

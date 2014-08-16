@@ -26,7 +26,7 @@ from ConfigParser import ConfigParser
 import os
 import sys
 
-if sys.version_info.major <=2 and sys.version_info.minor<7
+if sys.version_info.major <=2 and sys.version_info.minor<7:
     from ordereddict import OrderedDict
 else:
     from collections import OrderedDict
@@ -312,10 +312,10 @@ class DynamicConfigParser(ConfigParser):
         """
         try:
             if os.path.exists(filename) == True:
-                print "Warning: over-writing %s " % filename
+                print("Warning: over-writing %s " % filename)
             fp = open(filename,'w')
         except Exception, e:
-            print e
+            print(e)
             raise Exception('filename could not be opened')
      
           
