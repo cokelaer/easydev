@@ -26,55 +26,55 @@ except:
     version = __version__
 
 import xfree86
-from xfree86 import *
+from .xfree86 import *
 
 
 try:
     import colors
-    from colors import *
+    from .colors import *
 except:
     print("colors module depends on pylab, which does not seem to be installed. skipped")
 
 import copybutton
-from copybutton import *
+from .copybutton import *
 
 import decorators
-from decorators import *
+from .decorators import *
 
 import doc
-from doc import *
+from .doc import *
 
 import easytest
-from easytest import *
+from .easytest import *
 
 import logging_tools
-from logging_tools import *
+from .logging_tools import *
 
 import sphinx_themes
-from sphinx_themes import *
+from .sphinx_themes import *
 
 import tools
-from tools import *
+from .tools import *
 
 import multisetup
 
 import paths
-from paths import *
+from .paths import *
 
 import package
-from package import *
+from .package import *
 
 import config_tools
-from config_tools import *
+from .config_tools import *
 
 import url
-from url import *
+from .url import *
 
 #import dependencies
-from dependencies import get_dependencies
+from .dependencies import get_dependencies
 
 import multicore
-from multicore import *
+from .multicore import *
 
 # use local import to not clash with setuptools itself.
 from .setuptools import get_datafiles

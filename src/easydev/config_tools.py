@@ -93,7 +93,7 @@ class OrderedDictAttribute(OrderedDict):
             return super(OrderedDictAttribute, self).__setitem__(attr, value)
         else:
             if "_init" in self.__dict__.keys():
-                print("warning: attribute {} not in the dictionary yet.".format(attr))
+                print("warning: attribute {0} not in the dictionary yet.".format(attr))
                 print("If you want this attribute to be in the dictionary, you must add it first as a key")
             
             return super(OrderedDictAttribute, self).__setattr__(attr, value)
@@ -212,7 +212,7 @@ class DynamicConfigParser(ConfigParser):
     def read(self, filename):
         """Load a new config from a filename (remove all previous sections)"""
         if os.path.isfile(filename)==False:
-            raise IOError("filename {} not found".format(filename))
+            raise IOError("filename {0} not found".format(filename))
             
         config = ConfigParser()
         config.read(filename)
@@ -336,7 +336,7 @@ class DynamicConfigParser(ConfigParser):
 
         """
         if section in self._sections.keys():
-            raise ValueError("Section {} already in the dictionary".format(section))
+            raise ValueError("Section {0} already in the dictionary".format(section))
         else:
             self._sections[section] = OrderedDictAttribute()
         
