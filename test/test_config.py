@@ -7,7 +7,7 @@ def test_configExample():
     c = ConfigExample().config
     assert 'General' in c.sections()
     assert 'GA' in c.sections()
-    print c
+    print(c)
     c.remove_section('General')    
 
 
@@ -37,7 +37,7 @@ def test_DynamicConfig():
 
     dc.remove_section('GA')
     assert 'GA' not in dc.sections()
-    print dc
+    print(dc)
 
     # try something stupid
     try:

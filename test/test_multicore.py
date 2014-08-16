@@ -7,7 +7,7 @@ def func(n=400, *args, **kargs):
     :param n: 400 takes about 5 seconds
 
     """
-    print "inside func", args, kargs
+    print("inside func", args, kargs)
     import math
     for i in range(0,n):
         for j in range(0,n):
@@ -22,7 +22,7 @@ def test_func():
     t.add_job(func, 100)
     t.add_job(func, 50)
     t.run()
-    print t.results
+    print(t.results)
 
 
 

@@ -16,5 +16,5 @@ def test_coloron():
 
 
 def test_print_color():
-    print purple('\t%s' % "test")
-    print red('\t%s' % "test")
+    print(purple('\t%s' % "test"))
+    print(red('\t%s' % "test"))

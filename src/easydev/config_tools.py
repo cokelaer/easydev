@@ -26,10 +26,10 @@ from ConfigParser import ConfigParser
 import os
 import sys
 
-if sys.version_info.major <=2 and sys.version_info.minor<7:
-    from ordereddict import OrderedDict
-else:
+try:
     from collections import OrderedDict
+except:  
+    from ordereddict import OrderedDict
 
 __all__ = ["OrderedDictAttribute", "DynamicConfigParser", "ConfigExample"]
 

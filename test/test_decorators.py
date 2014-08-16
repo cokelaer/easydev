@@ -11,11 +11,11 @@ class A(object):
 
     @requires("a", "what to do")
     def print_str(self):
-        print self.a
+        print(self.a)
 
     @requires(["a",'b'], "what to do")
     def print_list(self):
-        print self.a +self.b
+        print(self.a +self.b)
 
 
 def test():

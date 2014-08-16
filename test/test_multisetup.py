@@ -43,7 +43,7 @@ def test_parse_no_packages():
                          commands='commands --exclude-packages easydev', 
                          packages=packages)
 
-    print mysetup.packages
+    print(mysetup.packages)
     assert mysetup.packages == []
 
 
