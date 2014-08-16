@@ -40,18 +40,14 @@ __revision__ = " $Id$"
 
 import sys
 import os
-#from optparse import OptionParser
 from subprocess import PIPE, Popen
 
 
 try:
     from easydev.console import bold, red, green, \
         color_terminal, nocolor, underline, purple
-except:
-    pj = os.path.join
-    sys.path.insert(0, pj('deploy', 'src', 'deploy'))
-    from console import bold, red, green, \
-        color_terminal, nocolor, underline, purple
+except ImportError:
+    pass
 
 
 """
@@ -107,7 +103,7 @@ class Multisetup(object):
         if 'develop -u' in " ".join(commands):
             packages.reverse()
 
-        #default
+        # default
         self.curdir = os.path.abspath(curdir)
 
         if isinstance(commands, list):
@@ -122,10 +118,10 @@ class Multisetup(object):
         self.verbose = verbose
         self.force = False
 
-        #parsing user arguments
+        # parsing user arguments
         self.parse_packages()
 
-        #self.parse_intern_commands()
+        # self.parse_intern_commands()
         self.parse_commands()
 
 

@@ -7,17 +7,17 @@ easydev
 .. image:: https://pypip.in/d/easydev/badge.png
     :target: https://crate.io/packages/easydev/
 
-.. image:: https://secure.travis-ci.org/cokelaer/pypiview.png
-    :target: http://travis-ci.org/cokelaer/pypiview
+.. image:: https://secure.travis-ci.org/cokelaer/easyde.png
+    :target: http://travis-ci.org/cokelaer/easydev
 
-.. image:: https://coveralls.io/repos/cokelaer/pypiview/badge.png?branch=master 
-   :target: https://coveralls.io/r/cokelaer/pypiview?branch=master 
+.. image:: https://coveralls.io/repos/cokelaer/easydev/badge.png?branch=master 
+   :target: https://coveralls.io/r/cokelaer/easydev?branch=master 
 
-.. image:: https://landscape.io/github/cokelaer/pypiview/master/landscape.png
-   :target: https://landscape.io/github/cokelaer/pypiview/master
+.. image:: https://landscape.io/github/cokelaer/easydev/master/landscape.png
+   :target: https://landscape.io/github/cokelaer/easydev/master
 
-.. image:: https://badge.waffle.io/cokelaer/pypiview.png?label=ready&title=Ready 
-   :target: https://waffle.io/cokelaer/pypiview
+.. image:: https://badge.waffle.io/cokelaer/easydev.png?label=ready&title=Ready 
+   :target: https://waffle.io/cokelaer/easydev
 
 
 
