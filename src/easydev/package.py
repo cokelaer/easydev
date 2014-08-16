@@ -375,11 +375,14 @@ class OptionsBuildPackage(argparse.ArgumentParser):
     """
     def  __init__(self, args, version="1.0", prog="easydev_buildPackage"):
         usage = """USAGE: %s --pkgname pkgName""" % prog
-        super(OptionsBuildPackage, self).__init__(usage=usage, version=version, prog=prog)
+        super(OptionsBuildPackage, self).__init__(usage=usage, prog=prog)
         self.add_general_options()
         self.options = self.parse_args(args)
+        self.version = version
 
     def add_general_options(self):
+        #self.add_argument('--version', 
+        #        action='version', version=self.version)
         self.add_argument("--pkgname", dest="pkgname",
             help="Name of the package to be created")
         self.add_argument("--package", dest="pkgname",

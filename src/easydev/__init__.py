@@ -16,6 +16,7 @@
 #
 ##############################################################################
 from __future__ import print_function
+#from __future__ import absolute_import
 
 __version__ = "$Rev$"
 
@@ -25,7 +26,8 @@ try:
 except:
     version = __version__
 
-from . import xfree86
+
+#from easydev.xfree86 import xfree86
 from .xfree86 import *
 
 

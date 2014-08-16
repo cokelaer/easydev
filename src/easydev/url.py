@@ -19,7 +19,7 @@
 try:
     import httplib
 except ImportError:
-    import http as httplib
+    import http.client as httplib
 
 
 __all__ = ["isurl", "isurl_reachable"]

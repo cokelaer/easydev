@@ -27,15 +27,66 @@ try:
 except ImportError:
     from configparser import ConfigParser
 
+
 import os
 import sys
 
-try:
-    from collections import OrderedDict
-except:  
-    from ordereddict import OrderedDict
 
-__all__ = ["OrderedDictAttribute", "DynamicConfigParser", "ConfigExample"]
+from collections import OrderedDict
+
+__all__ = ["DynamicConfigParser", "ConfigExample"]
+
+
+
+class _DictSection(object):
+    '''Dictionary section.
+
+    Reference: https://gist.github.com/dangoakachan/3855920
+    This is a temporary solution while I can find a solution
+    for the OrderedDictAttribute
+
+    '''
+
+    def __init__(self, config, section):
+        object.__setattr__(self, '_config', config)
+        object.__setattr__(self, '_section', section)
+
+    def __getattr__(self, attr):
+        return self.get(attr, None)
+    __getitem__ = __getattr__
+
+    def get(self, attr, default = None):
+        if attr in self:
+            return self._config.get(self._section, attr)
+        else:
+            return default
+
+    def __setattr__(self, attr, value):
+        if attr.startswith('_'):
+            object.__setattr__(self, attr, value)
+        else:
+            self.__setitem__(attr, value)
+
+    def __setitem__(self, attr, value):
+        if self._section not in self._config:
+            self._config.add_section(self._section)
+
+        self._config.set(self._section, attr, str(value))
+
+    def __delattr__(self, attr):
+        if attr in self:
+            self._config.remove_option(self._section, attr)
+
+    __delitem__ = __delattr__
+
+    def __contains__(self, attr):
+        config = self._config
+        section = self._section
+
+        return config.has_section(section) and config.has_option(section, attr)
+
+
+
 
 
 class OrderedDictAttribute(OrderedDict):
@@ -68,10 +119,16 @@ class OrderedDictAttribute(OrderedDict):
         
     .. todo:: when setting an attribute that is not a key, we could
         add it in the dictionary.
+
+    .. warning:: works only for python 2.7 and below.
         
     """
     def __init__(self, *args, **kwds):
         super(OrderedDictAttribute, self).__init__(*args, **kwds)
+        if sys.version_info.major < 3:
+            raise Exception("Not available in version 3")
+        else:
+            pass
         
         # The spirit of this class is to have a mapping between keys and 
         # an attribute with the same name. Yet, one can set an attribute
@@ -145,7 +202,7 @@ class ConfigExample(object):
 
 
 
-class DynamicConfigParser(ConfigParser):
+class DynamicConfigParser(ConfigParser, object):
     """Enhanced version of Config Parser
 
     Provide some aliases to the original ConfigParser class and
@@ -192,26 +249,33 @@ class DynamicConfigParser(ConfigParser):
         
     
     """
-    def __init__(self, config_or_filename=None):
-        # why not a super usage here ? Maybe there wee issues related to old style class ?
-        ConfigParser.__init__(self)
-        
-        # I'm hacking the ConfigParser to replace the _sections OrderedDict
-        # by an OrderedDictAttribute to easily access to sections.
-        self._sections = OrderedDictAttribute()
+    def __init__(self, config_or_filename=None, *args, **kargs):
 
-        
-        self._config = None
-        # set the sections and options
-        if type(config_or_filename) == str:
-            self.read(config_or_filename)
+        object.__setattr__(self, '_filename', config_or_filename)
+        # why not a super usage here ? Maybe there wee issues related to old style class ?
+        ConfigParser.__init__(self, *args, **kargs)
+       
+        if isinstance(self._filename, str) and os.path.isfile(self._filename):
+            self.read(self._filename)
         elif isinstance(config_or_filename, ConfigParser):
-            config = config_or_filename
-            self._replace_config(config)
+            self._replace_config(config_or_filename)
         elif config_or_filename == None:
             pass
         else:
             raise TypeError("config_or_filename must be a valid filename or valid ConfigParser instance")
+
+        
+        #self._config = None
+        ## set the sections and options
+        #if type(config_or_filename) == str:
+        #    self.read(config_or_filename)
+        #elif isinstance(config_or_filename, ConfigParser):
+        #    config = config_or_filename
+        #    self._replace_config(config)
+        #elif config_or_filename == None:
+        #    pass
+        #else:
+        #    raise TypeError("config_or_filename must be a valid filename or valid ConfigParser instance")
 
     def read(self, filename):
         """Load a new config from a filename (remove all previous sections)"""
@@ -326,24 +390,6 @@ class DynamicConfigParser(ConfigParser):
         self.write(fp)
         fp.close()
 
-    def add_section(self, section):
-        """add a section in the configuration file
-
-        ::
-
-            >>> c = DynamicConfigParser()
-            >>> c.add_section("general")
-
-        .. note:: this method overloads the parent's method to make sure
-            that OrderedDict instance are AttributeOrdredDict.
-        .. note:: here the section added is an :class:`OrderedDictAttribute`
-
-        """
-        if section in self._sections.keys():
-            raise ValueError("Section {0} already in the dictionary".format(section))
-        else:
-            self._sections[section] = OrderedDictAttribute()
-        
     def add_option(self, section, option, value=None):
         """add an option to an existing section (with a value)
 
@@ -354,22 +400,10 @@ class DynamicConfigParser(ConfigParser):
             >>> c.add_option("general", "verbose", True)
         """
         assert section in self.sections(), "unknown section"
-        self.set(section, option, value=value)
+        #TODO I had to cast to str with DictSection
+        # whereas it works with OrderedDictAttribute
+        self.set(section, option, value=str(value))
     
-    
-    # no need for those methods anymore
-    #def set(self, section, option, value=None):
-    #    ConfigParser.set(self, section, option, value=value)
-
-    # no need for those methods anymore
-    #def remove_option(self, section, option):
-    #    """Remove an option from a section"""
-    #    ConfigParser.remove_option(self, section, option)
-
-    #def remove_section(self, section):
-    #    """Remove a section"""
-    #    ConfigParser.remove_section(self, section)
-
     def __str__(self):
         str_ = ""
         for section in self.sections():
@@ -382,14 +416,29 @@ class DynamicConfigParser(ConfigParser):
         return str_
 
     def __getattr__(self, key):
-        if self._sections.has_key(key):
-            return self._sections[key]
+        #print('__getattr__(%s) in DictConfig' % key)
+        return _DictSection(self, key)
+    __getitem__ = __getattr__
+
+    def __setattr__(self, attr, value):
+        if attr.startswith('_') or attr:
+            object.__setattr__(self, attr, value)
         else:
-            return getattr(ConfigParser, key)
-            #.__dict__[key]
-            # does not work probably because old-style class
-            #return super(DynamicConfigParser, self).__getattribute__(key)
-             
+            self.__setitem__(attr, value)
+
+    def __setitem__(self, attr, value):
+        if isinstance(value, dict):
+            section = self[attr]
+            for k, v in value.items():
+                section[k] = v
+        else:
+            raise TypeError('value must be a valid dictionary')
+
+    def __delattr__(self, attr):
+        if attr in self:
+            self.remove_section(attr)
+    def __contains__(self, attr):
+        return self.has_section(attr)
 
     def __eq__(self, data):
         # FIXME if you read file, the string "True" is a string

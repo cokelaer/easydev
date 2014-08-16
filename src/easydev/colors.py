@@ -391,8 +391,8 @@ class HEX(object):
         try:
             self.get_standard_hex_color(value)
             return True
-        except Exception, e:
-            if verbose:print(e)
+        except Exception as err:
+            if verbose:print(err)
             return False
     
     def get_standard_hex_color(self, value):
@@ -477,7 +477,7 @@ class Color(HEX):
     aliases.update(dict([(x,x) for x in colors.keys()]))
 
     # keep track of all possible names
-    color_names = sorted(list(set(colors.keys() + aliases.keys())))
+    color_names = sorted(list(set(list(colors.keys()) +list( aliases.keys()))))
 
     def __init__(self, name=None, rgb=None, hls=None, hsv=None):
         super(Color, self).__init__()
@@ -728,8 +728,9 @@ class ColorMapTools(object):
         index = np.linspace(0, 1, len(colors['red']))
     
         # Adapt color_data to the form expected by LinearSegmentedColormap.
+        print(colors)
         color_data = dict((key, [(x, y, y) for x, y in zip(index, value)])
-                 for key, value in colors.iteritems())
+                 for key, value in list(colors.items()))
             
         
         f = matplotlib.colors.LinearSegmentedColormap
