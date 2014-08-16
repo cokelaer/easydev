@@ -31,8 +31,11 @@ except ImportError:
 import os
 import sys
 
-
-from collections import OrderedDict
+try:
+    from collections import OrderedDict
+except:
+    # python 2.6 and below
+    from ordereddict import OrderedDict
 
 __all__ = ["DynamicConfigParser", "ConfigExample"]
 
