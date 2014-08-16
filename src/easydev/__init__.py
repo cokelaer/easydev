@@ -25,7 +25,7 @@ try:
 except:
     version = __version__
 
-import xfree86
+from . import xfree86
 from .xfree86 import *
 
 
