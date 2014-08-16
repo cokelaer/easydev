@@ -60,7 +60,7 @@ setup(
     maintainer_email = metainfo['authors']['Cokelaer'][1],
     author           = metainfo['authors']['Cokelaer'][0],
     author_email     = metainfo['authors']['Cokelaer'][1],
-    long_description = open("README.txt").read(),
+    long_description = open("README.rst").read(),
     keywords         = metainfo['keywords'],
     description = metainfo['description'],
     license          = metainfo['license'],

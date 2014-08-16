@@ -7,19 +7,36 @@ easydev
 .. image:: https://pypip.in/d/easydev/badge.png
     :target: https://crate.io/packages/easydev/
 
+.. image:: https://secure.travis-ci.org/cokelaer/pypiview.png
+    :target: http://travis-ci.org/cokelaer/pypiview
+
+.. image:: https://coveralls.io/repos/cokelaer/pypiview/badge.png?branch=master 
+   :target: https://coveralls.io/r/cokelaer/pypiview?branch=master 
+
+.. image:: https://landscape.io/github/cokelaer/pypiview/master/landscape.png
+   :target: https://landscape.io/github/cokelaer/pypiview/master
+
+.. image:: https://badge.waffle.io/cokelaer/pypiview.png?label=ready&title=Ready 
+   :target: https://waffle.io/cokelaer/pypiview
 
 
 
-The package **easydev** provides utilities that are of general usage
-for the development of Python packages. For instance, it provides the
+
+**easydev** is a package I use for the development of other software available on pypi.
+It provides utilities that are of general usage for the development of Python packages. 
+
+
+For instance, it provides the
 sphinx templates being used for this documentation. It is also used by
 other packages where documentation using Sphinx is being used (e.g., rtools, 
 spectrum). It provides tools such as multisetup (to ease the development of
 several packages within a single namespace), get_share_directory of any package,
 functions that are used often such as type checking...
 
-In addition, common tools are provided. For instance, convertor to common color representation (e.g., RGB, HSV).
+In addition, common tools are provided. For instance, convertor to different color 
+representation (e.g., RGB, HSV).
 
+Similar projects are pytools, pytoolbox.
 
 For a full documentation, see the sphinx documentation at
 `<http://pythonhosted.org/easydev/>`_
