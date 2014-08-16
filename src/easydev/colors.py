@@ -417,7 +417,7 @@ class HEX(object):
         # now check the length
         for x in value:
             if x not in "0123456789ABCDEF":
-                raise ValueError("Found invalid hexa character {}".format(x))
+                raise ValueError("Found invalid hexa character {0}".format(x))
     
     
         if len(value) == 6 or len(value) == 8:
@@ -631,14 +631,14 @@ class Color(HEX):
     yiq = property(_get_yiq, doc="Getter for the YIQ triplet")
 
     def __str__(self):
-        txt = 'Color {}\n'.format(self.name)
-        txt+= '  hexa code: {}\n'.format(self.hex)
-        txt+= '  RGB code: {}\n'.format(self.rgb)
-        txt+= '  RGB code (un-normalised): {}\n\n'.format([x*255 for x in self.rgb])
-        txt+= '  HSV code: {}\n'.format(self.hsv)
-        txt+= '  HSV code: (un-normalised) {} {} {}\n\n'.format(self.hsv[0]*360, self.hsv[1]*100, self.hsv[2]*100)
-        txt+= '  HLS code: {}\n'.format(self.hls)
-        txt+= '  HLS code: (un-normalised) {} {} {}\n\n'.format(self.hls[0]*360, self.hls[1]*100, self.hls[2]*100)
+        txt = 'Color {0}\n'.format(self.name)
+        txt+= '  hexa code: {0}\n'.format(self.hex)
+        txt+= '  RGB code: {0}\n'.format(self.rgb)
+        txt+= '  RGB code (un-normalised): {0}\n\n'.format([x*255 for x in self.rgb])
+        txt+= '  HSV code: {0}\n'.format(self.hsv)
+        txt+= '  HSV code: (un-normalised) {0} {1} {2}\n\n'.format(self.hsv[0]*360, self.hsv[1]*100, self.hsv[2]*100)
+        txt+= '  HLS code: {0}\n'.format(self.hls)
+        txt+= '  HLS code: (un-normalised) {0} {1} {2}\n\n'.format(self.hls[0]*360, self.hls[1]*100, self.hls[2]*100)
         return txt
 
 
