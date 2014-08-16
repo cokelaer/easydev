@@ -7,7 +7,7 @@ easydev
 .. image:: https://pypip.in/d/easydev/badge.png
     :target: https://crate.io/packages/easydev/
 
-.. image:: https://secure.travis-ci.org/cokelaer/easyde.png
+.. image:: https://secure.travis-ci.org/cokelaer/easydev.png
     :target: http://travis-ci.org/cokelaer/easydev
 
 .. image:: https://coveralls.io/repos/cokelaer/easydev/badge.png?branch=master 
