@@ -24,7 +24,12 @@
 """
 from ConfigParser import ConfigParser
 import os
-from collections import OrderedDict
+import sys
+
+if sys.version_info.major <=2 and sys.version_info.minor<7
+    from ordereddict import OrderedDict
+else:
+    from collections import OrderedDict
 
 __all__ = ["OrderedDictAttribute", "DynamicConfigParser", "ConfigExample"]
 
