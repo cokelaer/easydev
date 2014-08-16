@@ -35,45 +35,45 @@ try:
 except:
     print("colors module depends on pylab, which does not seem to be installed. skipped")
 
-import copybutton
+from . import copybutton
 from .copybutton import *
 
-import decorators
+from . import decorators
 from .decorators import *
 
-import doc
+from . import doc
 from .doc import *
 
-import easytest
+from . import easytest
 from .easytest import *
 
-import logging_tools
+from . import logging_tools
 from .logging_tools import *
 
-import sphinx_themes
+from . import sphinx_themes
 from .sphinx_themes import *
 
-import tools
+from . import tools
 from .tools import *
 
-import multisetup
+from . import multisetup
 
-import paths
+from . import paths
 from .paths import *
 
-import package
+from . import package
 from .package import *
 
-import config_tools
+from . import config_tools
 from .config_tools import *
 
-import url
+from . import url
 from .url import *
 
 #import dependencies
 from .dependencies import get_dependencies
 
-import multicore
+from . import multicore
 from .multicore import *
 
 # use local import to not clash with setuptools itself.

@@ -27,8 +27,8 @@ you do not use the class ColorMapTools, you do not need matplotlib.
 
 
 import colorsys
-from tools import check_param_in_list, swapdict, check_range
-from xfree86 import XFree86_colors
+from .tools import check_param_in_list, swapdict, check_range
+from .xfree86 import XFree86_colors
 
 
 __all__ = ["HEX", "Color", "hex2web", "web2hex", "hex2rgb", "hex2dec",
