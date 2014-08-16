@@ -16,7 +16,6 @@ install:
 # # command to run tests, e.g. python setup.py test
 script:  
   - python setup.py nosetests --with-coverage --cover-package easydev
-
 after_success:
   coveralls
 
