@@ -28,7 +28,13 @@ speaking required for the installation.
 import os
 from os.path import join as pj
 import shutil
-from docutils import nodes
+try:
+    from docutils import nodes
+except:
+    # if docutils is not installed
+    class Dummy():
+        SkipNode = Exception
+    nodes = Dummy()
 
 
 __all__ = ["get_copybutton_path", ]
