@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 7
-_MICRO               = 0
+_MICRO               = 1
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -19,7 +19,7 @@ metainfo = {
     'url' : ["http://packages.python.org/easydev/"],
     'description':'Common utilities to ease the development of Python packages' ,
     'platforms' : ['Linux', 'Unix', 'MacOsX', 'Windows'],
-    'keywords' : ['sphinx', "package", "multisetup", "logging", "config",
+    'keywords' : ["package", "multisetup", "logging", "config",
         "hex2web", "web2hex", "hex2rgb", "rgb2hex", "rgb2hsv", "hsv2rgb", 
         "rgb2hls", "hls2rgb", "color", "pypi downloads" , "decorators"],
     'classifiers' : [
@@ -73,9 +73,7 @@ setup(
     package_dir = {'':'src'},
     packages = ['easydev'],
 
-    # sphinx is not stricly speaking required but this is very useful to build documentation
-    # once installed, one can just build the doc himself
-    install_requires = ['sphinx', 'ordereddict'],
+    install_requires = ['ordereddict'],
 
     # ordereddict is for python2.6 and below 
 

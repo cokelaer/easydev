@@ -1,4 +1,4 @@
-from easydev.decorators import requires
+from easydev.decorators import requires, ifpandas
 
 class A(object):
 
@@ -35,5 +35,6 @@ def test():
     a.print_str()
     a.print_list()
 
-
-
+@ifpandas
+def test_deco_pandas(self):
+    print(1)

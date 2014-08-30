@@ -23,6 +23,7 @@ import tempfile
 
 __all__ = ["assert_list_almost_equal", "trysetattr", "TempFile"]
 
+from easydev.decorators import ifpandas
 
 def assert_list_almost_equal(first, second, places=None):
     """Combined version nose.tools.assert_almost_equal and assert_list_equal

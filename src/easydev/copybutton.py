@@ -22,14 +22,14 @@
 
     Create a sphinx extension based on copybutton javascript from python website
 
+Requires sphinx to be installed. imports are inside functions so not stricly 
+speaking required for the installation.
 """
 import os
 from os.path import join as pj
 import shutil
 from docutils import nodes
 
-from sphinx.application import ExtensionError
-from sphinx.ext.mathbase import setup_math as mathbase_setup
 
 __all__ = ["get_copybutton_path", ]
 
@@ -122,6 +122,7 @@ def html_visit_displaymath(self, node):
     raise nodes.SkipNode
 
 def builder_inited(app):
+    from sphinx.application import ExtensionError
     if not app.config.jscopybutton_path:
         raise ExtensionError('jscopybutton_path config value must be set for the '
                              'jscopybutton extension to work')
@@ -129,6 +130,7 @@ def builder_inited(app):
 
 
 def setup(app):
+    from sphinx.ext.mathbase import setup_math as mathbase_setup
     mathbase_setup(app, (html_visit_math, None), (html_visit_displaymath, None))
     app.add_config_value('jscopybutton_path', '', False)
     app.connect('builder-inited', builder_inited)

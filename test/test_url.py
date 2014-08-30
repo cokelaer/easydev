@@ -8,5 +8,5 @@ def test_isurl():
     assert isurl_reachable("wrong.co.ujj") == False
     assert isurl_reachable("http://wrong.co.ujj") == False
 
-    # 
+     
     assert isurl_reachable("http://wrong.co") == False

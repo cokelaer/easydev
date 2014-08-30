@@ -1,3 +1,9 @@
+.. rubric:: 0.7.1
+* removed sphinx dependencies in setup and adds try/except where sphinx is
+  required.
+* add ifpandas decorator
+* add timeout is isurl_reachable function
+
 .. rubric:: 0.7.0
 
 * major updates to make easydev compatible with python 2.6, 2.7 and 3.4.

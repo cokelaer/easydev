@@ -32,7 +32,7 @@ def isurl(url):
     return isurl_reachable(url)
 
 
-def isurl_reachable(url):
+def isurl_reachable(url, timeout=10):
     """Checks if an URL exists or nor
 
     :param str url: the url to look for
@@ -42,7 +42,7 @@ def isurl_reachable(url):
     """
     if url.startswith("http://") or url.startswith("https://"):
         url = url.split("//")[1]
-    request = httplib.HTTPConnection(url)
+    request = httplib.HTTPConnection(url, timeout=timeout)
     try:
         request.request("HEAD", '/')
     except:

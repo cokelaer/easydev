@@ -17,7 +17,8 @@
 # $Id: tools.py 2963 2012-12-17 14:31:26Z cokelaer $
 """Handy decorators"""
 from functools import partial, wraps, update_wrapper
-__all__ = [ 'requires']
+
+__all__ = [ 'requires', 'ifpandas']
 
 
 # decorator with arguments and optional arguments for a method
@@ -132,4 +133,23 @@ def requires(requires, msg=""):
             return f(*args, **kwds)
         return wrapper
     return actualDecorator
+
+
+
+
+def ifpandas(func):
+    """check if pandas is available. If so, just return
+    the function, otherwise returns dumming function
+    that does nothing
+
+    """
+    def wrapper(*args, **kwds):
+        return func(*args, **kwds)
+
+    try:
+        import pandas
+        return wrapper
+    except:
+        def dummy():pass
+        return dummy
 
