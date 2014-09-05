@@ -2,6 +2,13 @@
 .. contents::
 
 
+codecs
+==========
+
+.. automodule:: easydev.codecs
+    :members:
+    :inherited-members:
+    :synopsis: 
 
 colors
 ==========
@@ -20,7 +27,7 @@ config
     :synopsis: 
 
 console
-===================================================================
+===========
 
 .. automodule:: easydev.console
     :members:

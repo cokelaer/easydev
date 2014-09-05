@@ -1,19 +1,27 @@
+
+
+
+.. rubric:: 0.7.2::
+
+* add ifpylab decorator
+* check_param_in_list can also accepts sets.
+* create new module called codecs. 
+* Moved transform_to_list from module tools in codecs module
+* add new functions called tolist and tostring inside codecs module
+
 .. rubric:: 0.7.1
-* removed sphinx dependencies in setup and adds try/except where sphinx is
-  required.
+
+* removed sphinx dependencies in setup and adds try/except where sphinx is required.
 * add ifpandas decorator
 * add timeout is isurl_reachable function
 
 .. rubric:: 0.7.0
 
 * major updates to make easydev compatible with python 2.6, 2.7 and 3.4.
-* Update DynamicConfigParser significantly by using a ew version to maipulate
-  the configparser options and sections as attributes.
+* Update DynamicConfigParser significantly by using a ew version to manipulate the configparser options and sections as attributes.
 * try to use orderdict module for python 2.6 instead of OrderdedDict 
-* Other changes are related to python 3.0 (e.g. iteritems -> items, print
-statement)
-* Updated the tests so that all tests now work under python 2.6 and 3.4 as
-well as 2.7
+* Other changes are related to python 3.0 (e.g. iteritems -> items, print statement)
+* Updated the tests so that all tests now work under python 2.6 and 3.4 as well as 2.7
 
 .. rubric:: 0.6.14
 

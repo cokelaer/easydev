@@ -37,6 +37,9 @@ try:
 except:
     print("colors module depends on pylab, which does not seem to be installed. skipped")
 
+from . import codecs
+from .codecs import *
+
 from . import copybutton
 from .copybutton import *
 

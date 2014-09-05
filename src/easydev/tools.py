@@ -19,9 +19,8 @@
 """toolkit to ease development"""
 import subprocess
 
-
 __all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list",
-    "check_range", "transform_into_list"]
+    "check_range"]
 
 
 def check_range(value, a, b, strict=False):
@@ -38,12 +37,12 @@ def check_range(value, a, b, strict=False):
         >>> check_range(1,0, 2)
 
     """
-    if strict == True:
+    if strict is True:
         if value <= a:
             raise ValueError(" {} must be greater (or equal) than {}".format(value, a))
         if value >= b:
             raise ValueError(" {} must be less (or less) than {}".format(value, b))
-    elif strict == False:
+    elif strict is False:
         if value < a:
             raise ValueError(" {} must be greater than {}".format(value, a))
         if value > b:
@@ -68,8 +67,9 @@ def check_param_in_list(param, valid_values, name=None):
         check_param_in_list(1, [1,2,3])
         check_param_in_list(mode, ["on", "off"])
     """
-    if isinstance(valid_values, list) == False:
-        raise TypeError("the valid_values second argument must be a list of valid values")
+    if isinstance(valid_values, list) is False:
+
+        raise TypeError("the valid_values second argument must be a list of valid values. {0} was provided.".format(valid_values))
 
     if param not in valid_values:
         if name:
@@ -113,7 +113,6 @@ def shellcmd(cmd, show=False, verbose=False):
         raise Exception("Error:: Command (%s) failed. Error message is %s" % (cmd, err))
 
 
-
 def swapdict(dic, check_ambiguity=True):
     """Swap keys for values in a dictionary
 
@@ -128,24 +127,3 @@ def swapdict(dic, check_ambiguity=True):
     if check_ambiguity:
         assert len(set(dic.keys())) == len(set(dic.values())), "values is not a set. ambiguities for keys."
     return dict(zip(dic.values(), dic.keys()))
-
-
-def transform_into_list(data):
-    import types
-    if isinstance(data, list) or isinstance(data, tuple):
-        return data #nothing to do
-    elif isinstance(data, int) or isinstance(data,float) or isinstance(data,
-            str):
-        return [data]
-    else:
-        raise TypeError("Should be a list (or tuple) or single type (float, int, string)")
-
-
-
-
-
-
-
-
-
-
