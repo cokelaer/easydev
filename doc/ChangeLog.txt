@@ -1,5 +1,7 @@
 
+.. rubric:: 0.7.3
 
+* NEW: add precision function in the tools module.
 
 .. rubric:: 0.7.2::
 

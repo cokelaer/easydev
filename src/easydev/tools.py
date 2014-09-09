@@ -20,7 +20,25 @@
 import subprocess
 
 __all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list",
-    "check_range"]
+    "check_range", "precision"]
+
+
+
+def precision(x, digit=2):
+    """Return the value with only 2 digits
+
+    ::
+    
+        >>> precision(2.123)
+        2.12
+        >>> precision(2123, digit=-2)
+        2100
+
+    """
+    assert digit>0
+    x = int(x*pow(10, digit))
+    x /= pow(10., digit)
+    return x
 
 
 def check_range(value, a, b, strict=False):
