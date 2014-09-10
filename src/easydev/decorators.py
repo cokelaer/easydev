@@ -11,12 +11,13 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
+#  Website: https://github.com/cokelaer/easydev
 #  website: http://github.com/cokelaer/easydev
 #
 ##############################################################################
 # $Id: tools.py 2963 2012-12-17 14:31:26Z cokelaer $
 """Handy decorators"""
-from functools import wraps, update_wrapper
+from functools import wraps
 import threading
 
 __all__ = ['ifpylab', 'requires', 'ifpandas']
@@ -151,7 +152,7 @@ def ifpandas(func):
     try:
         import pandas
         return wrapper
-    except:
+    except Exception:
         def dummy():
             pass
         return dummy
@@ -170,7 +171,7 @@ def ifpylab(func):
     try:
         import pylab
         return wrapper
-    except:
+    except Exception:
         def dummy():
             pass
         return dummy

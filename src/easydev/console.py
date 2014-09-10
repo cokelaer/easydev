@@ -12,7 +12,7 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
@@ -29,7 +29,7 @@
 import os
 import sys
 
-__all__ = ["color_terminal", "coloron", "nocolor", "get_terminal_width", 
+__all__ = ["color_terminal", "coloron", "nocolor", "get_terminal_width",
 "term_width_line"]
 # colors and other functions from the attributes codes are added dynamically to
 # this __all__ variable
@@ -41,7 +41,7 @@ def get_terminal_width():
         import termios, fcntl, struct
         call = fcntl.ioctl(0, termios.TIOCGWINSZ,
                            struct.pack('hhhh', 0, 0, 0, 0))
-        height, width = struct.unpack('hhhh', call)[:2]
+        _, width = struct.unpack('hhhh', call)[:2]
         terminal_width = width
     except (SystemExit, KeyboardInterrupt):
         raise
@@ -129,5 +129,6 @@ for _name in codes:
     _create_color_func(_name)
 
 # dynamically set the colors
-for x in codes.keys(): __all__.append(x)
+for x in codes.keys():
+    __all__.append(x)
 

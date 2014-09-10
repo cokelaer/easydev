@@ -16,15 +16,14 @@
 #
 ##############################################################################
 # $:Id $
-"""varisou convertors (e.g., list to string)"""
-import subprocess
-import types
+"""various type convertors (e.g., list to string)"""
 
 
 __all__ = ["tolist", "transform_into_list", "list2string"]
 
 
 def transform_into_list(data):
+    """deprecated. use :meth:`tolist`"""
     print("deprecated (easydev). Please use tolist()")
     return tolist(data)
 

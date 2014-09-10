@@ -11,7 +11,7 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
@@ -381,7 +381,7 @@ class OptionsBuildPackage(argparse.ArgumentParser):
         self.version = version
 
     def add_general_options(self):
-        #self.add_argument('--version', 
+        #self.add_argument('--version',
         #        action='version', version=self.version)
         self.add_argument("--pkgname", dest="pkgname",
             help="Name of the package to be created")

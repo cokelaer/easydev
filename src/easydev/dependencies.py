@@ -11,7 +11,7 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
@@ -25,7 +25,7 @@ __all__ = ["get_dependencies"]
 
 def get_dependencies(pkgname):
     """Return dependencies of a package as a sorted list
-    
+
     :param str pkgname: package name
     :return: list (empty list if no dependencies)
     """
@@ -34,5 +34,5 @@ def get_dependencies(pkgname):
         res = list(set(res))
         res.sort()
         return res
-    except:
+    except Exception:
         return []

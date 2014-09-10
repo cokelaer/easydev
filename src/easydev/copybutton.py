@@ -11,7 +11,7 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
@@ -22,7 +22,7 @@
 
     Create a sphinx extension based on copybutton javascript from python website
 
-Requires sphinx to be installed. imports are inside functions so not stricly 
+Requires sphinx to be installed. imports are inside functions so not stricly
 speaking required for the installation.
 """
 import os
@@ -30,7 +30,7 @@ from os.path import join as pj
 import shutil
 try:
     from docutils import nodes
-except:
+except Exception:
     # if docutils is not installed
     class Dummy():
         SkipNode = Exception

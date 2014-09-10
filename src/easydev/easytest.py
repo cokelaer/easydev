@@ -11,7 +11,7 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
@@ -23,7 +23,7 @@ import tempfile
 
 __all__ = ["assert_list_almost_equal", "trysetattr", "TempFile"]
 
-from easydev.decorators import ifpandas
+#from easydev.decorators import ifpandas
 
 def assert_list_almost_equal(first, second, places=None):
     """Combined version nose.tools.assert_almost_equal and assert_list_equal
@@ -47,7 +47,7 @@ def assert_list_almost_equal(first, second, places=None):
     for x, y in zip(first, second):
         # PYTHON 2.6 hack. This assert_almost_equal function
         # fails but I don't think this is correct. So let us
-        # catch the TypeError 
+        # catch the TypeError
         try:
             assert_almost_equal(x, y, places=places)
         except TypeError:
@@ -87,7 +87,7 @@ def trysetattr(this, attrname, value, possible):
     try:
         setattr(this, attrname, value)
         assert a1    # if the setattr is possible, this should be True
-    except:
+    except Exception:
         assert a2
 
 

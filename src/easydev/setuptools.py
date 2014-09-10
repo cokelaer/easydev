@@ -11,14 +11,14 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
 # $:Id $
-"""Utilities to help designing the setuptools 
+"""Utilities to help designing the setuptools
 
-unfortunately, this means that easydev must be installed before hand. 
+unfortunately, this means that easydev must be installed before hand.
 May not be very useful.
 
 """

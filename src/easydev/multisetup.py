@@ -3,7 +3,7 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2013 
+#  Copyright (c) 2011-2013
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -11,7 +11,7 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################

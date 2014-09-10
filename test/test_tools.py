@@ -17,6 +17,16 @@ def test_check_range():
     except:
         assert True
 
+    try:
+        tools.check_range(10, 0,1, strict=False)
+        assert False
+    except:
+        assert True
+    try:
+        tools.check_range(-10, 0,1, strict=False)
+        assert False
+    except:
+        assert True
 
 
 def test_swapdict():
@@ -61,4 +71,37 @@ def test_checkParams():
 
 def test_check_param_in_list():
     tools.check_param_in_list(1, [0,1,5], "test")
+    try:
+        tools.check_param_in_list(10, [0,1,5])
+        assert False
+    except:
+        assert True
+    try:
+        tools.check_param_in_list(10, [0,1,5], 'testt')
+        assert False
+    except:
+        assert True
 
+
+
+
+def test_precision():
+    assert tools.precision(2.123) == 2.12
+    assert tools.precision(2.123, 1) == 2.1
+    assert tools.precision(2.123,3) == 2.123
+    assert tools.precision(2123,-2) == 2100
+
+
+def test_attrdict():
+
+    a = tools.AttrDict(value=1)
+    assert a.value == 1
+    assert 'value' in list(a.keys())
+    assert 1 in (a.values())
+
+    a.description = 'test'
+    assert a['description'] == 'test'
+
+
+    a['output'] = 'txt'
+    assert a.output == 'txt'

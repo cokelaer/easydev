@@ -2,7 +2,7 @@ easydev
 ##########
 
 .. image:: https://badge.fury.io/py/easydev.svg
-    :target: http://badge.fury.io/py/easydev
+    :target: https://pypi.python.org/pypi/easydev
 
 .. image:: https://pypip.in/d/easydev/badge.png
     :target: https://crate.io/packages/easydev/

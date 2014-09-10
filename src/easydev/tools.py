@@ -11,7 +11,7 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  Website: https://www.assembla.com/spaces/pyeasydev/wiki
+#  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
@@ -20,25 +20,23 @@
 import subprocess
 
 __all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list",
-    "check_range", "precision"]
+    "check_range", "precision", "AttrDict"]
 
 
-
-def precision(x, digit=2):
+def precision(data, digit=2):
     """Return the value with only 2 digits
 
     ::
-    
+
         >>> precision(2.123)
         2.12
         >>> precision(2123, digit=-2)
         2100
 
     """
-    assert digit>0
-    x = int(x*pow(10, digit))
-    x /= pow(10., digit)
-    return x
+    data = int(data*pow(10, digit))
+    data /= pow(10., digit)
+    return data
 
 
 def check_range(value, a, b, strict=False):
@@ -145,3 +143,28 @@ def swapdict(dic, check_ambiguity=True):
     if check_ambiguity:
         assert len(set(dic.keys())) == len(set(dic.values())), "values is not a set. ambiguities for keys."
     return dict(zip(dic.values(), dic.keys()))
+
+
+class AttrDict(dict):
+    """dictionary-like object that exposes its keys as attributes.
+
+    You can add values as attribute, or with ['key'] syntax
+
+    .. doctest::
+
+        >>> from easydev import AttrDict
+        >>> a = AttrDict('value': 1)
+        >>> a.value
+        1
+        >>>
+        >>> a.unit = 'meter'
+        >>> a.keys()
+        ['value', 'meter']
+
+
+    """
+    def __init__(self, **kwargs):
+        dict.__init__(self, kwargs)
+        self.__dict__ = self
+
+

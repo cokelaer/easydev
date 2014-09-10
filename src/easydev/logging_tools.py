@@ -10,7 +10,7 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  website: https://pypi.python.org/pypi/easydev
+#  Website: https://github.com/cokelaer/easydev
 #
 ##############################################################################
 import logging
@@ -22,8 +22,8 @@ class Logging(object):
     """logging utility.
 
     When using the logging utility, it works like a singleton.
-    So, once logging level is set, you cannot set it again easily. 
-    Here is a class that allows to do that. 
+    So, once logging level is set, you cannot set it again easily.
+    Here is a class that allows to do that.
 
     .. warning:: this is a bit of a hack. Maybe this is not a proper solution but
         it seems to do the job.
@@ -31,14 +31,14 @@ class Logging(object):
     ::
 
         >>> l = Logging("INFO")
-        >>> l.info("test") 
+        >>> l.info("test")
         INFO:root:test
         >>> l.level = "WARNING"
-        >>> l.info("test") 
+        >>> l.info("test")
 
 
     """
-    # I think that we can not inherit from logging. 
+    # I think that we can not inherit from logging.
     def __init__(self, level):
         """.. rubric:: constructor
 
@@ -73,9 +73,9 @@ class Logging(object):
         logging.basicConfig(level=self._debugLevel)
     def _get_level(self):
         return self._debugLevel
-    debugLevel = property(_get_level, _set_level, 
+    debugLevel = property(_get_level, _set_level,
         doc="Read/Write access to the debug level. Must be one of INFO, DEBUG, WARNING, CRITICAL, ERROR")
-    level = property(_get_level, _set_level, 
+    level = property(_get_level, _set_level,
         doc="alias to :attr:`~easydev.logging_tools.Logging.debugLevel` (Read-only access)")
 
     # Used copy/deepcopy module

@@ -10,6 +10,7 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
+#  Website: https://github.com/cokelaer/easydev
 #  website: https://pypi.python.org/pypi/easydev
 #
 ##############################################################################
