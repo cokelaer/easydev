@@ -1,3 +1,9 @@
+.. rubric:: 0.7.4
+
+* CHANGES: remove colors and xfree86 modules now in an independent pacakge
+  called colormap  available on pypi
+
+
 
 .. rubric:: 0.7.3
 

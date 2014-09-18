@@ -10,14 +10,6 @@ codecs
     :inherited-members:
     :synopsis: 
 
-colors
-==========
-
-.. automodule:: easydev.colors
-    :members:
-    :inherited-members:
-    :synopsis: 
-
 
 config
 ==========

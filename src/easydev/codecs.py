@@ -60,7 +60,8 @@ def list2string(data, sep=",", space=True):
     :param list data: list of items that have a string representation.
         the input data could also be a simple object, in which case
         it is simply returned with a cast into a string
-    :param str sep: the separator to be used
+    :param str sep: the separator to be use
+
     ::
 
         >>> list2string([1, 2]
