@@ -28,7 +28,7 @@ def transform_into_list(data):
     return tolist(data)
 
 
-def tolist(data):
+def tolist(data, verbose=True):
     """Transform an object into a list if possible
 
     :param data: a list, tuple, or simple type (e.g. int)
@@ -41,17 +41,32 @@ def tolist(data):
     ::
 
         >>> from easydev import transform_to_list
-        >>> transform_into_list(1)
+        >>> tolist(1)
         [1]
-        >>> transform_into_list([1,2])
+        >>> tolist([1,2])
         [1,2]
 
 
     """
     if isinstance(data, list) or isinstance(data, tuple):
         return data #nothing to do
-    else:
+    elif isinstance(data, float):
         return [data]
+    elif isinstance(data, int):
+        return [data]
+    elif isinstance(data, str):
+        return [data]
+    else:
+        try:
+            data = data.tolist()
+            return data
+        except:
+            if verbose:
+                print("not known type. cast to list")
+            return list(data)
+
+
+
 
 
 def list2string(data, sep=",", space=True):
