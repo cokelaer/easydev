@@ -21,9 +21,7 @@ easydev
 
 :contributions: Please join https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
-
-
-
+:Python version supported: 2.6, 2.7, 3.3, 3.4
 
 **easydev** is a package I use for the development of other software available on pypi.
 It provides utilities that are of general usage for the development of Python packages.
