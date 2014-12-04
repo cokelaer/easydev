@@ -17,7 +17,7 @@ The targetted audience is therefore developers of Python packages.
 .. warning:: I'm not pretending to provide universal and bug-free tools. The
     tools provided may also change. However, since I'm using the tools provided
     in easydev in many other packages, it tends to be stable. 
-    I'm using **easydev** in other Python packages such as 
+    For example, **easydev** is used in 
     `bioservices <https://pypi.python.org/pypi/bioservices>`_.
 
 
@@ -32,7 +32,7 @@ Here are some features:
  #. A simple interface to run shell command (see :mod:`~easydev.tools`).
  #. A logging class to ease manipulation of the logging standard Python module (see :mod:`~easydev.logging_tools`).
  #. Quickly check if an url exists (see :mod:`~easydev.url.isurl`)
- #. Color (package moved colormap project https://pypi.python.org/pypi/colormap
+ #. Color (package moved colormap project https://pypi.python.org/pypi/colormap)
  #. Decorators: :mod:`~easydev.decorators`
  #. and many more. See reference for details.
 
@@ -45,15 +45,19 @@ Prerequisites
 Of course, you will need to install `Python <http://www.python.org/download/>`_
 (linux and mac users should have it installed already). We recommend also to install `ipython <http://ipython.org/>`_, which provides a more flexible shell alternative to the python shell itself.
 
-**easydev** require no external dependencies to be installed. However, 
-some modules requires dependencies to work. For instance pylab for the
-:mod:`easydev.colors` module, pandas for the :mod:`easydev.pypi_downloads` module.
+In principle, **easydev** do not require external dependencies to be installed. 
 
 Installation
 ================
 Since **easydev** is available on `PyPi <http://pypi.python.org/>`_, the following command should install the package and its dependencies automatically:: 
 
     pip install easydev
+
+Contributions
+#########################
+
+For contributions or bug reports, please see `esaydev on github <https://github.com/cokelaer/easydev>`_.
+
 
 User guide
 ##################

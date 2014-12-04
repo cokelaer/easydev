@@ -120,7 +120,6 @@ tools
 .. automodule:: easydev.tools
     :members:
     :undoc-members:
-    :inherited-members:
     :synopsis: 
 
 
