@@ -18,9 +18,10 @@
 # $:Id $
 """toolkit to ease development"""
 import subprocess
+import json
 
 __all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list",
-    "check_range", "precision", "AttrDict"]
+    "check_range", "precision", "AttrDict", "DevTools"]
 
 
 def precision(data, digit=2):
@@ -120,12 +121,11 @@ def shellcmd(cmd, show=False, verbose=False):
         if len(error) > 0:
             raise Exception(error)
 
-        if verbose == True:
+        if verbose is True:
             print(output)
 
         return output
     except Exception as err:
-        #if verbose: print e
         raise Exception("Error:: Command (%s) failed. Error message is %s" % (cmd, err))
 
 
@@ -168,3 +168,41 @@ class AttrDict(dict):
         self.__dict__ = self
 
 
+class DevTools(object):
+    """Aggregate of easydev.tools functions.
+
+    """
+    def check_range(self, value, a, b):
+        """wrapper around :func:`easydev.check_range`"""
+        check_range(value, a, b, strict=False)
+
+    def check_param_in_list(self, param, valid_values):
+        """wrapper around :func:`easydev.check_param_in_list`"""
+        param = self.tolist(param)
+        for name in param:
+            check_param_in_list(name, list(valid_values))
+
+    def swapdict(self, d):
+        """wrapper around :func:`easydev.swapdict`"""
+        return swapdict(d)
+
+    def tolist(self, query):
+        print('easydev tolist deprecated since 0.8.0. use to_list() instead')
+        return self.to_list(query)
+
+    def to_list(self, query):
+        """Cast to a list if possible
+
+        'a' ->['a']
+        1 -> [1]
+        """
+        from easydev import codecs
+        return codecs.tolist(query)
+
+    def list2string(self, query, sep=",", space=False):
+        from easydev import codecs
+        return codecs.list2string(query, sep=sep, space=space)
+
+    def to_json(self, dictionary):
+        """Transform a dictionary to a json object"""
+        return json.dumps(dictionary)

@@ -105,3 +105,13 @@ def test_attrdict():
 
     a['output'] = 'txt'
     assert a.output == 'txt'
+
+
+def test_devtools():
+    d = tools.DevTools()
+    d.check_param_in_list(1, [1,2])
+    d.check_range(1,0,2)
+    assert d.list2string(['a', 'b']) == 'a,b'
+    assert d.swapdict({'a':1}) == {1:'a'}
+    d.to_json({'a':1})
+    assert d.to_list('a') == ['a']
