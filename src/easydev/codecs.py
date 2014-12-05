@@ -19,16 +19,20 @@
 """various type convertors (e.g., list to string)"""
 
 
-__all__ = ["tolist", "transform_into_list", "list2string"]
+__all__ = ["to_list", "tolist", "transform_into_list", "list2string"]
 
 
 def transform_into_list(data):
-    """deprecated. use :meth:`tolist`"""
-    print("deprecated (easydev). Please use tolist()")
-    return tolist(data)
+    """deprecated. use :meth:`to_list`"""
+    print("deprecated (easydev). Please use to_list()")
+    return to_list(data)
 
 
 def tolist(data, verbose=True):
+    return to_list(data, verbose=verbose)
+
+
+def to_list(data, verbose=True):
     """Transform an object into a list if possible
 
     :param data: a list, tuple, or simple type (e.g. int)
@@ -41,9 +45,9 @@ def tolist(data, verbose=True):
     ::
 
         >>> from easydev import transform_to_list
-        >>> tolist(1)
+        >>> to_list(1)
         [1]
-        >>> tolist([1,2])
+        >>> to_list([1,2])
         [1,2]
 
 
@@ -64,9 +68,6 @@ def tolist(data, verbose=True):
             if verbose:
                 print("not known type. cast to list")
             return list(data)
-
-
-
 
 
 def list2string(data, sep=",", space=True):
@@ -90,7 +91,7 @@ def list2string(data, sep=",", space=True):
 
     .. note:: the cast is performed with str()
     """
-    data = tolist(data)
+    data = to_list(data)
     if space is True:
         sep = sep + " "
     res = sep.join([str(x) for x in data])

@@ -1,3 +1,13 @@
+
+
+.. rubric:: 0.8.1
+
+* NEW: progress bar from pymc added 
+
+.. rubric:: 0.8.0
+
+* NEW: add DevTools class and general cleanup
+
 .. rubric:: 0.7.4
 
 * CHANGES: remove colors and xfree86 modules now in an independent pacakge

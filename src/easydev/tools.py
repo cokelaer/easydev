@@ -178,7 +178,7 @@ class DevTools(object):
 
     def check_param_in_list(self, param, valid_values):
         """wrapper around :func:`easydev.check_param_in_list`"""
-        param = self.tolist(param)
+        param = self.to_list(param)
         for name in param:
             check_param_in_list(name, list(valid_values))
 
@@ -197,7 +197,7 @@ class DevTools(object):
         1 -> [1]
         """
         from easydev import codecs
-        return codecs.tolist(query)
+        return codecs.to_list(query)
 
     def list2string(self, query, sep=",", space=False):
         from easydev import codecs

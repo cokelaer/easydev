@@ -73,3 +73,7 @@ from .multicore import *
 
 # use local import to not clash with setuptools itself.
 from .setuptools import get_datafiles
+
+
+
+from .progressbar import TextProgressBar, progress_bar
