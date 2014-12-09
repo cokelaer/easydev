@@ -1,4 +1,6 @@
+.. rubric:: 0.8.2
 
+* NEW: multigit module
 
 .. rubric:: 0.8.1
 

@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 8
-_MICRO               = 1
+_MICRO               = 2
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -87,6 +87,7 @@ setup(
     entry_points = {
         'console_scripts': [
             'easydev_buildPackage=easydev.package:buildPackage',
+            'multigit=easydev.multigit:main',
         ]
         },
 
