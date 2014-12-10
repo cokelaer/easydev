@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 8
-_MICRO               = 2
+_MICRO               = 1
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -19,7 +19,7 @@ metainfo = {
     'url' : ["http://packages.python.org/easydev/"],
     'description':'Common utilities to ease the development of Python packages' ,
     'platforms' : ['Linux', 'Unix', 'MacOsX', 'Windows'],
-    'keywords' : ["package", "multisetup", "logging", "config", "decorators"],
+    'keywords' : ["package", "multisetup", "logging", "config", "decorators",  "multigit"],
     'classifiers' : [
           'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Developers',

@@ -1,10 +1,9 @@
-.. rubric:: 0.8.2
 
-* NEW: multigit module
 
 .. rubric:: 0.8.1
 
-* NEW: progress bar from pymc added 
+* NEW: progress bar from pymc added
+* NEW: multigit module
 
 .. rubric:: 0.8.0
 

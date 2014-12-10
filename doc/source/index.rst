@@ -29,6 +29,7 @@ Here are some features:
     installed in develop or install modes.
  #. Gather sphinx themes being used in different package documentations (e.g., `rtools <http://pypi.python.org/pypi/rtools>`_, `CellNOpt <http://www.cellnopt.org>`_).
  #. Set of tools to manipulate multi packaging under Python (see e.g., :mod:`~easydev.multisetup`).
+ #. Apply git command on a set of directories (see e.g., :mod:`~easydev.multigit`).
  #. A simple interface to run shell command (see :mod:`~easydev.tools`).
  #. A logging class to ease manipulation of the logging standard Python module (see :mod:`~easydev.logging_tools`).
  #. Quickly check if an url exists (see :mod:`~easydev.url.isurl`)

@@ -25,16 +25,16 @@ easydev
 
 **easydev** is a package I use for the development of other software available on pypi.
 It provides utilities that are of general usage for the development of Python packages.
-It has been used also as an incubator for packages (e.g.,
+It has been used also as an incubator for other packages (e.g.,
 `http://pypi.python.org/pypi/colormap`).
 
 
-For instance, it provides the
-sphinx templates being used for this documentation. It is also used by
+For instance, it provides the sphinx templates being used for this documentation. It is also used by
 other packages where documentation using Sphinx is being used (e.g., rtools, 
 spectrum). It provides tools such as multisetup (to ease the development of
-several packages within a single namespace), get_share_directory of any package,
-functions that are used often such as type checking...
+several packages within a single namespace), or **mulitgit**, a mechanism to get the path of the share 
+directory of any package, functions that are used often such as type checking
+and so on
 
 Similar projects are pytools, pytoolbox.
 
