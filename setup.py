@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__revision__ = "$Id: setup.py 3170 2013-01-16 14:57:19Z cokelaer $"
+__revision__ = "$Id$"
 import sys
 import os
 from setuptools import setup, find_packages

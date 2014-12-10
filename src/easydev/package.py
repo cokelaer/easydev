@@ -15,7 +15,7 @@
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
-# $:Id $
+# $Id$
 import os
 from easydev.logging_tools import Logging
 
@@ -24,7 +24,7 @@ __all__ = ["PackageBuilder"]
 
 
 setup_template1 = """# -*- coding: utf-8 -*-
-__revision__ = "$Id: $" # for the SVN Id
+__revision__ = "$Id$" # for the SVN Id
 import sys
 import os
 from setuptools import setup, find_packages

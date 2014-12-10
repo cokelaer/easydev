@@ -15,7 +15,7 @@
 #  website: http://github.com/cokelaer/easydev
 #
 ##############################################################################
-# $Id: tools.py 2963 2012-12-17 14:31:26Z cokelaer $
+# $Id$
 """Handy decorators"""
 from functools import wraps
 import threading
