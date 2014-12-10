@@ -277,7 +277,6 @@ class Multisetup(object):
         else:
             bold = purple = red = green = underline = str
 
-        print __revision__
         print(bold("Running multisetup version %s" % __revision__.split()[2]))
 
         #project_dir = self.curdir.basename()
