@@ -84,6 +84,16 @@ multisetup
     :inherited-members:
     :synopsis: 
 
+multigit
+===================================================================
+
+.. automodule:: easydev.multigit
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 
+
+
 Package
 ===================================================================
 

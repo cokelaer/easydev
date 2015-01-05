@@ -1,9 +1,9 @@
 # -*- python -*-
 # -*- coding: utf-8 -*-
 #
-#  This file is part of dreamtools software
+#  This file is part of easydev software
 #
-#  Copyright (c) 2011-2014
+#  Copyright (c) 2014
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -11,7 +11,7 @@
 #  See accompanying file LICENSE.txt or copy at
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  website: http://github.com/easydev
+#  website: http://github.com/cokelaer/easydev
 #
 ##############################################################################
 import glob
@@ -25,12 +25,12 @@ from easydev.console import red, darkgreen, purple
 class MultiGIT(object):
     """A multi git command line
 
-    You can either use MultiGIT as an executable (installed with easydev) and type:
+    You can either use MultiGIT as an executable (installed with easydev) and type the following
+    command in a shell::
 
         multigit --help
 
-    or create a script as follows in the repository with all your git repos:
-
+    or create a script as follows in the repository that contains the git repositories::
 
         from easydev.multigit import MultiGIT
         import sys
@@ -41,6 +41,10 @@ class MultiGIT(object):
     You can then call the local script (e.g. for the pull command)::
 
         python multigit.py pull
+
+    This would be equivalent to calling the executable as follows::
+
+        multigit pull --directories easydev bioservices
 
     """
     def __init__(self, commands, directories=None, curdir='.', verbose=True):
@@ -103,6 +107,7 @@ class MultiGIT(object):
         return args
 
     def run(self):
+        """call the git commands """
         results = {'failure': [], 'success': []}
 
         for directory in self.directories:
@@ -134,7 +139,7 @@ class MultiGIT(object):
             if self.commands == 'help':
                 break
         if len(results['failure']):
-            print "Failed repos: " + str(results['failure'])
+            print("Failed repos: " + str(results['failure']))
 
     def _print_status(self, msg):
         if self.verbose is False:

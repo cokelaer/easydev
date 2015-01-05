@@ -3,6 +3,8 @@
 
 * CHANGES: improve multigit to add --directories
   (see https://github.com/cokelaer/easydev/issues/3)
+* CHANGES: improvde AttrDict class to be recursive.
+  (see https://github.com/cokelaer/easydev/issues/1)
 
 .. rubric:: 0.8.1
 

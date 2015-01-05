@@ -148,7 +148,20 @@ def swapdict(dic, check_ambiguity=True):
 class AttrDict(dict):
     """dictionary-like object that exposes its keys as attributes.
 
-    You can add values as attribute, or with ['key'] syntax
+    When you have dictionary of dictionaries with many levels e.g.::
+
+        d = {'a': {'a1': {'a2': 2}}}
+
+    to get/set a values, one has to type something like::
+
+        d['a']['a1']['a2'] = 3
+
+    The :class:`AttrDict` allows the dictionary to work as attributes::
+
+        ad = AttrDict(**d)
+        ad.a.a1.a2 = 3
+
+    You can now add values as attribute, or with ['key'] syntax
 
     .. doctest::
 
@@ -161,11 +174,61 @@ class AttrDict(dict):
         >>> a.keys()
         ['value', 'meter']
 
+    If you need to add new simple values after the creation of the instance,
+    just use the setter::
+
+        >>> d['newa'] = 2
+        >>> d.newa = 2  # equivalent to the statement above
+
+    but if you want to set a dictionary (whichever recursive level), use
+    the :meth:`update` method::
+
+        >>> d.update({'newd': {'g': {'h':2}}})
+        >>> d.newd.g.h
+        2
+
+    Note that if you use the setter for a value that is a dictionary, e.g.::
+
+        ad.a = {'b':1}
+
+    then *a* is indeed a dictionary.
 
     """
     def __init__(self, **kwargs):
         dict.__init__(self, kwargs)
         self.__dict__ = self
+        self.update(kwargs)
+
+    def update(self, content):
+        """See class/constructor documentation for details
+
+        :param dict content: a valid dictionary
+        """
+        # accepts dict and attrdict classes
+        if content.__class__ not in [dict, AttrDict]:
+            raise TypeError
+
+        for k, v in content.items():
+            if v.__class__ not in [dict, AttrDict]:
+                # fixme copy ?
+                self[k] = v
+            else:
+                self[k] = AttrDict(**v)
+
+    def from_json(self, filename):
+        """
+        does not remove existing keys put replace them if already present
+        """
+        res = json.load(open(filename, "r"))
+        for k,v in res.items():
+            self[k] = v
+
+    def to_json(self, filename=None):
+        import json
+        if filename is not None:
+            json.dump(self, open(filename, "w"))
+        else:
+            return json.dumps(self)
 
 
 class DevTools(object):

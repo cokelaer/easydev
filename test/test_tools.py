@@ -1,4 +1,4 @@
-from easydev import tools
+from easydev import tools, TempFile
 
 
 def test_check_range():
@@ -102,9 +102,34 @@ def test_attrdict():
     a.description = 'test'
     assert a['description'] == 'test'
 
-
     a['output'] = 'txt'
     assert a.output == 'txt'
+
+
+    d = {'a':{'b':1}, 'aa':2}
+    ad = tools.AttrDict(**d)
+    assert ad.a.b == 1
+    ad.a.b = 2
+    assert ad.a.b == 2
+
+    ad['d'] = 4
+    assert ad.d == 4
+
+    try:
+        ad.update(1)
+        assert False
+    except:
+        assert True
+
+    # check json capabilities
+    fh = TempFile()
+    js = ad.to_json()
+    ad.to_json(filename=fh.name)
+    ad.from_json(fh.name)
+    fh.delete()
+    
+
+
 
 
 def test_devtools():
