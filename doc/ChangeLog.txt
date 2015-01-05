@@ -1,4 +1,8 @@
 
+.. rubric:: 0.8.2
+
+* CHANGES: improve multigit to add --directories
+  (see https://github.com/cokelaer/easydev/issues/3)
 
 .. rubric:: 0.8.1
 

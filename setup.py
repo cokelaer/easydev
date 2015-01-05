@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 8
-_MICRO               = 1
+_MICRO               = 2
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -35,8 +35,8 @@ metainfo = {
 # TODO: files in share/data. Need a smarter mechanism (recursive)
 datafiles = []
 datadirs = [
-        os.path.join('share'), 
-        os.path.join('share', 'themes'), 
+        os.path.join('share'),
+        os.path.join('share', 'themes'),
         os.path.join('share', 'themes', 'cno'),
         os.path.join('share', 'themes', 'cno', 'static'),
         os.path.join('share', 'themes', 'standard'),
@@ -45,7 +45,7 @@ datadirs = [
 for datadir in datadirs:
     datafiles.append(
         (
-            datadir, 
+            datadir,
             [f for f in glob.glob(os.path.join(datadir, '*')) if not os.path.isdir(f)]
         )
     )
@@ -63,7 +63,7 @@ setup(
     description = metainfo['description'],
     license          = metainfo['license'],
     platforms        = metainfo['platforms'],
-    url              = metainfo['url'],      
+    url              = metainfo['url'],
     download_url     = metainfo['download_url'],
     classifiers      = metainfo['classifiers'],
 
@@ -73,7 +73,7 @@ setup(
 
     install_requires = ['ordereddict'],
 
-    # ordereddict is for python2.6 and below 
+    # ordereddict is for python2.6 and below
 
     # somehow, the google_head.html is found in themes/standard and themese/cno
     # directories thanks to the contents of datafiles variable but the ones from
@@ -81,13 +81,13 @@ setup(
     # using the MANIFEST.in solve the issue. However, data_files=datafiles is
     # still required for python setup.py install or pip install to copy the
     # share directory in the proper place. sure there will be a neat solution
-    # one day 
+    # one day
     data_files = datafiles,
 
     entry_points = {
         'console_scripts': [
             'easydev_buildPackage=easydev.package:buildPackage',
-            'multigit=easydev.multigit:main',
+            'multigit=easydev.multigit:main_func',
         ]
         },
 

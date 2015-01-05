@@ -20,11 +20,17 @@ import os
 from easydev.console import red, darkgreen, purple
 
 
+# could use argparse
+
 class MultiGIT(object):
     """A multi git command line
 
-    In a directory with plenty of git repositories, create this script
-    and execute it as you would do with git::
+    You can either use MultiGIT as an executable (installed with easydev) and type:
+
+        multigit --help
+
+    or create a script as follows in the repository with all your git repos:
+
 
         from easydev.multigit import MultiGIT
         import sys
@@ -32,10 +38,9 @@ class MultiGIT(object):
             dirs = ['easydev', 'bioservices']
             mg = MultiGIT(commands=sys.argv[1:], directories=dirs)
 
-    For instance::
+    You can then call the local script (e.g. for the pull command)::
 
         python multigit.py pull
-
 
     """
     def __init__(self, commands, directories=None, curdir='.', verbose=True):
@@ -43,66 +48,109 @@ class MultiGIT(object):
         """Simple utility to apply a git command to all local directories"""
 
         self.verbose = verbose
+        self.commands = commands
         # catch the multigit commands that is
         # --quiet (which is also a valid git option),
-        #  --keep-going
         # --help, which is also a git option; replaces the git --help
         #  --directories
         #  --exclude-directories
-        if '-h' in commands or '--help' in commands:
+        if '-h' in self.commands or '--help' in self.commands:
             MultiGIT.help()
+            sys.exit()
 
-        if "--quiet" in commands:
+        if "--quiet" in self.commands:
             self.verbose = False
 
-        if "--directories" in commands:
-            commands.remove("--directories")
-            raise NotImplementedError
+        if "--directories" in self.commands:
+            directories = self._get_arguments('--directories')
+            self.commands.remove("--directories")
+            for this in directories:
+                self.commands.remove(this)
 
-        if "--exclude-directories" in commands:
-            commands.remove("--exclude-directories")
-            raise NotImplementedError
-
-        if "--keep-going" in commands:
-            commands.remove("--keep-going")
-            raise NotImplementedError
-
-        self.commands = " ".join(commands)
+        if "--exclude-directories" in self.commands:
+            exclude_directories = self._get_arguments('--exclude-directories')
+            self.commands.remove("--exclude-directories")
+            for this in exclude_directories:
+                self.commands.remove(this)
+        else:
+            exclude_directories = []
 
         # look for all directories by default
         if directories is None:
             directories = glob.glob('*')
             directories = [x for x in directories if os.path.isdir(x)]
-        self.directories = directories
+        self.directories = [x for x in directories if x not in exclude_directories]
 
-        if ' -h' not in self.commands and ' --help' not in self.commands:
-            self.run()
+
+        self.commands = " ".join(self.commands)
+        cmds = self.commands
+        if len(cmds) == 0:
+            print("No commands provided...")
+            MultiGIT.help()
+        else:
+            if ' -h' not in cmds and ' --help' not in cmds:
+                self.run()
+
+    def _get_arguments(self, cmd):
+        # identify
+        index = self.commands.index(cmd)
+        args = []
+        for this in self.commands[index+1:]:
+            if this.strip().startswith('-'):
+                break
+            else:
+                args.append(this.strip())
+        return args
 
     def run(self):
-        failed = []
+        results = {'failure': [], 'success': []}
+
         for directory in self.directories:
             if self.verbose:
                 print(purple("Entering in {0}".format(directory)))
             code = "cd {0}; git {1}".format(directory, self.commands)
+
             try:
                 if self.verbose:
                     print(code)
                 status = os.system(code)
                 if status == 0:
-                    if self.verbose:
-                        print((darkgreen('ok')))
+                    results['success'].append(directory)
+                    self._print_status('ok')
+
                 else:
-                    if self.verbose:
-                        print(red('Failed. Skipped'))
+                    print(directory + " failed\n")
+                    results['failure'].append(directory)
+                    self._print_error("Failed. Skipped")
             except:
-                failed.append(directory)
-                if self.verbose:
-                    print(red("Failed. Skipped"))
+                print(directory + "failed\n")
+                results['failure'].append(directory)
+                self._print_error("Failed. Skipped")
             finally:
                 code = "cd .."
                 os.system(code)
                 if self.verbose:
                     print("")
+            if self.commands == 'help':
+                break
+        if len(results['failure']):
+            print "Failed repos: " + str(results['failure'])
+
+    def _print_status(self, msg):
+        if self.verbose is False:
+            return
+        try:
+            print(darkgreen(msg))
+        except:
+            print(msg)
+    def _print_error(self, msg):
+        if self.verbose is False:
+            return
+        try:
+
+            print(red(msg))
+        except:
+            print(msg)
 
     @classmethod
     def help(cls):
@@ -133,15 +181,21 @@ class MultiGIT(object):
         """)
 
 
+def main_func(args=None):
+    if args:
+        pass
+    else:
+        args = sys.argv[1:]  # 1 ignore the name of the calling program itself
 
-
-if __name__ == "__main__":
-    args = sys.argv[1:]  # 1 ignore the name of the calling program itself
-
-    if len(args)==0:
+    if len(args) == 0:
         print(red("USAGE: python multigit.py pull"))
     else:
         MultiGIT(args)
+
+
+if __name__ == "__main__":
+    args = sys.argv[1:] # 1 ignore the name of the calling program itself
+    main_func(args)
 
 
 
