@@ -10,9 +10,9 @@ easydev
 .. image:: https://secure.travis-ci.org/cokelaer/easydev.png
     :target: http://travis-ci.org/cokelaer/easydev
 
-.. image:: https://coveralls.io/repos/cokelaer/easydev/badge.png?branch=master 
+.. image:: https://coveralls.io/repos/cokelaer/easydev/badge.svg?branch=master 
    :target: https://coveralls.io/r/cokelaer/easydev?branch=master 
-
+   
 .. image:: https://landscape.io/github/cokelaer/easydev/master/landscape.png
    :target: https://landscape.io/github/cokelaer/easydev/master
 
