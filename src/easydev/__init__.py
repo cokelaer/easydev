@@ -56,6 +56,9 @@ from . import multisetup
 from . import paths
 from .paths import *
 
+from . import misc
+from .misc import *
+
 from . import package
 from .package import *
 

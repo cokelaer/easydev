@@ -26,6 +26,7 @@
 """
 __all__ = ["underline"]
 
+
 def underline(text, symbol="="):
     """Underlines a string with a specific character
 
