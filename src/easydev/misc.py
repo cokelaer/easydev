@@ -1,6 +1,6 @@
 import os
 
-__all__ = ['get_home']
+__all__ = ['get_home', 'cmd_exists']
 
 def get_home():
     # This function should be robust
@@ -19,4 +19,19 @@ def get_home():
         homedir = os.environ.get(this)
         if homedir is not None and os.path.isdir(homedir):
             return homedir
-    return None
+
+
+def cmd_exists(cmd):
+    try:
+        import subprocess
+        # for unix/max only
+        result = subprocess.call("type " + cmd, shell=True,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if result == 0:
+            return True
+        else:
+            return False
+    except Exception:
+        # If subprocess is not found, we assume it exists. 
+        # This choice ensure that if it fails, we keep going.
+        return True
