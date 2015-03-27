@@ -31,11 +31,6 @@ except ImportError:
 import os
 import sys
 
-try:
-    from collections import OrderedDict
-except:
-    # python 2.6 and below
-    from ordereddict import OrderedDict
 
 __all__ = ["DynamicConfigParser", "ConfigExample"]
 
@@ -45,8 +40,6 @@ class _DictSection(object):
     '''Dictionary section.
 
     Reference: https://gist.github.com/dangoakachan/3855920
-    This is a temporary solution while I can find a solution
-    for the OrderedDictAttribute
 
     '''
 
@@ -89,84 +82,6 @@ class _DictSection(object):
         return config.has_section(section) and config.has_option(section, attr)
 
 
-
-
-
-class OrderedDictAttribute(OrderedDict):
-    """This is an extension of :class:`~collections.OrderedDict` class
-
-    The added value is the exposure of key as attribute
-
-    Consider the following example. The key **test** can be altered
-    as a normal attribute.
-
-    .. doctest::
-
-        >>> from easydev.config_tools import OrderedDictAttribute
-        >>> o = OrderedDictAttribute()
-        >>> o['test'] = 1
-        >>> o.test   # equivalent to o['test']
-        1
-        >>> o.test = 1 # equivalent to o['test'] = 1
-
-    .. warning:: the key-attribute can be altered **only** if already
-        added in the dictionary itself.
-
-    .. doctest::
-
-        >>> from easydev.config_tools import OrderedDictAttribute
-        >>> o = OrderedDictAttribute() # o['test'] = 1; let us omit this required step
-        >>> o.test = 1 #doctst: +SKIP
-        >>> o.test     #doctest: +SKIP this is an attribute (not a key)
-        1
-        >>> o.has_key("test")
-        False
-
-    .. todo:: when setting an attribute that is not a key, we could
-        add it in the dictionary.
-
-    .. warning:: works only for python 2.7 and below.
-
-    """
-    def __init__(self, *args, **kwds):
-        super(OrderedDictAttribute, self).__init__(*args, **kwds)
-        if sys.version_info.major < 3:
-            raise Exception("Not available in version 3")
-        else:
-            pass
-
-        # The spirit of this class is to have a mapping between keys and
-        # an attribute with the same name. Yet, one can set an attribute
-        # while the key hasnot yet been set, which is not expected usage
-
-        # FIXME one could solve this issue by creating the key on the fly.
-
-        # meanwhile, we will use a print statement to inform the user that this attribute
-        # is not yet a key.
-
-        # Yet, when we create an instance of this class, the message will
-        # be printed. To prevent this, we use th e _init attribute below
-        # and catch its presence in the __setattr__ method
-        self._init = True  # used in set attributete to figure out if
-
-    def __getattr__(self, attr):
-        if self.has_key(attr):
-            return super(OrderedDictAttribute, self).__getitem__(attr)
-        else:
-            return super(OrderedDictAttribute, self).__getattr__(attr)
-    def __setattr__(self, attr, value):
-        if self.has_key(attr):
-            return super(OrderedDictAttribute, self).__setitem__(attr, value)
-        else:
-            if "_init" in self.__dict__.keys():
-                print("warning: attribute {0} not in the dictionary yet.".format(attr))
-                print("If you want this attribute to be in the dictionary, you must add it first as a key")
-
-            return super(OrderedDictAttribute, self).__setattr__(attr, value)
-
-
-
-
 class ConfigExample(object):
     """Create a simple example of ConfigParser instance to play with
 
@@ -194,7 +109,6 @@ class ConfigExample(object):
         >>> from ConfigParser import ConfigParser
         >>> config = ConfigParser()
         >>> config.read("file.ini")
-
 
     """
     def __init__(self):
@@ -232,14 +146,14 @@ class DynamicConfigParser(ConfigParser, object):
     or option from a section :meth:`remove_option`. You can save the instance into a file
     or print it::
 
-    >>> print c
+        >>> print(c)
 
     .. warning:: if you set options manually (e.G. self.GA.test =1 if GA is a
         section and test one of its options), then the save/write does not work
         at the moment even though if you typoe self.GA.test, it has the correct value
 
 
-    Methods inhereited from ConfigParser are available:
+    Methods inherited from ConfigParser are available:
 
     ::
 
@@ -268,19 +182,6 @@ class DynamicConfigParser(ConfigParser, object):
             pass
         else:
             raise TypeError("config_or_filename must be a valid filename or valid ConfigParser instance")
-
-
-        #self._config = None
-        ## set the sections and options
-        #if type(config_or_filename) == str:
-        #    self.read(config_or_filename)
-        #elif isinstance(config_or_filename, ConfigParser):
-        #    config = config_or_filename
-        #    self._replace_config(config)
-        #elif config_or_filename == None:
-        #    pass
-        #else:
-        #    raise TypeError("config_or_filename must be a valid filename or valid ConfigParser instance")
 
     def read(self, filename):
         """Load a new config from a filename (remove all previous sections)"""
@@ -406,7 +307,6 @@ class DynamicConfigParser(ConfigParser, object):
         """
         assert section in self.sections(), "unknown section"
         #TODO I had to cast to str with DictSection
-        # whereas it works with OrderedDictAttribute
         self.set(section, option, value=str(value))
 
     def __str__(self):
