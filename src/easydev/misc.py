@@ -32,6 +32,21 @@ def cmd_exists(cmd):
         else:
             return False
     except Exception:
-        # If subprocess is not found, we assume it exists. 
+        # If subprocess is not found, we assume it exists.
         # This choice ensure that if it fails, we keep going.
         return True
+
+def in_ipynb():
+    """Checks if we are in an ipython notebook
+
+    :return: True if in an ipython notebook otherwise returns False
+
+    """
+    try:
+        cfg = get_ipython().config
+        if cfg['IPKernelApp']['parent_appname'] == 'ipython-notebook':
+            return True
+        else:
+            return False
+    except NameError:
+        return False
