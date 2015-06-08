@@ -1,4 +1,4 @@
-"""A progress bar copied from pyMC code (dec 2014)"""
+"""A progress bar copied and adapted from pyMC code (dec 2014)"""
 from __future__ import print_function
 
 import sys
@@ -43,27 +43,28 @@ class ProgressBar(object):
 
 class TextProgressBar(ProgressBar):
 
-    def __init__(self, iterations, printer):
+    def __init__(self, iterations, printer, width=40, interval=None):
         self.fill_char = '-'
-        self.width = 40
+        self.width = width
         self.printer = printer
 
-        ProgressBar.__init__(self, iterations)
+        ProgressBar.__init__(self, iterations, interval=interval)
 
     def animate(self, i, dummy=None):
         # dummy=None is for back-compatibility
         if dummy is not None:
             print("second argument in easydev.progress_bar.animate is deprecated. Update your code")
-        self.printer(self.progbar(i))
+        # +1 if i starts at 0 and finishes at N-1
+        if divmod(i, self.interval)[1] != 0 and i != self.iterations:
+            pass
+        else:
+            self.printer(self.progbar(i))
 
     def progbar(self, i):
         # +1 if i starts at 0 and finishes at N-1
-        if divmod(i+1, self.interval)[1] != 0:
-            return 
-        else:
-            bar = self.bar(self.percentage(i))
-            return "[%s] %i of %i complete in %.1f sec" % (
-                bar, i+1, self.iterations, round(self.elapsed, 1))
+        bar = self.bar(self.percentage(i))
+        return "[%s] %i of %i complete in %.1f sec" % (
+            bar, (i), self.iterations, round(self.elapsed, 1))
 
     def bar(self, percent):
         all_full = self.width - 2
@@ -94,7 +95,7 @@ def ipythonprint(s):
 
 class IPythonNotebookPB(ProgressBar):
 
-    def __init__(self, iterations):
+    def __init__(self, iterations, interval=None):
         self.divid = str(uuid.uuid4())
         self.sec_id = str(uuid.uuid4())
 
@@ -107,17 +108,17 @@ class IPythonNotebookPB(ProgressBar):
             """ % (self.divid, self.sec_id))
         display(pb)
 
-        ProgressBar.__init__(self, iterations)
+        ProgressBar.__init__(self, iterations, interval=interval)
 
     def animate(self, i, dummy=None):
         if dummy is not None:
             print("second argument in easydev.progress_bar.animate is deprecated. Update your code")
 
         # +1 if i starts at 0 and finishes at N-1
-        if divmod(i+1, self.interval)[1] != 0:
+        if divmod(i, self.interval)[1] != 0 and i != self.iterations :
             pass
         else:
-            percentage = self.percentage(i+1)
+            percentage = self.percentage(i)
             fraction = percentage
             display(
                 Javascript("$('div#%s').width('%i%%')" %
@@ -153,12 +154,11 @@ def progress_bar(iters, interval=None):
             pb.animate(i)
 
     """
-
     if _run_from_ipython():
         from easydev.misc import in_ipynb
         if in_ipynb() is True:
-            return IPythonNotebookPB(iters)
+            return IPythonNotebookPB(iters, interval=interval)
         else:
-            return TextProgressBar(iters, ipythonprint)
+            return TextProgressBar(iters, printer=ipythonprint, interval=interval)
     else:
-        return TextProgressBar(iters, consoleprint)
+        return TextProgressBar(iters, printer=consoleprint, interval=interval)
