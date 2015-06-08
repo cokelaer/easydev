@@ -57,7 +57,7 @@ Since **easydev** is available on `PyPi <http://pypi.python.org/>`_, the followi
 Contributions
 #########################
 
-For contributions or bug reports, please see `esaydev on github <https://github.com/cokelaer/easydev>`_.
+For contributions or bug reports, please see `easydev on github <https://github.com/cokelaer/easydev>`_.
 
 
 User guide
