@@ -22,8 +22,8 @@ class ProgressBar(object):
         # if no interval provided, set it to 20 or the iterations (if less than
         # 20)
         if interval is None:
-            if iterations >= 20:
-                interval = 20
+            if iterations >= 100:
+                interval = 100  # everything % of the data
             else:
                 interval = iterations
         self.interval = interval
