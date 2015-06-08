@@ -5,34 +5,40 @@ import sys
 import time
 import uuid
 
+
 try:
     from IPython.core.display import HTML, Javascript, display
 except ImportError:
     pass
+
 
 __all__ = ['progress_bar', 'TextProgressBar']
 
 
 class ProgressBar(object):
 
-    def __init__(self, iterations, animation_interval=.5):
+    def __init__(self, iterations, interval=None):
         self.iterations = iterations
+        # if no interval provided, set it to 20 or the iterations (if less than
+        # 20)
+        if interval is None:
+            if iterations >= 20:
+                interval = 20
+            else:
+                interval = iterations
+        self.interval = interval
         self.start = time.time()
         self.last = 0
-        self.animation_interval = animation_interval
 
     def percentage(self, i):
         return 100 * i / float(self.iterations)
 
-    def update(self, i):
-        elapsed = time.time() - self.start
-        i = i + 1
+    def fraction(self, i):
+        return i / float(self.iterations)
 
-        if elapsed - self.last > self.animation_interval:
-            self.animate(i + 1, elapsed)
-            self.last = elapsed
-        elif i == self.iterations:
-            self.animate(i, elapsed)
+    def _get_elapsed(self):
+        return time.time() - self.start
+    elapsed = property(_get_elapsed)
 
 
 class TextProgressBar(ProgressBar):
@@ -43,15 +49,21 @@ class TextProgressBar(ProgressBar):
         self.printer = printer
 
         ProgressBar.__init__(self, iterations)
-        self.update(0)
 
-    def animate(self, i, elapsed):
-        self.printer(self.progbar(i, elapsed))
+    def animate(self, i, dummy=None):
+        # dummy=None is for back-compatibility
+        if dummy is not None:
+            print("second argument in easydev.progress_bar.animate is deprecated. Update your code")
+        self.printer(self.progbar(i))
 
-    def progbar(self, i, elapsed):
-        bar = self.bar(self.percentage(i))
-        return "[%s] %i of %i complete in %.1f sec" % (
-            bar, i, self.iterations, round(elapsed, 1))
+    def progbar(self, i):
+        # +1 if i starts at 0 and finishes at N-1
+        if divmod(i+1, self.interval)[1] != 0:
+            return 
+        else:
+            bar = self.bar(self.percentage(i))
+            return "[%s] %i of %i complete in %.1f sec" % (
+                bar, i+1, self.iterations, round(self.elapsed, 1))
 
     def bar(self, percent):
         all_full = self.width - 2
@@ -97,18 +109,25 @@ class IPythonNotebookPB(ProgressBar):
 
         ProgressBar.__init__(self, iterations)
 
-    def animate(self, i, elapsed):
-        percentage = int(self.fraction(i))
+    def animate(self, i, dummy=None):
+        if dummy is not None:
+            print("second argument in easydev.progress_bar.animate is deprecated. Update your code")
 
-        display(
-            Javascript("$('div#%s').width('%i%%')" %
+        # +1 if i starts at 0 and finishes at N-1
+        if divmod(i+1, self.interval)[1] != 0:
+            pass
+        else:
+            percentage = self.percentage(i+1)
+            fraction = percentage
+            display(
+                Javascript("$('div#%s').width('%i%%')" %
                        (self.divid, percentage)))
-        display(
-            Javascript("$('label#%s').text('%i%% in %.1f sec')" %
-                       (self.sec_id, fraction, round(elapsed, 1))))
+            display(
+                Javascript("$('label#%s').text('%i%% in %.1f sec')" %
+                           (self.sec_id, fraction, round(self.elapsed, 1))))
 
 
-def run_from_ipython():
+def _run_from_ipython():
     try:
         __IPYTHON__
         return True
@@ -116,10 +135,29 @@ def run_from_ipython():
         return False
 
 
-def progress_bar(iters):
-    if run_from_ipython():
-        if None:
-            return NotebookProgressBar(iters)
+def progress_bar(iters, interval=None):
+    """A progress bar for Python/IPython/IPython notebook
+
+    :param int iters: number of iterations (steps in the loop)
+    :param interval: number of intervals to use to update the progress bar (20
+        by default)
+
+
+    ::
+
+        from easydev import progress_bar
+        pb = progress_bar(10)
+        for i in range(1,10):
+            import time
+            time.sleep(0.1)
+            pb.animate(i)
+
+    """
+
+    if _run_from_ipython():
+        from easydev.misc import in_ipynb
+        if in_ipynb() is True:
+            return IPythonNotebookPB(iters)
         else:
             return TextProgressBar(iters, ipythonprint)
     else:
