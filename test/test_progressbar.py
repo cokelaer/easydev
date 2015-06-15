@@ -15,7 +15,6 @@ def test_progressbar():
         p.animate(i+1, i)
 
 
-
     p = progressbar.TextProgressBar(N, progressbar.consoleprint)
     for i in range(0,N):
         time.sleep(1)

@@ -16,7 +16,6 @@ __all__ = ['progress_bar', 'TextProgressBar']
 
 
 class ProgressBar(object):
-
     def __init__(self, iterations, interval=None):
         self.iterations = iterations
         # if no interval provided, set it to 20 or the iterations (if less than
