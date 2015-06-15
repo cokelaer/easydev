@@ -1,3 +1,8 @@
+.. rubric:: 0.8.4:
+
+* CHANGES: update animate() function simplifying the usage removing second
+    argument. 
+
 .. rubric:: 0.8.3
 * NEW: add get_home function in the misc module.
 
