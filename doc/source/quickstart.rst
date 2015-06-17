@@ -9,6 +9,18 @@ I used a lot.
 
 .. contents::
 
+Progress bar
+==============
+
+
+::
+
+    from easydev import Progress
+    p = Progress(1000)
+    for i in range(0,1000):
+        # do something.
+        p.animate(i+1)
+
 
 Sphinx tools
 ===============
@@ -130,4 +142,70 @@ a package is built in the directory "myPackage". You can go in it and type::
 Of course, no modules are to be found but it is a valid package. Besides, you should edit the setup.py file to set the version, author, email and so on.
 
 You can also use the executable **easydev_buildPackage** provided with easydev.
+
+
+Multiprocessing
+====================
+
+A :mod:`~easydev.multicore` class is provided to perform multiprocessing tasks. It allows to create
+a list of jobs to be run in an asynchronous way. In other words your jobs do not need to communicate
+between them.
+
+Each job must be a function with arguments and optional arguments but must return an object (that will be stored in the results attribute). Typically, you will use this class as follows::
+
+     >>> from easydev.multicore import MultiProcessing
+     >>> def test_func(n):
+     ...    import time
+     ...    time.sleep(n)
+     ...    return n
+
+     >>> t = MultiProcessing(maxcpu=4) # default is the number of CPU (returned by cpucount function)
+     >>> t.add_job(test_func, 2)
+     >>> t.add_job(test_func, 1)
+     >>> t.run()
+
+The :meth:`add_job` takes as input a function name followed by a lost of arguments. You can then introspect individual results::
+
+  t.results
+
+
+
+LSF cluster
+===============
+
+The :mod:`~easydev.lsf` module provides an easy interface to append shell commands into a
+queue and create all relevant LSF commands/scripts. Let us consider the
+following code::
+
+    >>> from easydev.lsf import *
+    >>> t = LSFCluster(prog="test", verbose=True)
+    >>> t.add_cmd("echo 'A shell command to be run' ")
+    >>> t.add_cmd("echo 'A shell command to be run' ")
+    >>> t.add_cmd("echo 'A shell command to be run' ")
+    >>> t.create_scripts()
+                            
+A set of shell scripts are created. There are called **lsf_jobs_XXX_generic.** where XXX is the id of th
+e command to be launch. 
+In addition, a main script called **lsf_alljobs_generic.sh** is also created.  In
+order to launch all the jobs automatically with the proper LSF command, just
+type::
+
+    sh lsf_alljobs_generic.sh
+
+
+You can check the status of the jobs by typing::
+
+    bjobs
+
+
+By default all jobs run in parallel without any dependencies. One future implmentation is to allow such 
+dependencies by providing an argument called level::
+
+
+    >>> from easydev.lsf import *
+    >>> t = LSFCluster(prog="test", verbose=True)
+    >>> t.add_cmd("preprocessing --input test.dat --ouput test2.dat", level=1)
+    >>> t.add_cmd("postprocessing --input test2.dat", level=2)
+    >>> t.create_scripts()
+
 
