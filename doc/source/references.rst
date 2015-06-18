@@ -10,7 +10,6 @@ codecs
     :inherited-members:
     :synopsis: 
 
-
 config
 ==========
 
@@ -112,7 +111,14 @@ paths
     :inherited-members:
     :synopsis: 
 
+progressbar
+==============
 
+.. automodule:: easydev.progressbar
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 
 
 sphinx themes
 ===================================================================

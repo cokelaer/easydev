@@ -17,3 +17,12 @@ def test_tempfile():
     f = TempFile()
     f.name
     f.delete()
+
+
+def test_list_almost_equal():
+    assert_list_almost_equal([1,2],[1,2])
+    try:
+        assert_list_almost_equal([1,2],[1,3])
+        assert False
+    except:
+        assert True

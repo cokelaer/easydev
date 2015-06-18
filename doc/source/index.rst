@@ -23,6 +23,7 @@ The targetted audience is therefore developers of Python packages.
 
 Here are some features:
 
+ #. Add a progress bar in your pipeline in 2 lines of code with :mod:`~easydev.progressbar`
  #. Builds a python package layout automatically with an executable. See :mod:`~easydev.package`
  #. A user interface to run multiple jobs with :mod:`~easydev.multicore`
  #. Some functions to access to the share/data directories of python packages
