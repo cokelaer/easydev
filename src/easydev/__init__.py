@@ -79,4 +79,5 @@ from .setuptools import get_datafiles
 
 
 
-from .progressbar import TextProgressBar, progress_bar
+from .progressbar import TextProgressBar, progress_bar, Progress
+from .lsf import LSFCluster

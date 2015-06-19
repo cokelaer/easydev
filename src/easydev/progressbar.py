@@ -12,7 +12,7 @@ except ImportError:
     pass
 
 
-__all__ = ['progress_bar', 'TextProgressBar']
+__all__ = ['progress_bar', 'TextProgressBar', 'Progress']
 
 
 class ProgressBar(object):
@@ -161,3 +161,31 @@ def progress_bar(iters, interval=None):
             return TextProgressBar(iters, printer=ipythonprint, interval=interval)
     else:
         return TextProgressBar(iters, printer=consoleprint, interval=interval)
+
+
+class Progress(object):
+    """Generic progress bar for python,ipython as class
+    
+    ::
+    
+        from easydev import Progress
+        pb = Progress(100, interval=1)
+        pb.animate(10)
+    """
+    def __init__(self, iters, interval=None):
+        self.pb = progress_bar(iters, interval=interval)
+
+    def animate(self, i):
+        self.pb.animate(i)
+
+    def _get_elapsed(self):
+        return self.pb.elapsed
+    elapsed = property(_get_elapsed)
+        
+
+
+
+
+
+
+
