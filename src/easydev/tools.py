@@ -97,7 +97,7 @@ def check_param_in_list(param, valid_values, name=None):
         raise ValueError(msg)
 
 
-def shellcmd(cmd, show=False, verbose=False):
+def shellcmd(cmd, show=False, verbose=False, ignore_errors=False):
     """An alias to run system commands.
 
     Based on subprocess.Popen.
@@ -119,7 +119,11 @@ def shellcmd(cmd, show=False, verbose=False):
         ret.wait()
 
         if len(error) > 0:
-            raise Exception(error)
+            if ignore_errors is False:
+                raise Exception(error)
+            else:
+                if verbose is True:
+                    print("Errors/Warning" + error)
 
         if verbose is True:
             print(output)
