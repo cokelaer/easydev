@@ -1,3 +1,8 @@
+
+.. rubric:: 0.8.6:
+
+* CHANGES: add extra argument in shellcmd function
+
 .. rubric:: 0.8.5:
 
 * NEW: add lsf module
