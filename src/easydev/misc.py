@@ -1,6 +1,8 @@
 import os
 
+
 __all__ = ['get_home', 'cmd_exists']
+
 
 def get_home():
     # This function should be robust
@@ -44,7 +46,8 @@ def in_ipynb():
     """
     try:
         cfg = get_ipython().config
-        if cfg['IPKernelApp']['parent_appname'] == 'ipython-notebook':
+        if 'parent_appname' in cfg['IPKernelApp'].keys() and \
+                cfg['IPKernelApp']['parent_appname'] == 'ipython-notebook':
             return True
         else:
             return False

@@ -1,4 +1,8 @@
 
+.. rubric:: 0.8.7:
+
+* CHANGES: makes misc.in_ipynb() more robust.
+
 .. rubric:: 0.8.6:
 
 * CHANGES: add extra argument in shellcmd function
