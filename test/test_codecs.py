@@ -1,5 +1,6 @@
 from easydev import codecs
 
+
 def test_transform_to_list():
     assert codecs.transform_into_list(1) == [1]
 
@@ -12,12 +13,10 @@ def test_tolist():
     assert codecs.tolist([1, 2]) == [1, 2]
 
     import numpy as np
-    x = np.array([1,2])
-    assert codecs.tolist(x) == [1,2]
+    x = np.array([1, 2])
+    assert codecs.tolist(x) == [1, 2]
 
-    assert sorted(codecs.tolist({1,2})) == [1,2]
-
-
+    assert sorted(codecs.tolist((1, 2))) == [1, 2]
 
 
 def test_tostring():
