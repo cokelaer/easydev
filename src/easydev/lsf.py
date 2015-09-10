@@ -58,8 +58,8 @@ class LSFCluster(object):
         f = open(self.script_filename, "w")
         f.write("""#!/bin/bash\n""")
         f.write("""# do not edit. Automatically created by %s (revision $Rev: 2007 $)\n""" % self.prog)
-        for id, filename in self.filenames.iteritems():
-            f.write("""bsub -q research-rh6 %s -e lsf_jobs_%s.err -o lsf_jobs_%s.out\n""" % (filename, id, id))
+        for id_, filename in self.filenames.items():
+            f.write("""bsub -q research-rh6 %s -e lsf_jobs_%s.err -o lsf_jobs_%s.out\n""" % (filename, id_, id_))
         f.close()
         os.system("chmod 755 %s" % self.script_filename)
         if self.verbose:
