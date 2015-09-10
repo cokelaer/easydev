@@ -29,11 +29,9 @@ except ImportError:
 
 
 import os
-import sys
 
 
-__all__ = ["DynamicConfigParser", "ConfigExample"]
-
+__all__ = ["CustomConfig", "DynamicConfigParser", "ConfigExample"]
 
 
 class _DictSection(object):
@@ -120,7 +118,6 @@ class ConfigExample(object):
 
 
 
-
 class DynamicConfigParser(ConfigParser, object):
     """Enhanced version of Config Parser
 
@@ -171,7 +168,8 @@ class DynamicConfigParser(ConfigParser, object):
     def __init__(self, config_or_filename=None, *args, **kargs):
 
         object.__setattr__(self, '_filename', config_or_filename)
-        # why not a super usage here ? Maybe there wee issues related to old style class ?
+        # why not a super usage here ? Maybe there were issues related
+        # to old style class ?
         ConfigParser.__init__(self, *args, **kargs)
 
         if isinstance(self._filename, str) and os.path.isfile(self._filename):
@@ -231,7 +229,8 @@ class DynamicConfigParser(ConfigParser, object):
         :param ConfigParser config: a ConfigParser instance
         :param str section: the section to extract
 
-        :returns: a dictionary where key/value contains all the options/values of the section required
+        :returns: a dictionary where key/value contains all the
+            options/values of the section required
 
         Let us build up  a standard config file::
 
@@ -249,9 +248,12 @@ class DynamicConfigParser(ConfigParser, object):
 
             >>> d_dict.general.step
 
-        .. note:: a value (string) found to be True, Yes, true, yes is transformed to True
-        .. note:: a value (string) found to be False, No, no, false is transformed to False
-        .. note:: a value (string) found to be None; none, "" (empty string) is set to None
+        .. note:: a value (string) found to be True, Yes, true,
+            yes is transformed to True
+        .. note:: a value (string) found to be False, No, no,
+            false is transformed to False
+        .. note:: a value (string) found to be None; none,
+            "" (empty string) is set to None
         .. note:: an integer is cast into an int
         """
         options = {}
@@ -362,3 +364,63 @@ class DynamicConfigParser(ConfigParser, object):
                 except:
                     return False
         return True
+
+
+
+class CustomConfig(object):
+    """Base class to manipulate a config directory"""
+
+    def __init__(self, name, verbose=False):
+        self.verbose = verbose
+        import appdirs
+        self.appdirs = appdirs.AppDirs(name)
+
+    def init(self):
+        sdir = self.appdirs.user_config_dir
+        self._get_and_create(sdir)
+
+    def _get_config_dir(self):
+        sdir = self.appdirs.user_config_dir
+        return self._get_and_create(sdir)
+    user_config_dir = property(_get_config_dir,
+          doc="return directory of this configuration file")
+    def _get_and_create(self, sdir):
+        if not os.path.exists(sdir):
+            print("Creating directory %s " % sdir)
+            try:
+                self._mkdirs(sdir)
+            except Exception:
+                print("Could not create the path %s " % sdir)
+                return None
+        return sdir
+
+    def _mkdirs(self, newdir, mode=0o777):
+        """from matplotlib mkdirs
+
+        make directory *newdir* recursively, and set *mode*.  Equivalent to ::
+
+            > mkdir -p NEWDIR
+            > chmod MODE NEWDIR
+        """
+        try:
+            if not os.path.exists(newdir):
+                parts = os.path.split(newdir)
+                for i in range(1, len(parts) + 1):
+                    thispart = os.path.join(*parts[:i])
+                    if not os.path.exists(thispart):
+                        os.makedirs(thispart, mode)
+        except OSError as err:
+            import errno
+            # Reraise the error unless it's about an already existing directory
+            if err.errno != errno.EEXIST or not os.path.isdir(newdir):
+                raise
+
+    def remove(self):
+        try:
+            sdir = self.appdirs.user_config_dir
+            os.rmdir(sdir)
+        except Exception as err:
+            raise Exception(err)
+
+
+

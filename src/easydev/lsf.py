@@ -1,5 +1,3 @@
-from math import sqrt
-from threading import Thread
 import os
 
 __all__ = ["LSFCluster"]
