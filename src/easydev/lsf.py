@@ -1,12 +1,12 @@
 import os
 
+
 __all__ = ["LSFCluster"]
 
 
 class LSFCluster(object):
     """Simple class to create jobs for LSF cluster with a common jobs to run all
     of them.
-
 
     ::
 
@@ -15,7 +15,8 @@ class LSFCluster(object):
         l.add_cmd("postprocessing --input test2.dat", level=2)
         l.create_scripts()
 
-    create jobs taking care of the dependencies between commands. commands in level 2 waits for those in level 1 to be over.
+    create jobs taking care of the dependencies between commands. 
+    commands in level 2 waits for those in level 1 to be over.
 
     """
     def __init__(self, prog, tag="generic", verbose=False):
@@ -41,7 +42,7 @@ class LSFCluster(object):
         :param int level: dependency level. Lower level must be run first.
         """
         if self.verbose:
-            print "Adding jobs in the queue.. (%s)\n" % cmd
+            print("Adding jobs in the queue.. (%s)\n" % cmd)
         self.jobs.append(cmd)
         #todo: sanity checks of the layer values?
         self.levels.append(level)

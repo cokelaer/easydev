@@ -1,3 +1,8 @@
+.. rubric:: 0.8.8:
+
+* NEW: add CustomConfig basde on appdirs to ease multi-platform management of
+  config files.
+* BUG: fix test_codecs wrt Python2.6 syntax error.
 
 .. rubric:: 0.8.7:
 

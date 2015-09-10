@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 8
-_MICRO               = 7
+_MICRO               = 8
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -71,7 +71,7 @@ setup(
     package_dir = {'':'src'},
     packages = ['easydev'],
 
-    install_requires = ['ordereddict'],
+    install_requires = ['ordereddict', 'appdirs'],
 
     # ordereddict is for python2.6 and below
 

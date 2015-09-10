@@ -1,7 +1,13 @@
 from easydev.config_tools import ConfigExample, DynamicConfigParser
+from easydev import CustomConfig
 import os
 
 
+def test_config_custom():
+    c = CustomConfig('dummy')
+    c.init()
+    c.user_config_dir
+    c.remove()
 
 def test_configExample():
     c = ConfigExample().config
