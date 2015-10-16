@@ -4,9 +4,6 @@ easydev
 .. image:: https://badge.fury.io/py/easydev.svg
     :target: https://pypi.python.org/pypi/easydev
 
-.. image:: https://pypip.in/d/easydev/badge.png
-    :target: https://crate.io/packages/easydev/
-
 .. image:: https://secure.travis-ci.org/cokelaer/easydev.png
     :target: http://travis-ci.org/cokelaer/easydev
 
