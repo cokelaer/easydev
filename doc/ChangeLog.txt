@@ -1,8 +1,12 @@
+.. rubric:: 0.9.0
+
+	* CHANGES: multicore now includes a progress bar
+
 .. rubric:: 0.8.8:
 
 * NEW: add CustomConfig basde on appdirs to ease multi-platform management of
   config files.
-* BUG: fix test_codecs wrt Python2.6 syntax error.
+* BUG: fix test_codecs wrt Python2.6 and Python3.X syntax errors.
 
 .. rubric:: 0.8.7:
 

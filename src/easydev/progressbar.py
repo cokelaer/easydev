@@ -18,22 +18,18 @@ __all__ = ['progress_bar', 'TextProgressBar', 'Progress']
 class ProgressBar(object):
     def __init__(self, iterations, interval=None):
         self.iterations = iterations
-        # if no interval provided, set it to 20 or the iterations (if less than
-        # 20)
+        # if no interval provided, set it to 1%
         if interval is None:
-            if iterations >= 100:
-                interval = 100  # everything % of the data
+            if iterations <= 100:
+                interval = 1  # everything % of the data
             else:
-                interval = iterations
+                interval = int(iterations/100)
         self.interval = interval
         self.start = time.time()
         self.last = 0
 
-    def percentage(self, i):
+    def _percentage(self, i):
         return 100 * i / float(self.iterations)
-
-    def fraction(self, i):
-        return i / float(self.iterations)
 
     def _get_elapsed(self):
         return time.time() - self.start
@@ -41,13 +37,14 @@ class ProgressBar(object):
 
 
 class TextProgressBar(ProgressBar):
-
+    """Use :class:`Progress`"""
     def __init__(self, iterations, printer, width=40, interval=None):
         self.fill_char = '-'
         self.width = width
         self.printer = printer
-
+        print(1)
         ProgressBar.__init__(self, iterations, interval=interval)
+        print(1)
 
     def animate(self, i, dummy=None):
         # dummy=None is for back-compatibility
@@ -61,7 +58,7 @@ class TextProgressBar(ProgressBar):
 
     def progbar(self, i):
         # +1 if i starts at 0 and finishes at N-1
-        bar = self.bar(self.percentage(i))
+        bar = self.bar(self._percentage(i))
         return "[%s] %i of %i complete in %.1f sec" % (
             bar, (i), self.iterations, round(self.elapsed, 1))
 
@@ -93,7 +90,7 @@ def ipythonprint(s):
 
 
 class IPythonNotebookPB(ProgressBar):
-
+    """Use :class:`Progress`"""
     def __init__(self, iterations, interval=None):
         self.divid = str(uuid.uuid4())
         self.sec_id = str(uuid.uuid4())
@@ -117,7 +114,7 @@ class IPythonNotebookPB(ProgressBar):
         if divmod(i, self.interval)[1] != 0 and i != self.iterations :
             pass
         else:
-            percentage = self.percentage(i)
+            percentage = self._percentage(i)
             fraction = percentage
             display(
                 Javascript("$('div#%s').width('%i%%')" %
@@ -158,16 +155,17 @@ def progress_bar(iters, interval=None):
         if in_ipynb() is True:
             return IPythonNotebookPB(iters, interval=interval)
         else:
-            return TextProgressBar(iters, printer=ipythonprint, interval=interval)
+            return TextProgressBar(iters, printer=ipythonprint,
+                    interval=interval)
     else:
         return TextProgressBar(iters, printer=consoleprint, interval=interval)
 
 
 class Progress(object):
-    """Generic progress bar for python,ipython as class
-    
+    """Generic progress bar for python, IPython, IPython notebook
+
     ::
-    
+
         from easydev import Progress
         pb = Progress(100, interval=1)
         pb.animate(10)
@@ -181,7 +179,7 @@ class Progress(object):
     def _get_elapsed(self):
         return self.pb.elapsed
     elapsed = property(_get_elapsed)
-        
+
 
 
 

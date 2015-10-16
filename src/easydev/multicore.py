@@ -3,7 +3,7 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2014
+#  Copyright (c) 2011-2015
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -16,12 +16,11 @@
 #
 ##############################################################################
 # $:Id $
-
-#from threading import Thread
 import time
 from multiprocessing import cpu_count, Process, Queue, Pool
 
 __all__ = ["MultiProcessing"]
+
 
 class MultiProcessing(object):
     """Class to run jobs in an asynchronous manner.
@@ -46,11 +45,13 @@ class MultiProcessing(object):
 
 
     """
-    def __init__(self, maxcpu=None, verbose=False):
+    def __init__(self, maxcpu=None, verbose=False, progress=True):
         """
 
         :param maxcpu: default returned by multiprocessing.cpu_count()
-        :param verbose:
+        :param verbose: print the output of each job. Could be very verbose
+            so we advice to keep it False.
+        :param progress: shows the progress
 
 
         """
@@ -60,6 +61,7 @@ class MultiProcessing(object):
         self.maxcpu = maxcpu
         self.reset()
         self.verbose = verbose
+        self.progress = progress
 
     def reset(self):
         """remove joves and results"""
@@ -70,15 +72,15 @@ class MultiProcessing(object):
         """add a job in the pool"""
         if self.verbose:
             print("Adding jobs in the queue..",)
-        #self.counter += 1
         t = Process(target=func, args=args, kwargs=kargs)
         self.jobs.append(t)
 
     def _cb(self, results):
-        if self.verbose:
+        if self.verbose is True:
             print("callback", results)
+        if self.progress is True:
+            self.pb.animate(len(self.results)+1)
         self.results.append(results)
-        #self.counter += 1
 
     def run(self, delay=0.1):
         """Run all the jobs in the Pool until all have finished.
@@ -94,19 +96,22 @@ class MultiProcessing(object):
         A better way may be t use a Manager but for now, this works.
 
         """
+        from easydev import Progress
+        self.pb = Progress(len(self.jobs), 1)
+
         self.results = []
-        #self.counter = 0
         self.po = Pool(self.maxcpu)
 
         for process in self.jobs:
             self.po.apply_async(process._target, process._args,
                     process._kwargs, callback=self._cb)
-            time.sleep(delay) # to ensure that the results have smae order as jobs
+            time.sleep(delay) # ensure the results have same order as jobs
 
         self.po.close()
         self.po.join()
-        #print "\n", self.counter
-        del self.po # delete to allow to save the object using pickle since Pool cannot be pickled
+        del self.po # delete to allow to save the object using pickle
+        # since Pool cannot be pickled
+
         self.finished = True
 
 

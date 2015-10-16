@@ -1,7 +1,7 @@
 
 from easydev import progressbar
 import time
-
+from easydev import Progress
 
 def test_progressbar():
 
@@ -20,3 +20,15 @@ def test_progressbar():
         time.sleep(1)
         p.animate(i+1, i)
     
+    p = Progress(100)
+    p.animate(1)
+    assert p.pb.interval == 1
+
+    p = Progress(200)
+    assert p.pb.interval == 2
+    p.animate(1)
+
+    # IPYthon test ?
+    p = progressbar.IPythonNotebookPB(200)
+    p.animate(1)
+
