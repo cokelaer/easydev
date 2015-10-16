@@ -98,19 +98,47 @@ class MultiProcessing(object):
         """
         from easydev import Progress
         self.pb = Progress(len(self.jobs), 1)
+        self.pb.animate(0)
+
+        def init_worker():
+            import signal
+            signal.signal(signal.SIGINT, signal.SIG_IGN)
 
         self.results = []
-        self.po = Pool(self.maxcpu)
+        self.pool = Pool(self.maxcpu, init_worker)
 
         for process in self.jobs:
-            self.po.apply_async(process._target, process._args,
+            self.pool.apply_async(process._target, process._args,
                     process._kwargs, callback=self._cb)
-            time.sleep(delay) # ensure the results have same order as jobs
 
-        self.po.close()
-        self.po.join()
-        del self.po # delete to allow to save the object using pickle
-        # since Pool cannot be pickled
+            # ensure the results have same order as jobs
+            # maybe important if you expect the order of the results to 
+            # be the same as inut; otherwise set delay to 0 
+            time.sleep(delay) 
+
+        try:
+            while True:
+                time.sleep(1)
+                # check if all processes are finished.
+                # if so, finished.
+                count = len(self.results)
+                if count == len(self.jobs):
+                    break
+
+        except KeyboardInterrupt:
+            print("\nCaught interruption. " + 
+            "Terminating the Pool of processes... ",)
+            self.pool.terminate()
+            self.pool.join()
+            print("... done")
+        else:
+            # Closing properly the pool
+            self.pool.close()
+            self.pool.join()
+
+        # Pool cannot be pickled. So, if we want to pickel "MultiProcessing"
+        # class itself, we must desctroy this instance
+        del self.pool 
 
         self.finished = True
 

@@ -1,4 +1,12 @@
-.. rubric:: 0.9.0:
+
+.. rubric:: 0.9.1
+
+* CHANGES: multicore now handle Keyboard Interruption properly.
+
+.. rubric:: 0.9.0 
+
+
+.. rubric:: 0.8.9:
 
 * CHANGES: multicore now includes a progress bar
 
