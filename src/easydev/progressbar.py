@@ -42,9 +42,7 @@ class TextProgressBar(ProgressBar):
         self.fill_char = '-'
         self.width = width
         self.printer = printer
-        print(1)
         ProgressBar.__init__(self, iterations, interval=interval)
-        print(1)
 
     def animate(self, i, dummy=None):
         # dummy=None is for back-compatibility
