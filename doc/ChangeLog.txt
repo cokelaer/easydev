@@ -1,6 +1,6 @@
-.. rubric:: 0.9.0
+.. rubric:: 0.9.0:
 
-	* CHANGES: multicore now includes a progress bar
+* CHANGES: multicore now includes a progress bar
 
 .. rubric:: 0.8.8:
 
