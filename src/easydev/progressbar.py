@@ -79,7 +79,8 @@ def consoleprint(s):
     if sys.platform.lower().startswith('win'):
         print(s, '\r', end='')
     else:
-        print(s)
+        print('\r', s, end='')
+        sys.stdout.flush()
 
 
 def ipythonprint(s):
@@ -156,7 +157,8 @@ def progress_bar(iters, interval=None):
             return TextProgressBar(iters, printer=ipythonprint,
                     interval=interval)
     else:
-        return TextProgressBar(iters, printer=consoleprint, interval=interval)
+        return TextProgressBar(iters, printer=consoleprint, 
+                interval=interval)
 
 
 class Progress(object):

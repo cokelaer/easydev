@@ -29,17 +29,29 @@ It has been used also as an incubator for other packages (e.g.,
 For instance, it provides the sphinx templates being used for this documentation. It is also used by
 other packages where documentation using Sphinx is being used (e.g., rtools, 
 spectrum). It provides tools such as multisetup (to ease the development of
-several packages within a single namespace), or **mulitgit**, a mechanism to get the path of the share 
-directory of any package, functions that are used often such as type checking
-and so on.
+several packages within a single namespace), or **multigit**, which is an
+executable installed with easydev::
 
-There is also now a Progress class, which is quite handy::
+    multigit pull --directories easydev colormap
+
+There is also a set of functions to get the path of the share 
+directory of any package. 
+
+There are functions for type checking and 
+
+There is an executable to create a Python package layout automatically::
+
+    easydev_buildPackage --help
+
+There is also a handy Progress class that works in a Python shell, 
+ipython notebook or a shell::
 
     from easydev import Progress
     pb = Progress(1000)
     for i in range(1,1000+1):
         # do something
         pb.animate(i)
+
 
 Similar projects are pytools, pytoolbox.
 
