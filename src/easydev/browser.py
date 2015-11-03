@@ -1,0 +1,153 @@
+# -*- python -*-
+#
+#  Copyright (c) 2011-2012  
+#
+#  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
+#
+#  Distributed under the GPLv3 License.
+#  See accompanying file LICENSE.txt or copy at
+#      http://www.gnu.org/licenses/gpl-3.0.html
+#
+#
+##############################################################################
+import os
+import sys, webbrowser
+from optparse import  OptionParser
+import argparse
+
+
+class Options(argparse.ArgumentParser):
+
+    def  __init__(self, version="1.0", prog="browse"):
+        usage = """usage: %s URL --verbose\nAuthor: Thomas Cokelaer, 2012""" % prog
+        super(Options, self).__init__(usage=usage, version=version, prog=prog)
+        self.add_input_options()
+
+    def add_input_options(self):
+        """The input oiptions.
+
+        Default is None. Keep it that way because otherwise, the contents of
+        the ini file is overwritten in :class:`apps.Apps`.
+        """
+
+        group = self.add_argument_group("Inputs", 
+                    """This section allows to provide path and file names of the input data.
+                    If path is provided, it will be used to prefix the midas and sif filenames.
+                        --path /usr/share/data --sif test.sif --midas test.csv
+                    means that the sif file is located in /usr/share/data.
+                    """)
+
+        group.add_argument("--verbose", dest='verbose', 
+                         action="store_true", 
+                         help="verbose option.")
+        group.add_argument("--url", dest='url', default=None,
+                         help="url to open")
+        group.add_argument("--file", dest='file', default=None,
+                         help="url to open")
+
+
+
+def browse(url, verbose=True):
+    from sys import platform as _platform
+    if _platform == "linux" or _platform == "linux2":
+        _browse_linux(url, verbose=True)
+    elif _platform == "darwin": 
+        # under Mac, it looks like the standard  webbrowser may not work as smoothly 
+        # OS X
+        _browse_mac(url, verbose)
+    elif _platform == "win32":  
+        # for windows and others, the same code as Linux should work
+        _browse_linux(url, verbose=True)
+    else:
+        _browse_linux(url, verbose=True)
+
+
+def _browse_mac(url, verbose=True):
+    if verbose:
+        print "openning %s" % url
+
+    import os
+    try:
+        os.system("open /Applications/Safari.app {}".format(url))
+        return
+    except:
+        pass
+
+    try:
+        os.system("open /Applications/Safari.app {}".format("http://" + url))
+        return
+    except:
+        pass
+
+    try:
+        webbrowser.open_new(url)
+    except:
+        if verbose:
+            print("Could not open %s. Trying to append http://" % url)
+        try:
+            webbrowser.open_new("open http://{}".format(url))
+        except:
+            print("Could not open http://%s" % url)
+            raise Exception
+
+
+
+def _browse_linux(url, verbose=True):
+    if verbose:
+        print "openning %s" % url
+    try:
+        webbrowser.open(url)
+        return
+    except:
+        pass
+
+    try:
+        if verbose:
+            print("Could not open %s" % url)
+        webbrowser.open("http://" + url)
+        return
+    except:
+        pass
+
+    raise Exception("Could not open http://{}".formnat(url))
+
+
+def main():
+    args = sys.argv[:]
+
+    # check for verbosity
+    if "--verbose" in args:
+        verbose = True
+        args.remove("--verbose")
+        print args
+    else:
+        verbose = False
+
+    if "--help" in args or len(args) == 1:
+        print("Browse, a simple command line browser")
+        print("Author: Thomas Cokelaer, (c) 2012.")
+        print("USAGE\n\tbrowse http://docs.python.org ")
+        print("\tbrowse http://docs.python.org --verbose")
+        print("\tbrowse localfile.html")
+        print("\tbrowse local_directory (Linux only ?)")
+        return
+    url = args[1]
+
+    if os.path.exists(url):
+        if verbose:
+            print("%s is local file. Trying to open it.\n" % url)
+        browse(url, verbose)
+    else:
+        if verbose:
+            print("%s seems to be a web address. Trying to open it.\n" %url)
+        if url.startswith("http"):
+            browse(url, verbose)
+        else:
+            if verbose:
+                print("%s does not exists and does not starts with http, trying anyway." %url)
+            browse("http://"+url, verbose)
+
+
+
+if __name__ == "__main__":
+    main()
