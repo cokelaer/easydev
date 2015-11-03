@@ -64,7 +64,7 @@ def browse(url, verbose=True):
 
 def _browse_mac(url, verbose=True):
     if verbose:
-        print "openning %s" % url
+        print("openning %s" % url)
 
     import os
     try:
@@ -94,7 +94,7 @@ def _browse_mac(url, verbose=True):
 
 def _browse_linux(url, verbose=True):
     if verbose:
-        print "openning %s" % url
+        print("openning %s" % url)
     try:
         webbrowser.open(url)
         return
@@ -119,7 +119,7 @@ def main():
     if "--verbose" in args:
         verbose = True
         args.remove("--verbose")
-        print args
+        print(args)
     else:
         verbose = False
 
