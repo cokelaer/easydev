@@ -4,6 +4,7 @@ language: python
 python:
   - "3.4"
   - "3.3"
+  - "3.5"
   - "2.7"
   - "2.6"
 before_install:
@@ -12,7 +13,7 @@ before_install:
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install: 
   - pip install .
-  - pip install nose coverage ordereddict mock
+  - pip install nose coverage ordereddict
   - pip install coveralls
 # # command to run tests, e.g. python setup.py test
 script:  
