@@ -23,14 +23,7 @@ except ImportError:
     import http.client as httplib
 
 
-__all__ = ["isurl", "isurl_reachable"]
-
-
-
-def isurl(url):
-    """.. deprecated:: 0.6.12 use :param:`isurl_reachable instead`."""
-    print("warning:: use isurl_reachable function instead")
-    return isurl_reachable(url)
+__all__ = ["isurl_reachable"]
 
 
 def isurl_reachable(url, timeout=10):
