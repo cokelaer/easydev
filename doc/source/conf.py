@@ -23,7 +23,7 @@ try:
     from easydev import get_path_sphinx_themes
 except Exception, e:
     print "Install easydev or set your PYTHONPATH properly"
-    raise Exception
+    raise
 
 import pkg_resources
 version = pkg_resources.require("easydev")[0].version
@@ -58,8 +58,6 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'easydev.copybutton',
-    'matplotlib.sphinxext.plot_directive',
-    'matplotlib.sphinxext.only_directives',
     'sphinx.ext.graphviz']
 
 # note that the numpy directives is buggy. Example: class and init are not recognised as two entities for the autoclass_content=both here below

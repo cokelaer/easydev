@@ -33,7 +33,7 @@ Here are some features:
  #. Apply git command on a set of directories (see e.g., :mod:`~easydev.multigit`).
  #. A simple interface to run shell command (see :mod:`~easydev.tools`).
  #. A logging class to ease manipulation of the logging standard Python module (see :mod:`~easydev.logging_tools`).
- #. Quickly check if an url exists (see :mod:`~easydev.url.isurl`)
+ #. Quickly check if an url exists (see :mod:`~easydev.url.isurl_reachable`)
  #. Color (package moved colormap project https://pypi.python.org/pypi/colormap)
  #. Decorators: :mod:`~easydev.decorators`
  #. and many more. See reference for details.
