@@ -18,7 +18,7 @@ easydev
 
 :contributions: Please join https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
-:Python version supported: 2.6, 2.7, 3.3, 3.4
+:Python version supported: 2.6, 2.7, 3.3, 3.4, 3.5
 
 **easydev** is a package I use for the development of other software available on pypi.
 It provides utilities that are of general usage for the development of Python packages.
@@ -36,8 +36,6 @@ executable installed with easydev::
 
 There is also a set of functions to get the path of the share 
 directory of any package. 
-
-There are functions for type checking and 
 
 There is an executable to create a Python package layout automatically::
 
