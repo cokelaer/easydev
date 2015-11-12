@@ -1,4 +1,12 @@
 
+.. rubric:: 0.9.4
+
+* NEW:  python 3.5 compat
+* CHANGES: remove deprecated function is_url
+* CHANGES: remove matplotlib extension in conf file.
+
+.. rubric:: 0.9.3
+
 .. rubric:: 0.9.2
  
 *   NEW: added browser.py module (merge package browse
