@@ -10,6 +10,56 @@
 #
 #
 ##############################################################################
+"""Universal browser
+
+This module provides a browser in 2 flavours: as a program to use in a Terminal,
+or as a Python function that can be used in other software. The underlying code is based on the standard python module :mod:`webbrowser`. With webbrowser module itself, you can already open a URL as follows in a command line interface::
+
+        python -m webbrowser -t "http://www.python.org"
+
+However, with **browse**, you can simply type::
+
+        browse http://www.python.org
+
+It does not seem to be a big improvments but it is a bit more flexible. First,
+there is no need to enter "http://" : it will be added if missing and if this is not a local file.::
+
+    browse docs.python.org
+    browse http://docs.python.org --verbose
+
+Similarly, you can open an image (it uses the default image viewer)::
+
+    browse image.png
+
+Or a txt file (or any document provided there is a default executable 
+to open it). It works like a charm under Linux. Under MAC, it uses the **open**
+command so this should also work.
+
+When invoking **browse**, under MacOSX, it actually tries to call **open**
+first and then calls webbrowser, if unsuccessful only. Note tested under
+Windows but uses webbrowser is used and works for open HTML document and URLs.
+
+You can also look at a directory (starts nautilus under Fedora)::
+
+    browse ~/Pictures
+
+See more examples below. 
+
+The interest of **browse** is that it can also be used programmatically::
+
+    from easydev.browser import browse
+    # open an image with the default image viewer:
+    browse("image.png")
+    # or a web page
+    browse("http://www.uniprot.org")
+
+There is also an alias **onweb**::
+
+    from easydev import onweb
+
+
+
+"""
 import os
 import sys, webbrowser
 from optparse import  OptionParser
@@ -44,7 +94,6 @@ class Options(argparse.ArgumentParser):
                          help="url to open")
         group.add_argument("--file", dest='file', default=None,
                          help="url to open")
-
 
 
 def browse(url, verbose=True):
@@ -89,7 +138,6 @@ def _browse_mac(url, verbose=True):
         except:
             print("Could not open http://%s" % url)
             raise Exception
-
 
 
 def _browse_linux(url, verbose=True):
@@ -146,7 +194,6 @@ def main():
             if verbose:
                 print("%s does not exists and does not starts with http, trying anyway." %url)
             browse("http://"+url, verbose)
-
 
 
 if __name__ == "__main__":

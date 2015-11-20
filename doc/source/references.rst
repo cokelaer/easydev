@@ -1,6 +1,14 @@
 
 .. contents::
 
+browse
+========
+
+.. automodule:: easydev.browser
+    :members:
+    :inherited-members:
+    :synopsis: 
+
 
 codecs
 ==========

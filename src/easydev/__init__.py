@@ -26,6 +26,8 @@ try:
 except:
     version = __version__
 
+from . import browser
+from browser import browse as onweb
 
 from . import codecs
 from .codecs import *
