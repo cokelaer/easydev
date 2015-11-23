@@ -20,6 +20,7 @@
 import subprocess
 import json
 
+
 __all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list",
     "check_range", "precision", "AttrDict", "DevTools"]
 

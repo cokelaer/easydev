@@ -29,7 +29,11 @@ class ProgressBar(object):
         self.last = 0
 
     def _percentage(self, i):
-        return 100 * i / float(self.iterations)
+        if self.iterations !=0:
+            return 100 * i / float(self.iterations)
+        else:
+            # could be 100 ?
+            return 100
 
     def _get_elapsed(self):
         return time.time() - self.start
