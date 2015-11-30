@@ -124,7 +124,7 @@ def shellcmd(cmd, show=False, verbose=False, ignore_errors=False):
                 raise Exception(error)
             else:
                 if verbose is True:
-                    print("Errors/Warning" + error)
+                    print("Errors/Warning" + str(error))
 
         if verbose is True:
             print(output)

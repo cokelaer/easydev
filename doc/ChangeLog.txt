@@ -1,3 +1,7 @@
+.. rubric:: 0.9.7
+
+* BUG: fix a python3.4 issue of bytes/str conversion
+
 .. rubric:: 0.9.6
 
 * BUG: fix division by zero.
