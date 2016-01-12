@@ -372,12 +372,7 @@ class CustomConfig(object):
 
     def __init__(self, name, verbose=False):
         self.verbose = verbose
-        try:
-            import appdirs
-        except ImportError as err:
-            print("appdirs package is missing. " + "
-                    Install appdirs manually (e.g. pip install appdirs)")
-            raise(err)
+        from easydev import appdirs
         self.appdirs = appdirs.AppDirs(name)
 
     def init(self):

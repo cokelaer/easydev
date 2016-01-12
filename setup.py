@@ -72,10 +72,7 @@ setup(
     package_dir = {'':'src'},
     packages = ['easydev'],
 
-    #install_requires = ['ordereddict', 'appdirs'],
     install_requires = [],
-    extras_require={'':['appdirs']},
-    # ordereddict is for python2.6 and below but not used anymore
 
     # somehow, the google_head.html is found in themes/standard and themese/cno
     # directories thanks to the contents of datafiles variable but the ones from
