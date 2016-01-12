@@ -1,3 +1,10 @@
+.. rubric:: 0.9.8
+
+* CHANGES: remove ordereddict package in the setup (not used)
+    remove appdirs from install_requires in the setup.py file. And add
+	a try/except in config_tools, where it is used. These changes are made
+	to try to port easydev to conda without any dependencies.
+
 .. rubric:: 0.9.7
 
 * BUG: fix a python3.4 issue of bytes/str conversion
