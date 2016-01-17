@@ -30,8 +30,7 @@
 import os
 import sys
 
-__all__ = ["color_terminal", "coloron",  "get_terminal_width",
-"term_width_line"]
+__all__ = ["color_terminal", "get_terminal_width", "term_width_line"]
 
 
 from easydev.platform import is_windows
@@ -90,11 +89,11 @@ def color_terminal():
     return False
 
 
-def nocolor():
+def __nocolor():
     """set color codes off"""
     codes.clear()
 
-def coloron():
+def __coloron():
     """Set color codes on"""
     codes.update(_orig_codes)
 
