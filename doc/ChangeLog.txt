@@ -1,3 +1,9 @@
+.. rubric:: 0.9.10
+
+* NEW: add a platform module to get platform easily
+* CHANGES: use colorama under windows to have the console module to work
+
+
 .. rubric:: 0.9.9
 
 * CHANGES: Put appdirs source inside easydev keeping their LICENSE. This will

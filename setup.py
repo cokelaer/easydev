@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 9
-_MICRO               = 9
+_MICRO               = 10
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -72,7 +72,7 @@ setup(
     package_dir = {'':'src'},
     packages = ['easydev'],
 
-    install_requires = [],
+    install_requires = ['colorama'],
 
     # somehow, the google_head.html is found in themes/standard and themese/cno
     # directories thanks to the contents of datafiles variable but the ones from

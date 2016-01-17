@@ -24,13 +24,23 @@
     from easydev.console import *
     print(red("test"))
 
+
 """
 
 import os
 import sys
 
-__all__ = ["color_terminal", "coloron", "nocolor", "get_terminal_width",
+__all__ = ["color_terminal", "coloron",  "get_terminal_width",
 "term_width_line"]
+
+
+from easydev.platform import is_windows
+
+
+if is_windows() is True:
+    import colorama
+    colorama.init()
+
 # colors and other functions from the attributes codes are added dynamically to
 # this __all__ variable
 codes = {}
