@@ -10,11 +10,6 @@ def test_term_width_line():
 def test_color_terminal():
     color_terminal()
 
-def test_coloron():
-    nocolor()
-    coloron()
-
-
 def test_print_color():
     print(purple('\t%s' % "test"))
     print(red('\t%s' % "test"))
