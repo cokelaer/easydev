@@ -81,3 +81,6 @@ from .setuptools import get_datafiles
 
 from .progressbar import TextProgressBar, progress_bar, Progress
 from .lsf import LSFCluster
+
+
+from .profiler import do_profile

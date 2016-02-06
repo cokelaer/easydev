@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 9
-_MICRO               = 10
+_MICRO               = 11
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -73,7 +73,9 @@ setup(
     packages = ['easydev'],
 
     install_requires = ['colorama'],
-
+    extras_require = {
+	'profiler': ["line_profiler_test"]
+    },
     # somehow, the google_head.html is found in themes/standard and themese/cno
     # directories thanks to the contents of datafiles variable but the ones from
     # themes/standard directory are not copied inside the distribution ?
