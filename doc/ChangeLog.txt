@@ -1,3 +1,7 @@
+.. rubric:: 0.9.12
+
+* CHANGES/NEWS: path module have a new function called get_package_location
+
 .. rubric:: 0.9.11
 
 * NEWS: add do_profile function 

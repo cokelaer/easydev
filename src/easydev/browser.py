@@ -74,7 +74,7 @@ class Options(argparse.ArgumentParser):
         self.add_input_options()
 
     def add_input_options(self):
-        """The input oiptions.
+        """The input options.
 
         Default is None. Keep it that way because otherwise, the contents of
         the ini file is overwritten in :class:`apps.Apps`.

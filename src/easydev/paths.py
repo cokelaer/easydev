@@ -23,8 +23,19 @@ import pkg_resources
 
 
 __all__ = ["get_shared_directory_path", "get_shared_directories",
-    "get_share_file", "gsf"]
+    "get_share_file", "gsf", "get_package_location"]
 
+
+
+def get_package_location(package):
+    """Return physical location of a package"""
+    try:
+        info = pkg_resources.get_distribution(package)
+        location = info.location
+    except pkg_resources.DistributionNotFound as err:
+        print("package provided (%s) not installed." % package)
+        raise
+    return location
 
 
 def get_shared_directory_path(package):
@@ -37,13 +48,7 @@ def get_shared_directory_path(package):
 
 
     """
-    try:
-        info = pkg_resources.get_distribution(package)
-        location = info.location
-    except pkg_resources.DistributionNotFound as err:
-        print("package provided (%s) not installed." % package)
-        raise
-
+    location = get_package_location(package)
 
     #print("install  mode ? ")
     sharedir = os.path.realpath(pj(location,  'share'))
