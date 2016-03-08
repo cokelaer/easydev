@@ -1,3 +1,8 @@
+.. rubric:: 0.9.13
+
+* CHANGES: 
+	* move print statement in profiler inside the function to avoid print statement during installation or import
+
 .. rubric:: 0.9.12
 
 * CHANGES/NEWS: path module have a new function called get_package_location

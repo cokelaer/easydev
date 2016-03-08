@@ -37,10 +37,10 @@ try:
             return profiled_func
         return inner
 except ImportError:
-    print("easydev warning:: line_profiler does not seem to be installed. " + 
-          "Type 'pip install line_profiler'")
     def do_profile(follow=[]):
         "Helpful if you accidentally leave in production!"
+        print("easydev warning:: line_profiler does not seem to be installed. " + 
+            "Type 'pip install line_profiler'")
         def inner(func):
             def nothing(*args, **kwargs):
                 return func(*args, **kwargs)

@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 9
-_MICRO               = 12
+_MICRO               = 13
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -74,7 +74,7 @@ setup(
 
     install_requires = ['colorama'],
     extras_require = {
-	'profiler': ["line_profiler_test"]
+	    'profiler': ["line_profiler_test"]
     },
     # somehow, the google_head.html is found in themes/standard and themese/cno
     # directories thanks to the contents of datafiles variable but the ones from
