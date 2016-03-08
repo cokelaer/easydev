@@ -1,3 +1,9 @@
+.. rubric:: 0.9.14
+
+* CHANGES:
+    * add zip_safe = False
+    * add new test file: test_profiler 
+
 .. rubric:: 0.9.13
 
 * CHANGES: 

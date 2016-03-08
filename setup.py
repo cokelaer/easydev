@@ -84,7 +84,7 @@ setup(
     # share directory in the proper place. sure there will be a neat solution
     # one day
     data_files = datafiles,
-
+    zip_safe = False,
     entry_points = {
         'console_scripts': [
             'easydev_buildPackage=easydev.package:buildPackage',
@@ -95,7 +95,7 @@ setup(
         },
 
 
-    use_2to3 = True, # causes issue with nosetests
+    # use_2to3 = True, # causes issue with nosetests
     #use_2to3_on_doctests = False.
 )
 
