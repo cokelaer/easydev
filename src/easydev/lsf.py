@@ -51,7 +51,7 @@ class LSFCluster(object):
         """Create a script for each individual command and a main script"""
         # create individual scripts
         for i, j in enumerate(self.jobs):
-            self._bsub(j, id=i)
+            self._bsub(j, Id=i)
 
         # create main script
         self.script_filename  = "runme_%s.sh" % self.tag
