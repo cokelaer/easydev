@@ -3,6 +3,7 @@
 * CHANGES:
     * add zip_safe = False
     * add new test file: test_profiler 
+    * remove 2to3 in setup that causes trouble with bioconda
 
 .. rubric:: 0.9.13
 
@@ -27,17 +28,20 @@
 
 .. rubric:: 0.9.9
 
-* CHANGES: Put appdirs source inside easydev keeping their LICENSE. This will
-make the conda portage easydev while keeping the ability to use appdirs. Fix
-warning in config.cfg
-* BUG: fix bug introduced in 0.9.8
+* CHANGES: 
+    * Put appdirs source inside easydev keeping their LICENSE. This will
+      make the conda portage easydev while keeping the ability to use appdirs. Fix
+      warning in config.cfg
+* BUG: 
+    * fix bug introduced in 0.9.8
 
 .. rubric:: 0.9.8
 
-* CHANGES: remove ordereddict package in the setup (not used)
-    remove appdirs from install_requires in the setup.py file. And add
-	a try/except in config_tools, where it is used. These changes are made
-	to try to port easydev to conda without any dependencies.
+* CHANGES: 
+	* remove ordereddict package in the setup (not used)
+    * remove appdirs from install_requires in the setup.py file. And add
+	  a try/except in config_tools, where it is used. These changes are made
+	  to try to port easydev to conda without any dependencies.
 
 .. rubric:: 0.9.7
 

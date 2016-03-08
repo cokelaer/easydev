@@ -65,11 +65,10 @@ class LSFCluster(object):
         if self.verbose:
             print("type: sh %s  ; make sure to have used chmod 755 before" % self.script_filename)
 
-    def _bsub(self, cmd, id=None):
+    def _bsub(self, cmd, Id=None):
         """Create the LSF command."""
-        import os
-        filename = "lsf_jobs_%s_%s.sh" % (id, self.tag)
-        self.filenames[id] = filename
+        filename = "lsf_jobs_%s_%s.sh" % (Id, self.tag)
+        self.filenames[Id] = filename
         f = open(filename, "w")
         f.write("""#!/bin/bash\n""")
         f.write("""# do not edit. Automatically create by %s (revision $Rev: 2007 $)\n""" % self.prog)
@@ -79,7 +78,6 @@ class LSFCluster(object):
 
     def cleanup(self):
         """Remove the files that have been created"""
-        import os
         for f in self.filenames.values():
             os.remove(f)
         os.remove(self.script_filename)
