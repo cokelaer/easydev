@@ -157,7 +157,7 @@ def _browse_linux(url, verbose=True):
     except:
         pass
 
-    raise Exception("Could not open http://{}".formnat(url))
+    raise Exception("Could not open http://{}".format(url))
 
 
 def main():

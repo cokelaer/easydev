@@ -60,7 +60,7 @@ def trysetattr(this, attrname, value, possible):
     ::
 
         class A(object):
-            def __iinit__(self):
+            def __init__(self):
                 self._a = 1
                 self._b = 2
             def _get_a(self):
@@ -91,11 +91,8 @@ def trysetattr(this, attrname, value, possible):
         assert a2
 
 
-
-
 class TempFile(object):
     """A small wrapper around tempfile.NamedTemporaryFile function
-
 
     ::
 
@@ -116,6 +113,14 @@ class TempFile(object):
         return self.temp.name
     name = property(_get_name)
 
+    def __exit__(self, type, value, traceback):
+        try:
+            self.delete()
+        except AttributeError:
+            pass
+        finally:
+            self.delete()
 
-
+    def __enter__(self):
+        return self
 

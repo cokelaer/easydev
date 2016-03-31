@@ -1,3 +1,8 @@
+.. rubric:: 0.9.15
+
+* CHANGES:
+    * TempFile in easytest module can be used with **with** statement
+
 .. rubric:: 0.9.14
 
 * CHANGES:

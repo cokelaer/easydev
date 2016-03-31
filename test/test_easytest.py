@@ -18,6 +18,9 @@ def test_tempfile():
     f.name
     f.delete()
 
+    with TempFile() as fh:
+        pass
+
 
 def test_list_almost_equal():
     assert_list_almost_equal([1,2],[1,2])
