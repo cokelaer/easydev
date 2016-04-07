@@ -1,4 +1,4 @@
-.. rubric:: 0.9.16
+.. rubric:: 0.9.16 and 0.9.17
 	* bug fix: the share/data using python setup install/develop modes was
 	working but the pip installation seems to mess up the location of the share
 	directory. This was not an issue for most aplications but now is required by

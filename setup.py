@@ -7,8 +7,8 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 9
-_MICRO               = 16
-version              = '%d.%d.%d.2' % (_MAJOR, _MINOR, _MICRO)
+_MICRO               = 17
+version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
 metainfo = {
