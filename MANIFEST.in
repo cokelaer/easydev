@@ -1,2 +1,2 @@
-recursive-include share *
-include share/copybutton.js
+recursive-include easydev/share *
+include easydev/share/copybutton.js

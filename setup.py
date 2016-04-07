@@ -8,7 +8,7 @@ import glob
 _MAJOR               = 0
 _MINOR               = 9
 _MICRO               = 16
-version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
+version              = '%d.%d.%d.2' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
 metainfo = {
@@ -33,7 +33,6 @@ metainfo = {
     }
 
 
-
 setup(
     name             = 'easydev',
     version          = version,
@@ -51,15 +50,17 @@ setup(
     classifiers      = metainfo['classifiers'],
 
     # package installation
-    packages = find_packages(),
+    packages = ['easydev', "easydev.share" ],
+    # using pip, files inside ./easydev/share that are non Python will be
+    # included as well. For a distribution (using setup sdist), the MANIFEST
+    # must be updated accordingly
     include_package_data = True,
-
-    package_dir = { 'share': 'share'},
-    package_data = {
-        "share": ['*js'],
-        "share.themes": ["*"],
-    },
-
+    package_data = {"easydev.share": [
+                    "themes/standard/*html",
+                    "themes/standard/static/*",
+                    "themes/cno/*html", 
+                    "themes/cno/static/*", 
+                    "copybutton.js"]},
 
     install_requires = ['colorama'],
     extras_require = {

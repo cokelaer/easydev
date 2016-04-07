@@ -51,7 +51,7 @@ def get_shared_directory_path(package):
     location = get_package_location(package)
 
     #print("install  mode ? ")
-    sharedir = os.path.realpath(pj(location,  'share'))
+    sharedir = os.path.realpath(pj(location,  package, 'share'))
     if os.path.isdir(sharedir) == True:
         # looks like we have found the share directory so it is an install mode
         #print ("yes")

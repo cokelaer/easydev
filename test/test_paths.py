@@ -1,5 +1,4 @@
 from easydev.paths import *
-from easydev.easytest import trysetattr
 import os
 
 

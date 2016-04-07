@@ -85,13 +85,12 @@ def get_copybutton_path():
     import easydev
     try: # install mode
         packagedir = easydev.__path__[0]
-        packagedir = os.path.realpath(pj(packagedir, '..', 'share'))
+        packagedir = os.path.realpath(pj(packagedir, 'share'))
         os.listdir(packagedir) # if this faisl, we are in deve mode
     except OSError:
         try:
             packagedir = easydev.__path__[0]
-            packagedir = os.path.realpath(pj(packagedir, '..', '..',
-                                             'share'))
+            packagedir = os.path.realpath(pj(packagedir, '..', 'share'))
         except:
             raise IOError("could not find data directory")
     return pj(packagedir, "copybutton.js")
