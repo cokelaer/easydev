@@ -1,3 +1,10 @@
+.. rubric:: 0.9.16
+	* bug fix: the share/data using python setup install/develop modes was
+	working but the pip installation seems to mess up the location of the share
+	directory. This was not an issue for most aplications but now is required by
+	other tools so needed to be fixed. The setup was changed and an __init__
+	added to the share directory.
+
 .. rubric:: 0.9.15
 
 * CHANGES:
@@ -43,7 +50,7 @@
 .. rubric:: 0.9.8
 
 * CHANGES: 
-	* remove ordereddict package in the setup (not used)
+    * remove ordereddict package in the setup (not used)
     * remove appdirs from install_requires in the setup.py file. And add
 	  a try/except in config_tools, where it is used. These changes are made
 	  to try to port easydev to conda without any dependencies.

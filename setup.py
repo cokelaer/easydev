@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 9
-_MICRO               = 15
+_MICRO               = 16
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -33,24 +33,6 @@ metainfo = {
     }
 
 
-# TODO: files in share/data. Need a smarter mechanism (recursive)
-datafiles = []
-datadirs = [
-        os.path.join('share'),
-        os.path.join('share', 'themes'),
-        os.path.join('share', 'themes', 'cno'),
-        os.path.join('share', 'themes', 'cno', 'static'),
-        os.path.join('share', 'themes', 'standard'),
-        os.path.join('share', 'themes', 'standard', 'static')]
-
-for datadir in datadirs:
-    datafiles.append(
-        (
-            datadir,
-            [f for f in glob.glob(os.path.join(datadir, '*')) if not os.path.isdir(f)]
-        )
-    )
-
 
 setup(
     name             = 'easydev',
@@ -69,8 +51,15 @@ setup(
     classifiers      = metainfo['classifiers'],
 
     # package installation
-    package_dir = {'':'src'},
-    packages = ['easydev'],
+    packages = find_packages(),
+    include_package_data = True,
+
+    package_dir = { 'share': 'share'},
+    package_data = {
+        "share": ['*js'],
+        "share.themes": ["*"],
+    },
+
 
     install_requires = ['colorama'],
     extras_require = {
@@ -83,7 +72,6 @@ setup(
     # still required for python setup.py install or pip install to copy the
     # share directory in the proper place. sure there will be a neat solution
     # one day
-    data_files = datafiles,
     zip_safe = False,
     entry_points = {
         'console_scripts': [
@@ -94,9 +82,6 @@ setup(
         ]
         },
 
-
-    # use_2to3 = True, # causes issue with nosetests
-    #use_2to3_on_doctests = False.
 )
 
 
