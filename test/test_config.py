@@ -14,15 +14,14 @@ def test_configExample():
     assert 'General' in c.sections()
     assert 'GA' in c.sections()
     print(c)
-    c.remove_section('General')    
+    c.remove_section('General')
 
 
 def _test_ordered_dict_attribute():
-    # disabled because incompatible with python 3 
+    # disabled because incompatible with python 3
     c = DynamicConfigParser()
     c.add_section("GA")
     c.GA.test = 2 # this is an attribute only, not  yet a key
-        
     c.add_option("GA", "test", 1)
     c.GA.test = 2
 
@@ -38,7 +37,7 @@ def test_DynamicConfig():
     dc.GA
     dc.add_option("GA", "bool", 'True')
     dc.get_options("GA")
-    
+
     os.remove('test.ini')
 
     dc.remove_section('GA')
@@ -51,8 +50,8 @@ def test_DynamicConfig():
         assert False
     except TypeError:
         assert True
-        
-        
+
+
 
 def test_DynamicConfig_setter():
 
@@ -63,27 +62,27 @@ def test_DynamicConfig_setter():
 
     dc2 = DynamicConfigParser("test.ini")
     assert dc == dc2
-    dc2.GA.test == 1 
+    dc2.GA.test == 1
 
 
     dc.GA.test = 10
     dc.save("test.ini")
     dc2 = DynamicConfigParser("test.ini")
     assert dc == dc2
-    
+
     assert dc2.GA.test == '10'
-    
+
     os.remove('test.ini')
-    
-    
+
+
 def test_section2dict():
     dc = DynamicConfigParser()
     dc.add_section("GA")
     dc.add_option("GA", "test", 1)
-    
-    
+
+
 def test_compare():
-    
+
     dc = DynamicConfigParser()
     dc.add_section("GA")
     dc.add_option("GA", "test", 1)
@@ -91,10 +90,10 @@ def test_compare():
     dc2 = DynamicConfigParser()
     dc2.add_section("GA2")
     dc2.add_option("GA2", "test", 1)
-    
+
     assert (dc==dc2) == False
-    
-    
+
+
     dc = DynamicConfigParser()
     dc.add_section("GA")
     dc.add_option("GA", "test", 1)
@@ -102,9 +101,9 @@ def test_compare():
     dc2 = DynamicConfigParser()
     dc2.add_section("GA")
     dc2.add_option("GA", "test", 2)
-    
+
     assert (dc==dc2) == False
-    
+
     dc = DynamicConfigParser()
     dc.add_section("GA")
     dc.add_option("GA", "test", 1)
@@ -112,9 +111,9 @@ def test_compare():
     dc2 = DynamicConfigParser()
     dc2.add_section("GA")
     dc2.add_option("GA", "test", 1)
-    
+
     assert (dc==dc2) == True
-    
-    
+
+
 
 
