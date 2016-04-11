@@ -31,7 +31,8 @@ except ImportError:
 import os
 
 
-__all__ = ["CustomConfig", "DynamicConfigParser", "ConfigExample"]
+__all__ = ["CustomConfig", "DynamicConfigParser", "ConfigExample", 
+           "load_configfile"]
 
 
 class _DictSection(object):
@@ -421,6 +422,62 @@ class CustomConfig(object):
             os.rmdir(sdir)
         except Exception as err:
             raise Exception(err)
+
+
+
+def _load_configfile(configpath):
+    "Tries to load a JSON or YAML file into a dict."
+    try:
+        with open(configpath) as f:
+            try:
+                import json
+                return json.load(f)
+            except ValueError:
+                f.seek(0)  # try again
+            try:
+                import yaml
+            except ImportError:
+                raise IOError("Config file is not valid JSON and PyYAML "
+                              "has not been installed. Please install "
+                              "PyYAML to use YAML config files.")
+            try:
+                return yaml.load(f)
+            except yaml.YAMLError:
+                raise IOError("Config file is not valid JSON or YAML. "
+                              "In case of YAML, make sure to not mix "
+                              "whitespace and tab indentation.")
+    except Exception as err:
+        print(err)
+        raise IOError("Config file {} not found.".format(configpath))
+
+
+def load_configfile(configpath):
+    "Loads a JSON or YAML configfile as a dict."
+    config = _load_configfile(configpath)
+    if not isinstance(config, dict):
+        raise IOError("Config file must be given as JSON or YAML "
+                            "with keys at top level.")
+    return config
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
