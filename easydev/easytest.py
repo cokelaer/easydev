@@ -106,7 +106,10 @@ class TempFile(object):
         self.temp = tempfile.NamedTemporaryFile(suffix=suffix, delete=False)
 
     def delete(self):
-        self.temp.delete = True
+        try:
+            self.temp._closer.delete = True
+        except:
+            self.temp.delete = True
         self.temp.close()
 
     def _get_name(self):

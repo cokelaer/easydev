@@ -111,6 +111,7 @@ def get_shared_directories(package, datadir="data"):
 def gsf(package, datadir, filename):
     return get_share_file(package, datadir, filename)
 
+
 def get_share_file(package, datadir, filename):
     """Creates the full path of a file to be found in the share directory of a package
 

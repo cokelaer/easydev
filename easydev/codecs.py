@@ -3,7 +3,7 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2014
+#  Copyright (c) 2011-2016
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
