@@ -46,6 +46,9 @@ def test_tools():
     tools.shellcmd('ls', show=True)
     output = tools.shellcmd('ls', verbose=True)
 
+    tools.execute('ls')
+
+
 
 def test_tools2():
     try:

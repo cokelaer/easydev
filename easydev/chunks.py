@@ -16,8 +16,8 @@ The issue here is that the chunks are not evenly sized chunks
 '''
 
 
-#Here's a balanced solution, adapted from a function I've used in production
-#(Note in Python 3 to replace xrange with range):
+__all__ = ['split_into_chunks']
+
 
 try:
     range = xrange # py2
@@ -25,8 +25,9 @@ except:
     pass  #py3
 
 
-def baskets_from(items, maxbaskets=25):
-    baskets = [[] for _ in range(maxbaskets)] 
+def split_into_chunks(items, maxchunks=10):
+    """Split a list evenly into N chunks"""
+    chunks = [[] for _ in range(maxchunks)] 
     for i, item in enumerate(items):
-        baskets[i % maxbaskets].append(item)
-    return filter(None, baskets) 
+        chunks[i % maxchunks].append(item)
+    return filter(None, chunks) 

@@ -32,6 +32,9 @@ from .browser import browse as onweb
 from . import codecs
 from .codecs import *
 
+from . import chunks
+from .chunks import *
+
 from . import copybutton
 from .copybutton import *
 
