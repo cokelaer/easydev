@@ -19,10 +19,11 @@
 """toolkit to ease development"""
 import subprocess
 import json
-
+import os
+import sys
 
 __all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list",
-    "check_range", "precision", "AttrDict", "DevTools"]
+    "check_range", "precision", "AttrDict", "DevTools", "execute"]
 
 
 def precision(data, digit=2):
@@ -132,6 +133,22 @@ def shellcmd(cmd, show=False, verbose=False, ignore_errors=False):
         return output
     except Exception as err:
         raise Exception("Error:: Command (%s) failed. Error message is %s" % (cmd, err))
+
+
+def execute(cmd, showcmd=True, verbose=True):
+    import pexpect
+    if showcmd is True:
+        print(cmd)
+
+    p = pexpect.spawn(cmd,timeout=None) 
+    line = p.readline() 
+    while line:
+        if verbose:
+            sys.stdout.write(line.decode())
+            sys.stdout.flush()
+        line = p.readline()
+
+
 
 
 def swapdict(dic, check_ambiguity=True):
@@ -274,3 +291,19 @@ class DevTools(object):
     def to_json(self, dictionary):
         """Transform a dictionary to a json object"""
         return json.dumps(dictionary)
+
+    def mkdir(self, dirname):
+        try:
+            os.mkdir(dirname)
+        except FileExistsError:
+            pass # exists already
+        except Exception as err:
+            raise(err)
+
+    def shellcmd(self, cmd, show=False, verbose=False, ignore_errors=False):
+        """See :func:`shellcmd`"""
+        return shellcmd(cmd, show=show, verbose=verbose, ignore_errors=ignore_errors)
+
+
+
+

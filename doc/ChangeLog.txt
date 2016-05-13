@@ -1,3 +1,11 @@
+.. rubric:: 0.9.20
+
+* NEWS:
+	* add execute() command similar to shellcmd but allows to see the output in
+      live using pexcept instead of subprocess
+	* add mkdir function to run mkdir and skip if it exists already
+	* add chunks module with tool to split list evenly in N chunks
+
 .. rubric:: 0.9.19
 
 * BUGS:
