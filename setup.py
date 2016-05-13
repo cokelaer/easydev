@@ -62,7 +62,7 @@ setup(
                     "themes/cno/static/*", 
                     "copybutton.js"]},
 
-    install_requires = ['colorama'],
+    install_requires = ['colorama', 'pexpect'],
     extras_require = {
 	    'profiler': ["line_profiler_test"]
     },
