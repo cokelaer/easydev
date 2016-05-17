@@ -144,7 +144,11 @@ def execute(cmd, showcmd=True, verbose=True):
     line = p.readline() 
     while line:
         if verbose:
-            sys.stdout.write(line.decode())
+            try:
+                sys.stdout.write(line.decode())
+            except:
+                sys.stdout.write(line)
+
             sys.stdout.flush()
         line = p.readline()
 
@@ -295,7 +299,7 @@ class DevTools(object):
     def mkdir(self, dirname):
         try:
             os.mkdir(dirname)
-        except FileExistsError:
+        except OSError:
             pass # exists already
         except Exception as err:
             raise(err)
