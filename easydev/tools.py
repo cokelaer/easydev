@@ -23,7 +23,8 @@ import os
 import sys
 
 __all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list",
-    "check_range", "precision", "AttrDict", "DevTools", "execute"]
+    "check_range", "precision", "AttrDict", "DevTools", "execute",
+    "touch"]
 
 
 def precision(data, digit=2):
@@ -153,6 +154,9 @@ def execute(cmd, showcmd=True, verbose=True):
         line = p.readline()
 
 
+def touch(fname, times=None):
+    with open(fname, 'a'):
+        os.utime(fname, times)
 
 
 def swapdict(dic, check_ambiguity=True):
@@ -297,6 +301,7 @@ class DevTools(object):
         return json.dumps(dictionary)
 
     def mkdir(self, dirname):
+        """Create a directory if it does not exists; pass without error otherwise"""
         try:
             os.mkdir(dirname)
         except OSError:
@@ -307,6 +312,14 @@ class DevTools(object):
     def shellcmd(self, cmd, show=False, verbose=False, ignore_errors=False):
         """See :func:`shellcmd`"""
         return shellcmd(cmd, show=show, verbose=verbose, ignore_errors=ignore_errors)
+
+    def check_exists(self, filename):
+        """Raise error message if the file does not exists"""
+        if os.path.exists(filename) is False:
+            raise ValueError("This file %s does not exists" % filename)
+
+
+
 
 
 

@@ -1,3 +1,10 @@
+
+
+.. rubric:: 0.9.22
+
+* NEWS:
+    * add a method in DevTools to check for the existence of a file
+
 .. rubric:: 0.9.21
 
 * BUGS:
