@@ -1,65 +1,108 @@
-
-
 #############################
 EASYDEV documentation
 #############################
 
 
-Motivation 
+.. raw:: html
+
+    <div style="width:40%">
+    <a href="https://pypi.python.org/pypi/easydev"> <img src="https://badge.fury.io/py/easydev.svg"></a> 
+    <a href="https://travis-ci.org/cokelaer/easydev"> <img src="https://travis-ci.org/cokelaer/easydev.svg?branch=master"></a>
+    <a href="https://coveralls.io/github/cokelaer/easydev?branch=master"> <img src="https://coveralls.io/repos/github/cokelaer/easydev/badge.svg?branch=master"></a>
+    <a href="https://landscape.io/github/cokelaer/easydev/master"> <img src="https://landscape.io/github/cokelaer/easydev/master/landscape.png"></a>
+    <a href="https://waffle.io/cokelaer/easydev"> <img src="https://badge.waffle.io/cokelaer/easydev.png?label=ready&title=Ready"></a>
+    </div>
+
+
+
+:contributions: Please join https://github.com/cokelaer/easydev
+:source: Please use https://github.com/cokelaer/easydev
+:issues: Please use https://github.com/cokelaer/easydev/issues
+:Python version supported: 2.6, 2.7, 3.3, 3.4, 3.5
+
+
+Motivation
 ###########
 
 
 The package `easydev <http://pypi.python.org/pypi/easydev/>`_ provides
-miscellaneous functions and files that are repeatidly used in other packages but
-have no common semantic or purpose. It also provides executables that ease the development of new packages.
-The targetted audience is therefore developers of Python packages.
+miscellaneous functions and files that are repeatidly used in other Python packages.
 
-.. warning:: I'm not pretending to provide universal and bug-free tools. The
-    tools provided may also change. However, since I'm using the tools provided
-    in easydev in many other packages, it tends to be stable. 
-    For example, **easydev** is used in 
-    `bioservices <https://pypi.python.org/pypi/bioservices>`_.
+Some functions are very simple such as the :func:`~easydev.tools.swapdict`,
+which inverts the keys/values in a dictionary (assuming unique keys):
+
+.. doctest::
+
+    >>> from easydev import swapdict
+    >>> d = {'a':1, 'b':2}
+    >>> inv = swapdict(d)
+    >>> inv
+    {1: 'a', 2: 'b'}
+
+The **swapdict** is just one functions amongst many others but belongs to the *simple*
+functions.  Other functions such as the progress bar (:mod:`~easydev.progressbar`) are more
+complex and **easydev** should be very useful in speeding up development. Another example is
+the :func:`~easydev.tools.AttrDict` function: it makes the keys of a dictionary accessible as attributes. Meaning that you can get or set the values quickly as follows:
+
+.. doctest::
+
+    >>> from easydev import AttrDict
+    >>> d = AttrDic(**{'a':1, 'b':2})
+    >>> d.a
+    1
+    >>> d.a = 10
+    >>> d.a
+    10
+
+Another example is the :mod:`~easydev.multicore` module that provides
+a simple tool to perform a multi-core analysis in Python. Note, however,
+that specialised library would surely cover more aspects. Yet, in a few lines
+of code many applications would work out of the box with this code::
+
+    from easydev.multicore import MultiProcessing
+    mp = MultiProcessing(maxcpu=4)
+    mp.add_job(test_func, 2)
+    mp.add_job(test_func, 1)
+    mp.run()
 
 
-Here are some features:
+There are many such functions in **easydev** and the best would be to have a look at
+the :ref:`user_guide` for more examples and the :ref:`ref_guide` guide for an exhaustuve list
+of tools available.
 
- #. Add a progress bar in your pipeline in 2 lines of code with :mod:`~easydev.progressbar`
- #. Builds a python package layout automatically with an executable. See :mod:`~easydev.package`
- #. A user interface to run multiple jobs with :mod:`~easydev.multicore`
- #. Some functions to access to the share/data directories of python packages
-    installed in develop or install modes.
- #. Gather sphinx themes being used in different package documentations (e.g., `rtools <http://pypi.python.org/pypi/rtools>`_, `CellNOpt <http://www.cellnopt.org>`_).
- #. Set of tools to manipulate multi packaging under Python (see e.g., :mod:`~easydev.multisetup`).
- #. Apply git command on a set of directories (see e.g., :mod:`~easydev.multigit`).
- #. A simple interface to run shell command (see :mod:`~easydev.tools`).
- #. A logging class to ease manipulation of the logging standard Python module (see :mod:`~easydev.logging_tools`).
- #. Quickly check if an url exists (see :mod:`~easydev.url.isurl_reachable`)
- #. Color (package moved colormap project https://pypi.python.org/pypi/colormap)
- #. Decorators: :mod:`~easydev.decorators`
- #. and many more. See reference for details.
+
+There are also a few applications installed with **easydev**. One is the
+**browse** application that is equivalent to **open** under Mac. The interest is
+that it is multi-platform.
+
+
+Note also that **easydev** was starting a few years ago and that some
+functionalities did not exists back then but do now in e.g. standard modules of
+Python.
+
+
 
 Installation
 ###################
 
-Prerequisites
-===============
 
 Of course, you will need to install `Python <http://www.python.org/download/>`_
 (linux and mac users should have it installed already). We recommend also to install `ipython <http://ipython.org/>`_, which provides a more flexible shell alternative to the python shell itself.
 
-In principle, **easydev** do not require external dependencies to be installed. 
+One specificity of **easydev** is be a pure Python package. However we depend on a few simple
+packages namely, colorama (for terminal colors under windwos), pexpect and
+profiler (optional). They are pure Python packages though and therefore the
+following command should install easydev out of the box using the `PyPi <http://pypi.python.org/>`_
+command::
 
-Installation
-================
-Since **easydev** is available on `PyPi <http://pypi.python.org/>`_, the following command should install the package and its dependencies automatically:: 
-
-    pip install easydev
+    pip install easydev --upgrade
 
 Contributions
 #########################
 
 For contributions or bug reports, please see `easydev on github <https://github.com/cokelaer/easydev>`_.
 
+.. _user_guide:
 
 User guide
 ##################
@@ -71,14 +114,7 @@ User guide
 
     quickstart.rst
 
-Developer Guide
-####################
-
-.. toctree::
-    :maxdepth: 2
-    :numbered:
-
-    developers
+.. _ref_guide:
 
 Reference Guide
 ##################

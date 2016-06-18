@@ -40,6 +40,7 @@ def get_datafiles(directory="share", match="*"):
 
     .. todo:: exclude pattern
     """
+    print("Deprecated since 0.9.23. Will be removed in future releases")
     datafiles = []
     matches = []
     for root, dirnames, filenames in os.walk(directory):

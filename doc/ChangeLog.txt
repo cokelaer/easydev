@@ -1,4 +1,15 @@
 
+.. rubric:: 0.9.23
+
+* BUGS:
+	* in tools, close an opened file
+
+* CHANGES:
+	* remove module multigit (not used)
+	* Planning to remove module setuptools (not used). add deprecated message
+	* Remove lsf module
+	* Updated documentation
+
 
 .. rubric:: 0.9.22
 

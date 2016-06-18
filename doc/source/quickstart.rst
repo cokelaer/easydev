@@ -1,25 +1,87 @@
 .. _quickstart:
 
-Tools available
-#################
+There is no quickstart or tutorial in **easydev** since it is a set of 
+versatile tools. The documentation is the :ref:`ref_guide`.
 
-There is no quickstart or tutorial in **easydev**. It is a set of tools that are
-handy for developing tools in Python. However, here are some general tools that 
-I used a lot.
+However, here are some general tools.
 
 .. contents::
+
+The DevTools class
+========================
+
+We will tend to put small utilities within this :class:`easydev.tools.DevTools`.
+Usually, we can create just an instance and add it in a class as an accessible
+set of functionalities. Consider the following example:
+
+.. code-block:: python
+    :linenos:
+
+    from easydev import DevTools
+    class MyTest(object):
+        def __init__(self):
+            self._devtools = Devtools()
+
+        def plot_in_range(self, x):
+            self._devtools.check_range(x, -2,2)
+            # do something
+
+        def sum(self, x):
+            # sometimes it is a value, sometimes a list but
+            # the function to be used accepts only list
+            x = self._devtools.to_list(x)
+            # do something with the list 
+
+        def switch(self, x):
+            # this function will only understand x if it is a 
+            # value between 1 and 3 so let us check that
+            self._devtools.check_param_in_list(x, [1,2,3])
+            if x == 1:
+                #do something
+            else:
+                #do something
+
+
+The same code without DevTools would be twice as long. Consider for example the
+line 7. You would need to type::
+
+    if x < -2: 
+        raise ValueError('the value provided is incorrect....')
+    if x >2:
+        raise ValueError('the value provided is incorrect....')
+
+and so on. The DevTools has more functionalities that those presented here and
+will be extended little by little. 
 
 Progress bar
 ==============
 
-
-::
+Many tasks may take a while to end and users may want to known the progress.
+Here is a simple Progress bar that would work in python and IPython, and IPython
+notebooks::
 
     from easydev import Progress
     p = Progress(1000)
     for i in range(0,1000):
         # do something.
         p.animate(i+1)
+
+Profiling
+================
+
+A quick way to check the profiling of a specific function or method is to use
+the do_profile decorator (requires the package line_profiler)::
+
+    from easydev import do_profile 
+    @do_profile()
+    def test(a, b):
+        a **2 
+        a + b
+        a*b
+        import time
+        time.sleep(0.1)
+    test(1,2)
+
 
 
 Sphinx tools
@@ -103,6 +165,10 @@ Simply create a python file that contains the following code::
 The tools module
 ======================
 
+In addition to the DevTools presented above, the :mod:`easydev.tools` module
+also provide some other functionalities.
+
+
 Check validity of a values
 ----------------------------
 
@@ -169,43 +235,5 @@ The :meth:`add_job` takes as input a function name followed by a lost of argumen
   t.results
 
 
-
-LSF cluster
-===============
-
-The :mod:`~easydev.lsf` module provides an easy interface to append shell commands into a
-queue and create all relevant LSF commands/scripts. Let us consider the
-following code::
-
-    >>> from easydev.lsf import *
-    >>> t = LSFCluster(prog="test", verbose=True)
-    >>> t.add_cmd("echo 'A shell command to be run' ")
-    >>> t.add_cmd("echo 'A shell command to be run' ")
-    >>> t.add_cmd("echo 'A shell command to be run' ")
-    >>> t.create_scripts()
-                            
-A set of shell scripts are created. There are called **lsf_jobs_XXX_generic.** where XXX is the id of th
-e command to be launch. 
-In addition, a main script called **lsf_alljobs_generic.sh** is also created.  In
-order to launch all the jobs automatically with the proper LSF command, just
-type::
-
-    sh lsf_alljobs_generic.sh
-
-
-You can check the status of the jobs by typing::
-
-    bjobs
-
-
-By default all jobs run in parallel without any dependencies. One future implmentation is to allow such 
-dependencies by providing an argument called level::
-
-
-    >>> from easydev.lsf import *
-    >>> t = LSFCluster(prog="test", verbose=True)
-    >>> t.add_cmd("preprocessing --input test.dat --ouput test2.dat", level=1)
-    >>> t.add_cmd("postprocessing --input test2.dat", level=2)
-    >>> t.create_scripts()
 
 
