@@ -256,7 +256,8 @@ class AttrDict(dict):
     def to_json(self, filename=None):
         import json
         if filename is not None:
-            json.dump(self, open(filename, "w"))
+            with open(filename, "w") as fout:
+                json.dump(self, fout)
         else:
             return json.dumps(self)
 
