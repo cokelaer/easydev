@@ -1,4 +1,10 @@
 
+.. rubric:: 0.9.25
+    * add md5 module
+
+.. rubric:: 0.9.24
+	* add md5tools module to compute MD5 checksum of a file
+
 .. rubric:: 0.9.23
 
 * BUGS:

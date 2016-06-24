@@ -58,6 +58,8 @@ from .tools import *
 
 from . import multisetup
 
+from .md5tools import md5
+
 from . import paths
 from .paths import *
 
