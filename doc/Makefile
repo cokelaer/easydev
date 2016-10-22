@@ -131,3 +131,10 @@ doctest:
 
 publish:
 	scp -r build/html/* cokelaer@ebi1-001.ebi.ac.uk:/homes/cokelaer/public_html/cnolab/wrapper
+
+spelling:
+	$(SPHINXBUILD) -b spelling $(ALLSPHINXOPTS) $(BUILDDIR)/spelling
+
+
+
+

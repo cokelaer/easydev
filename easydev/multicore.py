@@ -82,7 +82,7 @@ class MultiProcessing(object):
             self.pb.animate(len(self.results)+1)
         self.results.append(results)
 
-    def run(self, delay=0.1):
+    def run(self, delay=0.1, verbose=True):
         """Run all the jobs in the Pool until all have finished.
 
         Jobs that have been added to the job list in :meth:`add_job`
@@ -97,8 +97,9 @@ class MultiProcessing(object):
 
         """
         from easydev import Progress
-        self.pb = Progress(len(self.jobs), 1)
-        self.pb.animate(0)
+        if self.progress is True:
+            self.pb = Progress(len(self.jobs), 1)
+            self.pb.animate(0)
 
         def init_worker():
             import signal

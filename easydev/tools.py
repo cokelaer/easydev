@@ -24,7 +24,7 @@ import sys
 
 __all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list",
     "check_range", "precision", "AttrDict", "DevTools", "execute",
-    "touch"]
+    "touch", "mkdirs"]
 
 
 def precision(data, digit=2):
@@ -175,6 +175,29 @@ def swapdict(dic, check_ambiguity=True):
     return dict(zip(dic.values(), dic.keys()))
 
 
+def mkdirs(newdir, mode=0o777):
+    """Recursive creation of a directory
+
+    :source: matplotlib mkdirs
+
+    make directory *newdir* recursively, and set *mode*.  Equivalent to ::
+
+        > mkdir -p NEWDIR
+        > chmod MODE NEWDIR
+    """
+    try:
+        if not os.path.exists(newdir):
+            parts = os.path.split(newdir)
+            for i in range(1, len(parts) + 1):
+                thispart = os.path.join(*parts[:i])
+                if not os.path.exists(thispart):
+                    os.makedirs(thispart, mode)
+    except OSError as err:
+        import errno
+        # Reraise the error unless it's about an already existing directory
+        if err.errno != errno.EEXIST or not os.path.isdir(newdir):
+            raise
+
 class AttrDict(dict):
     """dictionary-like object that exposes its keys as attributes.
 
@@ -280,10 +303,6 @@ class DevTools(object):
         """wrapper around :func:`easydev.swapdict`"""
         return swapdict(d)
 
-    def tolist(self, query):
-        print('easydev tolist deprecated since 0.8.0. use to_list() instead')
-        return self.to_list(query)
-
     def to_list(self, query):
         """Cast to a list if possible
 
@@ -319,8 +338,8 @@ class DevTools(object):
         if os.path.exists(filename) is False:
             raise ValueError("This file %s does not exists" % filename)
 
-
-
+    def mkdirs(self, dirname, mode=0o777):
+        mkdirs(dirname, mode=mode)
 
 
 

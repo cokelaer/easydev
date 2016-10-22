@@ -54,10 +54,11 @@ extensions = [
     'sphinx.ext.intersphinx', 
     'sphinx.ext.todo',
     'sphinx.ext.coverage', 
-    'sphinx.ext.pngmath',
+    'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'easydev.copybutton',
+    'sphinxcontrib.spelling',
     'sphinx.ext.graphviz']
 
 # note that the numpy directives is buggy. Example: class and init are not recognised as two entities for the autoclass_content=both here below
@@ -68,13 +69,6 @@ graphviz_dot_args = ['-Gsize=15,15', '-Nfontsize=34']
 
 
 todo_include_todos=True
-jscopybutton_path = "copybutton.js"
-try:
-    from easydev.copybutton import get_copybutton_path 
-    from easydev.copybutton import copy_javascript_into_static_path
-    copy_javascript_into_static_path("_static", get_copybutton_path())
-except:
-    print("could not copy the copybutton javascript")
 
 
 autoclass_content = 'both'

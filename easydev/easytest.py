@@ -102,8 +102,9 @@ class TempFile(object):
 
 
     """
-    def __init__(self, suffix=''):
-        self.temp = tempfile.NamedTemporaryFile(suffix=suffix, delete=False)
+    def __init__(self, suffix='', dir="."):
+        self.temp = tempfile.NamedTemporaryFile(suffix=suffix, delete=False,
+                                                dir=dir)
 
     def delete(self):
         try:

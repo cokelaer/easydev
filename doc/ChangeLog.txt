@@ -1,4 +1,13 @@
 
+.. rubric:: 0.9.26:
+    * TempFile has one more argument (directory destination)
+    * Remove deprecated function (transform_ino_list) in codecs module
+	* copybutton module simplified. Extension copybutton updated. 
+	* move _mkdirs function from Config module (private method) to the tools
+      module so that mkdirs is now part of the API
+	* more tests added
+	* new Timer class
+
 .. rubric:: 0.9.25
     * add md5 module
 

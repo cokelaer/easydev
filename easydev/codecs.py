@@ -18,14 +18,7 @@
 # $:Id $
 """various type convertors (e.g., list to string)"""
 
-
-__all__ = ["to_list", "tolist", "transform_into_list", "list2string"]
-
-
-def transform_into_list(data):
-    """deprecated. use :meth:`to_list`"""
-    print("deprecated (easydev). Please use to_list()")
-    return to_list(data)
+__all__ = ["to_list", "tolist", "list2string"]
 
 
 def tolist(data, verbose=True):
@@ -42,7 +35,7 @@ def to_list(data, verbose=True):
     - if the object is not a list, we assume this is a primitive type and a list
       of length 1 is returned, the item being the parameter provided.
 
-    ::
+    .. code-block:: python
 
         >>> from easydev import transform_to_list
         >>> to_list(1)
@@ -66,7 +59,7 @@ def to_list(data, verbose=True):
             return data
         except:
             if verbose:
-                print("not known type. cast to list")
+                print("not known type. Trying to cast into a list")
             return list(data)
 
 
@@ -78,7 +71,7 @@ def list2string(data, sep=",", space=True):
         it is simply returned with a cast into a string
     :param str sep: the separator to be use
 
-    ::
+    .. code-block:: python
 
         >>> list2string([1, 2]
         "1, 2"

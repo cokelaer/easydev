@@ -67,7 +67,7 @@ of code many applications would work out of the box with this code::
 
 
 There are many such functions in **easydev** and the best would be to have a look at
-the :ref:`user_guide` for more examples and the :ref:`ref_guide` guide for an exhaustuve list
+the :ref:`user_guide` for more examples and the :ref:`ref_guide` guide for an exhaustive list
 of tools available.
 
 
@@ -77,8 +77,8 @@ that it is multi-platform.
 
 
 Note also that **easydev** was starting a few years ago and that some
-functionalities did not exists back then but do now in e.g. standard modules of
-Python.
+functionalities did not exist back then. Some functionalities available in
+easydev may now exist in standard modules of Python. 
 
 
 
@@ -90,7 +90,7 @@ Of course, you will need to install `Python <http://www.python.org/download/>`_
 (linux and mac users should have it installed already). We recommend also to install `ipython <http://ipython.org/>`_, which provides a more flexible shell alternative to the python shell itself.
 
 One specificity of **easydev** is be a pure Python package. However we depend on a few simple
-packages namely, colorama (for terminal colors under windwos), pexpect and
+packages namely, colorama (for terminal colors under windows), pexpect and
 profiler (optional). They are pure Python packages though and therefore the
 following command should install easydev out of the box using the `PyPi <http://pypi.python.org/>`_
 command::

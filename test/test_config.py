@@ -9,6 +9,7 @@ def test_config_custom():
     c.user_config_dir
     c.remove()
 
+
 def test_configExample():
     c = ConfigExample().config
     assert 'General' in c.sections()
@@ -50,6 +51,12 @@ def test_DynamicConfig():
         assert False
     except TypeError:
         assert True
+
+def test_DynamicConfigDelete():
+    from easydev import ConfigExample
+    dcp = DynamicConfigParser(ConfigExample().config)
+    del dcp["GA"]
+    assert dcp.sections() == ['General']
 
 
 

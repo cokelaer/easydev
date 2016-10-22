@@ -103,7 +103,8 @@ class ConfigExample(object):
         popsize = 1
 
 
-    which can be read with ConfigParser as follows::
+    which can be read with ConfigParser as follows:
+    .. code-block:: python
 
         >>> from ConfigParser import ConfigParser
         >>> config = ConfigParser()
@@ -125,7 +126,7 @@ class DynamicConfigParser(ConfigParser, object):
     Provide some aliases to the original ConfigParser class and
     new methods such as :meth:`save` to save the config object in a file.
 
-    ::
+    .. code-block:: python
 
         >>> from easydev.config_tools import ConfigExample
         >>> standard_config_file = ConfigExample().config
@@ -218,7 +219,7 @@ class DynamicConfigParser(ConfigParser, object):
         then, populate a dictionary and finally take care of the types.
 
         .. warning:: types may be changed .For instance the string "True"
-            is interepreted as a True boolean.
+            is interpreted as a True boolean.
 
         ..  seealso:: internally, this method uses :meth:`section2dict`
         """
@@ -233,7 +234,8 @@ class DynamicConfigParser(ConfigParser, object):
         :returns: a dictionary where key/value contains all the
             options/values of the section required
 
-        Let us build up  a standard config file::
+        Let us build up  a standard config file:
+        .. code-block:: python
 
             >>> import ConfigParser
             >>> c = ConfigParser.ConfigParser()
@@ -302,7 +304,7 @@ class DynamicConfigParser(ConfigParser, object):
     def add_option(self, section, option, value=None):
         """add an option to an existing section (with a value)
 
-        ::
+        .. code-block:: python
 
             >>> c = DynamicConfigParser()
             >>> c.add_section("general")
@@ -396,25 +398,9 @@ class CustomConfig(object):
         return sdir
 
     def _mkdirs(self, newdir, mode=0o777):
-        """from matplotlib mkdirs
-
-        make directory *newdir* recursively, and set *mode*.  Equivalent to ::
-
-            > mkdir -p NEWDIR
-            > chmod MODE NEWDIR
-        """
-        try:
-            if not os.path.exists(newdir):
-                parts = os.path.split(newdir)
-                for i in range(1, len(parts) + 1):
-                    thispart = os.path.join(*parts[:i])
-                    if not os.path.exists(thispart):
-                        os.makedirs(thispart, mode)
-        except OSError as err:
-            import errno
-            # Reraise the error unless it's about an already existing directory
-            if err.errno != errno.EEXIST or not os.path.isdir(newdir):
-                raise
+        """See :func:`easydev.tools.mkdirs`"""
+        from easydev.tools import mkdirs
+        mkdirs(newdir, mode)
 
     def remove(self):
         try:

@@ -9,3 +9,10 @@ def test_browse():
     browse(".", verbose=True)
 
 
+
+def test_browse_module():
+    from easydev.browser import main
+    main(["browse", "--help"])
+    main(["browse", "." ])
+    main(["browse", "http://www.uniprot.org" ])
+

@@ -57,43 +57,11 @@ There is also an alias **onweb**::
 
     from easydev import onweb
 
-
-
 """
 import os
 import sys, webbrowser
 from optparse import  OptionParser
 import argparse
-
-
-class Options(argparse.ArgumentParser):
-
-    def  __init__(self, version="1.0", prog="browse"):
-        usage = """usage: %s URL --verbose\nAuthor: Thomas Cokelaer, 2012""" % prog
-        super(Options, self).__init__(usage=usage, version=version, prog=prog)
-        self.add_input_options()
-
-    def add_input_options(self):
-        """The input options.
-
-        Default is None. Keep it that way because otherwise, the contents of
-        the ini file is overwritten in :class:`apps.Apps`.
-        """
-
-        group = self.add_argument_group("Inputs", 
-                    """This section allows to provide path and file names of the input data.
-                    If path is provided, it will be used to prefix the midas and sif filenames.
-                        --path /usr/share/data --sif test.sif --midas test.csv
-                    means that the sif file is located in /usr/share/data.
-                    """)
-
-        group.add_argument("--verbose", dest='verbose', 
-                         action="store_true", 
-                         help="verbose option.")
-        group.add_argument("--url", dest='url', default=None,
-                         help="url to open")
-        group.add_argument("--file", dest='file', default=None,
-                         help="url to open")
 
 
 def browse(url, verbose=True):
@@ -160,8 +128,9 @@ def _browse_linux(url, verbose=True):
     raise Exception("Could not open http://{}".format(url))
 
 
-def main():
-    args = sys.argv[:]
+def main(args=None):
+    if args is None:
+        args = sys.argv[:]
 
     # check for verbosity
     if "--verbose" in args:
@@ -197,4 +166,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(sys.argv)

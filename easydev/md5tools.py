@@ -15,9 +15,6 @@
 ##############################################################################
 import hashlib
 
-
-
-# 
 def md5(fname, chunk=65536):
     """Return the MD5 checksums of a file
 

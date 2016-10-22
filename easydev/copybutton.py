@@ -52,7 +52,6 @@ def copy_javascript_into_static_path(static="_static", filepath="copybutton.js")
         Otherwise, the file is copied in *static* directory.
 
     """
-
     if os.path.isdir(static):
         pass
     else:
@@ -63,7 +62,6 @@ def copy_javascript_into_static_path(static="_static", filepath="copybutton.js")
         pass
     else:
         shutil.copy(filepath, static + os.sep + filename)
-
 
 
 def get_copybutton_path():
@@ -96,46 +94,24 @@ def get_copybutton_path():
     return pj(packagedir, "copybutton.js")
 
 
-
-def html_visit_math(self, node):
-    self.body.append(self.starttag(node, 'span', '', CLASS='math'))
-    self.body.append(self.encode(node['latex']) + '</span>')
-    raise nodes.SkipNode
-
-def html_visit_displaymath(self, node):
-    if node['nowrap']:
-        self.body.append(self.starttag(node, 'div', CLASS='math'))
-        self.body.append(node['latex'])
-        self.body.append('</div>')
-        raise nodes.SkipNode
-    for i, part in enumerate(node['latex'].split('\n\n')):
-        part = self.encode(part)
-        if i == 0:
-            # necessary to e.g. set the id property correctly
-            if node['number']:
-                self.body.append('<span class="eqno">(%s)</span>' %
-                                 node['number'])
-            self.body.append(self.starttag(node, 'div', CLASS='math'))
-        else:
-            # but only once!
-            self.body.append('<div class="math">')
-        if '&' in part or '\\\\' in part:
-            self.body.append('\\begin{split}' + part + '\\end{split}')
-        else:
-            self.body.append(part)
-        self.body.append('</div>\n')
-    raise nodes.SkipNode
-
-def builder_inited(app):
-    from sphinx.application import ExtensionError
-    if not app.config.jscopybutton_path:
-        raise ExtensionError('jscopybutton_path config value must be set for the '
-                             'jscopybutton extension to work')
-    app.add_javascript(app.config.jscopybutton_path)
-
-
 def setup(app):
-    from sphinx.ext.mathbase import setup_math as mathbase_setup
-    mathbase_setup(app, (html_visit_math, None), (html_visit_displaymath, None))
-    app.add_config_value('jscopybutton_path', '', False)
-    app.connect('builder-inited', builder_inited)
+    cwd = os.getcwd()
+
+    # From Sphinx, we typing "make html", this is the place where we expect
+    # the JS to be found
+    staticpath = os.sep.join([cwd, "source", "_static"])
+    if os.path.exists(staticpath + os.sep + "copybutton.js"):
+        pass # the JS file is already there.
+    else:
+        # Not found, so let us copy it
+        import shutil
+
+        shutil.copy( get_copybutton_path(), staticpath)
+
+    # Now that the file is available, use it
+    app.add_javascript('copybutton.js')
+
+
+
+
+

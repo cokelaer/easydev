@@ -1,6 +1,6 @@
 .. _quickstart:
 
-There is no quickstart or tutorial in **easydev** since it is a set of 
+There is no quickstart or tutorial in **easydev** since it is a set of
 versatile tools. The documentation is the :ref:`ref_guide`.
 
 However, here are some general tools.
@@ -30,10 +30,10 @@ set of functionalities. Consider the following example:
             # sometimes it is a value, sometimes a list but
             # the function to be used accepts only list
             x = self._devtools.to_list(x)
-            # do something with the list 
+            # do something with the list
 
         def switch(self, x):
-            # this function will only understand x if it is a 
+            # this function will only understand x if it is a
             # value between 1 and 3 so let us check that
             self._devtools.check_param_in_list(x, [1,2,3])
             if x == 1:
@@ -45,13 +45,13 @@ set of functionalities. Consider the following example:
 The same code without DevTools would be twice as long. Consider for example the
 line 7. You would need to type::
 
-    if x < -2: 
+    if x < -2:
         raise ValueError('the value provided is incorrect....')
     if x >2:
         raise ValueError('the value provided is incorrect....')
 
-and so on. The DevTools has more functionalities that those presented here and
-will be extended little by little. 
+The DevTools has more functionalities than those presented here and
+will be extended little by little.
 
 Progress bar
 ==============
@@ -72,10 +72,10 @@ Profiling
 A quick way to check the profiling of a specific function or method is to use
 the do_profile decorator (requires the package line_profiler)::
 
-    from easydev import do_profile 
+    from easydev import do_profile
     @do_profile()
     def test(a, b):
-        a **2 
+        a **2
         a + b
         a*b
         import time
@@ -93,7 +93,7 @@ Sphinx is a framework that ease the development of HTML documentation. I persona
     >>> p = get_path_sphinx_themes()
 
 you can then check the presence of the themes::
- 
+
     >>> import os
     >>> themes = os.listdir(p)
     >>> 'standard' in themes
@@ -106,17 +106,16 @@ piece of code extracted from the **conf.py** of this package::
     >>> html_theme = 'standard' # one theme provided in easydev
     >>> html_theme_path = [easydev.get_path_sphinx_themes()]
 
-Sphinx configuration file comes with lot of extensions from Sphinx itself or other packages (e.g., numpy or
-matplotlib). A useful extension is called copybutton (I do not remember where I found it...). For now, we provide it within easydev so that it can be used easily by all the packages::
+Sphinx configuration file comes with lot of extensions from Sphinx itself or other packages (e.g., numpy or matplotlib). A useful extension is called copybutton (Found on Python official documentation website). As far as I known, it is not an official sphinx extension. It is available within **easydev**.
 
-    >>> from easydev import copybutton
-    >>> p = copybutton.get_copybutton_path()
+To use it, in your sphinx configuration file (conf.py), just add::
 
-Again, it can be used within you configuration file::
-
+    import easydev
     extensions.append('easydev.copybutton')
-    jscopybutton_path = easydev.copybutton.get_copybutton_path()
 
+It will copy the file in source/_static so your configuration file should set::
+
+    html_static_path = ["source/_static"]
 
 
 
@@ -143,13 +142,13 @@ If you decided to install all those packages, you need to type::
     cd pypiview
     python setup.py install
     cd ../
-    cd spectrum 
+    cd spectrum
     python setup.py install
     cd ../
 
 This can be cumbersome if you've got lots of packages are do those operations
 regularly. The module :mod:`~easydev.multisetup` provides a tool to simplify the
-building of several python packages that are within the same directory. Arguments are 
+building of several python packages that are within the same directory. Arguments are
 the same as those of setup.py.
 
 
@@ -161,7 +160,7 @@ Simply create a python file that contains the following code::
         packages = ['spectrum', 'pypiview']
         mysetup = Multisetup(curdir='.', commands=sys.argv[1:], packages=packages)
         mysetup.run()
-    
+
 The tools module
 ======================
 
@@ -184,7 +183,9 @@ AttrDict
 -------------
 
 This is a very convenient class to expose keys of a dictionary-like object as
-attributes::
+attributes:
+
+.. code-block:: python
 
     >>> from easydev import AttrDict
     >>> d = AttrdDict({'val1':1})
@@ -195,7 +196,9 @@ attributes::
 Create a package layout in one command
 =======================================
 
-The package :mod:`~easydev.package` can build a package layout automatically. The type of layout is quite simple but alloas a quickstart::
+The package :mod:`~easydev.package` can build a package layout automatically. The type of layout is quite simple but alloas a quickstart:
+
+.. code-block:: python
 
     >>> from easydev import PackageBuilder
     >>> p = PackageBuilder("myPackage")
@@ -217,7 +220,9 @@ A :mod:`~easydev.multicore` class is provided to perform multiprocessing tasks. 
 a list of jobs to be run in an asynchronous way. In other words your jobs do not need to communicate
 between them.
 
-Each job must be a function with arguments and optional arguments but must return an object (that will be stored in the results attribute). Typically, you will use this class as follows::
+Each job must be a function with arguments and optional arguments but must return an object (that will be stored in the results attribute). Typically, you will use this class as follows:
+
+.. code-block:: python
 
      >>> from easydev.multicore import MultiProcessing
      >>> def test_func(n):

@@ -72,6 +72,9 @@ from .package import *
 from . import config_tools
 from .config_tools import *
 
+#from . import timer
+from .timer import Timer
+
 from . import url
 from .url import *
 

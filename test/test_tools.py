@@ -45,10 +45,9 @@ def test_tools():
     tools.shellcmd('ls', show=False)
     tools.shellcmd('ls', show=True)
     output = tools.shellcmd('ls', verbose=True)
+    tools.shellcmd('lssssssss', verbose=True, ignore_errors=True)
 
     tools.execute('ls')
-
-
 
 def test_tools2():
     try:
@@ -72,6 +71,7 @@ def test_checkParams():
     except TypeError:
         assert True
 
+
 def test_check_param_in_list():
     tools.check_param_in_list(1, [0,1,5], "test")
     try:
@@ -84,8 +84,6 @@ def test_check_param_in_list():
         assert False
     except:
         assert True
-
-
 
 
 def test_precision():
@@ -130,9 +128,6 @@ def test_attrdict():
     ad.to_json(filename=fh.name)
     ad.from_json(fh.name)
     fh.delete()
-    
-
-
 
 
 def test_devtools():
@@ -143,3 +138,31 @@ def test_devtools():
     assert d.swapdict({'a':1}) == {1:'a'}
     d.to_json({'a':1})
     assert d.to_list('a') == ['a']
+    import tempfile, os
+    d.mkdirs(tempfile.mkdtemp() + os.sep + "test")
+    try:
+        d.check_exists("ttttttttttt")
+        assert False
+    except:
+        assert True
+
+def test_mkdirs():
+    import tempfile, os
+    tools.mkdirs(tempfile.mkdtemp() + os.sep + "test")
+    try:
+        tools.mkdirs(tempfile.mkdtemp() + os.sep + "test")
+        assert False
+    except:
+        assert True
+
+    try:
+        # without / , the dir is not created and raise an error
+        tools.mkdirs("tttttttttttttttttttttt")
+        assert False
+    except:
+        assert True
+
+def test_touch():
+    with TempFile() as fh:
+        fh.name
+        tools.touch(fh.name)
