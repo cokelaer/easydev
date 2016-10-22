@@ -9,13 +9,15 @@ easydev
 
 .. image:: https://coveralls.io/repos/cokelaer/easydev/badge.svg?branch=master 
    :target: https://coveralls.io/r/cokelaer/easydev?branch=master 
-   
+
 .. image:: https://landscape.io/github/cokelaer/easydev/master/landscape.png
    :target: https://landscape.io/github/cokelaer/easydev/master
 
 .. image:: https://badge.waffle.io/cokelaer/easydev.png?label=ready&title=Ready 
    :target: https://waffle.io/cokelaer/easydev
 
+
+:documentation: http://easydev-python.readthedocs.io/en/latest/
 :contributions: Please join https://github.com/cokelaer/easydev
 :source: Please use https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
@@ -36,6 +38,4 @@ packages (e.g., http://pypi.python.org/pypi/colormap) and is stable.
     `GDSCTools <https://sequana.readthedocs.io>`_ to give a few
     examples. 
 
-See the online documentation on `<http://pythonhosted.org/easydev/>`_ for the
-different features. 
 

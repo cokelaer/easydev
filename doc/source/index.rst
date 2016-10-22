@@ -14,7 +14,7 @@ EASYDEV documentation
     </div>
 
 
-
+:documentation: http://easydev-python.readthedocs.io/en/latest/
 :contributions: Please join https://github.com/cokelaer/easydev
 :source: Please use https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
@@ -97,10 +97,6 @@ command::
 
     pip install easydev --upgrade
 
-Contributions
-#########################
-
-For contributions or bug reports, please see `easydev on github <https://github.com/cokelaer/easydev>`_.
 
 .. _user_guide:
 
