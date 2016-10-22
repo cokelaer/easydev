@@ -55,7 +55,7 @@ def test_DynamicConfig():
 def test_DynamicConfigDelete():
     from easydev import ConfigExample
     dcp = DynamicConfigParser(ConfigExample().config)
-    del dcp["GA"]
+    del(dcp["GA"])
     assert dcp.sections() == ['General']
 
 
