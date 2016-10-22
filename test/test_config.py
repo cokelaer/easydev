@@ -57,9 +57,9 @@ def test_DynamicConfigDelete():
     dcp = DynamicConfigParser(ConfigExample().config)
     try:
         del(dcp["GA"])
+        assert dcp.sections() == ['General']
     except:
         pass
-    assert dcp.sections() == ['General']
 
 
 
