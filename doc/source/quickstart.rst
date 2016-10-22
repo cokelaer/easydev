@@ -1,5 +1,8 @@
 .. _quickstart:
 
+Quick Start
+###############
+
 There is no quickstart or tutorial in **easydev** since it is a set of
 versatile tools. The documentation is the :ref:`ref_guide`.
 

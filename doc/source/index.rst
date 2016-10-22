@@ -10,7 +10,6 @@ EASYDEV documentation
     <a href="https://travis-ci.org/cokelaer/easydev"> <img src="https://travis-ci.org/cokelaer/easydev.svg?branch=master"></a>
     <a href="https://coveralls.io/github/cokelaer/easydev?branch=master"> <img src="https://coveralls.io/repos/github/cokelaer/easydev/badge.svg?branch=master"></a>
     <a href="https://landscape.io/github/cokelaer/easydev/master"> <img src="https://landscape.io/github/cokelaer/easydev/master/landscape.png"></a>
-    <a href="https://waffle.io/cokelaer/easydev"> <img src="https://badge.waffle.io/cokelaer/easydev.png?label=ready&title=Ready"></a>
     </div>
 
 
@@ -21,12 +20,14 @@ EASYDEV documentation
 :Python version supported: 2.6, 2.7, 3.3, 3.4, 3.5
 
 
+
 Motivation
-###########
+=============
 
 
 The package `easydev <http://pypi.python.org/pypi/easydev/>`_ provides
-miscellaneous functions and files that are repeatidly used in other Python packages.
+miscellaneous functions and files that are repeatidly used in other Python
+packages.
 
 Some functions are very simple such as the :func:`~easydev.tools.swapdict`,
 which inverts the keys/values in a dictionary (assuming unique keys):
@@ -39,10 +40,15 @@ which inverts the keys/values in a dictionary (assuming unique keys):
     >>> inv
     {1: 'a', 2: 'b'}
 
-The **swapdict** is just one functions amongst many others but belongs to the *simple*
-functions.  Other functions such as the progress bar (:mod:`~easydev.progressbar`) are more
-complex and **easydev** should be very useful in speeding up development. Another example is
-the :func:`~easydev.tools.AttrDict` function: it makes the keys of a dictionary accessible as attributes. Meaning that you can get or set the values quickly as follows:
+The **swapdict** is just one functions amongst many others but belongs to the
+*simple*
+functions.  Other functions such as the progress bar
+(:mod:`~easydev.progressbar`) are more
+complex and **easydev** should be very useful in speeding up development.
+Another example is
+the :func:`~easydev.tools.AttrDict` function: it makes the keys of a dictionary
+accessible as attributes. Meaning that you can get or set the values quickly as
+follows:
 
 .. doctest::
 
@@ -66,8 +72,10 @@ of code many applications would work out of the box with this code::
     mp.run()
 
 
-There are many such functions in **easydev** and the best would be to have a look at
-the :ref:`user_guide` for more examples and the :ref:`ref_guide` guide for an exhaustive list
+There are many such functions in **easydev** and the best would be to have a
+look at
+the :ref:`user_guide` for more examples and the :ref:`ref_guide` guide for an
+exhaustive list
 of tools available.
 
 
@@ -82,43 +90,14 @@ easydev may now exist in standard modules of Python.
 
 
 
-Installation
-###################
 
-
-Of course, you will need to install `Python <http://www.python.org/download/>`_
-(linux and mac users should have it installed already). We recommend also to install `ipython <http://ipython.org/>`_, which provides a more flexible shell alternative to the python shell itself.
-
-One specificity of **easydev** is be a pure Python package. However we depend on a few simple
-packages namely, colorama (for terminal colors under windows), pexpect and
-profiler (optional). They are pure Python packages though and therefore the
-following command should install easydev out of the box using the `PyPi <http://pypi.python.org/>`_
-command::
-
-    pip install easydev --upgrade
-
-
-.. _user_guide:
-
-User guide
-##################
 
 
 .. toctree::
     :maxdepth: 2
     :numbered:
 
-    quickstart.rst
-
-.. _ref_guide:
-
-Reference Guide
-##################
-
-
-.. toctree::
-    :maxdepth: 2
-    :numbered:
-
+    installation
+    quickstart
     references
 

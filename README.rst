@@ -13,8 +13,6 @@ easydev
 .. image:: https://landscape.io/github/cokelaer/easydev/master/landscape.png
    :target: https://landscape.io/github/cokelaer/easydev/master
 
-.. image:: https://badge.waffle.io/cokelaer/easydev.png?label=ready&title=Ready 
-   :target: https://waffle.io/cokelaer/easydev
 
 
 :documentation: http://easydev-python.readthedocs.io/en/latest/
