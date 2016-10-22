@@ -100,6 +100,8 @@ def setup(app):
     # From Sphinx, we typing "make html", this is the place where we expect
     # the JS to be found
     staticpath = os.sep.join([cwd, "source", "_static"])
+    from easydev.tools import mkdirs
+    mkdirs(staticpath)
     if os.path.exists(staticpath + os.sep + "copybutton.js"):
         pass # the JS file is already there.
     else:
