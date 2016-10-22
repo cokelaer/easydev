@@ -1,4 +1,7 @@
 
+.. rubric:: 0.9.27
+   * add doc in RTD and fix issue in config_tools
+
 .. rubric:: 0.9.26:
     * TempFile has one more argument (directory destination)
     * Remove deprecated function (transform_ino_list) in codecs module
