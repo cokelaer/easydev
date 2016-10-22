@@ -1,3 +1,4 @@
 colorama
 pexpect
 mock
+sphinx
