@@ -102,7 +102,7 @@ class TempFile(object):
 
 
     """
-    def __init__(self, suffix='', dir="."):
+    def __init__(self, suffix='', dir=None):
         self.temp = tempfile.NamedTemporaryFile(suffix=suffix, delete=False,
                                                 dir=dir)
 
