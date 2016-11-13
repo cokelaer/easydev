@@ -1,8 +1,9 @@
+.. rubric:: 0.9.29:
+    * add delta parameter in assert_list_almost_equal
 
 .. rubric:: 0.9.28:
     * TempFile new argument must be set to None to keep previous behaviour (fix
 	on version 0.9.26)
-
 
 .. rubric:: 0.9.27
    * add doc in RTD and fix issue in config_tools

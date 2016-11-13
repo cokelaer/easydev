@@ -15,7 +15,7 @@
 ##############################################################################
 import logging
 
-__all__ = ["Logging"]
+__all__ = ["Logging", "Logging2"]
 
 
 class Logging(object):
@@ -68,13 +68,14 @@ class Logging(object):
         # I'm not sure this is the best solution, but basicConfig can be called
         # only once and populatse root.handlers list with one instance of
         # logging.StreamHandler. So, I reset it before calling basicConfig
-        # that it is effectively changing the logginh behaviour
+        # that it is effectively changing the logging behaviour
         logging.root.handlers = []
         logging.basicConfig(level=self._debugLevel)
     def _get_level(self):
         return self._debugLevel
     debugLevel = property(_get_level, _set_level,
-        doc="Read/Write access to the debug level. Must be one of INFO, DEBUG, WARNING, CRITICAL, ERROR")
+        doc="Read/Write access to the debug level. Must be one of INFO, " + \
+            "DEBUG, WARNING, CRITICAL, ERROR")
     level = property(_get_level, _set_level,
         doc="alias to :attr:`~easydev.logging_tools.Logging.debugLevel` (Read-only access)")
 
@@ -87,6 +88,30 @@ class Logging(object):
     def __deepcopy__(self, memo):
         s = Logging(self.level)
         return s
+
+
+
+class Logging2(object):
+    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -25,7 +25,7 @@ __all__ = ["assert_list_almost_equal", "trysetattr", "TempFile"]
 
 #from easydev.decorators import ifpandas
 
-def assert_list_almost_equal(first, second, places=None):
+def assert_list_almost_equal(first, second, places=None, deltas=None):
     """Combined version nose.tools.assert_almost_equal and assert_list_equal
 
     This function checks that 2 lists contain identical items.
@@ -38,9 +38,9 @@ def assert_list_almost_equal(first, second, places=None):
 
     .. doctest::
 
-        >>> from easydev.easytest import assert_list_almost_equal as assert_list
-        >>> assert_list([0,0,1], [0,0,0.9999], places=3)
-
+        >>> from easydev.easytest import assert_list_almost_equal
+        >>> assert_list_almost_equal([0,0,1], [0,0,0.9999], places=3)
+        >>> assert_list_almost_equal([0,0,1], [0,0,0.9999], deltas=1e-4)
 
     """
     from nose.tools import assert_almost_equal
@@ -49,7 +49,7 @@ def assert_list_almost_equal(first, second, places=None):
         # fails but I don't think this is correct. So let us
         # catch the TypeError
         try:
-            assert_almost_equal(x, y, places=places)
+            assert_almost_equal(x, y, places=places, delta=deltas)
         except TypeError:
             pass
 
