@@ -69,7 +69,7 @@ of code many applications would work out of the box with this code::
 
 
 There are many such functions in **easydev** and the best would be to have a
-look at the :ref:`user_guide` for more examples and the :ref:`ref_guide` guide for an
+look at the :ref:`quickstart` section for more examples and the :ref:`ref_guide` guide for an
 exhaustive list of tools available.
 
 There are also a few applications installed with **easydev**. One is the

@@ -1,3 +1,6 @@
+
+.. _ref_guide:
+
 References
 ############
 
@@ -88,6 +91,15 @@ multisetup
 ===================================================================
 
 .. automodule:: easydev.multisetup
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :synopsis: 
+
+Options
+===================================================================
+
+.. automodule:: easydev.options
     :members:
     :undoc-members:
     :inherited-members:
