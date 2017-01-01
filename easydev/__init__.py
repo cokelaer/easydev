@@ -60,6 +60,9 @@ from . import multisetup
 
 from .md5tools import md5
 
+from . import options
+from .options import *
+
 from . import paths
 from .paths import *
 

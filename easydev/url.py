@@ -40,7 +40,7 @@ def isurl_reachable(url, timeout=10, path="/"):
         url = url.split("//")[1]
     conn = httplib.HTTPConnection(url, timeout=timeout)
     try:
-        conn.request("HEAD", secondary_url)
+        conn.request("HEAD", path)
     except:
         return False
     # 302 is a redirection
