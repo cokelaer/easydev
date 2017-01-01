@@ -40,13 +40,9 @@ which inverts the keys/values in a dictionary (assuming unique keys):
     >>> inv
     {1: 'a', 2: 'b'}
 
-The **swapdict** is just one functions amongst many others but belongs to the
-*simple*
-functions.  Other functions such as the progress bar
-(:mod:`~easydev.progressbar`) are more
+Other functions such as the progress bar (:mod:`~easydev.progressbar`) are more
 complex and **easydev** should be very useful in speeding up development.
-Another example is
-the :func:`~easydev.tools.AttrDict` function: it makes the keys of a dictionary
+Another example is the :func:`~easydev.tools.AttrDict` function: it makes the keys of a dictionary
 accessible as attributes. Meaning that you can get or set the values quickly as
 follows:
 
@@ -73,25 +69,16 @@ of code many applications would work out of the box with this code::
 
 
 There are many such functions in **easydev** and the best would be to have a
-look at
-the :ref:`user_guide` for more examples and the :ref:`ref_guide` guide for an
-exhaustive list
-of tools available.
-
+look at the :ref:`user_guide` for more examples and the :ref:`ref_guide` guide for an
+exhaustive list of tools available.
 
 There are also a few applications installed with **easydev**. One is the
 **browse** application that is equivalent to **open** under Mac. The interest is
 that it is multi-platform.
 
-
 Note also that **easydev** was starting a few years ago and that some
 functionalities did not exist back then. Some functionalities available in
-easydev may now exist in standard modules of Python. 
-
-
-
-
-
+easydev may now exist in standard modules of Python.
 
 .. toctree::
     :maxdepth: 2

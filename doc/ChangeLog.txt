@@ -1,3 +1,9 @@
+
+.. rubric:: 0.9.30:
+   * isurl_reachable: add a second optional argument. Default behaviou not
+     changed but required for some non static URL
+   * add options module with SmartFormatter for argparse
+
 .. rubric:: 0.9.29:
     * add delta parameter in assert_list_almost_equal
 
