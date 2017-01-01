@@ -433,9 +433,7 @@ def _load_configfile(configpath):
                               "In case of YAML, make sure to not mix "
                               "whitespace and tab indentation.")
     except Exception as err:
-        print(err)
-        raise IOError("Config file {} not found.".format(configpath))
-
+        raise(err)
 
 def load_configfile(configpath):
     "Loads a JSON or YAML configfile as a dict."
