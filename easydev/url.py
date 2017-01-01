@@ -14,9 +14,7 @@
 #  website: https://pypi.python.org/pypi/easydev
 #
 ##############################################################################
-"""Utilities related to the web
-
-"""
+"""Utilities related to the web"""
 try:
     import httplib
 except ImportError:
@@ -26,29 +24,33 @@ except ImportError:
 __all__ = ["isurl_reachable"]
 
 
-def isurl_reachable(url, timeout=10):
+def isurl_reachable(url, timeout=10, path="/"):
     """Checks if an URL exists or nor
 
     :param str url: the url to look for
+    :param str path: Used in request.request at the
+        url path following the domain name. For instance,
+        www.ensembl.org is the site url but actually
+        we want to check this full url www.ensembl.org/biomart/martview
     :return: True if it exists
 
-
+    .. versionchanged:: 0.9.30
     """
     if url.startswith("http://") or url.startswith("https://"):
         url = url.split("//")[1]
-    request = httplib.HTTPConnection(url, timeout=timeout)
+    conn = httplib.HTTPConnection(url, timeout=timeout)
     try:
-        request.request("HEAD", '/')
+        conn.request("HEAD", secondary_url)
     except:
         return False
     # 302 is a redirection
     # 200 is okay
     try:
-        r1 = request.getresponse()
+        response = conn.getresponse()
     except:
         return False
 
-    if r1.status in [200, 302]:
+    if response.status in [200, 302]:
         return True
     else:
         return False
