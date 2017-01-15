@@ -14,6 +14,13 @@ browse
     :inherited-members:
     :synopsis: 
 
+chunks
+==========
+
+.. automodule:: easydev.chunks
+    :members:
+    :inherited-members:
+    :synopsis: 
 
 codecs
 ==========
@@ -142,9 +149,15 @@ sphinx themes
     :inherited-members:
     :synopsis: 
 
+timer
+================
+
+.. automodule:: easydev.timer
+    :members:
+    :undoc-members:
 
 tools
-===================================================================
+================
 
 .. automodule:: easydev.tools
     :members:

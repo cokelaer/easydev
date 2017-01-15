@@ -2,7 +2,7 @@
 
 Usage::
 
-    from easydev import profiler
+    from easydev import do_profile
     @do_profile()
     def test():
         x = 1

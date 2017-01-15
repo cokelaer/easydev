@@ -1,4 +1,5 @@
-from easydev.decorators import requires, ifpandas
+from easydev.decorators import requires, ifpandas, ifpylab, _require
+
 
 class A(object):
 
@@ -16,6 +17,10 @@ class A(object):
     @requires(["a",'b'], "what to do")
     def print_list(self):
         print(self.a +self.b)
+    
+    @_require("a", "what to do")
+    def print_list(self):
+        print(self.a)
 
 
 def test():
@@ -35,6 +40,12 @@ def test():
     a.print_str()
     a.print_list()
 
+
 @ifpandas
-def test_deco_pandas(self):
+def test_deco_pandas():
+    print(1)
+
+
+@ifpylab
+def test_deco_pylab():
     print(1)

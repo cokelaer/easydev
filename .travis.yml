@@ -15,9 +15,13 @@ install:
   - pip install .
   - pip install nose coverage ordereddict
   - pip install coveralls
+  - pip install pytest pytest-cov
 # # command to run tests, e.g. python setup.py test
-script:  
-  - python setup.py nosetests --with-coverage --cover-package easydev
+
+#pytest -v --durations=10 test/ --cov=easydev --cov-report term-missing
+script:
+  # - python setup.py nosetests --with-coverage --cover-package easydev
+  - pytest -v --durations=10 test/ --cov=easydev --cov-report term-missing
 after_success:
   coveralls
 

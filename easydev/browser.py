@@ -1,6 +1,6 @@
 # -*- python -*-
 #
-#  Copyright (c) 2011-2012  
+#  Copyright (c) 2011-2017
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #

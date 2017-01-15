@@ -1,4 +1,9 @@
 
+.. rubric:: 0.9.31:
+   * mkdirs: when a simple path (no / in the path) was provided, this led to an
+     error, which is now fixed. 
+   * Remove multigit from setup
+
 .. rubric:: 0.9.30:
    * isurl_reachable: add a second optional argument. Default behaviou not
      changed but required for some non static URL

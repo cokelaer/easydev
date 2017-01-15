@@ -82,6 +82,7 @@ def _require(*args_deco, **kwds_deco):
 
 
 # for book keeping, could be useful:
+"""
 def _blocking(not_avail):
     def blocking(f, *args, **kw):
         if not hasattr(f, "thread"):
@@ -98,7 +99,7 @@ def _blocking(not_avail):
             del f.thread
             return f.result
     return blocking
-
+"""
 
 # same as require decorator but works with list of stirngs of
 # single string and uses the functools utilities
@@ -159,10 +160,9 @@ def ifpandas(func):
 
 
 def ifpylab(func):
-    """check if pandas is available. If so, just return
+    """check if pylab is available. If so, just return
     the function, otherwise returns dumming function
     that does nothing
-
     """
     # for functions
     def wrapper(*args, **kwds):

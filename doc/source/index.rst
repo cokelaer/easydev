@@ -26,8 +26,8 @@ Motivation
 
 
 The package `easydev <http://pypi.python.org/pypi/easydev/>`_ provides
-miscellaneous functions and files that are repeatidly used in other Python
-packages.
+miscellaneous functions and that are often used in other Python packages.
+**easydev** should help developers in speeding up their own developments.
 
 Some functions are very simple such as the :func:`~easydev.tools.swapdict`,
 which inverts the keys/values in a dictionary (assuming unique keys):
@@ -41,7 +41,8 @@ which inverts the keys/values in a dictionary (assuming unique keys):
     {1: 'a', 2: 'b'}
 
 Other functions such as the progress bar (:mod:`~easydev.progressbar`) are more
-complex and **easydev** should be very useful in speeding up development.
+complex.
+
 Another example is the :func:`~easydev.tools.AttrDict` function: it makes the keys of a dictionary
 accessible as attributes. Meaning that you can get or set the values quickly as
 follows:
@@ -56,25 +57,9 @@ follows:
     >>> d.a
     10
 
-Another example is the :mod:`~easydev.multicore` module that provides
-a simple tool to perform a multi-core analysis in Python. Note, however,
-that specialised library would surely cover more aspects. Yet, in a few lines
-of code many applications would work out of the box with this code::
-
-    from easydev.multicore import MultiProcessing
-    mp = MultiProcessing(maxcpu=4)
-    mp.add_job(test_func, 2)
-    mp.add_job(test_func, 1)
-    mp.run()
-
-
-There are many such functions in **easydev** and the best would be to have a
+There are many such functions in **easydev** and the best is to have a
 look at the :ref:`quickstart` section for more examples and the :ref:`ref_guide` guide for an
 exhaustive list of tools available.
-
-There are also a few applications installed with **easydev**. One is the
-**browse** application that is equivalent to **open** under Mac. The interest is
-that it is multi-platform.
 
 Note also that **easydev** was starting a few years ago and that some
 functionalities did not exist back then. Some functionalities available in

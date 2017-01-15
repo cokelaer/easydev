@@ -22,13 +22,13 @@ import json
 import os
 import sys
 
-__all__ = ["shellcmd", "checkParam", "swapdict", "check_param_in_list",
+__all__ = ["shellcmd", "swapdict", "check_param_in_list",
     "check_range", "precision", "AttrDict", "DevTools", "execute",
     "touch", "mkdirs"]
 
 
 def precision(data, digit=2):
-    """Return the value with only 2 digits
+    """Round values in a list keeping only N digits precision
 
     ::
 
@@ -68,6 +68,7 @@ def check_range(value, a, b, strict=False):
         if value > b:
             raise ValueError(" {} must be less than {}".format(value, b))
 
+
 def checkParam(param, valid_values):
     """
     .. warning:: deprecated since 0.6.10 use :meth:`check_param_in_list` instead
@@ -101,7 +102,7 @@ def check_param_in_list(param, valid_values, name=None):
 
 
 def shellcmd(cmd, show=False, verbose=False, ignore_errors=False):
-    """An alias to run system commands.
+    """An alias to run system commands with Popen.
 
     Based on subprocess.Popen.
 
@@ -137,12 +138,18 @@ def shellcmd(cmd, show=False, verbose=False, ignore_errors=False):
 
 
 def execute(cmd, showcmd=True, verbose=True):
+    """An alias to run system commands using pexpect.
+
+    :param cmd:
+    :param showcmd:
+    :param verbose:
+    """
     import pexpect
     if showcmd is True:
         print(cmd)
 
-    p = pexpect.spawn(cmd,timeout=None) 
-    line = p.readline() 
+    p = pexpect.spawn(cmd, timeout=None)
+    line = p.readline()
     while line:
         if verbose:
             try:
@@ -155,6 +162,9 @@ def execute(cmd, showcmd=True, verbose=True):
 
 
 def touch(fname, times=None):
+    """Touch a file (like unix command)
+
+    """
     with open(fname, 'a'):
         os.utime(fname, times)
 
@@ -317,6 +327,10 @@ class DevTools(object):
         return codecs.to_list(query)
 
     def list2string(self, query, sep=",", space=False):
+        """
+        see :func:`easydev.tools.list2string`
+
+        """
         from easydev import codecs
         return codecs.list2string(query, sep=sep, space=space)
 

@@ -13,12 +13,12 @@
 #  website: https://github.com/cokelaer/easydev
 #
 ##############################################################################
+"""A convenient timer"""
 import time
 
 
 class Timer():
     """Timer working with *with* statement
-
 
     ::
 
@@ -30,8 +30,6 @@ class Timer():
         with Timer(imes):
             # do something else
             time.sleep(0.2)
-
-        
 
     """
     def __init__(self, times):

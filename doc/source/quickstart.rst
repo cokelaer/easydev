@@ -1,19 +1,103 @@
 .. _quickstart:
 
-Quick Start
+User Guide
 ###############
 
-There is no quickstart or tutorial in **easydev** since it is a set of
-versatile tools. The documentation is the :ref:`ref_guide`.
+There is no tutorial *per-se* in **easydev** since it is a set of
+versatile and independent functionalities.
 
-However, here are some general tools.
+Here below, we describe some of available tools.
 
 .. contents::
+
+Progress bar
+==============
+
+Many tasks may take a while to end. If within a loop, a progress bar is usually
+quite handy to keep track of the computation. **easydev** provides a Progress bar
+that can be used in python, IPython, and IPython notebooks::
+
+    from easydev import Progress
+    p = Progress(1000)
+    for i in range(0,1000):
+        # do something.
+        p.animate(i+1)
+
+Swapping key and value in a dictionary with swapdict
+=======================================================
+
+In Python, dictionaries are used everywhere. Sometimes, it is convenient
+to swap the keys and values (values become keys and vice-versa).
+The :func:`~easydev.tools.swapdict` can be used for that purpose:
+
+.. doctest::
+
+    >>> from easydev import swapdict
+    >>> d = {'a':1, 'b':2}
+    >>> inv = swapdict(d)
+    >>> inv
+    {1: 'a', 2: 'b'}
+
+.. note:: values must be unique
+
+The tools module
+======================
+
+In addition to the *swapdict* function, the :mod:`easydev.tools` module has
+many more functionalities.
+
+.. autosummary::
+    :nosignatures:
+
+    ~easydev.tools.precision
+    ~easydev.tools.check_param_in_list
+    ~easydev.tools.shellcmd
+    ~easydev.tools.execute
+    ~easydev.tools.touch
+    ~easydev.tools.swapdict
+    ~easydev.tools.mkdirs
+    ~easydev.tools.AttrDict
+    ~easydev.tools.DevTools
+
+For :class:`~easydev.tools.DevTools` and :class:`~easydev.tools.AttrDict`, 
+please see :ref:`devtools` and :ref:`attrdict` sections, respetively.
+
+Check validity of a values
+----------------------------
+
+The :func:`~easydev.tools.check_param_in_list` is used to check the validity of a parameter::
+
+    >>> mode = "on"
+    >>> check_param_in_list(mode, ["on", "off"])
+    True
+
+.. _attrdict:
+
+AttrDict
+-------------
+
+This is a very convenient class to expose keys of a dictionary-like object as
+attributes:
+
+.. code-block:: python
+
+    >>> from easydev import AttrDict
+    >>> d = AttrDict({'val1':1})
+    >>> d.val1
+    1
+
+This works also if you want to set a value::
+
+    d.val2 = 2
+
+.. _devtools:
 
 The DevTools class
 ========================
 
-We will tend to put small utilities within this :class:`easydev.tools.DevTools`.
+Little by little, small tools have been added in **easydev**. To make life easier such tools
+have been gatherered within a single class called :class:`easydev.tools.DevTools`.
+
 Usually, we can create just an instance and add it in a class as an accessible
 set of functionalities. Consider the following example:
 
@@ -53,21 +137,22 @@ line 7. You would need to type::
     if x >2:
         raise ValueError('the value provided is incorrect....')
 
-The DevTools has more functionalities than those presented here and
-will be extended little by little.
+Timer
+=========
 
-Progress bar
-==============
+Timer populate a list variable with time spent in **with** statements
+::
 
-Many tasks may take a while to end and users may want to known the progress.
-Here is a simple Progress bar that would work in python and IPython, and IPython
-notebooks::
+    from easydev import Timer
+    import time
+    times = []
+    with Timer(times):
+       time.sleep(0.1)
+    with Timer(imes):
+        time.sleep(0.2)
+    sum(times)
+    
 
-    from easydev import Progress
-    p = Progress(1000)
-    for i in range(0,1000):
-        # do something.
-        p.animate(i+1)
 
 Profiling
 ================
@@ -85,6 +170,20 @@ the do_profile decorator (requires the package line_profiler)::
         time.sleep(0.1)
     test(1,2)
 
+Data related
+==================
+
+You can split a list into chunks using
+:func:`~easydev.chunks.split_into_chunks`:
+
+.. doctest::
+
+    >>> from easydev import split_into_chunks
+    >>> data = [1,1,2,2,3,3]
+    >>> list(split_into_chunks(data, 3))
+    [[1, 2], [1, 3], [2, 3]]
+
+Note that it is an iterator (hence the list cast).
 
 
 Sphinx tools
@@ -164,36 +263,6 @@ Simply create a python file that contains the following code::
         mysetup = Multisetup(curdir='.', commands=sys.argv[1:], packages=packages)
         mysetup.run()
 
-The tools module
-======================
-
-In addition to the DevTools presented above, the :mod:`easydev.tools` module
-also provide some other functionalities.
-
-
-Check validity of a values
-----------------------------
-
-The module :mod:`~easydev.tools` provides a few simple functions amongst which,
-the :func:`~easydev.tools.checkParam` is used to check the validity of a parameter::
-
-    >>> mode = "on"
-    >>> checkParam(mode, ["on", "off"])
-    True
-
-
-AttrDict
--------------
-
-This is a very convenient class to expose keys of a dictionary-like object as
-attributes:
-
-.. code-block:: python
-
-    >>> from easydev import AttrDict
-    >>> d = AttrdDict({'val1':1})
-    >>> d.val1
-    1
 
 
 Create a package layout in one command

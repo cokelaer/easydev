@@ -3,7 +3,7 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2016
+#  Copyright (c) 2011-2017
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -18,10 +18,12 @@
 # $:Id $
 """various type convertors (e.g., list to string)"""
 
+
 __all__ = ["to_list", "tolist", "list2string"]
 
 
 def tolist(data, verbose=True):
+    """alias to :func:`easydev.codecs.to_list`"""
     return to_list(data, verbose=verbose)
 
 
@@ -42,7 +44,6 @@ def to_list(data, verbose=True):
         [1]
         >>> to_list([1,2])
         [1,2]
-
 
     """
     if isinstance(data, list) or isinstance(data, tuple):
