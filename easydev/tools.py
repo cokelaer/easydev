@@ -178,19 +178,23 @@ def swapdict(dic, check_ambiguity=True):
 def mkdirs(newdir, mode=0o777):
     """Recursive creation of a directory
 
-    :source: matplotlib mkdirs
+    :source: matplotlib mkdirs. In addition, handles "path" without slashes
 
     make directory *newdir* recursively, and set *mode*.  Equivalent to ::
 
         > mkdir -p NEWDIR
         > chmod MODE NEWDIR
     """
+    # mkdirs("analysis") # without / at the end led to an error
+    # since os.path.split returns ('', 'analysis')
     try:
         if not os.path.exists(newdir):
             parts = os.path.split(newdir)
             for i in range(1, len(parts) + 1):
                 thispart = os.path.join(*parts[:i])
-                if not os.path.exists(thispart):
+                # if no sep at the end, thispart may be an empty string
+                # so, we need to check if thispart exists and is not of len 0
+                if not os.path.exists(thispart) and len(thispart):
                     os.makedirs(thispart, mode)
     except OSError as err:
         import errno

@@ -145,6 +145,8 @@ def test_devtools():
         assert False
     except:
         assert True
+    d.mkdir(tempfile.mkdtemp())
+
 
 def test_mkdirs():
     import tempfile, os
@@ -155,12 +157,8 @@ def test_mkdirs():
     except:
         assert True
 
-    try:
-        # without / , the dir is not created and raise an error
-        tools.mkdirs("tttttttttttttttttttttt")
-        assert False
-    except:
-        assert True
+    # without / , was not working but is now part of the API
+    tools.mkdirs(tempfile.mkdtemp())
 
 def test_touch():
     with TempFile() as fh:
