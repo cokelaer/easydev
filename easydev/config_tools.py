@@ -15,13 +15,6 @@
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
-# $:Id $
-"""
-.. testsetup::
-
-    from easydev.config_tools import *
-
-"""
 try:
     from ConfigParser import ConfigParser
 except ImportError:

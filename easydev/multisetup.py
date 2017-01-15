@@ -3,7 +3,7 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2013
+#  Copyright (c) 2011-2017
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -12,10 +12,9 @@
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
 #  Website: https://github.com/cokelaer/easydev
-#  Documentation: http://packages.python.org/easydev
+#  Documentation: http://easydev-python.readthedocs.io
 #
 ##############################################################################
-# $:Id $
 """Calling setup.py recursively and/or in multi python packages.
 
 The commands are similar to those expected by setup.py. In addition,

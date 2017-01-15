@@ -15,7 +15,6 @@
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
-# $:Id $
 """This module is a copy of a sphinx extension. unknown origin.
 
     added by Thomas Cokelaer: get_copybutton_path function.

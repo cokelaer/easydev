@@ -16,13 +16,7 @@
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
-# $:Id $
 """Format colored consoled output. Modified from sphinx.util.console
-
-.. doctest::
-
-    from easydev.console import *
-    print(red("test"))
 
 
 """

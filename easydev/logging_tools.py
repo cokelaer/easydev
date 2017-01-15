@@ -15,7 +15,7 @@
 ##############################################################################
 import logging
 
-__all__ = ["Logging", "Logging2"]
+__all__ = ["Logging"]
 
 
 class Logging(object):
@@ -91,8 +91,6 @@ class Logging(object):
 
 
 
-class Logging2(object):
-    pass
 
 
 

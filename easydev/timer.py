@@ -1,16 +1,18 @@
+# -*- python -*-
 # -*- coding: utf-8 -*-
 #
-#  This file is part of Easydev software
+#  This file is part of the easydev software
 #
-#  Copyright (c) 2016 - Easydev
+#  Copyright (c) 2011-2017
 #
-#  File author(s):
-#      Thomas Cokelaer <thomas.cokelaer@pasteur.fr>
+#  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the terms of the 3-clause BSD license.
-#  The full license is in the LICENSE file, distributed with this software.
+#  Distributed under the GPLv3 License.
+#  See accompanying file LICENSE.txt or copy at
+#      http://www.gnu.org/licenses/gpl-3.0.html
 #
-#  website: https://github.com/cokelaer/easydev
+#  Website: https://github.com/cokelaer/easydev
+#  Documentation: http://easydev-python.readthedocs.io
 #
 ##############################################################################
 """A convenient timer"""

@@ -1,8 +1,9 @@
 # -*- python -*-
+# -*- coding: utf-8 -*-
 #
-#  This file is part of easydev software
+#  This file is part of the easydev software
 #
-#  Copyright (c) 2012-2013
+#  Copyright (c) 2011-2017
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
@@ -11,7 +12,7 @@
 #      http://www.gnu.org/licenses/gpl-3.0.html
 #
 #  Website: https://github.com/cokelaer/easydev
-#  website: https://pypi.python.org/pypi/easydev
+#  Documentation: http://easydev-python.readthedocs.io
 #
 ##############################################################################
 """Utilities related to the web"""
