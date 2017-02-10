@@ -7,14 +7,14 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 9
-_MICRO               = 31
+_MICRO               = 32
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
 metainfo = {
     'authors': {'Cokelaer':('Thomas Cokelaer','cokelaer@ebi.ac.uk')},
     'version': version,
-    'license' : 'GPL',
+    'license' : 'new BSD',
     'download_url' : ['http://pypi.python.org/pypi/easydev'],
     'url' : ["http://packages.python.org/easydev/"],
     'description':'Common utilities to ease the development of Python packages' ,
@@ -25,9 +25,13 @@ metainfo = {
           'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Developers',
           'Intended Audience :: Science/Research',
-          'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
+          'License :: OSI Approved',
           'Operating System :: OS Independent',
+          'Programming Language :: Python :: 2',
           'Programming Language :: Python :: 2.7',
+          'Programming Language :: Python :: 3',
+          'Programming Language :: Python :: 3.4',
+          'Programming Language :: Python :: 3.5',
           'Topic :: Software Development :: Libraries :: Python Modules'
           ]
     }
@@ -58,8 +62,8 @@ setup(
     package_data = {"easydev.share": [
                     "themes/standard/*html",
                     "themes/standard/static/*",
-                    "themes/cno/*html", 
-                    "themes/cno/static/*", 
+                    "themes/cno/*html",
+                    "themes/cno/static/*",
                     "copybutton.js"]},
 
     install_requires = ['colorama', 'pexpect'],

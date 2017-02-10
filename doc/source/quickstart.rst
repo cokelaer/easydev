@@ -93,7 +93,7 @@ This works also if you want to set a value::
 .. _devtools:
 
 The DevTools class
-========================
+-------------------------
 
 Little by little, small tools have been added in **easydev**. To make life easier such tools
 have been gatherered within a single class called :class:`easydev.tools.DevTools`.

@@ -1,2 +1,4 @@
+include COPYING
+include README.rst
 recursive-include easydev/share *
 include easydev/share/copybutton.js
