@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 
 def test_platform():
-    
+
     assert get_platform() in ['Linux', 'Windows', 'Mac']
 
     linux_distribution()

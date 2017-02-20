@@ -1,6 +1,5 @@
 from easydev.console import *
 from easydev import console
-from unittest.mock import patch
 
 
 def test_get_terminal_width():
