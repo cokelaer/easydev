@@ -19,7 +19,7 @@ easydev
 :contributions: Please join https://github.com/cokelaer/easydev
 :source: Please use https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
-:Python version supported: 2.6, 2.7, 3.3, 3.4, 3.5
+:Python version supported: 2.6, 2.7, 3.3, 3.4, 3.5, 3.6
 
 
 The  `easydev <http://pypi.python.org/pypi/easydev/>`_ package 

@@ -5,23 +5,24 @@ python:
   - "3.4"
   - "3.3"
   - "3.5"
+  - "3.6"
   - "2.7"
   - "2.6"
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
+
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: 
+install:
   - pip install .
   - pip install nose coverage ordereddict
   - pip install coveralls
   - pip install pytest pytest-cov
-# # command to run tests, e.g. python setup.py test
 
-#pytest -v --durations=10 test/ --cov=easydev --cov-report term-missing
 script:
   # - python setup.py nosetests --with-coverage --cover-package easydev
   - pytest -v --durations=10 test/ --cov=easydev --cov-report term-missing
+
 after_success:
   coveralls
 
