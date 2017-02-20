@@ -1,7 +1,10 @@
 from easydev.platform import get_platform, linux_distribution, is_windows
 from easydev.platform import is_linux, is_mac
 
-from unittest.mock import patch
+try:
+    from unittest.mock import patch
+except:
+    from mock import patch
 
 
 

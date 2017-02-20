@@ -1,5 +1,9 @@
 from easydev import browser
-from unittest.mock import patch
+
+try:
+    from unittest.mock import patch
+except:
+    from mock import patch
 
 
 def test_browse(mocker):
