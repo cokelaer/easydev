@@ -35,7 +35,7 @@ which inverts the keys/values in a dictionary (assuming unique keys):
 .. doctest::
 
     >>> from easydev import swapdict
-    >>> d = {'a':1, 'b':2}
+    >>> d = {'a': 1, 'b': 2}
     >>> inv = swapdict(d)
     >>> inv
     {1: 'a', 2: 'b'}
@@ -50,7 +50,7 @@ follows:
 .. doctest::
 
     >>> from easydev import AttrDict
-    >>> d = AttrDic(**{'a':1, 'b':2})
+    >>> d = AttrDict(**{'a': 1, 'b': 2})
     >>> d.a
     1
     >>> d.a = 10

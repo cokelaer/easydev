@@ -68,7 +68,7 @@ class Logging(object):
         # I'm not sure this is the best solution, but basicConfig can be called
         # only once and populatse root.handlers list with one instance of
         # logging.StreamHandler. So, I reset it before calling basicConfig
-        # that it is effectively changing the logging behaviour
+        # that effectively changes the logging behaviour
         logging.root.handlers = []
         logging.basicConfig(level=self._debugLevel)
     def _get_level(self):
@@ -88,28 +88,3 @@ class Logging(object):
     def __deepcopy__(self, memo):
         s = Logging(self.level)
         return s
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

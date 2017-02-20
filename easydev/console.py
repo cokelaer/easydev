@@ -16,13 +16,10 @@
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
-"""Format colored consoled output. Modified from sphinx.util.console
-
-
-"""
-
+"""Format colored consoled output. Modified from sphinx.util.console"""
 import os
 import sys
+
 
 __all__ = ["color_terminal", "get_terminal_width", "term_width_line"]
 

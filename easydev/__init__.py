@@ -18,7 +18,7 @@
 from __future__ import print_function
 #from __future__ import absolute_import
 
-__version__ = "$Rev$"
+__version__ = "0.9.34"
 
 import pkg_resources
 try:
@@ -87,8 +87,6 @@ from .dependencies import get_dependencies
 from . import multicore
 from .multicore import *
 
-# use local import to not clash with setuptools itself.
-from .setuptools import get_datafiles
 
 from .progressbar import TextProgressBar, progress_bar, Progress
 

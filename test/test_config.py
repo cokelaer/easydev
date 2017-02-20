@@ -1,6 +1,9 @@
-from easydev.config_tools import ConfigExample, DynamicConfigParser
+from easydev.config_tools import ConfigExample, DynamicConfigParser, load_configfile
+
 from easydev import CustomConfig
 import os
+
+
 
 
 def test_config_custom():
@@ -18,20 +21,21 @@ def test_configExample():
     c.remove_section('General')
 
 
-def _test_ordered_dict_attribute():
+def test_ordered_dict_attribute():
     # disabled because incompatible with python 3
     c = DynamicConfigParser()
     c.add_section("GA")
     c.GA.test = 2 # this is an attribute only, not  yet a key
     c.add_option("GA", "test", 1)
     c.GA.test = 2
+    c['GA']['test'] = 4
+    del c['GA']['test']
 
 
 def test_DynamicConfig():
     c = ConfigExample()
     dc = DynamicConfigParser(c.config)
     dc.save('test.ini')
-
     dc = DynamicConfigParser('test.ini')
     #dc = DynamicConfigParser(c.config)
     dc._replace_config(c.config)
@@ -50,6 +54,13 @@ def test_DynamicConfig():
         dc = DynamicConfigParser(234)
         assert False
     except TypeError:
+        assert True
+
+    dc = DynamicConfigParser()
+    try:
+        dc.read("test_dummy")
+        assert False
+    except:
         assert True
 
 def test_DynamicConfigDelete():
@@ -73,7 +84,6 @@ def test_DynamicConfig_setter():
     dc2 = DynamicConfigParser("test.ini")
     assert dc == dc2
     dc2.GA.test == 1
-
 
     dc.GA.test = 10
     dc.save("test.ini")
@@ -123,7 +133,6 @@ def test_compare():
     dc2.add_option("GA", "test", 1)
 
     assert (dc==dc2) == True
-
 
 
 

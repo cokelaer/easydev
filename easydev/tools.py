@@ -232,13 +232,13 @@ class AttrDict(dict):
     .. doctest::
 
         >>> from easydev import AttrDict
-        >>> a = AttrDict('value': 1)
+        >>> a = AttrDict(**{'value': 1})
         >>> a.value
         1
         >>>
         >>> a.unit = 'meter'
-        >>> a.keys()
-        ['value', 'meter']
+        >>> sorted(a.keys())
+        ['unit', 'value']
 
     If you need to add new simple values after the creation of the instance,
     just use the setter::

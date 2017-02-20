@@ -1,6 +1,7 @@
 from easydev.platform import get_platform, linux_distribution, is_windows
 from easydev.platform import is_linux, is_mac
 
+from unittest.mock import patch
 
 
 
@@ -16,3 +17,7 @@ def test_platform():
 
 
 
+    def func():
+        raise Exception
+    with patch("platform.linux_distribution", func):
+        get_platform()

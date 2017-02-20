@@ -27,14 +27,15 @@ import os
 __all__ = ["CustomConfig", "DynamicConfigParser", "ConfigExample", 
            "load_configfile"]
 
+#  53, 59, 64-65, 181, 260, 262, 267-270, 288-290, 329, 332-337, 340-341, 359-360, 386-388, 400-401, 406-426, 431-435
+
 
 class _DictSection(object):
-    '''Dictionary section.
+    """Dictionary section.
 
     Reference: https://gist.github.com/dangoakachan/3855920
 
-    '''
-
+    """
     def __init__(self, config, section):
         object.__setattr__(self, '_config', config)
         object.__setattr__(self, '_section', section)
@@ -102,6 +103,7 @@ class ConfigExample(object):
         >>> from ConfigParser import ConfigParser
         >>> config = ConfigParser()
         >>> config.read("file.ini")
+        []
 
     """
     def __init__(self):
@@ -110,7 +112,6 @@ class ConfigExample(object):
         self.config.set('General', 'verbose', 'true')
         self.config.add_section('GA')
         self.config.set('GA', 'popsize', '50')
-
 
 
 class DynamicConfigParser(ConfigParser, object):
@@ -319,7 +320,6 @@ class DynamicConfigParser(ConfigParser, object):
         return str_
 
     def __getattr__(self, key):
-        #print('__getattr__(%s) in DictConfig' % key)
         return _DictSection(self, key)
     __getitem__ = __getattr__
 
@@ -362,7 +362,6 @@ class DynamicConfigParser(ConfigParser, object):
         return True
 
 
-
 class CustomConfig(object):
     """Base class to manipulate a config directory"""
 
@@ -403,7 +402,6 @@ class CustomConfig(object):
             raise Exception(err)
 
 
-
 def _load_configfile(configpath):
     "Tries to load a JSON or YAML file into a dict."
     try:
@@ -428,6 +426,7 @@ def _load_configfile(configpath):
     except Exception as err:
         raise(err)
 
+
 def load_configfile(configpath):
     "Loads a JSON or YAML configfile as a dict."
     config = _load_configfile(configpath)
@@ -435,26 +434,4 @@ def load_configfile(configpath):
         raise IOError("Config file must be given as JSON or YAML "
                             "with keys at top level.")
     return config
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -1,4 +1,12 @@
 
+
+
+.. rubric:: 0.9.33:
+   * remove setuptools module, which was deprecated since a while
+   * use pytest in test_browser + tests + fixed doctests
+
+.. rubric:: 0.9.32: a conda-forge release (licenses)
+
 .. rubric:: 0.9.31:
    * mkdirs: when a simple path (no / in the path) was provided, this led to an
      error, which is now fixed. 

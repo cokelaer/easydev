@@ -1,18 +1,25 @@
-from easydev.browser import browse 
-from nose.plugins.attrib import attr
+from easydev import browser
+from unittest.mock import patch
 
 
-@attr('notravis')
-def test_browse():
-    browse("http://pypi.python.org", verbose=True)
-    browse("pypi.python.org", verbose=True)
-    browse(".", verbose=True)
+def test_browse(mocker):
+    def func(*args, **kwargs):
+        pass
+    with patch('webbrowser.open', func):
+        with patch('webbrowser.open_new', func):
+            browser.browse("http://pypi.python.org", verbose=True)
+            browser.browse("pypi.python.org", verbose=True)
+            browser.browse(".", verbose=True)
 
 
-
-def test_browse_module():
+def test_browse_module(mocker):
     from easydev.browser import main
-    main(["browse", "--help"])
-    main(["browse", "." ])
-    main(["browse", "http://www.uniprot.org" ])
+    def func(*args, **kwargs):
+        pass
+    with patch('webbrowser.open', func):
+        main(["browse", "--help"])
+        main(["browse", "." ])
+        main(["browse", "http://www.uniprot.org" ])
+
+
 
