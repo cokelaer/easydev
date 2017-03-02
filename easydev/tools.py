@@ -271,11 +271,16 @@ class AttrDict(dict):
         :param dict content: a valid dictionary
         """
         # accepts dict and attrdict classes
-        if content.__class__ not in [dict, AttrDict]:
+        try:
+            from collections import OrderedDict
+        except:
+            OrderedDict = AttrDict
+
+        if content.__class__ not in [dict, OrderedDict, AttrDict]:
             raise TypeError
 
         for k, v in content.items():
-            if v.__class__ not in [dict, AttrDict]:
+            if v.__class__ not in [dict, AttrDict, OrderedDict]:
                 # fixme copy ?
                 self[k] = v
             else:

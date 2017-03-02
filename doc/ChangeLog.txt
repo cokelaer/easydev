@@ -4,6 +4,7 @@
 .. rubric:: 0.9.33:
    * remove setuptools module, which was deprecated since a while
    * use pytest in test_browser + tests + fixed doctests
+   * AttrDict can now also handle OrderedDict
 
 .. rubric:: 0.9.32: a conda-forge release (licenses)
 
