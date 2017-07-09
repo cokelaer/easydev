@@ -1,5 +1,8 @@
 
 
+.. rubric:: 0.9.35:
+   * Fix in_ipynb for the progressbar in jupyter notebooks
+
 .. rubric:: 0.9.34:
    * AttrDict can now also handle OrderedDict. Used by Sequana project to cope
      with new version of Snakemake 3.10
