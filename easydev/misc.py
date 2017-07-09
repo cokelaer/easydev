@@ -56,6 +56,7 @@ def cmd_exists(cmd):
         # This choice ensure that if it fails, we keep going.
         return True
 
+
 def in_ipynb():
     """Checks if we are in an ipython notebook
 
@@ -67,7 +68,9 @@ def in_ipynb():
         if 'parent_appname' in cfg['IPKernelApp'].keys() and \
                 cfg['IPKernelApp']['parent_appname'] == 'ipython-notebook':
             return True
-        else:
-            return False
+        elif "connection_file" in cfg['IPKernelApp'].keys():
+            if "jupyter" in cfg['IPKernelApp']['connection_file']:
+                return True
+        return False
     except NameError:
         return False
