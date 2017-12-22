@@ -15,9 +15,9 @@ before_install:
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
   - pip install .
-  - pip install -y nose coverage ordereddict
-  - pip install -y coveralls mock
-  - pip install -y pytest pytest-cov pytest-mock --upgrade
+  - pip install  nose coverage ordereddict
+  - pip install  coveralls mock
+  - pip install  pytest pytest-cov pytest-mock --upgrade
 
 script:
   # - python setup.py nosetests --with-coverage --cover-package easydev
