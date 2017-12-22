@@ -71,7 +71,6 @@ else:
     system = sys.platform
 
 
-
 def user_data_dir(appname=None, appauthor=None, version=None, roaming=False):
     r"""Return full path to the user-specific data dir for this application.
 

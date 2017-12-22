@@ -15,7 +15,6 @@
 #  Documentation: http://easydev-python.readthedocs.io
 #
 ##############################################################################
-
 import os
 
 
@@ -23,6 +22,7 @@ __all__ = ['get_home', 'cmd_exists']
 
 
 def get_home():
+    """Return path of the HOME"""
     # This function should be robust
     # First, let us try with expanduser
     try:
@@ -42,6 +42,7 @@ def get_home():
 
 
 def cmd_exists(cmd):
+    """Return true if the command do exists in the environement"""
     try:
         import subprocess
         # for unix/max only
