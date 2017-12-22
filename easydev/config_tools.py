@@ -98,9 +98,11 @@ class ConfigExample(object):
 
 
     which can be read with ConfigParser as follows:
-    .. code-block:: python
 
-        >>> from ConfigParser import ConfigParser
+    .. doctest::
+
+        >>> # Python 3 code
+        >>> from configparser import ConfigParser
         >>> config = ConfigParser()
         >>> config.read("file.ini")
         []
@@ -133,13 +135,13 @@ class DynamicConfigParser(ConfigParser, object):
 
     You can now also directly access to an option as follows::
 
-        >>> c.General.tag
+        c.General.tag
 
     Then, you can add or remove sections (:meth:`remove_section`, :meth:`add_section`),
     or option from a section :meth:`remove_option`. You can save the instance into a file
     or print it::
 
-        >>> print(c)
+        print(c)
 
     .. warning:: if you set options manually (e.G. self.GA.test =1 if GA is a
         section and test one of its options), then the save/write does not work
@@ -231,8 +233,9 @@ class DynamicConfigParser(ConfigParser, object):
         Let us build up  a standard config file:
         .. code-block:: python
 
-            >>> import ConfigParser
-            >>> c = ConfigParser.ConfigParser()
+            >>> # Python 3 code
+            >>> from configparser import ConfigParser
+            >>> c = ConfigParser()
             >>> c.add_section('general')
             >>> c.set('general', 'step', str(1))
             >>> c.set('general', 'verbose', 'True')
