@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 9
-_MICRO               = 35
+_MICRO               = 36
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -66,7 +66,7 @@ setup(
                     "themes/cno/static/*",
                     "copybutton.js"]},
 
-    install_requires = ['colorama', 'pexpect'],
+    install_requires = ['colorama', 'pexpect', "colorlog"],
     extras_require = {
 	    'profiler': ["line_profiler_test"]
     },
