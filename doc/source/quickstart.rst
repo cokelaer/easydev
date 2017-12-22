@@ -13,13 +13,13 @@ Here below, we describe some of available tools.
 Progress bar
 ==============
 
-Many tasks may take a while to end. If within a loop, a progress bar is usually
+Many tasks may take a while to finish especially when using a loop. A progress bar is usually
 quite handy to keep track of the computation. **easydev** provides a Progress bar
 that can be used in python, IPython, and IPython notebooks::
 
     from easydev import Progress
     p = Progress(1000)
-    for i in range(0,1000):
+    for i in range(0, 1000):
         # do something.
         p.animate(i+1)
 
@@ -136,6 +136,25 @@ line 7. You would need to type::
         raise ValueError('the value provided is incorrect....')
     if x >2:
         raise ValueError('the value provided is incorrect....')
+
+logging
+=========
+
+The logging module uses the standard Python logging module and colorlog package
+to provide a simple interface to include in your own library. For instance:
+
+::
+
+    >>> from easydev import Logging
+    >>> log = Logging("easydev", "WARNING")
+    >>> log.warning("using a logging")
+    >>> log.debug("debug message not shown")
+    >>> log.level = "DEBUG"
+    >>> log.debug("debug message")
+    WARNING [easydev]:  using a logging
+    DEBUG   [easydev]:  debug message
+
+
 
 Timer
 =========

@@ -14,4 +14,6 @@ command::
     pip install easydev --upgrade
 
 
+**easydev** is also available on **conda** (conda-forge channel)::
 
+    conda install easydev

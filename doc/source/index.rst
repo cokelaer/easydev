@@ -6,7 +6,7 @@ EASYDEV documentation
 .. raw:: html
 
     <div style="width:40%">
-    <a href="https://pypi.python.org/pypi/easydev"> <img src="https://badge.fury.io/py/easydev.svg"></a> 
+    <a href="https://pypi.python.org/pypi/easydev"> <img src="https://badge.fury.io/py/easydev.svg"></a>
     <a href="https://travis-ci.org/cokelaer/easydev"> <img src="https://travis-ci.org/cokelaer/easydev.svg?branch=master"></a>
     <a href="https://coveralls.io/github/cokelaer/easydev?branch=master"> <img src="https://coveralls.io/repos/github/cokelaer/easydev/badge.svg?branch=master"></a>
     <a href="https://landscape.io/github/cokelaer/easydev/master"> <img src="https://landscape.io/github/cokelaer/easydev/master/landscape.png"></a>
@@ -26,7 +26,7 @@ Motivation
 
 
 The package `easydev <http://pypi.python.org/pypi/easydev/>`_ provides
-miscellaneous functions and that are often used in other Python packages.
+miscellaneous functions that are often used in other Python packages.
 **easydev** should help developers in speeding up their own developments.
 
 Some functions are very simple such as the :func:`~easydev.tools.swapdict`,
