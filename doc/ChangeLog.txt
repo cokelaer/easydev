@@ -2,6 +2,8 @@
 .. rubic:: 0.9.36:
     * Fix logging to be a proper singleton. This should fix bug reported in 
 	  https://github.com/cokelaer/easydev/issues/15
+	* drop support for python 2.6 since it is not supported by the Pythno code
+      team.
 
 .. rubric:: 0.9.35:
    * Fix in_ipynb for the progressbar in jupyter notebooks
