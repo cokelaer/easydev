@@ -28,7 +28,7 @@ colors = {
 
 
 
-class Logging():
+class Logging(object):
     """logging utility.
 
     ::
