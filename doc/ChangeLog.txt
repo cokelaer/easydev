@@ -1,4 +1,8 @@
 
+
+Fix new-style class (https://github.com/cokelaer/easydev/pull/16)
+
+
 .. rubic:: 0.9.36:
     * Fix logging to be a proper singleton. This should fix bug reported in 
 	  https://github.com/cokelaer/easydev/issues/15
