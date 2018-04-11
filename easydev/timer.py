@@ -19,7 +19,7 @@
 import time
 
 
-class Timer():
+class Timer(object):
     """Timer working with *with* statement
 
     ::
