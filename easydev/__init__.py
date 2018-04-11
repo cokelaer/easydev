@@ -18,13 +18,17 @@
 from __future__ import print_function
 #from __future__ import absolute_import
 
-__version__ = "0.9.34"
 
-import pkg_resources
+__version__ = "0.9.36"
 try:
-    version = pkg_resources.require("easydev")[0].version
-except:
+    import pkg_resources
+except ImportError as err:
+    print(err)
+    print("version set to {} manually.".format(__version__))
     version = __version__
+else:
+    version = pkg_resources.require("easydev")[0].version
+    __version__ = version
 
 from . import browser
 from .browser import browse as onweb

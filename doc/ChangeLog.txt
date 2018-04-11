@@ -1,4 +1,7 @@
 
+.. rubric:: 0.9.37
+    * Fixed https://github.com/cokelaer/easydev/issues/17
+
 .. rubic:: 0.9.36:
     * Fix logging to be a proper singleton. This should fix bug reported in 
 	  https://github.com/cokelaer/easydev/issues/15
