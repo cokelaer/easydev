@@ -19,7 +19,7 @@ from __future__ import print_function
 #from __future__ import absolute_import
 
 
-__version__ = "0.9.36"
+__version__ = "0.9.38"
 try:
     import pkg_resources
 except ImportError as err:
