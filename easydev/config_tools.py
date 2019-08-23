@@ -421,7 +421,7 @@ def _load_configfile(configpath):
                               "has not been installed. Please install "
                               "PyYAML to use YAML config files.")
             try:
-                return yaml.load(f)
+                return yaml.load(f, Loader=yaml.FullLoader)
             except yaml.YAMLError:
                 raise IOError("Config file is not valid JSON or YAML. "
                               "In case of YAML, make sure to not mix "
