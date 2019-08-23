@@ -7,12 +7,12 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 9
-_MICRO               = 37
+_MICRO               = 38
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
 metainfo = {
-    'authors': {'Cokelaer':('Thomas Cokelaer','cokelaer@ebi.ac.uk')},
+    'authors': {'Cokelaer':('Thomas Cokelaer','thomas.cokelaer@pasteur.fr')},
     'version': version,
     'license' : 'new BSD',
     'download_url' : ['http://pypi.python.org/pypi/easydev'],
