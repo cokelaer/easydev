@@ -1,6 +1,6 @@
 
-
-.. rubric:: 0.9.39
+.. rubric:: 0.10.0
+    * drop support for python 3.4 due to colorama not being available anymore 
     * Fixing logging_tools to properly handle level change when name is set
 	* Uses pytest instead of nose
 	* in easydev.easytest, get rid of nose to perform the
