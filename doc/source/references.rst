@@ -94,15 +94,6 @@ logging_tools
     :inherited-members:
     :synopsis: 
 
-multisetup
-===================================================================
-
-.. automodule:: easydev.multisetup
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :synopsis: 
-
 Options
 ===================================================================
 

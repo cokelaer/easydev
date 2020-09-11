@@ -25,9 +25,9 @@ sys.path.insert(0, os.path.abspath('sphinxext'))
 try:
     import easydev
     from easydev import get_path_sphinx_themes
-except Exception, e:
-    print "Install easydev or set your PYTHONPATH properly"
-    raise
+except Exception as err:
+    print("Install easydev or set your PYTHONPATH properly")
+    raise(err)
 
 import pkg_resources
 version = pkg_resources.require("easydev")[0].version
@@ -302,7 +302,7 @@ latex_elements['preamble'] =r"""
 
 """
 
-latex_elements['paper_size'] = 'a4'
+#latex_elements['paper_size'] = 'a4'
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []
 
