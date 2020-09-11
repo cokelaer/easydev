@@ -65,7 +65,6 @@ class Logging(object):
                 self.level = "WARNING"
             else:
                 self._set_level(self.level)
-        print(name)
     def _get_name(self):
         return self._name
     name = property(_get_name, _set_name)

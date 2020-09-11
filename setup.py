@@ -7,7 +7,7 @@ import glob
 
 _MAJOR               = 0
 _MINOR               = 10
-_MICRO               = 0
+_MICRO               = 1
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -15,8 +15,8 @@ metainfo = {
     'authors': {'Cokelaer':('Thomas Cokelaer','thomas.cokelaer@pasteur.fr')},
     'version': version,
     'license' : 'new BSD',
-    'download_url' : ['http://pypi.python.org/pypi/easydev'],
-    'url' : ["http://packages.python.org/easydev/"],
+    'download_url' :'http://github.com/cokelaer/easydev',
+    'url' : "http://github.com/cokelaer/easydev",
     'description':'Common utilities to ease the development of Python packages' ,
     'platforms' : ['Linux', 'Unix', 'MacOsX', 'Windows'],
     'keywords' : ["package", "multisetup", "logging", "config", "decorators",
