@@ -19,8 +19,7 @@ install:
   - pip install  pytest pytest-cov pytest-mock --upgrade
 
 script:
-  # - python setup.py nosetests --with-coverage --cover-package easydev
-  - pytest -v --durations=10 test/ --cov=easydev --cov-report term-missing
+  - python -m pytest -v --durations=10 test/ --cov=easydev --cov-report term-missing
 
 after_success:
   coveralls
