@@ -110,7 +110,7 @@ def setup(app): # pragma: no cover
         shutil.copy( get_copybutton_path(), staticpath)
 
     # Now that the file is available, use it
-    app.add_javascript('copybutton.js')
+    app.add_js_file('copybutton.js')
 
 
 
