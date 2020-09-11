@@ -1,13 +1,27 @@
 
+
+.. rubric:: 0.9.39
+    * Fixing logging_tools to properly handle level change when name is set
+	* Uses pytest instead of nose
+	* in easydev.easytest, get rid of nose to perform the
+      assert_list_almost_equal test
+	* remove multisetup module
+	* remove linux_distribution from platform module, which uses deprecated
+      python fucntion. Will remove platform module most probably in future
+	  release. 
+
+.. rubric:: 0.9.38
+    * remove deprecated warning
+
 .. rubric:: 0.9.37
     * Fixed https://github.com/cokelaer/easydev/issues/17
     * Fix new-style class (https://github.com/cokelaer/easydev/pull/16)
 
 
 .. rubic:: 0.9.36:
-    * Fix logging to be a proper singleton. This should fix bug reported in 
-	  https://github.com/cokelaer/easydev/issues/15
-	* drop support for python 2.6 since it is not supported by the Pythno code
+    * Fix logging to be a proper singleton. This should fix bug reported in
+      https://github.com/cokelaer/easydev/issues/15
+    * drop support for python 2.6 since it is not supported by the Pythno code
       team.
 
 .. rubric:: 0.9.35:
@@ -25,7 +39,7 @@
 
 .. rubric:: 0.9.31:
    * mkdirs: when a simple path (no / in the path) was provided, this led to an
-     error, which is now fixed. 
+     error, which is now fixed.
    * Remove multigit from setup
 
 .. rubric:: 0.9.30:
@@ -38,7 +52,7 @@
 
 .. rubric:: 0.9.28:
     * TempFile new argument must be set to None to keep previous behaviour (fix
-	on version 0.9.26)
+    on version 0.9.26)
 
 .. rubric:: 0.9.27
    * add doc in RTD and fix issue in config_tools
@@ -46,28 +60,28 @@
 .. rubric:: 0.9.26:
     * TempFile has one more argument (directory destination)
     * Remove deprecated function (transform_ino_list) in codecs module
-	* copybutton module simplified. Extension copybutton updated. 
-	* move _mkdirs function from Config module (private method) to the tools
+    * copybutton module simplified. Extension copybutton updated.
+    * move _mkdirs function from Config module (private method) to the tools
       module so that mkdirs is now part of the API
-	* more tests added
-	* new Timer class
+    * more tests added
+    * new Timer class
 
 .. rubric:: 0.9.25
     * add md5 module
 
 .. rubric:: 0.9.24
-	* add md5tools module to compute MD5 checksum of a file
+    * add md5tools module to compute MD5 checksum of a file
 
 .. rubric:: 0.9.23
 
 * BUGS:
-	* in tools, close an opened file
+    * in tools, close an opened file
 
 * CHANGES:
-	* remove module multigit (not used)
-	* Planning to remove module setuptools (not used). add deprecated message
-	* Remove lsf module
-	* Updated documentation
+    * remove module multigit (not used)
+    * Planning to remove module setuptools (not used). add deprecated message
+    * Remove lsf module
+    * Updated documentation
 
 
 .. rubric:: 0.9.22
@@ -79,30 +93,30 @@
 
 * BUGS:
     * Fix py2/3 issue in execute() function
-	* Fix Exception name in mkdir() function
+    * Fix Exception name in mkdir() function
 
 .. rubric:: 0.9.20
 
 * NEWS:
-	* add execute() command similar to shellcmd but allows to see the output in
+    * add execute() command similar to shellcmd but allows to see the output in
       live using pexcept instead of subprocess
-	* add mkdir function to run mkdir and skip if it exists already
-	* add chunks module with tool to split list evenly in N chunks
+    * add mkdir function to run mkdir and skip if it exists already
+    * add chunks module with tool to split list evenly in N chunks
 
 .. rubric:: 0.9.19
 
 * BUGS:
-	* Fix Tempfile to delete the temp file in Python3 
+    * Fix Tempfile to delete the temp file in Python3
 
 
 .. rubric:: 0.9.16 and 0.9.17
 
-* BUGS: 
-	* the share/data using python setup install/develop modes was
-	  working but the pip installation seems to mess up the location of the share
-	  directory. This was not an issue for most aplications but now is required by
-	  other tools so needed to be fixed. The setup was changed and an __init__
-	  added to the share directory.
+* BUGS:
+    * the share/data using python setup install/develop modes was
+      working but the pip installation seems to mess up the location of the share
+      directory. This was not an issue for most aplications but now is required by
+      other tools so needed to be fixed. The setup was changed and an __init__
+      added to the share directory.
 
 .. rubric:: 0.9.15
 
@@ -113,13 +127,13 @@
 
 * CHANGES:
     * add zip_safe = False
-    * add new test file: test_profiler 
+    * add new test file: test_profiler
     * remove 2to3 in setup that causes trouble with bioconda
 
 .. rubric:: 0.9.13
 
-* CHANGES: 
-	* move print statement in profiler inside the function to avoid print statement during installation or import
+* CHANGES:
+    * move print statement in profiler inside the function to avoid print statement during installation or import
 
 .. rubric:: 0.9.12
 
@@ -127,7 +141,7 @@
 
 .. rubric:: 0.9.11
 
-* NEWS: add do_profile function 
+* NEWS: add do_profile function
 
 
 
@@ -139,20 +153,20 @@
 
 .. rubric:: 0.9.9
 
-* CHANGES: 
+* CHANGES:
     * Put appdirs source inside easydev keeping their LICENSE. This will
       make the conda portage easydev while keeping the ability to use appdirs. Fix
       warning in config.cfg
-* BUG: 
+* BUG:
     * fix bug introduced in 0.9.8
 
 .. rubric:: 0.9.8
 
-* CHANGES: 
+* CHANGES:
     * remove ordereddict package in the setup (not used)
     * remove appdirs from install_requires in the setup.py file. And add
-	  a try/except in config_tools, where it is used. These changes are made
-	  to try to port easydev to conda without any dependencies.
+      a try/except in config_tools, where it is used. These changes are made
+      to try to port easydev to conda without any dependencies.
 
 .. rubric:: 0.9.7
 
@@ -175,16 +189,16 @@
 .. rubric:: 0.9.3
 
 .. rubric:: 0.9.2
- 
+
 *   NEW: added browser.py module (merge package browse
-    	https://pypi.python.org/pypi?:action=display&name=browse
-	    in easydev)
+        https://pypi.python.org/pypi?:action=display&name=browse
+        in easydev)
 
 .. rubric:: 0.9.1
 
 * CHANGES: multicore now handle Keyboard Interruption properly.
 
-.. rubric:: 0.9.0 
+.. rubric:: 0.9.0
 
 
 .. rubric:: 0.8.9:
@@ -213,7 +227,7 @@
 .. rubric:: 0.8.4:
 
 * CHANGES: update animate() function simplifying the usage removing second
-    argument. 
+    argument.
 
 .. rubric:: 0.8.3
 
@@ -251,7 +265,7 @@
 
 * add ifpylab decorator
 * check_param_in_list can also accepts sets.
-* create new module called codecs. 
+* create new module called codecs.
 * Moved transform_to_list from module tools in codecs module
 * add new functions called tolist and tostring inside codecs module
 
@@ -265,7 +279,7 @@
 
 * major updates to make easydev compatible with python 2.6, 2.7 and 3.4.
 * Update DynamicConfigParser significantly by using a ew version to manipulate the configparser options and sections as attributes.
-* try to use orderdict module for python 2.6 instead of OrderdedDict 
+* try to use orderdict module for python 2.6 instead of OrderdedDict
 * Other changes are related to python 3.0 (e.g. iteritems -> items, print statement)
 * Updated the tests so that all tests now work under python 2.6 and 3.4 as well as 2.7
 
@@ -285,7 +299,7 @@
 * make sure that installation works from a distribution without any libraries
   (e.g. pandas)
 * fix copybutton module for the install mode
-* add TempFile class in misc module 
+* add TempFile class in misc module
 
 .. rubric:: 0.6.11
 
@@ -315,7 +329,7 @@
 * add module setuptools: provide tools to recursively create the datafiles required by setuptools
 
 
-.. rubric:: 0.6.5 
+.. rubric:: 0.6.5
 
 * add multicore module
 * remove duplicated entries in the get_dependencies  (dependencies module)
@@ -368,7 +382,7 @@
 
 .. rubric:: 0.5.6
 
-* fixing the headers. added version in the header. added new module logging_tools 
+* fixing the headers. added version in the header. added new module logging_tools
 
 
 .. rubric:: 0.5.5
@@ -397,7 +411,7 @@
 
 .. rubric:: 0.5.0
 
-* renamed cnolab.deploy to easydev 
+* renamed cnolab.deploy to easydev
 * remove dependencies over rpy2 (no more distribute or multidistribute modules that is part of rtools instead)
 
 .. rubric:: Before 0.5.0

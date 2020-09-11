@@ -55,7 +55,7 @@ PY3 = sys.version_info[0] == 3
 if PY3:
     unicode = str
 
-if sys.platform.startswith('java'):
+if sys.platform.startswith('java'): #pragma: no cover
     import platform
     os_name = platform.java_ver()[3][0]
     if os_name.startswith('Windows'): # "Windows XP", "Windows 7", etc.
@@ -103,7 +103,7 @@ def user_data_dir(appname=None, appauthor=None, version=None, roaming=False):
     For Unix, we follow the XDG spec and support $XDG_DATA_HOME.
     That means, by default "~/.local/share/<AppName>".
     """
-    if system == "win32":
+    if system == "win32": # pragma: no cover
         if appauthor is None:
             appauthor = appname
         const = roaming and "CSIDL_APPDATA" or "CSIDL_LOCAL_APPDATA"
@@ -157,7 +157,7 @@ def site_data_dir(appname=None, appauthor=None, version=None, multipath=False):
 
     WARNING: Do not use this on Windows. See the Vista-Fail note above for why.
     """
-    if system == "win32":
+    if system == "win32": #pragma: no cover
         if appauthor is None:
             appauthor = appname
         path = os.path.normpath(_get_win_folder("CSIDL_COMMON_APPDATA"))
@@ -170,7 +170,7 @@ def site_data_dir(appname=None, appauthor=None, version=None, multipath=False):
         path = os.path.expanduser('/Library/Application Support')
         if appname:
             path = os.path.join(path, appname)
-    else:
+    else: #pragma: no cover
         # XDG default for $XDG_DATA_DIRS
         # only first, if multipath is False
         path = os.getenv('XDG_DATA_DIRS',
@@ -223,7 +223,7 @@ def user_config_dir(appname=None, appauthor=None, version=None, roaming=False):
     """
     if system in ["win32", "darwin"]:
         path = user_data_dir(appname, appauthor, None, roaming)
-    else:
+    else: #pragma: no cover
         path = os.getenv('XDG_CONFIG_HOME', os.path.expanduser("~/.config"))
         if appname:
             path = os.path.join(path, appname)
@@ -266,7 +266,7 @@ def site_config_dir(appname=None, appauthor=None, version=None, multipath=False)
         path = site_data_dir(appname, appauthor)
         if appname and version:
             path = os.path.join(path, version)
-    else:
+    else: #pragma: no cover
         # XDG default for $XDG_CONFIG_DIRS
         # only first, if multipath is False
         path = os.getenv('XDG_CONFIG_DIRS', '/etc/xdg')
@@ -316,7 +316,7 @@ def user_cache_dir(appname=None, appauthor=None, version=None, opinion=True):
     OPINION: This function appends "Cache" to the `CSIDL_LOCAL_APPDATA` value.
     This can be disabled with the `opinion=False` option.
     """
-    if system == "win32":
+    if system == "win32": #pragma: no cover
         if appauthor is None:
             appauthor = appname
         path = os.path.normpath(_get_win_folder("CSIDL_LOCAL_APPDATA"))
@@ -331,7 +331,7 @@ def user_cache_dir(appname=None, appauthor=None, version=None, opinion=True):
         path = os.path.expanduser('~/Library/Caches')
         if appname:
             path = os.path.join(path, appname)
-    else:
+    else: # pragma: no cover
         path = os.getenv('XDG_CACHE_HOME', os.path.expanduser('~/.cache'))
         if appname:
             path = os.path.join(path, appname)
@@ -376,12 +376,12 @@ def user_log_dir(appname=None, appauthor=None, version=None, opinion=True):
         path = os.path.join(
             os.path.expanduser('~/Library/Logs'),
             appname)
-    elif system == "win32":
+    elif system == "win32": #pragma: no cover
         path = user_data_dir(appname, appauthor, version)
         version = False
         if opinion:
             path = os.path.join(path, "Logs")
-    else:
+    else: #pragma: no cover
         path = user_cache_dir(appname, appauthor, version)
         version = False
         if opinion:
@@ -434,7 +434,7 @@ class AppDirs(object):
 
 #---- internal support stuff
 
-def _get_win_folder_from_registry(csidl_name):
+def _get_win_folder_from_registry(csidl_name): #pragma: no cover
     """This is a fallback technique at best. I'm not sure if using the
     registry for this guarantees us the correct answer for all CSIDL_*
     names.
@@ -455,7 +455,7 @@ def _get_win_folder_from_registry(csidl_name):
     return dir
 
 
-def _get_win_folder_with_pywin32(csidl_name):
+def _get_win_folder_with_pywin32(csidl_name): #pragma: no cover 
     from win32com.shell import shellcon, shell
     dir = shell.SHGetFolderPath(0, getattr(shellcon, csidl_name), 0, 0)
     # Try to make this a unicode path because SHGetFolderPath does
@@ -482,7 +482,7 @@ def _get_win_folder_with_pywin32(csidl_name):
     return dir
 
 
-def _get_win_folder_with_ctypes(csidl_name):
+def _get_win_folder_with_ctypes(csidl_name): #pragma: no cover
     import ctypes
 
     csidl_const = {
@@ -508,7 +508,7 @@ def _get_win_folder_with_ctypes(csidl_name):
 
     return buf.value
 
-def _get_win_folder_with_jna(csidl_name):
+def _get_win_folder_with_jna(csidl_name): #pragma: no cover
     import array
     from com.sun import jna
     from com.sun.jna.platform import win32
@@ -534,7 +534,7 @@ def _get_win_folder_with_jna(csidl_name):
 
     return dir
 
-if system == "win32":
+if system == "win32": #pragma: no cover
     try:
         import win32com.shell
         _get_win_folder = _get_win_folder_with_pywin32
@@ -552,7 +552,7 @@ if system == "win32":
 
 #---- self test code
 
-if __name__ == "__main__":
+if __name__ == "__main__": #pragma no cover
     appname = "MyApp"
     appauthor = "MyCompany"
 

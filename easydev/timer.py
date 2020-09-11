@@ -19,7 +19,7 @@
 import time
 
 
-class Timer(object):
+class Timer(object): #pragma: no cover
     """Timer working with *with* statement
 
     ::

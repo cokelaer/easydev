@@ -27,7 +27,7 @@ __all__ = ["color_terminal", "get_terminal_width", "term_width_line"]
 from easydev.platform import is_windows
 
 
-if is_windows() is True:
+if is_windows() is True: #pragma: no cover
     import colorama
     colorama.init()
 
@@ -43,7 +43,7 @@ def get_terminal_width():
                            struct.pack('hhhh', 0, 0, 0, 0))
         _, width = struct.unpack('hhhh', call)[:2]
         terminal_width = width
-    except (SystemExit, KeyboardInterrupt):
+    except (SystemExit, KeyboardInterrupt): #pragma: no cover
         raise
     except:
         # FALLBACK
@@ -72,7 +72,7 @@ def color_terminal():
         return False
     if not sys.stdout.isatty():
         return False
-    if 'COLORTERM' in os.environ:
+    if 'COLORTERM' in os.environ: #pragma: no cover
         return True
     term = os.environ.get('TERM', 'dumb').lower()
     if term in ('xterm', 'linux') or 'color' in term:
@@ -80,11 +80,11 @@ def color_terminal():
     return False
 
 
-def __nocolor():
+def __nocolor(): #pragma: no cover
     """set color codes off"""
     codes.clear()
 
-def __coloron():
+def __coloron(): #pragma: no cover
     """Set color codes on"""
     codes.update(_orig_codes)
 

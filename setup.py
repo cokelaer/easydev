@@ -70,6 +70,7 @@ setup(
     extras_require = {
 	    'profiler': ["line_profiler_test"]
     },
+    tests_require=['pytest'],
     # somehow, the google_head.html is found in themes/standard and themese/cno
     # directories thanks to the contents of datafiles variable but the ones from
     # themes/standard directory are not copied inside the distribution ?

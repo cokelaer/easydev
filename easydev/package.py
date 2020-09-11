@@ -264,7 +264,7 @@ class PackageBuilder(object):
             os.mkdir(self.pkgname)
             return True
 
-    def create_namespace(self):
+    def create_namespace(self): #pragma: no cover
         if self.namespace == None:
             self.logging.warning("namespace is not set, cannot create namespace directories")
             return

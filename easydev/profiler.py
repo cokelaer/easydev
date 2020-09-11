@@ -53,7 +53,7 @@ try:
                     profiler.print_stats()
             return profiled_func
         return inner
-except ImportError:
+except ImportError: # pragma: no cover
     def do_profile(follow=[]):
         "Helpful if you accidentally leave in production!"
         print("easydev warning:: line_profiler does not seem to be installed. " + 

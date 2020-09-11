@@ -1,6 +1,5 @@
 from easydev.misc import get_home, cmd_exists, in_ipynb
 #from mock import patch
-import nose.tools
 import subprocess
 import os.path
 

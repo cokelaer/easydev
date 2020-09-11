@@ -47,17 +47,17 @@ class _DictSection(object):
     def get(self, attr, default = None):
         if attr in self:
             return self._config.get(self._section, attr)
-        else:
+        else: #pragma: no cover
             return default
 
     def __setattr__(self, attr, value):
         if attr.startswith('_'):
             object.__setattr__(self, attr, value)
-        else:
+        else: #pragma: no cover
             self.__setitem__(attr, value)
 
     def __setitem__(self, attr, value):
-        if self._section not in self._config:
+        if self._section not in self._config: #pragma: no cover
             self._config.add_section(self._section)
 
         self._config.set(self._section, attr, str(value))
@@ -257,7 +257,7 @@ class DynamicConfigParser(ConfigParser, object):
         .. note:: an integer is cast into an int
         """
         options = {}
-        for option in self.options(section):
+        for option in self.options(section): # pragma no cover
             data = self.get(section, option, raw=True)
             if data.lower() in ['true', 'yes']:
                 options[option] = True
@@ -290,7 +290,7 @@ class DynamicConfigParser(ConfigParser, object):
             if os.path.exists(filename) == True:
                 print("Warning: over-writing %s " % filename)
             fp = open(filename,'w')
-        except Exception as err:
+        except Exception as err: #pragma: no cover
             print(err)
             raise Exception('filename could not be opened')
 
@@ -360,7 +360,7 @@ class DynamicConfigParser(ConfigParser, object):
                         str(data.get(section,option, raw=True)):
                         print("option %s in section %s differ" % (option, section))
                         return False
-                except:
+                except: # pragma: no cover
                     return False
         return True
 
@@ -387,7 +387,7 @@ class CustomConfig(object):
             print("Creating directory %s " % sdir)
             try:
                 self._mkdirs(sdir)
-            except Exception:
+            except Exception: #pragma: no cover
                 print("Could not create the path %s " % sdir)
                 return None
         return sdir
@@ -401,11 +401,11 @@ class CustomConfig(object):
         try:
             sdir = self.appdirs.user_config_dir
             os.rmdir(sdir)
-        except Exception as err:
+        except Exception as err: #pragma: no cover
             raise Exception(err)
 
 
-def _load_configfile(configpath):
+def _load_configfile(configpath): #pragma: no cover
     "Tries to load a JSON or YAML file into a dict."
     try:
         with open(configpath) as f:

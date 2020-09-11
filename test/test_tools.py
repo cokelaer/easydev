@@ -1,4 +1,5 @@
-from easydev import tools, TempFile
+from easydev import tools as tools
+from easydev import TempFile
 
 
 def test_check_range():

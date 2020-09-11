@@ -18,21 +18,11 @@
 from __future__ import absolute_import # avoids conflict with standard module
 import os
 import sys
-import platform as plf
 
-__all__ = ["get_platform", "linux_distribution", ""]
-
-def linux_distribution():
-    try:
-        # Note that this module has the same name as the standard module
-        # hence the renaming of the standard module here below
-        return plf.linux_distribution()
-    except Exception as err:
-        print(err)
-        return "unknown"
+__all__ = ["get_platform"]
 
 
-def get_platform():
+def get_platform(): #pragma: no cover
     """Identify the platform (Linux/windows/Mac)
 
     The folloing modules/functions can be used to identify the platform:
@@ -47,6 +37,7 @@ def get_platform():
         can be determined otherwise, the content of sys.platform()
 
     """
+    print("Will be deprecated in future version of easydev")
     try:
         platform = plf.system()
         return platform

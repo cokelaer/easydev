@@ -29,7 +29,7 @@ from os.path import join as pj
 import shutil
 try:
     from docutils import nodes
-except Exception:
+except Exception: #pragma: no cover
     # if docutils is not installed
     class Dummy():
         SkipNode = Exception
@@ -84,7 +84,7 @@ def get_copybutton_path():
         packagedir = easydev.__path__[0]
         packagedir = os.path.realpath(pj(packagedir, 'share'))
         os.listdir(packagedir) # if this faisl, we are in deve mode
-    except OSError:
+    except OSError: #pragma: no cover
         try:
             packagedir = easydev.__path__[0]
             packagedir = os.path.realpath(pj(packagedir, '..', 'share'))
@@ -93,7 +93,7 @@ def get_copybutton_path():
     return pj(packagedir, "copybutton.js")
 
 
-def setup(app):
+def setup(app): # pragma: no cover
     cwd = os.getcwd()
 
     # From Sphinx, we typing "make html", this is the place where we expect

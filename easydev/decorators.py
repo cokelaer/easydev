@@ -152,7 +152,7 @@ def ifpandas(func):
     try:
         import pandas
         return wrapper
-    except Exception:
+    except Exception: #pragma: no cover
         def dummy():
             pass
         return dummy
@@ -170,7 +170,7 @@ def ifpylab(func):
     try:
         import pylab
         return wrapper
-    except Exception:
+    except Exception: #pragma: no cover
         def dummy():
             pass
         return dummy

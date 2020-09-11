@@ -41,8 +41,9 @@ class Logging(object):
 
     """
     def __init__(self, name="root", level="WARNING"):
-        self.name = name
-        formatter = colorlog.ColoredFormatter(
+        self.default = name
+        self._name = name
+        self.formatter = colorlog.ColoredFormatter(
              "%(log_color)s%(levelname)-8s[%(name)s]: %(reset)s %(blue)s%(message)s",
              datefmt=None,
              reset=True,
@@ -50,12 +51,24 @@ class Logging(object):
              secondary_log_colors={},
              style='%'
         )
-        handler = colorlog.StreamHandler()
-        handler.setFormatter(formatter)
-        logger = colorlog.getLogger(self.name)
+        self._set_name(name)
+
+
+    def _set_name(self, name):
+        self._name = name
+        logger = colorlog.getLogger(self._name)
         if len(logger.handlers) == 0:
+            handler = colorlog.StreamHandler()
+            handler.setFormatter(self.formatter)
             logger.addHandler(handler)
-            self._set_level(level)
+            if self.level == 0:
+                self.level = "WARNING"
+            else:
+                self._set_level(self.level)
+        print(name)
+    def _get_name(self):
+        return self._name
+    name = property(_get_name, _set_name)
 
     def _set_level(self, level):
         if isinstance(level, bool):
@@ -63,7 +76,8 @@ class Logging(object):
                 level = "INFO"
             if level is False:
                 level = "ERROR"
-        assert level in ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+        assert level in ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],\
+            "you provided {}".format(level)
         logging_level = getattr(colorlog.logging.logging, level)
         colorlog.getLogger(self.name).setLevel(level)
 

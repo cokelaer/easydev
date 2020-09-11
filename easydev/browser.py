@@ -73,18 +73,18 @@ def browse(url, verbose=True):
     from sys import platform as _platform
     if _platform == "linux" or _platform == "linux2":
         _browse_linux(url, verbose=True)
-    elif _platform == "darwin": 
+    elif _platform == "darwin":  #pragma: no cover
         # under Mac, it looks like the standard  webbrowser may not work as smoothly 
         # OS X
         _browse_mac(url, verbose)
-    elif _platform == "win32":  
+    elif _platform == "win32":  #pragma: no cover
         # for windows and others, the same code as Linux should work
         _browse_linux(url, verbose=True)
     else:
         _browse_linux(url, verbose=True)
 
 
-def _browse_mac(url, verbose=True):
+def _browse_mac(url, verbose=True): #pragma: no cover
     if verbose:
         print("openning %s" % url)
 
@@ -113,7 +113,7 @@ def _browse_mac(url, verbose=True):
             raise Exception
 
 
-def _browse_linux(url, verbose=True):
+def _browse_linux(url, verbose=True): #pragma: no cover
     if verbose:
         print("openning %s" % url)
     try:
@@ -133,7 +133,7 @@ def _browse_linux(url, verbose=True):
     raise Exception("Could not open http://{}".format(url))
 
 
-def main(args=None):
+def main(args=None): #pragma: no cover
     if args is None:
         args = sys.argv[:]
 
@@ -170,6 +170,6 @@ def main(args=None):
             browse("http://"+url, verbose)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": #pragma: no cover
     import sys
     main(sys.argv)

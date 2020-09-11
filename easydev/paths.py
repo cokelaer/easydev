@@ -73,7 +73,7 @@ def get_shared_directory_path(package):
         # looks like we have found the share directory so it is an install mode
         #print ("yes")
         return sharedir
-    else:
+    else: #pragma: no cover
         #print("no. searching for share dir as if in develop mode")
         # let us try a couple of directories
         # FIXME: do we need the 3 cases ??

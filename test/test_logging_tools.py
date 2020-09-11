@@ -4,13 +4,16 @@ from easydev import Logging
 def test_logging():
 
     l = Logging("INFO")
-
+    l.name = "test"
     l.info("test")
-    l.level = "WARNING"
-    l.level == "INFO"
-    l.level == "CRITICAL"
-    l.level == "ERROR"
-    l.level == "DEBUG"
+    l.debug("test")
+    l.warning("test")
+    l.error("test")
+    l.critical("test")
+
+    for level in ['DEBUG', 'INFO', 'ERROR', 'WARNING', 'CRITICAL']:
+        l.level = level
+        assert l.level == level
     l.level = True
     l.level = False
 

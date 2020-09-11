@@ -25,7 +25,7 @@ import uuid
 
 try:
     from IPython.core.display import HTML, Javascript, display
-except ImportError:
+except ImportError: #pragma: no cover
     pass
 
 
@@ -48,7 +48,7 @@ class ProgressBar(object):
     def _percentage(self, i):
         if self.iterations !=0:
             return 100 * i / float(self.iterations)
-        else:
+        else: #pragma: no cover
             # could be 100 ?
             return 100
 
@@ -67,7 +67,7 @@ class TextProgressBar(ProgressBar):
 
     def animate(self, i, dummy=None):
         # dummy=None is for back-compatibility
-        if dummy is not None:
+        if dummy is not None: #pragma: no cover
             print("second argument in easydev.progress_bar.animate is deprecated. Update your code")
         # +1 if i starts at 0 and finishes at N-1
         if divmod(i, self.interval)[1] != 0 and i != self.iterations:
@@ -104,12 +104,12 @@ def consoleprint(s):
         sys.stdout.flush()
 
 
-def ipythonprint(s):
+def ipythonprint(s): #pragma no cover
     print('\r', s, end='')
     sys.stdout.flush()
 
 
-class IPythonNotebookPB(ProgressBar):
+class IPythonNotebookPB(ProgressBar): #pragma: no cover
     """Use :class:`Progress`"""
     def __init__(self, iterations, interval=None):
         self.divid = str(uuid.uuid4())
@@ -170,7 +170,7 @@ def progress_bar(iters, interval=None):
             pb.animate(i)
 
     """
-    if _run_from_ipython():
+    if _run_from_ipython(): #pragma: no cover
         from easydev.misc import in_ipynb
         if in_ipynb() is True:
             return IPythonNotebookPB(iters, interval=interval)

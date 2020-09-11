@@ -125,7 +125,7 @@ class MultiProcessing(object):
                 if count == len(self.jobs):
                     break
 
-        except KeyboardInterrupt:
+        except KeyboardInterrupt:#pragma: no cover
             print("\nCaught interruption. " + 
             "Terminating the Pool of processes... ",)
             self.pool.terminate()

@@ -17,8 +17,6 @@
 ##############################################################################
 # $:Id $
 
-# keep nose inside the functions to avoid dependencies
-
 import tempfile
 
 __all__ = ["assert_list_almost_equal", "trysetattr", "TempFile"]
@@ -43,15 +41,14 @@ def assert_list_almost_equal(first, second, places=None, deltas=None):
         >>> assert_list_almost_equal([0,0,1], [0,0,0.9999], deltas=1e-4)
 
     """
-    from nose.tools import assert_almost_equal
-    for x, y in zip(first, second):
-        # PYTHON 2.6 hack. This assert_almost_equal function
-        # fails but I don't think this is correct. So let us
-        # catch the TypeError
-        try:
-            assert_almost_equal(x, y, places=places, delta=deltas)
-        except TypeError:
-            pass
+    if places:
+        deltas = 10**-(places-1)
+
+
+    if deltas:
+        for x, y in zip(first, second):
+            if abs(x-y)>deltas:
+                raise ValueError
 
 
 def trysetattr(this, attrname, value, possible):
@@ -109,7 +106,7 @@ class TempFile(object):
     def delete(self):
         try:
             self.temp._closer.delete = True
-        except:
+        except: #pragma: no cover
             self.temp.delete = True
         self.temp.close()
 
@@ -120,7 +117,7 @@ class TempFile(object):
     def __exit__(self, type, value, traceback):
         try:
             self.delete()
-        except AttributeError:
+        except AttributeError: #pragma: no cover
             pass
         finally:
             self.delete()

@@ -26,7 +26,7 @@ __all__ = ["shellcmd", "swapdict", "check_param_in_list",
     "touch", "mkdirs"]
 
 
-def precision(data, digit=2):
+def precision(data, digit=2): 
     """Round values in a list keeping only N digits precision
 
     ::

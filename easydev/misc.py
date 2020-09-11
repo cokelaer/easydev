@@ -27,14 +27,14 @@ def get_home():
     # First, let us try with expanduser
     try:
         homedir = os.path.expanduser("~")
-    except ImportError:
+    except ImportError: #pragma: no cover
         # This may happen.
         pass
     else:
         if os.path.isdir(homedir):
             return homedir
     # Then, with getenv
-    for this in ('HOME', 'USERPROFILE', 'TMP'):
+    for this in ('HOME', 'USERPROFILE', 'TMP'): #pragma: no cover
         # getenv is same as os.environ.get
         homedir = os.environ.get(this)
         if homedir is not None and os.path.isdir(homedir):
@@ -52,7 +52,7 @@ def cmd_exists(cmd):
             return True
         else:
             return False
-    except Exception:
+    except Exception: #pragma: no cover
         # If subprocess is not found, we assume it exists.
         # This choice ensure that if it fails, we keep going.
         return True
@@ -64,7 +64,7 @@ def in_ipynb():
     :return: True if in an ipython notebook otherwise returns False
 
     """
-    try:
+    try:#pragma: no cover
         cfg = get_ipython().config
         if 'parent_appname' in cfg['IPKernelApp'].keys() and \
                 cfg['IPKernelApp']['parent_appname'] == 'ipython-notebook':
@@ -73,5 +73,5 @@ def in_ipynb():
             if "jupyter" in cfg['IPKernelApp']['connection_file']:
                 return True
         return False
-    except NameError:
+    except NameError: #pragma: no cover
         return False

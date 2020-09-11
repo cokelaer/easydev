@@ -60,7 +60,6 @@ from .sphinx_themes import *
 from . import tools
 from .tools import *
 
-from . import multisetup
 
 from .md5tools import md5
 

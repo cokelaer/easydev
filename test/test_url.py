@@ -1,5 +1,5 @@
 from easydev import isurl_reachable
-from nose.plugins.attrib import attr
+#from nose.plugins.attrib import attr
 
 
 def test_isurl():
