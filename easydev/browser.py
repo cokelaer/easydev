@@ -81,7 +81,7 @@ def browse(url, verbose=True):
         # for windows and others, the same code as Linux should work
         _browse_linux(url, verbose=True)
     else:
-        _browse_linux(url, verbose=True)
+        _browse_linux(url, verbose=True)  #pragma: no cover
 
 
 def _browse_mac(url, verbose=True): #pragma: no cover

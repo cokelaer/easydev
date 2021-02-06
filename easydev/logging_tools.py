@@ -13,7 +13,7 @@
 #  Website: https://github.com/cokelaer/easydev
 #
 ##############################################################################
-import logging
+# import logging
 import colorlog
 
 __all__ = ["Logging"]
@@ -41,10 +41,9 @@ class Logging(object):
 
     """
     def __init__(self, name="root", level="WARNING"):
-        self.default = name
         self._name = name
         self.formatter = colorlog.ColoredFormatter(
-             "%(log_color)s%(levelname)-8s[%(name)s]: %(reset)s %(blue)s%(message)s",
+             "%(log_color)s%(levelname)-8s[%(name)s:%(lineno)d]: %(reset)s %(blue)s%(message)s",
              datefmt=None,
              reset=True,
              log_colors=colors,
@@ -53,18 +52,19 @@ class Logging(object):
         )
         self._set_name(name)
 
+        logger = colorlog.getLogger(self._name)
+        handler = colorlog.StreamHandler()
+        handler.setFormatter(self.formatter)
+        logger.addHandler(handler)
 
     def _set_name(self, name):
+        level = self.level
         self._name = name
         logger = colorlog.getLogger(self._name)
-        if len(logger.handlers) == 0:
-            handler = colorlog.StreamHandler()
-            handler.setFormatter(self.formatter)
-            logger.addHandler(handler)
-            if self.level == 0:
-                self.level = "WARNING"
-            else:
-                self._set_level(self.level)
+        if level == 0:
+            self._set_level("WARNING")
+        else:
+            self._set_level(level)
     def _get_name(self):
         return self._name
     name = property(_get_name, _set_name)
@@ -75,8 +75,16 @@ class Logging(object):
                 level = "INFO"
             if level is False:
                 level = "ERROR"
-        assert level in ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],\
-            "you provided {}".format(level)
+        if level == 10:
+            level = "DEBUG"
+        if level == 20:
+            level = "INFO"
+        if level == 30:
+            level = "WARNING"
+        if level == 40:
+            level = "ERROR"
+        if level == 50:
+            level = "CRITICAL"
         logging_level = getattr(colorlog.logging.logging, level)
         colorlog.getLogger(self.name).setLevel(level)
 

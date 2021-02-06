@@ -37,7 +37,7 @@ def get_platform(): #pragma: no cover
         can be determined otherwise, the content of sys.platform()
 
     """
-    print("Will be deprecated in future version of easydev")
+    print("//easydev.get_platform() Will be deprecated in future version of easydev")
     try:
         platform = plf.system()
         return platform

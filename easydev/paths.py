@@ -110,7 +110,7 @@ def get_shared_directories(package, datadir="data"):
 
     """
     packagedir = get_shared_directory_path(package)
-    if len(packagedir) == 0:
+    if len(packagedir) == 0: #pragma: no cover
         return []
     packagedir = pj(packagedir, datadir)
     directories = os.listdir(packagedir)
@@ -136,13 +136,13 @@ def get_share_file(package, datadir, filename):
     packagedir = get_shared_directory_path(package)
     fullpath = os.path.join(packagedir, datadir)
     # check that it exists
-    if os.path.isdir(fullpath) == False:
+    if os.path.isdir(fullpath) == False:  #pragma: no cover
         raise ValueError("The directory %s in package %s does not seem to exist" % (packagedir, fullpath))
     filename_path = os.path.join(fullpath, filename)
     if os.path.isfile(filename_path)==False:
         correct_files = [x for x in os.listdir(fullpath) if os.path.isfile(x)]
         msg = "The file %s does not exists. Correct filenames found in %s/%s are:\n" % (filename_path, package, datadir)
-        for f in correct_files:
+        for f in correct_files:  #pragma: no cover
             msg += "%s\n" % f
 
         raise ValueError(msg)

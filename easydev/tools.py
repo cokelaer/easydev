@@ -21,6 +21,7 @@ import json
 import os
 import sys
 
+
 __all__ = ["shellcmd", "swapdict", "check_param_in_list",
     "check_range", "precision", "AttrDict", "DevTools", "execute",
     "touch", "mkdirs"]
