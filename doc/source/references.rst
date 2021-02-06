@@ -104,14 +104,6 @@ Options
     :synopsis: 
 
 
-Package
-===================================================================
-
-.. automodule:: easydev.package
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :synopsis: 
 
 paths
 ===================================================================
