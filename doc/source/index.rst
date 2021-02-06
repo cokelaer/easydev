@@ -9,7 +9,6 @@ EASYDEV documentation
     <a href="https://pypi.python.org/pypi/easydev"> <img src="https://badge.fury.io/py/easydev.svg"></a>
     <a href="https://travis-ci.org/cokelaer/easydev"> <img src="https://travis-ci.org/cokelaer/easydev.svg?branch=master"></a>
     <a href="https://coveralls.io/github/cokelaer/easydev?branch=master"> <img src="https://coveralls.io/repos/github/cokelaer/easydev/badge.svg?branch=master"></a>
-    <a href="https://landscape.io/github/cokelaer/easydev/master"> <img src="https://landscape.io/github/cokelaer/easydev/master/landscape.png"></a>
     </div>
 
 
