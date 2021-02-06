@@ -1,3 +1,4 @@
+import easydev
 from easydev import tools as tools
 from easydev import TempFile
 
@@ -41,6 +42,7 @@ def test_swapdict():
         assert True
     tools.swapdict({'a':1, 'b':1}, check_ambiguity=False)
 
+
 def test_tools():
     tools.shellcmd('ls')
     tools.shellcmd('ls', show=False)
@@ -49,6 +51,7 @@ def test_tools():
     tools.shellcmd('lssssssss', verbose=True, ignore_errors=True)
 
     tools.execute('ls')
+
 
 def test_tools2():
     try:
@@ -161,7 +164,14 @@ def test_mkdirs():
     # without / , was not working but is now part of the API
     tools.mkdirs(tempfile.mkdtemp())
 
+
 def test_touch():
     with TempFile() as fh:
         fh.name
         tools.touch(fh.name)
+
+
+
+
+
+

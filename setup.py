@@ -6,8 +6,8 @@ from setuptools import setup, find_packages
 import glob
 
 _MAJOR               = 0
-_MINOR               = 10
-_MICRO               = 1
+_MINOR               = 11
+_MICRO               = 0
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -19,7 +19,7 @@ metainfo = {
     'url' : "http://github.com/cokelaer/easydev",
     'description':'Common utilities to ease the development of Python packages' ,
     'platforms' : ['Linux', 'Unix', 'MacOsX', 'Windows'],
-    'keywords' : ["package", "multisetup", "logging", "config", "decorators",
+    'keywords' : ["multisetup", "logging", "config", "decorators",
         "multigit", "progressbar"],
     'classifiers' : [
           'Development Status :: 5 - Production/Stable',
@@ -79,7 +79,6 @@ setup(
     zip_safe = False,
     entry_points = {
         'console_scripts': [
-            'easydev_buildPackage=easydev.package:buildPackage',
             'browse=easydev.browser:main',
         ]
         },

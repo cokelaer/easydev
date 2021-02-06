@@ -16,6 +16,8 @@ def test_logging():
         assert l.level == level
     l.level = True
     l.level = False
+    for x in [10,20,30,40,50]:
+        l.level = x
 
     try:
         l.level = "WARN"
