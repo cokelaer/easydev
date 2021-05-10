@@ -40,10 +40,10 @@ class Logging(object):
         >>> l.info("test")
 
     """
-    def __init__(self, name="root", level="WARNING"):
+    def __init__(self, name="root", level="WARNING", text_color='blue'):
         self._name = name
         self.formatter = colorlog.ColoredFormatter(
-             "%(log_color)s%(levelname)-8s[%(name)s:%(lineno)d]: %(reset)s %(blue)s%(message)s",
+             "%(log_color)s%(levelname)-8s[%(name)s:%(lineno)d]: %(reset)s %({})s%(message)s".format(text_color),
              datefmt=None,
              reset=True,
              log_colors=colors,
