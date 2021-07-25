@@ -4,8 +4,9 @@ easydev
 .. image:: https://badge.fury.io/py/easydev.svg
     :target: https://pypi.python.org/pypi/easydev
 
-.. image:: https://secure.travis-ci.org/cokelaer/easydev.png
-    :target: http://travis-ci.org/cokelaer/easydev
+.. image:: https://github.com/cokelaer/easydev/actions/workflows/ci.yml/badge.svg
+    :target: https://github.com/cokelaer/easydev/actions/workflows/ci.yml
+
 
 .. image:: https://coveralls.io/repos/cokelaer/easydev/badge.svg?branch=master 
    :target: https://coveralls.io/r/cokelaer/easydev?branch=master 
@@ -17,7 +18,7 @@ easydev
 :contributions: Please join https://github.com/cokelaer/easydev
 :source: Please use https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
-:Python version supported: 2.7, 3.3, 3.4, 3.5, 3.6
+:Python version supported: 3.6,3.7,3.8
 
 
 The  `easydev <http://pypi.python.org/pypi/easydev/>`_ package 

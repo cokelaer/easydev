@@ -7,7 +7,9 @@ EASYDEV documentation
 
     <div style="width:40%">
     <a href="https://pypi.python.org/pypi/easydev"> <img src="https://badge.fury.io/py/easydev.svg"></a>
-    <a href="https://travis-ci.org/cokelaer/easydev"> <img src="https://travis-ci.org/cokelaer/easydev.svg?branch=master"></a>
+
+    <a href="https://github.com/cokelaer/easydev/actions/workflows/ci.yml"> <img src="https://github.com/cokelaer/easydev/actions/workflows/ci.yml/badge.svg"></a>
+
     <a href="https://coveralls.io/github/cokelaer/easydev?branch=master"> <img src="https://coveralls.io/repos/github/cokelaer/easydev/badge.svg?branch=master"></a>
     </div>
 
@@ -16,7 +18,7 @@ EASYDEV documentation
 :contributions: Please join https://github.com/cokelaer/easydev
 :source: Please use https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
-:Python version supported: 2.6, 2.7, 3.3, 3.4, 3.5, 3.6
+:Python version supported:     3.6, 3.7, 3.8
 
 
 
