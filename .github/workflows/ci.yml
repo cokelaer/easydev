@@ -27,14 +27,16 @@ jobs:
       run: |
           pip install .
 
+    - name: Install packages for testing
+      run: |
+        pip install -r requirements_dev.txt
+
     - name: Test with pytest
       run: |
-        pip install pytest pytest-cov mock coverage
         pytest --cov-report term --cov=easydev
 
     - name: coveralls
       run: |
-        pip install coveralls
         coveralls --service=github
       env:
           GITHUB_TOKEN: ${{ github.token }}
