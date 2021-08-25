@@ -22,12 +22,21 @@ import os
 import sys
 
 
-__all__ = ["shellcmd", "swapdict", "check_param_in_list",
-    "check_range", "precision", "AttrDict", "DevTools", "execute",
-    "touch", "mkdirs"]
+__all__ = [
+    "shellcmd",
+    "swapdict",
+    "check_param_in_list",
+    "check_range",
+    "precision",
+    "AttrDict",
+    "DevTools",
+    "execute",
+    "touch",
+    "mkdirs",
+]
 
 
-def precision(data, digit=2): 
+def precision(data, digit=2):
     """Round values in a list keeping only N digits precision
 
     ::
@@ -38,8 +47,8 @@ def precision(data, digit=2):
         2100
 
     """
-    data = int(data*pow(10, digit))
-    data /= pow(10., digit)
+    data = int(data * pow(10, digit))
+    data /= pow(10.0, digit)
     return data
 
 
@@ -90,7 +99,11 @@ def check_param_in_list(param, valid_values, name=None):
     """
     if isinstance(valid_values, list) is False:
 
-        raise TypeError("the valid_values second argument must be a list of valid values. {0} was provided.".format(valid_values))
+        raise TypeError(
+            "the valid_values second argument must be a list of valid values. {0} was provided.".format(
+                valid_values
+            )
+        )
 
     if param not in valid_values:
         if name:
@@ -115,8 +128,9 @@ def shellcmd(cmd, show=False, verbose=False, ignore_errors=False):
     if show:
         print(cmd)
     try:
-        ret = subprocess.Popen([cmd], stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE, shell=True)
+        ret = subprocess.Popen(
+            [cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True
+        )
 
         output = ret.stdout.read().strip()
         error = ret.stderr.read().strip()
@@ -145,6 +159,7 @@ def execute(cmd, showcmd=True, verbose=True):
     :param verbose:
     """
     import pexpect
+
     if showcmd is True:
         print(cmd)
 
@@ -162,10 +177,8 @@ def execute(cmd, showcmd=True, verbose=True):
 
 
 def touch(fname, times=None):
-    """Touch a file (like unix command)
-
-    """
-    with open(fname, 'a'):
+    """Touch a file (like unix command)"""
+    with open(fname, "a"):
         os.utime(fname, times)
 
 
@@ -181,7 +194,9 @@ def swapdict(dic, check_ambiguity=True):
     """
     # this version is more elegant but slightly slower : return {v:k for k,v in dic.items()}
     if check_ambiguity:
-        assert len(set(dic.keys())) == len(set(dic.values())), "values is not a set. ambiguities for keys."
+        assert len(set(dic.keys())) == len(
+            set(dic.values())
+        ), "values is not a set. ambiguities for keys."
     return dict(zip(dic.values(), dic.keys()))
 
 
@@ -208,9 +223,11 @@ def mkdirs(newdir, mode=0o777):
                     os.makedirs(thispart, mode)
     except OSError as err:
         import errno
+
         # Reraise the error unless it's about an already existing directory
         if err.errno != errno.EEXIST or not os.path.isdir(newdir):
             raise
+
 
 class AttrDict(dict):
     """dictionary-like object that exposes its keys as attributes.
@@ -261,6 +278,7 @@ class AttrDict(dict):
     then *a* is indeed a dictionary.
 
     """
+
     def __init__(self, **kwargs):
         dict.__init__(self, kwargs)
         self.__dict__ = self
@@ -292,11 +310,12 @@ class AttrDict(dict):
         does not remove existing keys put replace them if already present
         """
         res = json.load(open(filename, "r"))
-        for k,v in res.items():
+        for k, v in res.items():
             self[k] = v
 
     def to_json(self, filename=None):
         import json
+
         if filename is not None:
             with open(filename, "w") as fout:
                 json.dump(self, fout)
@@ -305,9 +324,8 @@ class AttrDict(dict):
 
 
 class DevTools(object):
-    """Aggregate of easydev.tools functions.
+    """Aggregate of easydev.tools functions."""
 
-    """
     def check_range(self, value, a, b):
         """wrapper around :func:`easydev.check_range`"""
         check_range(value, a, b, strict=False)
@@ -329,6 +347,7 @@ class DevTools(object):
         1 -> [1]
         """
         from easydev import codecs
+
         return codecs.to_list(query)
 
     def list2string(self, query, sep=",", space=False):
@@ -337,6 +356,7 @@ class DevTools(object):
 
         """
         from easydev import codecs
+
         return codecs.list2string(query, sep=sep, space=space)
 
     def to_json(self, dictionary):
@@ -348,9 +368,9 @@ class DevTools(object):
         try:
             os.mkdir(dirname)
         except OSError:
-            pass # exists already
+            pass  # exists already
         except Exception as err:
-            raise(err)
+            raise (err)
 
     def shellcmd(self, cmd, show=False, verbose=False, ignore_errors=False):
         """See :func:`shellcmd`"""
@@ -363,7 +383,3 @@ class DevTools(object):
 
     def mkdirs(self, dirname, mode=0o777):
         mkdirs(dirname, mode=mode)
-
-
-
-

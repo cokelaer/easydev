@@ -42,4 +42,3 @@ def underline(text, symbol="="):
     """
     length = len(text)
     return text + "\n" + length * symbol
-

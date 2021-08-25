@@ -25,11 +25,11 @@ import uuid
 
 try:
     from IPython.core.display import HTML, Javascript, display
-except ImportError: #pragma: no cover
+except ImportError:  # pragma: no cover
     pass
 
 
-__all__ = ['progress_bar', 'TextProgressBar', 'Progress']
+__all__ = ["progress_bar", "TextProgressBar", "Progress"]
 
 
 class ProgressBar(object):
@@ -40,35 +40,39 @@ class ProgressBar(object):
             if iterations <= 100:
                 interval = 1  # everything % of the data
             else:
-                interval = int(iterations/100)
+                interval = int(iterations / 100)
         self.interval = interval
         self.start = time.time()
         self.last = 0
 
     def _percentage(self, i):
-        if self.iterations !=0:
+        if self.iterations != 0:
             return 100 * i / float(self.iterations)
-        else: #pragma: no cover
+        else:  # pragma: no cover
             # could be 100 ?
             return 100
 
     def _get_elapsed(self):
         return time.time() - self.start
+
     elapsed = property(_get_elapsed)
 
 
 class TextProgressBar(ProgressBar):
     """Use :class:`Progress`"""
+
     def __init__(self, iterations, printer, width=40, interval=None):
-        self.fill_char = '-'
+        self.fill_char = "-"
         self.width = width
         self.printer = printer
         ProgressBar.__init__(self, iterations, interval=interval)
 
     def animate(self, i, dummy=None):
         # dummy=None is for back-compatibility
-        if dummy is not None: #pragma: no cover
-            print("second argument in easydev.progress_bar.animate is deprecated. Update your code")
+        if dummy is not None:  # pragma: no cover
+            print(
+                "second argument in easydev.progress_bar.animate is deprecated. Update your code"
+            )
         # +1 if i starts at 0 and finishes at N-1
         if divmod(i, self.interval)[1] != 0 and i != self.iterations:
             pass
@@ -79,15 +83,19 @@ class TextProgressBar(ProgressBar):
         # +1 if i starts at 0 and finishes at N-1
         bar = self.bar(self._percentage(i))
         return "[%s] %i of %i complete in %.1f sec" % (
-            bar, (i), self.iterations, round(self.elapsed, 1))
+            bar,
+            (i),
+            self.iterations,
+            round(self.elapsed, 1),
+        )
 
     def bar(self, percent):
         all_full = self.width - 2
         num_hashes = int(percent / 100 * all_full)
 
-        bar = self.fill_char * num_hashes + ' ' * (all_full - num_hashes)
+        bar = self.fill_char * num_hashes + " " * (all_full - num_hashes)
 
-        info = '%d%%' % percent
+        info = "%d%%" % percent
         loc = (len(bar) - len(info)) // 2
         return replace_at(bar, info, loc, loc + len(info))
 
@@ -97,20 +105,21 @@ def replace_at(str, new, start, stop):
 
 
 def consoleprint(s):
-    if sys.platform.lower().startswith('win'):
-        print(s, '\r', end='')
+    if sys.platform.lower().startswith("win"):
+        print(s, "\r", end="")
     else:
-        print('\r', s, end='')
+        print("\r", s, end="")
         sys.stdout.flush()
 
 
-def ipythonprint(s): #pragma no cover
-    print('\r', s, end='')
+def ipythonprint(s):  # pragma no cover
+    print("\r", s, end="")
     sys.stdout.flush()
 
 
-class IPythonNotebookPB(ProgressBar): #pragma: no cover
+class IPythonNotebookPB(ProgressBar):  # pragma: no cover
     """Use :class:`Progress`"""
+
     def __init__(self, iterations, interval=None):
         self.divid = str(uuid.uuid4())
         self.sec_id = str(uuid.uuid4())
@@ -121,27 +130,32 @@ class IPythonNotebookPB(ProgressBar): #pragma: no cover
               <div id="%s" style="background-color:blue; width:0%%">&nbsp;</div>
             </div>
             <label id="%s" style="padding-left: 10px;" text = ""/>
-            """ % (self.divid, self.sec_id))
+            """
+            % (self.divid, self.sec_id)
+        )
         display(pb)
 
         ProgressBar.__init__(self, iterations, interval=interval)
 
     def animate(self, i, dummy=None):
         if dummy is not None:
-            print("second argument in easydev.progress_bar.animate is deprecated. Update your code")
+            print(
+                "second argument in easydev.progress_bar.animate is deprecated. Update your code"
+            )
 
         # +1 if i starts at 0 and finishes at N-1
-        if divmod(i, self.interval)[1] != 0 and i != self.iterations :
+        if divmod(i, self.interval)[1] != 0 and i != self.iterations:
             pass
         else:
             percentage = self._percentage(i)
             fraction = percentage
+            display(Javascript("$('div#%s').width('%i%%')" % (self.divid, percentage)))
             display(
-                Javascript("$('div#%s').width('%i%%')" %
-                       (self.divid, percentage)))
-            display(
-                Javascript("$('label#%s').text('%i%% in %.1f sec')" %
-                           (self.sec_id, fraction, round(self.elapsed, 1))))
+                Javascript(
+                    "$('label#%s').text('%i%% in %.1f sec')"
+                    % (self.sec_id, fraction, round(self.elapsed, 1))
+                )
+            )
 
 
 def _run_from_ipython():
@@ -170,16 +184,15 @@ def progress_bar(iters, interval=None):
             pb.animate(i)
 
     """
-    if _run_from_ipython(): #pragma: no cover
+    if _run_from_ipython():  # pragma: no cover
         from easydev.misc import in_ipynb
+
         if in_ipynb() is True:
             return IPythonNotebookPB(iters, interval=interval)
         else:
-            return TextProgressBar(iters, printer=ipythonprint,
-                    interval=interval)
+            return TextProgressBar(iters, printer=ipythonprint, interval=interval)
     else:
-        return TextProgressBar(iters, printer=consoleprint, 
-                interval=interval)
+        return TextProgressBar(iters, printer=consoleprint, interval=interval)
 
 
 class Progress(object):
@@ -191,6 +204,7 @@ class Progress(object):
         pb = Progress(100, interval=1)
         pb.animate(10)
     """
+
     def __init__(self, iters, interval=None):
         self.pb = progress_bar(iters, interval=interval)
 
@@ -199,12 +213,5 @@ class Progress(object):
 
     def _get_elapsed(self):
         return self.pb.elapsed
+
     elapsed = property(_get_elapsed)
-
-
-
-
-
-
-
-

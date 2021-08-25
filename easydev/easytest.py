@@ -21,7 +21,8 @@ import tempfile
 
 __all__ = ["assert_list_almost_equal", "trysetattr", "TempFile"]
 
-#from easydev.decorators import ifpandas
+# from easydev.decorators import ifpandas
+
 
 def assert_list_almost_equal(first, second, places=None, deltas=None):
     """Combined version nose.tools.assert_almost_equal and assert_list_equal
@@ -42,12 +43,11 @@ def assert_list_almost_equal(first, second, places=None, deltas=None):
 
     """
     if places:
-        deltas = 10**-(places-1)
-
+        deltas = 10 ** -(places - 1)
 
     if deltas:
         for x, y in zip(first, second):
-            if abs(x-y)>deltas:
+            if abs(x - y) > deltas:
                 raise ValueError
 
 
@@ -83,7 +83,7 @@ def trysetattr(this, attrname, value, possible):
         a2 = True
     try:
         setattr(this, attrname, value)
-        assert a1    # if the setattr is possible, this should be True
+        assert a1  # if the setattr is possible, this should be True
     except Exception:
         assert a2
 
@@ -99,29 +99,29 @@ class TempFile(object):
 
 
     """
-    def __init__(self, suffix='', dir=None):
-        self.temp = tempfile.NamedTemporaryFile(suffix=suffix, delete=False,
-                                                dir=dir)
+
+    def __init__(self, suffix="", dir=None):
+        self.temp = tempfile.NamedTemporaryFile(suffix=suffix, delete=False, dir=dir)
 
     def delete(self):
         try:
             self.temp._closer.delete = True
-        except: #pragma: no cover
+        except:  # pragma: no cover
             self.temp.delete = True
         self.temp.close()
 
     def _get_name(self):
         return self.temp.name
+
     name = property(_get_name)
 
     def __exit__(self, type, value, traceback):
         try:
             self.delete()
-        except AttributeError: #pragma: no cover
+        except AttributeError:  # pragma: no cover
             pass
         finally:
             self.delete()
 
     def __enter__(self):
         return self
-

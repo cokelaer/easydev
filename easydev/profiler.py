@@ -39,6 +39,7 @@ __all__ = ["do_profile"]
 
 try:
     from line_profiler import LineProfiler
+
     def do_profile(follow=[]):
         def inner(func):
             def profiled_func(*args, **kwargs):
@@ -51,16 +52,25 @@ try:
                     return func(*args, **kwargs)
                 finally:
                     profiler.print_stats()
+
             return profiled_func
+
         return inner
-except ImportError: # pragma: no cover
+
+
+except ImportError:  # pragma: no cover
+
     def do_profile(follow=[]):
         "Helpful if you accidentally leave in production!"
-        print("easydev warning:: line_profiler does not seem to be installed. " + 
-            "Type 'pip install line_profiler'")
+        print(
+            "easydev warning:: line_profiler does not seem to be installed. "
+            + "Type 'pip install line_profiler'"
+        )
+
         def inner(func):
             def nothing(*args, **kwargs):
                 return func(*args, **kwargs)
-            return nothing
-        return inner
 
+            return nothing
+
+        return inner

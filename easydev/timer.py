@@ -19,7 +19,7 @@
 import time
 
 
-class Timer(object): #pragma: no cover
+class Timer(object):  # pragma: no cover
     """Timer working with *with* statement
 
     ::
@@ -34,6 +34,7 @@ class Timer(object): #pragma: no cover
             time.sleep(0.2)
 
     """
+
     def __init__(self, times):
         self.times = times
 
@@ -42,5 +43,4 @@ class Timer(object): #pragma: no cover
 
     def __exit__(self, type, value, traceback):
         self.t2 = time.time()
-        self.times.append(self.t2-self.t1)
-
+        self.times.append(self.t2 - self.t1)

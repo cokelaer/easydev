@@ -19,7 +19,7 @@
 from functools import wraps
 import threading
 
-__all__ = ['ifpylab', 'requires', 'ifpandas']
+__all__ = ["ifpylab", "requires", "ifpandas"]
 
 
 # decorator with arguments and optional arguments for a method
@@ -43,13 +43,17 @@ def _require(*args_deco, **kwds_deco):
     .. todo:: first argument could be a list
     """
     if len(args_deco) != 2:
-        raise ValueError("require decorator expects 2 parameter. First one is" +
-                "the required attribute. Second one is an error message.")
+        raise ValueError(
+            "require decorator expects 2 parameter. First one is"
+            + "the required attribute. Second one is an error message."
+        )
     attribute = args_deco[0]
     msg = args_deco[1]
 
-    if len(attribute.split('.')) > 2:
-        raise AttributeError('This version of require decorator introspect only 2 levels')
+    if len(attribute.split(".")) > 2:
+        raise AttributeError(
+            "This version of require decorator introspect only 2 levels"
+        )
 
     def decorator(func):
         # func: function object of decorated method; has
@@ -60,18 +64,18 @@ def _require(*args_deco, **kwds_deco):
             # This code will be executed in lieu of the
             # method you've decorated.  You can call the
             # decorated method via f(_args, _kwds).
-            names = attribute.split('.')
+            names = attribute.split(".")
 
             if len(names) == 1:
                 if hasattr(args[0], attribute):
                     return func(*args, **kwds)
                 else:
-                    raise AttributeError('%s not found. %s' % (names, msg))
+                    raise AttributeError("%s not found. %s" % (names, msg))
             elif len(names) == 2:
                 if hasattr(getattr(args[0], names[0]), names[1]):
                     return func(*args, **kwds)
                 else:
-                    raise AttributeError('%s not found. %s' % (names, msg))
+                    raise AttributeError("%s not found. %s" % (names, msg))
 
         newf.__name__ = func.__name__
         newf.__doc__ = func.__doc__
@@ -123,22 +127,30 @@ def requires(requires, msg=""):
     if isinstance(requires, str):
         requires = [requires]
     elif isinstance(requires, list) == False:
-        raise TypeError("First argument of the /requires/ decorator must be a" +
-                "string or list of string representing the required attributes" +
-                "to be found in your class. Second argument is a " +
-                "complementary message. ")
+        raise TypeError(
+            "First argument of the /requires/ decorator must be a"
+            + "string or list of string representing the required attributes"
+            + "to be found in your class. Second argument is a "
+            + "complementary message. "
+        )
+
     def actualDecorator(f):
         @wraps(f)
         def wrapper(*args, **kwds):
             for require in requires:
                 if hasattr(args[0], require) == False:
-                    raise AttributeError("{} not found in {}. ".format(require, args[0]) + msg)
+                    raise AttributeError(
+                        "{} not found in {}. ".format(require, args[0]) + msg
+                    )
             return f(*args, **kwds)
+
         return wrapper
+
     return actualDecorator
 
 
 # could be a macro maybe
+
 
 def ifpandas(func):
     """check if pandas is available. If so, just return
@@ -146,15 +158,19 @@ def ifpandas(func):
     that does nothing
 
     """
+
     def wrapper(*args, **kwds):
         return func(*args, **kwds)
 
     try:
         import pandas
+
         return wrapper
-    except Exception: #pragma: no cover
+    except Exception:  # pragma: no cover
+
         def dummy():
             pass
+
         return dummy
 
 
@@ -166,11 +182,15 @@ def ifpylab(func):
     # for functions
     def wrapper(*args, **kwds):
         return func(*args, **kwds)
+
     # for methods
     try:
         import pylab
+
         return wrapper
-    except Exception: #pragma: no cover
+    except Exception:  # pragma: no cover
+
         def dummy():
             pass
+
         return dummy

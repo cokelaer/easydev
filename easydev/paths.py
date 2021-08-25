@@ -23,9 +23,13 @@ from os.path import join as pj
 import pkg_resources
 
 
-__all__ = ["get_shared_directory_path", "get_shared_directories",
-    "get_share_file", "gsf", "get_package_location"]
-
+__all__ = [
+    "get_shared_directory_path",
+    "get_shared_directories",
+    "get_share_file",
+    "gsf",
+    "get_package_location",
+]
 
 
 def get_package_location(package):
@@ -51,24 +55,24 @@ def get_shared_directory_path(package):
     """
     location = get_package_location(package)
 
-    #print("install  mode ? ")
-    sharedir = os.path.realpath(pj(location,  package, 'share'))
+    # print("install  mode ? ")
+    sharedir = os.path.realpath(pj(location, package, "share"))
     if os.path.isdir(sharedir) == True:
         # looks like we have found the share directory so it is an install mode
-        #print ("yes")
+        # print ("yes")
         return sharedir
-    else: #pragma: no cover
-        #print("no. searching for share dir as if in develop mode")
+    else:  # pragma: no cover
+        # print("no. searching for share dir as if in develop mode")
         # let us try a couple of directories
         # FIXME: do we need the 3 cases ??
         # probably just 2 are required, one for develop and one for install mode
-        sharedir = os.path.realpath(pj(location, '..',  'share'))
+        sharedir = os.path.realpath(pj(location, "..", "share"))
         if os.path.isdir(sharedir) == True:
             return sharedir
-        sharedir = os.path.realpath(pj(location, '..',  '..', 'share'))
+        sharedir = os.path.realpath(pj(location, "..", "..", "share"))
         if os.path.isdir(sharedir) == True:
             return sharedir
-        sharedir = os.path.realpath(pj(location, '..',  '..', '..', 'share'))
+        sharedir = os.path.realpath(pj(location, "..", "..", "..", "share"))
         if os.path.isdir(sharedir) == True:
             return sharedir
         # could not be found,
@@ -93,7 +97,7 @@ def get_shared_directories(package, datadir="data"):
 
     """
     packagedir = get_shared_directory_path(package)
-    if len(packagedir) == 0: #pragma: no cover
+    if len(packagedir) == 0:  # pragma: no cover
         return []
     packagedir = pj(packagedir, datadir)
     directories = os.listdir(packagedir)
@@ -101,8 +105,8 @@ def get_shared_directories(package, datadir="data"):
     # get rid of .svn (for the packages installed with develop)
     directories_to_process = []
     for directory in directories:
-        fullpath = os.path.join(packagedir,directory)
-        if directory != '.svn' and os.path.isdir(fullpath):
+        fullpath = os.path.join(packagedir, directory)
+        if directory != ".svn" and os.path.isdir(fullpath):
             directories_to_process.append(fullpath)
     directories_to_process.sort()
     return directories_to_process
@@ -113,25 +117,25 @@ def gsf(package, datadir, filename):
 
 
 def get_share_file(package, datadir, filename):
-    """Creates the full path of a file to be found in the share directory of a package
-
-    """
+    """Creates the full path of a file to be found in the share directory of a package"""
     packagedir = get_shared_directory_path(package)
     fullpath = os.path.join(packagedir, datadir)
     # check that it exists
-    if os.path.isdir(fullpath) == False:  #pragma: no cover
-        raise ValueError("The directory %s in package %s does not seem to exist" % (packagedir, fullpath))
+    if os.path.isdir(fullpath) == False:  # pragma: no cover
+        raise ValueError(
+            "The directory %s in package %s does not seem to exist"
+            % (packagedir, fullpath)
+        )
     filename_path = os.path.join(fullpath, filename)
-    if os.path.isfile(filename_path)==False:
+    if os.path.isfile(filename_path) == False:
         correct_files = [x for x in os.listdir(fullpath) if os.path.isfile(x)]
-        msg = "The file %s does not exists. Correct filenames found in %s/%s are:\n" % (filename_path, package, datadir)
-        for f in correct_files:  #pragma: no cover
+        msg = "The file %s does not exists. Correct filenames found in %s/%s are:\n" % (
+            filename_path,
+            package,
+            datadir,
+        )
+        for f in correct_files:  # pragma: no cover
             msg += "%s\n" % f
 
         raise ValueError(msg)
     return filename_path
-
-
-
-
-

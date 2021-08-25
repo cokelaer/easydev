@@ -15,14 +15,14 @@
 #  Documentation: http://easydev-python.readthedocs.io
 #
 ##############################################################################
-from __future__ import absolute_import # avoids conflict with standard module
+from __future__ import absolute_import  # avoids conflict with standard module
 import os
 import sys
 
 __all__ = ["get_platform"]
 
 
-def get_platform(): #pragma: no cover
+def get_platform():  # pragma: no cover
     """Identify the platform (Linux/windows/Mac)
 
     The folloing modules/functions can be used to identify the platform:
@@ -30,10 +30,10 @@ def get_platform(): #pragma: no cover
     the content of platform.system. If it does not work, sys.platform is used
     and sys.platform output interpreted: linux, java, win and darwin are
     searched for and returned aas Linux, Java, Windows, Darwin to be consistent
-    with the output of platform.syste. If those strings are not found, 
+    with the output of platform.syste. If those strings are not found,
     just return the output of sys.platform.
 
-    :return: 'Linux' or 'Windows' or 'Darwin', 'Java' if platform  
+    :return: 'Linux' or 'Windows' or 'Darwin', 'Java' if platform
         can be determined otherwise, the content of sys.platform()
 
     """
@@ -46,34 +46,35 @@ def get_platform(): #pragma: no cover
         # see http://stackoverflow.com/questions/1854/python-what-os-am-i-running-on
         # so, let us try sys.platform
         platform = sys.platform
-        if platform.startswith('linux'):
-            platform = 'Linux'
-        elif platform.startswith('java'):
-            platform = 'Java'
-        elif platform.startswith('win'):
-            platform = 'Windows'
-        elif platform.startswith('darwin'):
-            platform = 'Darwin'
+        if platform.startswith("linux"):
+            platform = "Linux"
+        elif platform.startswith("java"):
+            platform = "Java"
+        elif platform.startswith("win"):
+            platform = "Windows"
+        elif platform.startswith("darwin"):
+            platform = "Darwin"
         else:
             print("platform not parsed. Return raw value of sys.platform.")
     return platform
 
 
 def is_windows():
-    if get_platform() == 'Windows':
+    if get_platform() == "Windows":
         return True
     else:
         return False
+
 
 def is_linux():
-    if get_platform() == 'Linux':
+    if get_platform() == "Linux":
         return True
     else:
         return False
+
 
 def is_mac():
-    if get_platform() == 'Mac':
+    if get_platform() == "Mac":
         return True
     else:
         return False
-

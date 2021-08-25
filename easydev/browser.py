@@ -65,30 +65,32 @@ There is also an alias **onweb**::
 """
 import os
 import sys, webbrowser
-from optparse import  OptionParser
+from optparse import OptionParser
 import argparse
 
 
 def browse(url, verbose=True):
     from sys import platform as _platform
+
     if _platform == "linux" or _platform == "linux2":
         _browse_linux(url, verbose=True)
-    elif _platform == "darwin":  #pragma: no cover
-        # under Mac, it looks like the standard  webbrowser may not work as smoothly 
+    elif _platform == "darwin":  # pragma: no cover
+        # under Mac, it looks like the standard  webbrowser may not work as smoothly
         # OS X
         _browse_mac(url, verbose)
-    elif _platform == "win32":  #pragma: no cover
+    elif _platform == "win32":  # pragma: no cover
         # for windows and others, the same code as Linux should work
         _browse_linux(url, verbose=True)
     else:
-        _browse_linux(url, verbose=True)  #pragma: no cover
+        _browse_linux(url, verbose=True)  # pragma: no cover
 
 
-def _browse_mac(url, verbose=True): #pragma: no cover
+def _browse_mac(url, verbose=True):  # pragma: no cover
     if verbose:
         print("openning %s" % url)
 
     import os
+
     try:
         os.system("open /Applications/Safari.app {}".format(url))
         return
@@ -113,7 +115,7 @@ def _browse_mac(url, verbose=True): #pragma: no cover
             raise Exception
 
 
-def _browse_linux(url, verbose=True): #pragma: no cover
+def _browse_linux(url, verbose=True):  # pragma: no cover
     if verbose:
         print("openning %s" % url)
     try:
@@ -133,7 +135,7 @@ def _browse_linux(url, verbose=True): #pragma: no cover
     raise Exception("Could not open http://{}".format(url))
 
 
-def main(args=None): #pragma: no cover
+def main(args=None):  # pragma: no cover
     if args is None:
         args = sys.argv[:]
 
@@ -161,15 +163,19 @@ def main(args=None): #pragma: no cover
         browse(url, verbose)
     else:
         if verbose:
-            print("%s seems to be a web address. Trying to open it.\n" %url)
+            print("%s seems to be a web address. Trying to open it.\n" % url)
         if url.startswith("http"):
             browse(url, verbose)
         else:
             if verbose:
-                print("%s does not exists and does not starts with http, trying anyway." %url)
-            browse("http://"+url, verbose)
+                print(
+                    "%s does not exists and does not starts with http, trying anyway."
+                    % url
+                )
+            browse("http://" + url, verbose)
 
 
-if __name__ == "__main__": #pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     import sys
+
     main(sys.argv)

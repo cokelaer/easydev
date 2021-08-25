@@ -17,13 +17,11 @@
 ##############################################################################
 
 import pkg_resources
+
 try:
     version = pkg_resources.require("easydev")[0].version
 except:
     version = ">=0.11.0"
-
-
-
 
 
 from . import browser
@@ -71,13 +69,13 @@ from .misc import *
 from . import config_tools
 from .config_tools import *
 
-#from . import timer
+# from . import timer
 from .timer import Timer
 
 from . import url
 from .url import *
 
-#import dependencies
+# import dependencies
 from .dependencies import get_dependencies
 
 from . import multicore

@@ -44,6 +44,7 @@ class MultiProcessing(object):
 
 
     """
+
     def __init__(self, maxcpu=None, verbose=False, progress=True):
         """
 
@@ -64,13 +65,15 @@ class MultiProcessing(object):
 
     def reset(self):
         """remove joves and results"""
-        self.jobs = [] # a list of processes
-        self.results = Queue() # the results to append
+        self.jobs = []  # a list of processes
+        self.results = Queue()  # the results to append
 
     def add_job(self, func, *args, **kargs):
         """add a job in the pool"""
         if self.verbose:
-            print("Adding jobs in the queue..",)
+            print(
+                "Adding jobs in the queue..",
+            )
         t = Process(target=func, args=args, kwargs=kargs)
         self.jobs.append(t)
 
@@ -78,7 +81,7 @@ class MultiProcessing(object):
         if self.verbose is True:
             print("callback", results)
         if self.progress is True:
-            self.pb.animate(len(self.results)+1)
+            self.pb.animate(len(self.results) + 1)
         self.results.append(results)
 
     def run(self, delay=0.1, verbose=True):
@@ -96,25 +99,28 @@ class MultiProcessing(object):
 
         """
         from easydev import Progress
+
         if self.progress is True:
             self.pb = Progress(len(self.jobs), 1)
             self.pb.animate(0)
 
         def init_worker():
             import signal
+
             signal.signal(signal.SIGINT, signal.SIG_IGN)
 
         self.results = []
         self.pool = Pool(self.maxcpu, init_worker)
 
         for process in self.jobs:
-            self.pool.apply_async(process._target, process._args,
-                    process._kwargs, callback=self._cb)
+            self.pool.apply_async(
+                process._target, process._args, process._kwargs, callback=self._cb
+            )
 
             # ensure the results have same order as jobs
-            # maybe important if you expect the order of the results to 
-            # be the same as inut; otherwise set delay to 0 
-            time.sleep(delay) 
+            # maybe important if you expect the order of the results to
+            # be the same as inut; otherwise set delay to 0
+            time.sleep(delay)
 
         try:
             while True:
@@ -125,9 +131,10 @@ class MultiProcessing(object):
                 if count == len(self.jobs):
                     break
 
-        except KeyboardInterrupt:#pragma: no cover
-            print("\nCaught interruption. " + 
-            "Terminating the Pool of processes... ",)
+        except KeyboardInterrupt:  # pragma: no cover
+            print(
+                "\nCaught interruption. " + "Terminating the Pool of processes... ",
+            )
             self.pool.terminate()
             self.pool.join()
             print("... done")
@@ -138,11 +145,6 @@ class MultiProcessing(object):
 
         # Pool cannot be pickled. So, if we want to pickel "MultiProcessing"
         # class itself, we must desctroy this instance
-        del self.pool 
+        del self.pool
 
         self.finished = True
-
-
-
-
-

@@ -32,6 +32,7 @@ def get_path_sphinx_themes():
 
     """
     import easydev
+
     sharedir = easydev.get_shared_directory_path("easydev")
     sharedir = os.path.join(sharedir, "themes")
     return sharedir
@@ -49,12 +50,8 @@ def get_sphinx_themes():
 
     """
     from easydev import get_shared_directory_path
+
     sharedir = get_shared_directory_path("easydev")
     sharedir = pj(sharedir, "themes")
     themes = [x for x in os.listdir(sharedir) if x.startswith(".") == False]
     return themes
-
-
-
-
-

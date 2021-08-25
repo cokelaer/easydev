@@ -47,7 +47,7 @@ def to_list(data, verbose=True):
 
     """
     if isinstance(data, list) or isinstance(data, tuple):
-        return data #nothing to do
+        return data  # nothing to do
     elif isinstance(data, float):
         return [data]
     elif isinstance(data, int):
@@ -90,11 +90,3 @@ def list2string(data, sep=",", space=True):
         sep = sep + " "
     res = sep.join([str(x) for x in data])
     return res
-
-
-
-
-
-
-
-

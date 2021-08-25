@@ -25,7 +25,7 @@ except ImportError:
 __all__ = ["isurl_reachable"]
 
 
-def isurl_reachable(url, timeout=10, path="/"): #pragma: no cover
+def isurl_reachable(url, timeout=10, path="/"):  # pragma: no cover
     """Checks if an URL exists or nor
 
     :param str url: the url to look for

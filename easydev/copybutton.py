@@ -27,16 +27,20 @@ speaking required for the installation.
 import os
 from os.path import join as pj
 import shutil
+
 try:
     from docutils import nodes
-except Exception: #pragma: no cover
+except Exception:  # pragma: no cover
     # if docutils is not installed
-    class Dummy():
+    class Dummy:
         SkipNode = Exception
+
     nodes = Dummy()
 
 
-__all__ = ["get_copybutton_path", ]
+__all__ = [
+    "get_copybutton_path",
+]
 
 
 def copy_javascript_into_static_path(static="_static", filepath="copybutton.js"):
@@ -80,39 +84,36 @@ def get_copybutton_path():
 
     """
     import easydev
-    try: # install mode
+
+    try:  # install mode
         packagedir = easydev.__path__[0]
-        packagedir = os.path.realpath(pj(packagedir, 'share'))
-        os.listdir(packagedir) # if this faisl, we are in deve mode
-    except OSError: #pragma: no cover
+        packagedir = os.path.realpath(pj(packagedir, "share"))
+        os.listdir(packagedir)  # if this faisl, we are in deve mode
+    except OSError:  # pragma: no cover
         try:
             packagedir = easydev.__path__[0]
-            packagedir = os.path.realpath(pj(packagedir, '..', 'share'))
+            packagedir = os.path.realpath(pj(packagedir, "..", "share"))
         except:
             raise IOError("could not find data directory")
     return pj(packagedir, "copybutton.js")
 
 
-def setup(app): # pragma: no cover
+def setup(app):  # pragma: no cover
     cwd = os.getcwd()
 
     # From Sphinx, we typing "make html", this is the place where we expect
     # the JS to be found
     staticpath = os.sep.join([cwd, "source", "_static"])
     from easydev.tools import mkdirs
+
     mkdirs(staticpath)
     if os.path.exists(staticpath + os.sep + "copybutton.js"):
-        pass # the JS file is already there.
+        pass  # the JS file is already there.
     else:
         # Not found, so let us copy it
         import shutil
 
-        shutil.copy( get_copybutton_path(), staticpath)
+        shutil.copy(get_copybutton_path(), staticpath)
 
     # Now that the file is available, use it
-    app.add_js_file('copybutton.js')
-
-
-
-
-
+    app.add_js_file("copybutton.js")
