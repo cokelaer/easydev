@@ -1,5 +1,6 @@
 include COPYING
 include README.rst
+include requirements*txt
 recursive-include easydev/share *
 include easydev/share/copybutton.js
 recursive-exclude __pycache__
