@@ -26,8 +26,9 @@ __all__ = ["color_terminal", "get_terminal_width", "term_width_line"]
 
 try:
     plf = platform.platform.lower()
-    if plf.starstwith("win"): # pragma: no cover
+    if plf.starstwith("win"):  # pragma: no cover
         import colorama
+
         colorama.init()
 except AttributeError:
     pass
