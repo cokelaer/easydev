@@ -18,7 +18,7 @@ EASYDEV documentation
 :contributions: Please join https://github.com/cokelaer/easydev
 :source: Please use https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
-:Python version supported:     3.6, 3.7, 3.8
+:Python version supported:     3.7, 3.8, 3.9
 
 
 

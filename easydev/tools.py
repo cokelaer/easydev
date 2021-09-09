@@ -1,9 +1,7 @@
-# -*- python -*-
-# -*- coding: utf-8 -*-
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2017
+#  Copyright (c) 2011-2020
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #

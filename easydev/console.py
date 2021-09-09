@@ -19,18 +19,18 @@
 """Format colored consoled output. Modified from sphinx.util.console"""
 import os
 import sys
-
+import platform
 
 __all__ = ["color_terminal", "get_terminal_width", "term_width_line"]
 
 
-from easydev.platform import is_windows
-
-
-if is_windows() is True:  # pragma: no cover
-    import colorama
-
-    colorama.init()
+try:
+    plf = platform.platform.lower()
+    if plf.starstwith("win"): # pragma: no cover
+        import colorama
+        colorama.init()
+except AttributeError:
+    pass
 
 # colors and other functions from the attributes codes are added dynamically to
 # this __all__ variable
