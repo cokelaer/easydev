@@ -4,8 +4,8 @@ easydev
 .. image:: https://badge.fury.io/py/easydev.svg
     :target: https://pypi.python.org/pypi/easydev
 
-.. image:: https://github.com/cokelaer/easydev/actions/workflows/ci.yml/badge.svg
-    :target: https://github.com/cokelaer/easydev/actions/workflows/ci.yml
+.. image:: https://github.com/cokelaer/easydev/actions/workflows/main.yml/badge.svg
+    :target: https://github.com/cokelaer/easydev/actions/workflows/main.yml
 
 
 .. image:: https://coveralls.io/repos/cokelaer/easydev/badge.svg?branch=master 

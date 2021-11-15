@@ -12,13 +12,12 @@ release              = '%d.%d' % (_MAJOR, _MINOR)
 metainfo = {
     'authors': {'Cokelaer':('Thomas Cokelaer','thomas.cokelaer@pasteur.fr')},
     'version': version,
-    'license' : 'new BSD',
+    'license' : 'BSD-3-Clause',
     'download_url' :'http://github.com/cokelaer/easydev',
     'url' : "http://github.com/cokelaer/easydev",
     'description':'Common utilities to ease the development of Python packages' ,
     'platforms' : ['Linux', 'Unix', 'MacOsX', 'Windows'],
-    'keywords' : ["multisetup", "logging", "config", "decorators",
-        "multigit", "progressbar"],
+    'keywords' : ["multisetup", "logging", "config", "decorators", "progressbar"],
     'classifiers' : [
           'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Developers',
