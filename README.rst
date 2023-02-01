@@ -8,8 +8,8 @@ easydev
     :target: https://github.com/cokelaer/easydev/actions/workflows/main.yml
 
 
-.. image:: https://coveralls.io/repos/cokelaer/easydev/badge.svg?branch=master 
-   :target: https://coveralls.io/r/cokelaer/easydev?branch=master 
+.. image:: https://coveralls.io/repos/cokelaer/easydev/badge.svg?branch=main 
+   :target: https://coveralls.io/r/cokelaer/easydev?branch=main 
 
 
 
@@ -18,7 +18,7 @@ easydev
 :contributions: Please join https://github.com/cokelaer/easydev
 :source: Please use https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
-:Python version supported: 3.7, 3.8, 3.9
+:Python version supported: 3.7, 3.8, 3.9, 3.10
 
 
 The  `easydev <http://pypi.python.org/pypi/easydev/>`_ package 
