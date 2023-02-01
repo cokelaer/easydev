@@ -24,7 +24,9 @@ import uuid
 
 
 try:
-    from IPython.core.display import HTML, Javascript, display
+    from IPython.core.display import HTML, Javascript
+    from IPython import display
+
 except ImportError:  # pragma: no cover
     pass
 
