@@ -15,10 +15,8 @@
 #  Documentation: http://easydev-python.readthedocs.io
 #
 ##############################################################################
-# $:Id $
 
-import pkg_resources
-
+import importlib.metadata
 
 __all__ = ["get_dependencies"]
 
@@ -30,7 +28,9 @@ def get_dependencies(pkgname):
     :return: list (empty list if no dependencies)
     """
     try:
-        res = pkg_resources.require(pkgname)
+
+        res = importlib.metadata.requires("easydev")
+        res = [x.split()[0] for x in res]
         res = list(set(res))
         res.sort()
         return res

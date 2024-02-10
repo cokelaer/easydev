@@ -1,0 +1,75 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "easydev"
+version = "0.12.2"
+description = "Commn utilities to ease development of Python packages"
+authors = ["Thomas Cokelaer <thomas.cokelaer@pasteur.fr>"]
+license = "BSD-3-Clause"
+readme = ["README.rst"]
+keywords = ["config", "decorators", "development"]
+
+classifiers = [
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: Education",
+        "Intended Audience :: End Users/Desktop",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Science/Research",
+        "License :: OSI Approved :: BSD License",
+        "Operating System :: POSIX :: Linux",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Scientific/Engineering :: Bio-Informatics",
+        "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+packages = [
+    { include = "easydev"},
+    { include = "easydev/share"},
+]
+
+
+
+[project.urls]
+Homepage = "https://easydev.readthedocs.io"
+Repository = "https://github.com/cokelaer/easydev"
+Issues = "https://github.com/cokelaer/easydev/issues"
+Documentation =  "https://easydev.readthedocs.io"
+
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+colorama = "^0.4.6"
+colorlog = "^6.8.2"
+pexpect = "^4.9.0"
+platformdirs = "^4.2.0"
+profiler = "^0.1.0"
+
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.4"
+pytest-cov = "^4.1.0"
+pytest-xdist = "^3.5.0"
+pytest-mock = "^3.12.0"
+pytest-timeout = "^2.2.0"
+pytest-runner = "^6.0.1"
+coveralls = "^3.3.1"
+flaky = "^3.7.0"
+mock = "^5.1.0"
+
+
+[tool.poetry.group.doc.dependencies]
+sphinx = ">3"
+sphinx-rtd-theme = "^2.0.0"
+sphinx-gallery = "^0.15.0"
+
+
+
+
