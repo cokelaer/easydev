@@ -25,15 +25,12 @@ jobs:
 
     - name: Install the package itself
       run: |
-          pip install .
-
-    - name: Install packages for testing
-      run: |
-        pip install -r requirements_dev.txt
+          pip install poetry
+          poetry install --with dev
 
     - name: Test with pytest
       run: |
-        pytest --cov-report term --cov=easydev
+        poetry run pytest --cov-report term --cov=easydev
 
     - name: coveralls
       run: |
