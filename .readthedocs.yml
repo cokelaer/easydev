@@ -1,6 +1,6 @@
 version: 2
 sphinx:
-    configuration: doc/conf.py
+    configuration: doc/source/conf.py
     builder: html
 
 # Set the version of Python and other tools you might need
