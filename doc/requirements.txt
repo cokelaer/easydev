@@ -1,4 +1,5 @@
-colorama
-pexpect
-mock
-sphinx
+sphinx<7
+sphinx_rtd_theme
+pillow<=9.5.0
+sphinx_gallery
+sphinx_copybutton
