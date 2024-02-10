@@ -8,8 +8,8 @@ easydev
     :target: https://github.com/cokelaer/easydev/actions/workflows/main.yml
 
 
-.. image:: https://coveralls.io/repos/cokelaer/easydev/badge.svg?branch=main 
-   :target: https://coveralls.io/r/cokelaer/easydev?branch=main 
+.. image:: https://coveralls.io/repos/cokelaer/easydev/badge.svg?branch=main
+   :target: https://coveralls.io/r/cokelaer/easydev?branch=main
 
 
 
@@ -21,18 +21,26 @@ easydev
 :Python version supported: 3.7, 3.8, 3.9, 3.10
 
 
-The  `easydev <http://pypi.python.org/pypi/easydev/>`_ package 
-provides miscellaneous functions that are repeatidly used during 
-the development of Python packages. The goal is to help developers on 
-speeding up their own dev. It has been used also as an incubator for other 
+The  `easydev <http://pypi.python.org/pypi/easydev/>`_ package
+provides miscellaneous functions that are repeatidly used during
+the development of Python packages. The goal is to help developers on
+speeding up their own dev. It has been used also as an incubator for other
 packages (e.g., http://pypi.python.org/pypi/colormap) and is stable.
 
 .. warning:: I'm not pretending to provide universal and bug-free tools. The
     tools provided may also change. However, **easydev** is used
-    in a few other packages such as 
-    `bioservices <https://pypi.python.org/pypi/bioservices>`_, 
-    `sequana <https://sequana.readthedocs.io>`_ or 
+    in a few other packages such as
+    `bioservices <https://pypi.python.org/pypi/bioservices>`_,
+    `sequana <https://sequana.readthedocs.io>`_ or
     `GDSCTools <https://sequana.readthedocs.io>`_ to give a few
-    examples. 
+    examples.
 
+Changelog
+~~~~~~~~~
 
+========= ==========================================================================
+Version   Description
+========= ==========================================================================
+0.12.2    * For developers: move to pyprojet. add precomit
+          * replace pkg_resources (deprecated) with importlib
+========= ==========================================================================

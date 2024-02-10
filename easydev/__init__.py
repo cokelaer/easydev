@@ -15,74 +15,59 @@
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
-
-import pkg_resources
-
-try:
-    version = pkg_resources.require("easydev")[0].version
-except:
-    version = ">=0.11.0"
+from importlib import metadata
 
 
-from . import browser
+def get_package_version(package_name):
+    try:
+        version = metadata.version(package_name)
+        return version
+    except metadata.PackageNotFoundError:
+        return f"{package_name} not found"
+
+
+version = get_package_version("easydev")
+
+from . import (
+    browser,
+    chunks,
+    codecs,
+    config_tools,
+    copybutton,
+    decorators,
+    doc,
+    easytest,
+    logging_tools,
+    misc,
+    multicore,
+    options,
+    paths,
+    sphinx_themes,
+    tools,
+    url,
+)
 from .browser import browse as onweb
-
-from . import codecs
-from .codecs import *
-
-from . import chunks
 from .chunks import *
-
-from . import copybutton
-from .copybutton import *
-
-from . import decorators
-from .decorators import *
-
-from . import doc
-from .doc import *
-
-from . import easytest
-from .easytest import *
-
-from . import logging_tools
-from .logging_tools import *
-
-from . import sphinx_themes
-from .sphinx_themes import *
-
-from . import tools
-from .tools import *
-
-
-from .md5tools import md5
-
-from . import options
-from .options import *
-
-from . import paths
-from .paths import *
-
-from . import misc
-from .misc import *
-
-from . import config_tools
+from .codecs import *
 from .config_tools import *
-
-# from . import timer
-from .timer import Timer
-
-from . import url
-from .url import *
+from .copybutton import *
+from .decorators import *
 
 # import dependencies
 from .dependencies import get_dependencies
-
-from . import multicore
+from .doc import *
+from .easytest import *
+from .logging_tools import *
+from .md5tools import md5
+from .misc import *
 from .multicore import *
-
-
-from .progressbar import TextProgressBar, progress_bar, Progress
-
-
+from .options import *
+from .paths import *
 from .profiler import do_profile
+from .progressbar import Progress, TextProgressBar, progress_bar
+from .sphinx_themes import *
+
+# from . import timer
+from .timer import Timer
+from .tools import *
+from .url import *
