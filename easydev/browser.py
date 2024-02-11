@@ -3,13 +3,11 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2017
+#  Copyright (c) 2011-2024
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv3 License.
-#  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-3.0.html
+#  Distributed under the BSD3 License.
 #
 #  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://easydev-python.readthedocs.io
@@ -36,7 +34,7 @@ Similarly, you can open an image (it uses the default image viewer)::
 
     browse image.png
 
-Or a txt file (or any document provided there is a default executable 
+Or a txt file (or any document provided there is a default executable
 to open it). It works like a charm under Linux. Under MAC, it uses the **open**
 command so this should also work.
 
@@ -48,7 +46,7 @@ You can also look at a directory (starts nautilus under Fedora)::
 
     browse ~/Pictures
 
-See more examples below. 
+See more examples below.
 
 The interest of **browse** is that it can also be used programmatically::
 
@@ -63,10 +61,11 @@ There is also an alias **onweb**::
     from easydev import onweb
 
 """
-import os
-import sys, webbrowser
-from optparse import OptionParser
 import argparse
+import os
+import sys
+import webbrowser
+from optparse import OptionParser
 
 
 def browse(url, verbose=True):
@@ -168,10 +167,7 @@ def main(args=None):  # pragma: no cover
             browse(url, verbose)
         else:
             if verbose:
-                print(
-                    "%s does not exists and does not starts with http, trying anyway."
-                    % url
-                )
+                print("%s does not exists and does not starts with http, trying anyway." % url)
             browse("http://" + url, verbose)
 
 

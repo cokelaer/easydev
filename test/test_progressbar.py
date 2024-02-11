@@ -1,21 +1,20 @@
-
-from easydev import progressbar
 import time
-from easydev import Progress
+
+from easydev import Progress, progressbar
+
 
 def test_progressbar():
     N = 2
     p = progressbar.progress_bar(N)
 
-    for i in range(0,N):
-        time.sleep(.1)
-        p.animate(i+1, i)
-
+    for i in range(0, N):
+        time.sleep(0.1)
+        p.animate(i + 1, i)
 
     p = progressbar.TextProgressBar(N, progressbar.consoleprint)
-    for i in range(0,N):
-        time.sleep(.1)
-        p.animate(i+1, i)
+    for i in range(0, N):
+        time.sleep(0.1)
+        p.animate(i + 1, i)
 
     p = Progress(100)
     p.animate(1)
@@ -28,4 +27,3 @@ def test_progressbar():
     # IPYthon test ? fails on travis
     # p = progressbar.IPythonNotebookPB(200)
     # p.animate(1)
-

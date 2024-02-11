@@ -3,13 +3,11 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2014
+#  Copyright (c) 2011-2024
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv3 License.
-#  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-3.0.html
+#  Distributed under the BSD3 License.
 #
 #  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://packages.python.org/easydev
@@ -66,8 +64,6 @@ from .paths import *
 from .profiler import do_profile
 from .progressbar import Progress, TextProgressBar, progress_bar
 from .sphinx_themes import *
-
-# from . import timer
 from .timer import Timer
 from .tools import *
 from .url import *

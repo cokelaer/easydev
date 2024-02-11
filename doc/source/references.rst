@@ -12,7 +12,7 @@ browse
 .. automodule:: easydev.browser
     :members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 chunks
 ==========
@@ -20,7 +20,7 @@ chunks
 .. automodule:: easydev.chunks
     :members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 codecs
 ==========
@@ -28,14 +28,14 @@ codecs
 .. automodule:: easydev.codecs
     :members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 config
 ==========
 
 .. automodule:: easydev.config_tools
     :members:
-    :synopsis: 
+    :synopsis:
 
 console
 ===========
@@ -44,7 +44,7 @@ console
     :members:
     :undoc-members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 decorators
 ===============
@@ -53,7 +53,7 @@ decorators
     :members:
     :undoc-members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 dependencies
 ===============
@@ -62,7 +62,7 @@ dependencies
     :members:
     :undoc-members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 
 doc
@@ -72,7 +72,7 @@ doc
     :members:
     :undoc-members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 easytest
 ==========
@@ -81,7 +81,7 @@ easytest
     :members:
     :undoc-members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 
 
@@ -92,7 +92,7 @@ logging_tools
     :members:
     :undoc-members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 Options
 ===================================================================
@@ -101,7 +101,7 @@ Options
     :members:
     :undoc-members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 
 
@@ -112,7 +112,7 @@ paths
     :members:
     :undoc-members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 progressbar
 ==============
@@ -121,7 +121,7 @@ progressbar
     :members:
     :undoc-members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 sphinx themes
 ===================================================================
@@ -130,7 +130,7 @@ sphinx themes
     :members:
     :undoc-members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
 timer
 ================
@@ -145,25 +145,23 @@ tools
 .. automodule:: easydev.tools
     :members:
     :undoc-members:
-    :synopsis: 
+    :synopsis:
 
 
- 
+
 url
 =====
 .. automodule:: easydev.url
     :members:
     :undoc-members:
     :inherited-members:
-    :synopsis: 
+    :synopsis:
 
- 
+
 multicore
 ==================
 .. automodule:: easydev.multicore
     :members:
     :undoc-members:
     :inherited-members:
-    :synopsis: 
-
- 
+    :synopsis:

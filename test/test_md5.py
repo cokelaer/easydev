@@ -1,5 +1,5 @@
-from easydev.md5tools import md5
 from easydev import TempFile
+from easydev.md5tools import md5
 
 
 def test_md5():

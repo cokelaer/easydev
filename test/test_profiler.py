@@ -1,8 +1,6 @@
 from easydev import do_profile
 
 
-
-
 @do_profile()
 def test_profile():
     @do_profile()

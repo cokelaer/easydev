@@ -1,12 +1,10 @@
 import easydev
-from easydev.platform import get_platform, is_windows
-from easydev.platform import is_linux, is_mac
+from easydev.platform import get_platform, is_linux, is_mac, is_windows
 
 
 def test_platform(mocker):
 
-    assert get_platform() in ['Linux', 'Windows', 'Mac']
-
+    assert get_platform() in ["Linux", "Windows", "Mac"]
 
     is_windows()
     is_linux()
@@ -29,4 +27,3 @@ def test_platform(mocker):
     assert is_linux() is False
     assert is_windows() is False
     assert is_mac() is True
-

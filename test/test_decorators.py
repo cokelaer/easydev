@@ -1,8 +1,7 @@
-from easydev.decorators import requires, ifpandas, ifpylab, _require
+from easydev.decorators import _require, ifpandas, ifpylab, requires
 
 
 class A(object):
-
     def __init__(self):
         pass
 
@@ -14,10 +13,10 @@ class A(object):
     def print_str(self):
         print(self.a)
 
-    @requires(["a",'b'], "what to do")
+    @requires(["a", "b"], "what to do")
     def print_list(self):
-        print(self.a +self.b)
-    
+        print(self.a + self.b)
+
     @_require("a", "what to do")
     def print_list(self):
         print(self.a)

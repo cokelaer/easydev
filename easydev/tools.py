@@ -1,24 +1,21 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2020
+#  Copyright (c) 2011-2024
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv3 License.
-#  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-3.0.html
+#  Distributed under the BSD3 License.
 #
 #  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://easydev-python.readthedocs.io
 #
 ##############################################################################
 """toolkit to ease development"""
-import subprocess
 import json
 import os
+import subprocess
 import sys
-
 
 __all__ = [
     "shellcmd",
@@ -98,9 +95,7 @@ def check_param_in_list(param, valid_values, name=None):
     if isinstance(valid_values, list) is False:
 
         raise TypeError(
-            "the valid_values second argument must be a list of valid values. {0} was provided.".format(
-                valid_values
-            )
+            "the valid_values second argument must be a list of valid values. {0} was provided.".format(valid_values)
         )
 
     if param not in valid_values:
@@ -126,9 +121,7 @@ def shellcmd(cmd, show=False, verbose=False, ignore_errors=False):
     if show:
         print(cmd)
     try:
-        ret = subprocess.Popen(
-            [cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True
-        )
+        ret = subprocess.Popen([cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 
         output = ret.stdout.read().strip()
         error = ret.stderr.read().strip()
@@ -192,9 +185,7 @@ def swapdict(dic, check_ambiguity=True):
     """
     # this version is more elegant but slightly slower : return {v:k for k,v in dic.items()}
     if check_ambiguity:
-        assert len(set(dic.keys())) == len(
-            set(dic.values())
-        ), "values is not a set. ambiguities for keys."
+        assert len(set(dic.keys())) == len(set(dic.values())), "values is not a set. ambiguities for keys."
     return dict(zip(dic.values(), dic.keys()))
 
 

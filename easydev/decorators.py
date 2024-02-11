@@ -3,21 +3,19 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2012-2014 -
+#  Copyright (c) 2011-2024 -
 #
 #  File author(s): Thomas Cokelaer (cokelaer, gmail.com)
 #
-#  Distributed under the GPLv3 License.
-#  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-3.0.html
+#  Distributed under the BSD3 License.
 #
 #  Website: https://github.com/cokelaer/easydev
 #  website: http://github.com/cokelaer/easydev
 #
 ##############################################################################
 """Handy decorators"""
-from functools import wraps
 import threading
+from functools import wraps
 
 __all__ = ["ifpylab", "requires", "ifpandas"]
 
@@ -51,9 +49,7 @@ def _require(*args_deco, **kwds_deco):
     msg = args_deco[1]
 
     if len(attribute.split(".")) > 2:
-        raise AttributeError(
-            "This version of require decorator introspect only 2 levels"
-        )
+        raise AttributeError("This version of require decorator introspect only 2 levels")
 
     def decorator(func):
         # func: function object of decorated method; has
@@ -139,9 +135,7 @@ def requires(requires, msg=""):
         def wrapper(*args, **kwds):
             for require in requires:
                 if hasattr(args[0], require) == False:
-                    raise AttributeError(
-                        "{} not found in {}. ".format(require, args[0]) + msg
-                    )
+                    raise AttributeError("{} not found in {}. ".format(require, args[0]) + msg)
             return f(*args, **kwds)
 
         return wrapper

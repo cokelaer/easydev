@@ -1,15 +1,16 @@
-from easydev import SmartFormatter
 import argparse
 
+from easydev import SmartFormatter
 
 
 class Options(argparse.ArgumentParser):
-    def  __init__(self, prog="test"):
+    def __init__(self, prog="test"):
         usage = """standalone test"""
-        description="""blabla"""
-        super(Options, self).__init__(usage=usage, prog=prog,
-              description=description, formatter_class=SmartFormatter)
-        self.add_argument("--config-params", dest="config_params",
+        description = """blabla"""
+        super(Options, self).__init__(usage=usage, prog=prog, description=description, formatter_class=SmartFormatter)
+        self.add_argument(
+            "--config-params",
+            dest="config_params",
             type=str,
             help="""FORMAT|Overwrite any field in the config file by using
 the following convention. A config file is in YAML format
@@ -21,7 +22,8 @@ and has a hierarchy of parametesr. For example:
     bwa_mem_phix:
         mem:
             threads: 2
-        """)
+        """,
+        )
 
 
 def test():

@@ -3,13 +3,11 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2014
+#  Copyright (c) 2011-2024
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv3 License.
-#  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-3.0.html
+#  Distributed under the BSD3 License.
 #
 #  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://packages.python.org/easydev
@@ -20,8 +18,6 @@
 import tempfile
 
 __all__ = ["assert_list_almost_equal", "trysetattr", "TempFile"]
-
-# from easydev.decorators import ifpandas
 
 
 def assert_list_almost_equal(first, second, places=None, deltas=None):

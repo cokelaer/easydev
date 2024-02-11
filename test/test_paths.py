@@ -1,5 +1,6 @@
-from easydev.paths import *
 import os
+
+from easydev.paths import *
 
 
 def test_get_share_directory_path():
@@ -13,6 +14,7 @@ def test_get_share_directory_path():
 
 def test_get_share_directories():
     a = get_shared_directories("easydev", "themes")
+
 
 def test_get_share_file():
     f = get_share_file("easydev", os.sep.join(["themes", "standard"]), "theme.conf")

@@ -1,5 +1,5 @@
-from easydev.console import *
 from easydev import console
+from easydev.console import *
 
 
 def test_get_terminal_width():
@@ -7,7 +7,7 @@ def test_get_terminal_width():
 
 
 def test_term_width_line():
-    term_width_line('text')
+    term_width_line("text")
 
 
 def test_color_terminal():
@@ -15,6 +15,5 @@ def test_color_terminal():
 
 
 def test_print_color():
-    print(purple('\t%s' % "test"))
-    print(red('\t%s' % "test"))
-
+    print(purple("\t%s" % "test"))
+    print(red("\t%s" % "test"))
