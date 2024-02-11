@@ -3,20 +3,17 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2017
+#  Copyright (c) 2011-2024
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv3 License.
-#  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-3.0.html
+#  Distributed under the BSD3 License.
 #
 #  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://easydev-python.readthedocs.io
 #
 ##############################################################################
 import argparse
-
 
 __all__ = ["SmartFormatter"]
 

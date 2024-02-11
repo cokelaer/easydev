@@ -3,13 +3,11 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2014
+#  Copyright (c) 2011-2024
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv3 License.
-#  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-3.0.html
+#  Distributed under BSD3 license
 #
 #  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://packages.python.org/easydev
@@ -20,16 +18,12 @@ try:
 except ImportError:
     from configparser import ConfigParser
 
-
 import os
 
-
-__all__ = ["CustomConfig", "DynamicConfigParser", "ConfigExample", "load_configfile"]
-
-#  53, 59, 64-65, 181, 260, 262, 267-270, 288-290, 329, 332-337, 340-341, 359-360, 386-388, 400-401, 406-426, 431-435
+__all__ = ["CustomConfig", "DynamicConfigParser"]
 
 
-class _DictSection(object):
+class _DictSection:
     """Dictionary section.
 
     Reference: https://gist.github.com/dangoakachan/3855920
@@ -76,49 +70,7 @@ class _DictSection(object):
         return config.has_section(section) and config.has_option(section, attr)
 
 
-class ConfigExample(object):
-    """Create a simple example of ConfigParser instance to play with
-
-    ::
-
-        >>> from easydev.pipeline.config import ConfigExample
-        >>> c = ConfigExample().config  # The ConfigParser instance
-        >>> assert 'General' in c.sections()
-        >>> assert 'GA' in c.sections()
-
-    This example builds up a ConfigParser instance from scratch.
-
-    This is equivalent to having the following input file::
-
-        [General]
-        verbose = True
-        tag = test
-
-        [GA]
-        popsize = 1
-
-
-    which can be read with ConfigParser as follows:
-
-    .. doctest::
-
-        >>> # Python 3 code
-        >>> from configparser import ConfigParser
-        >>> config = ConfigParser()
-        >>> config.read("file.ini")
-        []
-
-    """
-
-    def __init__(self):
-        self.config = ConfigParser()
-        self.config.add_section("General")
-        self.config.set("General", "verbose", "true")
-        self.config.add_section("GA")
-        self.config.set("GA", "popsize", "50")
-
-
-class DynamicConfigParser(ConfigParser, object):
+class DynamicConfigParser(ConfigParser):
     """Enhanced version of Config Parser
 
     Provide some aliases to the original ConfigParser class and
@@ -180,9 +132,7 @@ class DynamicConfigParser(ConfigParser, object):
         elif config_or_filename == None:
             pass
         else:
-            raise TypeError(
-                "config_or_filename must be a valid filename or valid ConfigParser instance"
-            )
+            raise TypeError("config_or_filename must be a valid filename or valid ConfigParser instance")
 
     def read(self, filename):
         """Load a new config from a filename (remove all previous sections)"""
@@ -334,16 +284,16 @@ class DynamicConfigParser(ConfigParser, object):
     def __setattr__(self, attr, value):
         if attr.startswith("_") or attr:
             object.__setattr__(self, attr, value)
-        else:
+        else:  # pragma: no cover
             self.__setitem__(attr, value)
 
-    def __setitem__(self, attr, value):
-        if isinstance(value, dict):
-            section = self[attr]
-            for k, v in value.items():
-                section[k] = v
-        else:
-            raise TypeError("value must be a valid dictionary")
+    # def __setitem__(self, attr, value):
+    #    if isinstance(value, dict):
+    #        section = self[attr]
+    #        for k, v in value.items():
+    #            section[k] = v
+    #    else:
+    #        raise TypeError("value must be a valid dictionary")
 
     def __delattr__(self, attr):
         if attr in self:
@@ -362,9 +312,7 @@ class DynamicConfigParser(ConfigParser, object):
 
             for option in self.options(section):
                 try:
-                    if str(self.get(section, option, raw=True)) != str(
-                        data.get(section, option, raw=True)
-                    ):
+                    if str(self.get(section, option, raw=True)) != str(data.get(section, option, raw=True)):
                         print("option %s in section %s differ" % (option, section))
                         return False
                 except:  # pragma: no cover
@@ -389,9 +337,7 @@ class CustomConfig(object):
         sdir = self.appdirs.user_config_dir
         return self._get_and_create(sdir)
 
-    user_config_dir = property(
-        _get_config_dir, doc="return directory of this configuration file"
-    )
+    user_config_dir = property(_get_config_dir, doc="return directory of this configuration file")
 
     def _get_and_create(self, sdir):
         if not os.path.exists(sdir):
@@ -415,43 +361,3 @@ class CustomConfig(object):
             os.rmdir(sdir)
         except Exception as err:  # pragma: no cover
             raise Exception(err)
-
-
-def _load_configfile(configpath):  # pragma: no cover
-    "Tries to load a JSON or YAML file into a dict."
-    try:
-        with open(configpath) as f:
-            try:
-                import json
-
-                return json.load(f)
-            except ValueError:
-                f.seek(0)  # try again
-            try:
-                import yaml
-            except ImportError:
-                raise IOError(
-                    "Config file is not valid JSON and PyYAML "
-                    "has not been installed. Please install "
-                    "PyYAML to use YAML config files."
-                )
-            try:
-                return yaml.load(f, Loader=yaml.FullLoader)
-            except yaml.YAMLError:
-                raise IOError(
-                    "Config file is not valid JSON or YAML. "
-                    "In case of YAML, make sure to not mix "
-                    "whitespace and tab indentation."
-                )
-    except Exception as err:
-        raise (err)
-
-
-def load_configfile(configpath):
-    "Loads a JSON or YAML configfile as a dict."
-    config = _load_configfile(configpath)
-    if not isinstance(config, dict):
-        raise IOError(
-            "Config file must be given as JSON or YAML " "with keys at top level."
-        )
-    return config

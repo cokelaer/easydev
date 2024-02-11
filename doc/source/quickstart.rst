@@ -59,7 +59,7 @@ many more functionalities.
     ~easydev.tools.AttrDict
     ~easydev.tools.DevTools
 
-For :class:`~easydev.tools.DevTools` and :class:`~easydev.tools.AttrDict`, 
+For :class:`~easydev.tools.DevTools` and :class:`~easydev.tools.AttrDict`,
 please see :ref:`devtools` and :ref:`attrdict` sections, respetively.
 
 Check validity of a values
@@ -170,7 +170,7 @@ Timer populate a list variable with time spent in **with** statements
     with Timer(imes):
         time.sleep(0.2)
     sum(times)
-    
+
 
 
 Profiling
@@ -329,7 +329,3 @@ Each job must be a function with arguments and optional arguments but must retur
 The :meth:`add_job` takes as input a function name followed by a lost of arguments. You can then introspect individual results::
 
   t.results
-
-
-
-

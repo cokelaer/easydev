@@ -4,13 +4,11 @@
 #  This file is part of the easydev software
 #  It is a modified version of console.py from the sphinx software
 #
-#  Copyright (c) 2011-2014
+#  Copyright (c) 2011-2024
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv3 License.
-#  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-3.0.html
+#  Distributed under the BSD3 License.
 #
 #  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://packages.python.org/easydev
@@ -18,8 +16,8 @@
 ##############################################################################
 """Format colored consoled output. Modified from sphinx.util.console"""
 import os
-import sys
 import platform
+import sys
 
 __all__ = ["color_terminal", "get_terminal_width", "term_width_line"]
 
@@ -41,7 +39,9 @@ codes = {}
 def get_terminal_width():
     """Returns the current terminal width"""
     try:
-        import termios, fcntl, struct
+        import fcntl
+        import struct
+        import termios
 
         call = fcntl.ioctl(0, termios.TIOCGWINSZ, struct.pack("hhhh", 0, 0, 0, 0))
         _, width = struct.unpack("hhhh", call)[:2]

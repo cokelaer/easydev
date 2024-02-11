@@ -3,20 +3,18 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2017
+#  Copyright (c) 2011-2024
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv3 License.
-#  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-3.0.html
+#  Distributed under the BSD3 License.
 #
 #  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://easydev-python.readthedocs.io
 #
 ##############################################################################
 import time
-from multiprocessing import cpu_count, Process, Queue, Pool
+from multiprocessing import Pool, Process, Queue, cpu_count
 
 __all__ = ["MultiProcessing"]
 
@@ -113,9 +111,7 @@ class MultiProcessing(object):
         self.pool = Pool(self.maxcpu, init_worker)
 
         for process in self.jobs:
-            self.pool.apply_async(
-                process._target, process._args, process._kwargs, callback=self._cb
-            )
+            self.pool.apply_async(process._target, process._args, process._kwargs, callback=self._cb)
 
             # ensure the results have same order as jobs
             # maybe important if you expect the order of the results to

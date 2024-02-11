@@ -3,20 +3,17 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2017
+#  Copyright (c) 2011-2024
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv3 License.
-#  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-3.0.html
+#  Distributed under the BSD3 License.
 #
 #  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://easydev-python.readthedocs.io
 #
 ##############################################################################
 import os
-
 
 __all__ = ["get_home", "cmd_exists"]
 
@@ -47,9 +44,7 @@ def cmd_exists(cmd):
         import subprocess
 
         # for unix/max only
-        result = subprocess.call(
-            "type " + cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-        )
+        result = subprocess.call("type " + cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         if result == 0:
             return True
         else:
@@ -68,10 +63,7 @@ def in_ipynb():
     """
     try:  # pragma: no cover
         cfg = get_ipython().config
-        if (
-            "parent_appname" in cfg["IPKernelApp"].keys()
-            and cfg["IPKernelApp"]["parent_appname"] == "ipython-notebook"
-        ):
+        if "parent_appname" in cfg["IPKernelApp"].keys() and cfg["IPKernelApp"]["parent_appname"] == "ipython-notebook":
             return True
         elif "connection_file" in cfg["IPKernelApp"].keys():
             if "jupyter" in cfg["IPKernelApp"]["connection_file"]:

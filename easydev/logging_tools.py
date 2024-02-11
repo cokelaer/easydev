@@ -2,13 +2,11 @@
 #
 #  This file is part of easydev software
 #
-#  Copyright (c) 2012-2014
+#  Copyright (c) 2011-2024
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv3 License.
-#  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-3.0.html
+#  Distributed under the BSD3 License.
 #
 #  Website: https://github.com/cokelaer/easydev
 #
@@ -44,9 +42,7 @@ class Logging(object):
     def __init__(self, name="root", level="WARNING", text_color="blue"):
         self._name = name
         self.formatter = colorlog.ColoredFormatter(
-            "%(log_color)s%(levelname)-8s[%(name)s:%(lineno)d]: %(reset)s %({})s%(message)s".format(
-                text_color
-            ),
+            "%(log_color)s%(levelname)-8s[%(name)s:%(lineno)d]: %(reset)s %({})s%(message)s".format(text_color),
             datefmt=None,
             reset=True,
             log_colors=colors,

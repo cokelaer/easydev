@@ -1,7 +1,7 @@
 import mock
 
-def test_app():
 
+def test_app():
     def getter(app):
         app.user_data_dir
         app.site_data_dir
@@ -12,15 +12,18 @@ def test_app():
 
     with mock.patch("sys.platform", "darwin"):
         from easydev import appdirs
+
         app = appdirs.AppDirs("test")
         getter(app)
 
     with mock.patch("sys.platform", "win32"):
         from easydev import appdirs
+
         app = appdirs.AppDirs("test")
         getter(app)
 
     with mock.patch("sys.platform", "linux"):
         from easydev import appdirs
+
         app = appdirs.AppDirs("test")
         getter(app)

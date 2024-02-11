@@ -73,4 +73,3 @@ easydev may now exist in standard modules of Python.
     installation
     quickstart
     references
-

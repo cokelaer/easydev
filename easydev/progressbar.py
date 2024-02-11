@@ -3,13 +3,11 @@
 #
 #  This file is part of the easydev software
 #
-#  Copyright (c) 2011-2017
+#  Copyright (c) 2011-2024
 #
 #  File author(s): Thomas Cokelaer <cokelaer@gmail.com>
 #
-#  Distributed under the GPLv3 License.
-#  See accompanying file LICENSE.txt or copy at
-#      http://www.gnu.org/licenses/gpl-3.0.html
+#  Distributed under the BSD3 License.
 #
 #  Website: https://github.com/cokelaer/easydev
 #  Documentation: http://easydev-python.readthedocs.io
@@ -22,10 +20,9 @@ import sys
 import time
 import uuid
 
-
 try:
-    from IPython.core.display import HTML, Javascript
     from IPython import display
+    from IPython.core.display import HTML, Javascript
 
 except ImportError:  # pragma: no cover
     pass
@@ -72,9 +69,7 @@ class TextProgressBar(ProgressBar):
     def animate(self, i, dummy=None):
         # dummy=None is for back-compatibility
         if dummy is not None:  # pragma: no cover
-            print(
-                "second argument in easydev.progress_bar.animate is deprecated. Update your code"
-            )
+            print("second argument in easydev.progress_bar.animate is deprecated. Update your code")
         # +1 if i starts at 0 and finishes at N-1
         if divmod(i, self.interval)[1] != 0 and i != self.iterations:
             pass
@@ -141,9 +136,7 @@ class IPythonNotebookPB(ProgressBar):  # pragma: no cover
 
     def animate(self, i, dummy=None):
         if dummy is not None:
-            print(
-                "second argument in easydev.progress_bar.animate is deprecated. Update your code"
-            )
+            print("second argument in easydev.progress_bar.animate is deprecated. Update your code")
 
         # +1 if i starts at 0 and finishes at N-1
         if divmod(i, self.interval)[1] != 0 and i != self.iterations:
@@ -153,10 +146,7 @@ class IPythonNotebookPB(ProgressBar):  # pragma: no cover
             fraction = percentage
             display(Javascript("$('div#%s').width('%i%%')" % (self.divid, percentage)))
             display(
-                Javascript(
-                    "$('label#%s').text('%i%% in %.1f sec')"
-                    % (self.sec_id, fraction, round(self.elapsed, 1))
-                )
+                Javascript("$('label#%s').text('%i%% in %.1f sec')" % (self.sec_id, fraction, round(self.elapsed, 1)))
             )
 
 

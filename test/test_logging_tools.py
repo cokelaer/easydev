@@ -11,12 +11,12 @@ def test_logging():
     l.error("test")
     l.critical("test")
 
-    for level in ['DEBUG', 'INFO', 'ERROR', 'WARNING', 'CRITICAL']:
+    for level in ["DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL"]:
         l.level = level
         assert l.level == level
     l.level = True
     l.level = False
-    for x in [10,20,30,40,50]:
+    for x in [10, 20, 30, 40, 50]:
         l.level = x
 
     try:
@@ -27,5 +27,6 @@ def test_logging():
 
     # FIXME is this working ??wierd syntax in loggibg_tools.
     import copy
+
     copy.copy(l)
     copy.deepcopy(l)
