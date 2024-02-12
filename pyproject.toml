@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "easydev"
-version = "0.12.2"
+version = "0.13.0"
 description = "Commn utilities to ease development of Python packages"
 authors = ["Thomas Cokelaer <thomas.cokelaer@pasteur.fr>"]
 license = "BSD-3-Clause"
@@ -49,7 +49,7 @@ colorama = "^0.4.6"
 colorlog = "^6.8.2"
 pexpect = "^4.9.0"
 platformdirs = "^4.2.0"
-profiler = "^0.1.0"
+line-profiler = "^4.1.2"
 
 
 
