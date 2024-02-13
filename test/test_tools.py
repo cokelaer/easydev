@@ -1,103 +1,105 @@
-from easydev import TempFile, tools
+from easydev import TempFile
+from easydev import tools as tools2
+from easydev.tools import *
 
 
 def test_check_range():
-    tools.check_range(1, 0, 1)
-    tools.check_range(0, 0, 1)
-    tools.check_range(0.5, 0, 1)
+    check_range(1, 0, 1)
+    check_range(0, 0, 1)
+    check_range(0.5, 0, 1)
 
     try:
-        tools.check_range(1, 0, 1, strict=True)
+        check_range(1, 0, 1, strict=True)
         assert False
     except:
         assert True
     try:
-        tools.check_range(0, 0, 1, strict=True)
+        check_range(0, 0, 1, strict=True)
         assert False
     except:
         assert True
 
     try:
-        tools.check_range(10, 0, 1, strict=False)
+        check_range(10, 0, 1, strict=False)
         assert False
     except:
         assert True
     try:
-        tools.check_range(-10, 0, 1, strict=False)
+        check_range(-10, 0, 1, strict=False)
         assert False
     except:
         assert True
 
 
 def test_swapdict():
-    assert {1: "a"} == tools.swapdict({"a": 1})
+    assert {1: "a"} == swapdict({"a": 1})
 
     # if the are non-unique values, we can catch the error or no:
     try:
-        tools.swapdict({"a": 1, "b": 1})
+        swapdict({"a": 1, "b": 1})
         assert False
     except:
         assert True
-    tools.swapdict({"a": 1, "b": 1}, check_ambiguity=False)
+    swapdict({"a": 1, "b": 1}, check_ambiguity=False)
 
 
 def test_tools():
-    tools.shellcmd("ls")
-    tools.shellcmd("ls", show=False)
-    tools.shellcmd("ls", show=True)
-    output = tools.shellcmd("ls", verbose=True)
-    tools.shellcmd("lssssssss", verbose=True, ignore_errors=True)
+    shellcmd("ls")
+    shellcmd("ls", show=False)
+    shellcmd("ls", show=True)
+    output = shellcmd("ls", verbose=True)
+    shellcmd("lssssssss", verbose=True, ignore_errors=True)
 
-    tools.execute("ls")
+    execute("ls")
 
 
 def test_tools2():
     try:
-        tools.shellcmd("lsss", verbose=False)
+        shellcmd("lsss", verbose=False)
         assert False
     except:
         assert True
 
 
 def test_checkParams():
-    tools.checkParam(1, [1, 2])
+    checkParam(1, [1, 2])
     try:
-        tools.checkParam(0, [1, 2])
+        checkParam(0, [1, 2])
         assert False
     except:
         assert True
 
     try:
-        tools.checkParam(0, 0)
+        checkParam(0, 0)
         assert False
     except TypeError:
         assert True
 
 
 def test_check_param_in_list():
-    tools.check_param_in_list(1, [0, 1, 5], "test")
+    check_param_in_list(1, [0, 1, 5], "test")
     try:
-        tools.check_param_in_list(10, [0, 1, 5])
+        check_param_in_list(10, [0, 1, 5])
         assert False
     except:
         assert True
     try:
-        tools.check_param_in_list(10, [0, 1, 5], "testt")
+        check_param_in_list(10, [0, 1, 5], "testt")
         assert False
     except:
         assert True
 
 
 def test_precision():
-    assert tools.precision(2.123) == 2.12
-    assert tools.precision(2.123, 1) == 2.1
-    assert tools.precision(2.123, 3) == 2.123
-    assert tools.precision(2123, -2) == 2100
+    assert tools2.precision(2.123) == 2.12
+    assert tools2.precision(2.123, 1) == 2.1
+    assert tools2.precision(2.123, 3) == 2.123
+    assert tools2.precision(2123, -2) == 2100
 
 
 def test_attrdict():
 
-    a = tools.AttrDict(value=1)
+    a = AttrDict(value=1)
     assert a.value == 1
     assert "value" in list(a.keys())
     assert 1 in (a.values())
@@ -109,7 +111,7 @@ def test_attrdict():
     assert a.output == "txt"
 
     d = {"a": {"b": 1}, "aa": 2}
-    ad = tools.AttrDict(**d)
+    ad = AttrDict(**d)
     assert ad.a.b == 1
     ad.a.b = 2
     assert ad.a.b == 2
@@ -132,7 +134,7 @@ def test_attrdict():
 
 
 def test_devtools():
-    d = tools.DevTools()
+    d = DevTools()
     d.check_param_in_list(1, [1, 2])
     d.check_range(1, 0, 2)
     assert d.list2string(["a", "b"]) == "a,b"
@@ -155,18 +157,18 @@ def test_mkdirs():
     import os
     import tempfile
 
-    tools.mkdirs(tempfile.mkdtemp() + os.sep + "test")
+    mkdirs(tempfile.mkdtemp() + os.sep + "test")
     try:
-        tools.mkdirs(tempfile.mkdtemp() + os.sep + "test")
+        mkdirs(tempfile.mkdtemp() + os.sep + "test")
         assert False
     except:
         assert True
 
     # without / , was not working but is now part of the API
-    tools.mkdirs(tempfile.mkdtemp())
+    mkdirs(tempfile.mkdtemp())
 
 
 def test_touch():
     with TempFile() as fh:
         fh.name
-        tools.touch(fh.name)
+        touch(fh.name)

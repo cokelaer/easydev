@@ -41,6 +41,7 @@ Changelog
 ========= ==========================================================================
 Version   Description
 ========= ==========================================================================
+0.13.1    * fix get_dependencies
 0.13.0    * fix requirements (line_profiler) and CI
 0.12.2    * For developers: move to pyprojet. add precomit
           * replace pkg_resources (deprecated) with importlib

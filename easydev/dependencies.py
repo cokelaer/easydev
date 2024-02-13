@@ -27,7 +27,7 @@ def get_dependencies(pkgname):
     """
     try:
 
-        res = importlib.metadata.requires("easydev")
+        res = importlib.metadata.requires(pkgname)
         res = [x.split()[0] for x in res]
         res = list(set(res))
         res.sort()

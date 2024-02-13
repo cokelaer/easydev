@@ -22,6 +22,7 @@ __all__ = [
     "swapdict",
     "check_param_in_list",
     "check_range",
+    "checkParam",
     "precision",
     "AttrDict",
     "DevTools",
