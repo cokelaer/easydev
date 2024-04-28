@@ -14,7 +14,10 @@
 #
 ##############################################################################
 """Utilities related to the web"""
-import http
+try:
+    import httplib
+except ImportError:
+    import http.client as httplib
 
 __all__ = ["isurl_reachable"]
 
@@ -33,7 +36,7 @@ def isurl_reachable(url, timeout=10, path="/"):  # pragma: no cover
     """
     if url.startswith("http://") or url.startswith("https://"):
         url = url.split("//")[1]
-    conn = http.client.HTTPConnection(url, timeout=timeout)
+    conn = httplib.HTTPConnection(url, timeout=timeout)
     try:
         conn.request("HEAD", path)
     except:
