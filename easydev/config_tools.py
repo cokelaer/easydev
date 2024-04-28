@@ -13,12 +13,8 @@
 #  Documentation: http://packages.python.org/easydev
 #
 ##############################################################################
-try:
-    from ConfigParser import ConfigParser
-except ImportError:
-    from configparser import ConfigParser
-
 import os
+from configparser import ConfigParser
 
 __all__ = ["CustomConfig", "DynamicConfigParser"]
 
