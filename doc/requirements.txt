@@ -1,5 +1,5 @@
 sphinx<7
 sphinx_rtd_theme
-pillow<=9.5.0
+pillow<=10.3.0
 sphinx_gallery
 sphinx_copybutton
