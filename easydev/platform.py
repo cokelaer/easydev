@@ -13,7 +13,6 @@
 #  Documentation: http://easydev-python.readthedocs.io
 #
 ##############################################################################
-from __future__ import absolute_import  # avoids conflict with standard module
 
 import os
 import sys

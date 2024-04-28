@@ -1,6 +1,6 @@
 import os.path
 
-# from mock import patch
+# from unittest.mock import patch
 import subprocess
 
 from easydev.misc import cmd_exists, get_home, in_ipynb
