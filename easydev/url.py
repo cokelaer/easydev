@@ -14,8 +14,7 @@
 #
 ##############################################################################
 """Utilities related to the web"""
-import http.client as httplib
-
+import http
 
 __all__ = ["isurl_reachable"]
 
