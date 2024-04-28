@@ -14,7 +14,6 @@
 #
 ##############################################################################
 """A progress bar copied and adapted from pyMC code (dec 2014)"""
-from __future__ import print_function
 
 import sys
 import time
