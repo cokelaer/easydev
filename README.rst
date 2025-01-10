@@ -18,7 +18,7 @@ easydev
 :contributions: Please join https://github.com/cokelaer/easydev
 :source: Please use https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
-:Python version supported: 3.7, 3.8, 3.9, 3.10
+:Python version supported: 3.8, 3.9, 3.10, 3.11, 3.12
 
 
 The  `easydev <http://pypi.python.org/pypi/easydev/>`_ package
@@ -43,6 +43,7 @@ Changelog
 ========= ==========================================================================
 Version   Description
 ========= ==========================================================================
+0.13.3    * update pyproject with contribs from @s-t-e-v-e-n-k see PR37
 0.13.2    * replace mock with unittest.mock (fixes
             https://github.com/cokelaer/easydev/issues/20)
 0.13.1    * fix get_dependencies

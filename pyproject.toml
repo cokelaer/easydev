@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "easydev"
-version = "0.13.2"
+version = "0.13.3"
 description = "Commn utilities to ease development of Python packages"
 authors = [
     { "name" = "Thomas Cokelaer", "email" = "thomas.cokelaer@pasteur.fr" },
