@@ -18,7 +18,7 @@ easydev
 :contributions: Please join https://github.com/cokelaer/easydev
 :source: Please use https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
-:Python version supported: 3.8, 3.9, 3.10, 3.11, 3.12
+:Python version supported: 3.9, 3.10, 3.11, 3.12
 
 
 The  `easydev <http://pypi.python.org/pypi/easydev/>`_ package
@@ -34,6 +34,9 @@ packages (e.g., http://pypi.python.org/pypi/colormap) and is stable.
     `sequana <https://sequana.readthedocs.io>`_ or
     `GDSCTools <https://sequana.readthedocs.io>`_ to give a few
     examples.
+
+
+Note 10/01/2025: Although I tried to keep back-compatibility as much as possible, test can be done only on newest version. support for python 3.7 and 3.8 were droppe because the continuous integration does not support it. However,  easydev may still be python3.7 and 3.8 compatible. Have a try.
 
 
 
