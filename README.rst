@@ -11,6 +11,9 @@ easydev
 .. image:: https://coveralls.io/repos/cokelaer/easydev/badge.svg?branch=main
    :target: https://coveralls.io/r/cokelaer/easydev?branch=main
 
+.. image:: https://static.pepy.tech/personalized-badge/easydev?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads
+    :target: https://pepy.tech/projects/easydev
+
 
 
 
