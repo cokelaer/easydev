@@ -7,15 +7,11 @@ easydev
 .. image:: https://github.com/cokelaer/easydev/actions/workflows/main.yml/badge.svg
     :target: https://github.com/cokelaer/easydev/actions/workflows/main.yml
 
-
 .. image:: https://coveralls.io/repos/cokelaer/easydev/badge.svg?branch=main
    :target: https://coveralls.io/r/cokelaer/easydev?branch=main
 
 .. image:: https://static.pepy.tech/personalized-badge/easydev?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads
     :target: https://pepy.tech/projects/easydev
-
-
-
 
 :documentation: http://easydev-python.readthedocs.io/en/latest/
 :contributions: Please join https://github.com/cokelaer/easydev
@@ -39,7 +35,7 @@ packages (e.g., http://pypi.python.org/pypi/colormap) and is stable.
     examples.
 
 
-Note 10/01/2025: Although I tried to keep back-compatibility as much as possible, test can be done only on newest version. support for python 3.7 and 3.8 were droppe because the continuous integration does not support it. However,  easydev may still be python3.7 and 3.8 compatible. Have a try.
+Note 10/01/2025: Although I tried to keep back-compatibility as much as possible, test can be done only on newest version. support for python 3.7 and 3.8 were dropped because the continuous integration does not support it. However, easydev may still be python3.7 and 3.8 compatible. Have a try.
 
 
 
@@ -54,7 +50,7 @@ Version   Description
             https://github.com/cokelaer/easydev/issues/20)
 0.13.1    * fix get_dependencies
 0.13.0    * fix requirements (line_profiler) and CI
-0.12.2    * For developers: move to pyprojet. add precomit
+0.12.2    * For developers: move to pyproject. add precommit
           * replace pkg_resources (deprecated) with importlib
           * replace appdirs with more generic platformdirs
 ========= ==========================================================================
