@@ -19,6 +19,12 @@ from multiprocessing import Pool, Process, Queue, cpu_count
 __all__ = ["MultiProcessing"]
 
 
+def _init_worker():
+    import signal
+
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
+
+
 class MultiProcessing(object):
     """Class to run jobs in an asynchronous manner.
 
@@ -102,13 +108,8 @@ class MultiProcessing(object):
             self.pb = Progress(len(self.jobs), 1)
             self.pb.animate(0)
 
-        def init_worker():
-            import signal
-
-            signal.signal(signal.SIGINT, signal.SIG_IGN)
-
         self.results = []
-        self.pool = Pool(self.maxcpu, init_worker)
+        self.pool = Pool(self.maxcpu, _init_worker)
 
         for process in self.jobs:
             self.pool.apply_async(process._target, process._args, process._kwargs, callback=self._cb)
