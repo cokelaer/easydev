@@ -13,7 +13,7 @@ easydev
 .. image:: https://static.pepy.tech/personalized-badge/easydev?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads
     :target: https://pepy.tech/projects/easydev
 
-:documentation: https://easydev.readthedocs.io
+:documentation: http://easydev-python.readthedocs.io/en/latest/
 :contributions: Please join https://github.com/cokelaer/easydev
 :source: Please use https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
