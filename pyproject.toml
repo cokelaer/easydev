@@ -21,7 +21,6 @@ classifiers = [
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: BSD License",
         "Operating System :: POSIX :: Linux",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
@@ -54,7 +53,7 @@ colorama = "^0.4.6"
 colorlog = "^6.8.2"
 pexpect = "^4.9.0"
 platformdirs = "^4.2.0"
-line-profiler = "^5.0"
+line-profiler = "^5.0.0"
 
 
 
