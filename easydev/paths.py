@@ -18,7 +18,6 @@
 import importlib
 import os
 from os.path import join as pj
-from pathlib import Path
 
 __all__ = [
     "get_shared_directory_path",
@@ -53,7 +52,7 @@ def get_shared_directory_path(package):
 
     # print("install  mode ? ")
     sharedir = os.path.realpath(pj(location, package, "share"))
-    if os.path.isdir(sharedir) == True:
+    if os.path.isdir(sharedir):
         # looks like we have found the share directory so it is an install mode
         # print ("yes")
         return sharedir
@@ -63,13 +62,13 @@ def get_shared_directory_path(package):
         # FIXME: do we need the 3 cases ??
         # probably just 2 are required, one for develop and one for install mode
         sharedir = os.path.realpath(pj(location, "..", "share"))
-        if os.path.isdir(sharedir) == True:
+        if os.path.isdir(sharedir):
             return sharedir
         sharedir = os.path.realpath(pj(location, "..", "..", "share"))
-        if os.path.isdir(sharedir) == True:
+        if os.path.isdir(sharedir):
             return sharedir
         sharedir = os.path.realpath(pj(location, "..", "..", "..", "share"))
-        if os.path.isdir(sharedir) == True:
+        if os.path.isdir(sharedir):
             return sharedir
         # could not be found,
         sharedir = []
@@ -117,10 +116,10 @@ def get_share_file(package, datadir, filename):
     packagedir = get_shared_directory_path(package)
     fullpath = os.path.join(packagedir, datadir)
     # check that it exists
-    if os.path.isdir(fullpath) == False:  # pragma: no cover
+    if not os.path.isdir(fullpath):  # pragma: no cover
         raise ValueError("The directory %s in package %s does not seem to exist" % (packagedir, fullpath))
     filename_path = os.path.join(fullpath, filename)
-    if os.path.isfile(filename_path) == False:
+    if not os.path.isfile(filename_path):
         correct_files = [x for x in os.listdir(fullpath) if os.path.isfile(x)]
         msg = "The file %s does not exists. Correct filenames found in %s/%s are:\n" % (
             filename_path,

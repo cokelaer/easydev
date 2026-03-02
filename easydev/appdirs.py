@@ -1,6 +1,3 @@
-import os
-import sys
-
 from platformdirs import (
     site_config_dir,
     site_data_dir,

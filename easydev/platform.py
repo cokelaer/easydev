@@ -14,7 +14,6 @@
 #
 ##############################################################################
 
-import os
 import sys
 
 __all__ = ["get_platform"]
@@ -36,24 +35,17 @@ def get_platform():  # pragma: no cover
 
     """
     print("//easydev.get_platform() Will be deprecated in future version of easydev")
-    try:
-        platform = plf.system()
-        return platform
-    except:
-        # platform is not available under all systems (e.g., WLST tool
-        # see http://stackoverflow.com/questions/1854/python-what-os-am-i-running-on
-        # so, let us try sys.platform
-        platform = sys.platform
-        if platform.startswith("linux"):
-            platform = "Linux"
-        elif platform.startswith("java"):
-            platform = "Java"
-        elif platform.startswith("win"):
-            platform = "Windows"
-        elif platform.startswith("darwin"):
-            platform = "Darwin"
-        else:
-            print("platform not parsed. Return raw value of sys.platform.")
+    platform = sys.platform
+    if platform.startswith("linux"):
+        platform = "Linux"
+    elif platform.startswith("java"):
+        platform = "Java"
+    elif platform.startswith("win"):
+        platform = "Windows"
+    elif platform.startswith("darwin"):
+        platform = "Darwin"
+    else:
+        print("platform not parsed. Return raw value of sys.platform.")
     return platform
 
 

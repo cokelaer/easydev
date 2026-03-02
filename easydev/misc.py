@@ -20,16 +20,10 @@ __all__ = ["get_home", "cmd_exists"]
 
 def get_home():
     """Return path of the HOME"""
-    # This function should be robust
     # First, let us try with expanduser
-    try:
-        homedir = os.path.expanduser("~")
-    except ImportError:  # pragma: no cover
-        # This may happen.
-        pass
-    else:
-        if os.path.isdir(homedir):
-            return homedir
+    homedir = os.path.expanduser("~")
+    if os.path.isdir(homedir):
+        return homedir
     # Then, with getenv
     for this in ("HOME", "USERPROFILE", "TMP"):  # pragma: no cover
         # getenv is same as os.environ.get

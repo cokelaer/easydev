@@ -91,7 +91,7 @@ def get_copybutton_path():
         try:
             packagedir = easydev.__path__[0]
             packagedir = os.path.realpath(pj(packagedir, "..", "share"))
-        except:
+        except Exception:
             raise IOError("could not find data directory")
     return pj(packagedir, "copybutton.js")
 

@@ -14,7 +14,6 @@
 #
 ##############################################################################
 """Handy decorators"""
-import threading
 from functools import wraps
 
 __all__ = ["ifpylab", "requires", "ifpandas"]
@@ -100,6 +99,7 @@ def _blocking(not_avail):
     return blocking
 """
 
+
 # same as require decorator but works with list of stirngs of
 # single string and uses the functools utilities
 def requires(requires, msg=""):
@@ -122,7 +122,7 @@ def requires(requires, msg=""):
     """
     if isinstance(requires, str):
         requires = [requires]
-    elif isinstance(requires, list) == False:
+    elif not isinstance(requires, list):
         raise TypeError(
             "First argument of the /requires/ decorator must be a"
             + "string or list of string representing the required attributes"
@@ -134,7 +134,7 @@ def requires(requires, msg=""):
         @wraps(f)
         def wrapper(*args, **kwds):
             for require in requires:
-                if hasattr(args[0], require) == False:
+                if not hasattr(args[0], require):
                     raise AttributeError("{} not found in {}. ".format(require, args[0]) + msg)
             return f(*args, **kwds)
 
@@ -157,7 +157,7 @@ def ifpandas(func):
         return func(*args, **kwds)
 
     try:
-        import pandas
+        import pandas  # noqa: F401
 
         return wrapper
     except Exception:  # pragma: no cover
@@ -179,7 +179,7 @@ def ifpylab(func):
 
     # for methods
     try:
-        import pylab
+        import pylab  # noqa: F401
 
         return wrapper
     except Exception:  # pragma: no cover
