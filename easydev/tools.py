@@ -161,7 +161,7 @@ def execute(cmd, showcmd=True, verbose=True):
         if verbose:
             try:
                 sys.stdout.write(line.decode())
-            except:
+            except Exception:
                 sys.stdout.write(line)
 
             sys.stdout.flush()
@@ -279,12 +279,9 @@ class AttrDict(dict):
 
         :param dict content: a valid dictionary
         """
-        # accepts dict and attrdict classes
-        try:
-            from collections import OrderedDict
-        except:
-            OrderedDict = AttrDict
+        from collections import OrderedDict
 
+        # accepts dict and attrdict classes
         if content.__class__ not in [dict, OrderedDict, AttrDict]:
             raise TypeError
 

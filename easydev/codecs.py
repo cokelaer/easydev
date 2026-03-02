@@ -56,7 +56,7 @@ def to_list(data, verbose=True):
         try:
             data = data.tolist()
             return data
-        except:
+        except Exception:
             if verbose:
                 print("not known type. Trying to cast into a list")
             return list(data)

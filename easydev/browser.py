@@ -61,11 +61,9 @@ There is also an alias **onweb**::
     from easydev import onweb
 
 """
-import argparse
 import os
 import sys
 import webbrowser
-from optparse import OptionParser
 
 
 def browse(url, verbose=True):
@@ -93,23 +91,23 @@ def _browse_mac(url, verbose=True):  # pragma: no cover
     try:
         os.system("open /Applications/Safari.app {}".format(url))
         return
-    except:
+    except Exception:
         pass
 
     try:
         os.system("open /Applications/Safari.app {}".format("http://" + url))
         return
-    except:
+    except Exception:
         pass
 
     try:
         webbrowser.open_new(url)
-    except:
+    except Exception:
         if verbose:
             print("Could not open %s. Trying to append http://" % url)
         try:
             webbrowser.open_new("open http://{}".format(url))
-        except:
+        except Exception:
             print("Could not open http://%s" % url)
             raise Exception
 
@@ -120,7 +118,7 @@ def _browse_linux(url, verbose=True):  # pragma: no cover
     try:
         webbrowser.open(url)
         return
-    except:
+    except Exception:
         pass
 
     try:
@@ -128,7 +126,7 @@ def _browse_linux(url, verbose=True):  # pragma: no cover
             print("Could not open %s" % url)
         webbrowser.open("http://" + url)
         return
-    except:
+    except Exception:
         pass
 
     raise Exception("Could not open http://{}".format(url))
@@ -172,6 +170,4 @@ def main(args=None):  # pragma: no cover
 
 
 if __name__ == "__main__":  # pragma: no cover
-    import sys
-
     main(sys.argv)

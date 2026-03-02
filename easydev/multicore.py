@@ -53,7 +53,7 @@ class MultiProcessing(object):
 
 
         """
-        if maxcpu == None:
+        if maxcpu is None:
             maxcpu = cpu_count()
 
         self.maxcpu = maxcpu

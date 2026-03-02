@@ -48,7 +48,7 @@ def get_terminal_width():
         terminal_width = width
     except (SystemExit, KeyboardInterrupt):  # pragma: no cover
         raise
-    except:
+    except Exception:
         # FALLBACK
         terminal_width = int(os.environ.get("COLUMNS", 80)) - 1
     return terminal_width

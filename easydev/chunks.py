@@ -29,12 +29,6 @@
 __all__ = ["split_into_chunks"]
 
 
-try:
-    range = xrange  # py2
-except:
-    pass  # py3
-
-
 def split_into_chunks(items, maxchunks=10):
     """Split a list evenly into N chunks
 

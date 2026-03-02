@@ -59,7 +59,6 @@ class Logging(object):
     def _set_name(self, name):
         level = self.level
         self._name = name
-        logger = colorlog.getLogger(self._name)
         if level == 0:
             self._set_level("WARNING")
         else:

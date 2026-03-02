@@ -71,7 +71,7 @@ def trysetattr(this, attrname, value, possible):
         AssertionError
 
     """
-    if possible == True:
+    if possible is True:
         a1 = True
         a2 = False
     else:
@@ -102,7 +102,7 @@ class TempFile(object):
     def delete(self):
         try:
             self.temp._closer.delete = True
-        except:  # pragma: no cover
+        except AttributeError:  # pragma: no cover
             self.temp.delete = True
         self.temp.close()
 

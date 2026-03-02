@@ -125,14 +125,14 @@ class DynamicConfigParser(ConfigParser):
             self.read(self._filename)
         elif isinstance(config_or_filename, ConfigParser):
             self._replace_config(config_or_filename)
-        elif config_or_filename == None:
+        elif config_or_filename is None:
             pass
         else:
             raise TypeError("config_or_filename must be a valid filename or valid ConfigParser instance")
 
     def read(self, filename):
         """Load a new config from a filename (remove all previous sections)"""
-        if os.path.isfile(filename) == False:
+        if not os.path.isfile(filename):
             raise IOError("filename {0} not found".format(filename))
 
         config = ConfigParser()
@@ -220,9 +220,9 @@ class DynamicConfigParser(ConfigParser):
                 try:  # numbers
                     try:
                         options[option] = self.getint(section, option)
-                    except:
+                    except Exception:
                         options[option] = self.getfloat(section, option)
-                except:  # string
+                except Exception:  # string
                     options[option] = self.get(section, option, raw=True)
         return options
 
@@ -238,7 +238,7 @@ class DynamicConfigParser(ConfigParser):
 
         """
         try:
-            if os.path.exists(filename) == True:
+            if os.path.exists(filename):
                 print("Warning: over-writing %s " % filename)
             fp = open(filename, "w")
         except Exception as err:  # pragma: no cover
@@ -311,7 +311,7 @@ class DynamicConfigParser(ConfigParser):
                     if str(self.get(section, option, raw=True)) != str(data.get(section, option, raw=True)):
                         print("option %s in section %s differ" % (option, section))
                         return False
-                except:  # pragma: no cover
+                except Exception:  # pragma: no cover
                     return False
         return True
 

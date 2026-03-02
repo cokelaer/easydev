@@ -14,10 +14,7 @@
 #
 ##############################################################################
 """Utilities related to the web"""
-try:
-    import httplib
-except ImportError:
-    import http.client as httplib
+import http.client as httplib
 
 __all__ = ["isurl_reachable"]
 
@@ -39,13 +36,13 @@ def isurl_reachable(url, timeout=10, path="/"):  # pragma: no cover
     conn = httplib.HTTPConnection(url, timeout=timeout)
     try:
         conn.request("HEAD", path)
-    except:
+    except Exception:
         return False
     # 302 is a redirection
     # 200 is okay
     try:
         response = conn.getresponse()
-    except:
+    except Exception:
         return False
 
     if response.status in [200, 302]:

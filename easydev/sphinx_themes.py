@@ -51,5 +51,5 @@ def get_sphinx_themes():
 
     sharedir = get_shared_directory_path("easydev")
     sharedir = pj(sharedir, "themes")
-    themes = [x for x in os.listdir(sharedir) if x.startswith(".") == False]
+    themes = [x for x in os.listdir(sharedir) if not x.startswith(".")]
     return themes
