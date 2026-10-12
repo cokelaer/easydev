@@ -119,12 +119,60 @@ Multiprocessing::
     t.run()
     print(t.results)
 
+Moving away from easydev
+------------------------
+
+easydev dates from a time when Python lacked many small conveniences. Most of
+its tools now have a standard-library or well-maintained third-party
+replacement, and new projects should not depend on easydev. The full
+module-by-module guide is in the
+`documentation <https://easydev.readthedocs.io/en/latest/migration.html>`_
+(``doc/source/migration.rst``). Main replacements:
+
+========================================= ======================================================
+easydev                                   Use instead
+========================================= ======================================================
+``CustomConfig``, ``AppDirs``             ``platformdirs``
+``DynamicConfigParser``                   ``configparser``
+``AttrDict``                              ``types.SimpleNamespace`` / ``dataclasses``
+``Logging``                               ``logging`` (+ ``colorlog``)
+``Progress``                              ``tqdm``
+``MultiProcessing``                       ``concurrent.futures.ProcessPoolExecutor``
+``shellcmd``, ``execute``                 ``subprocess.run``
+``mkdirs``, ``touch``, ``get_home``       ``pathlib`` / ``os.makedirs(exist_ok=True)``
+``cmd_exists``                            ``shutil.which``
+``md5``                                   ``hashlib.file_digest`` (Python 3.11+)
+``browse``                                ``webbrowser.open``
+``get_dependencies``                      ``importlib.metadata.requires``
+``get_share_file``                        ``importlib.resources.files``
+========================================= ======================================================
+
+For example, replacing ``CustomConfig``::
+
+    # before
+    from easydev import CustomConfig
+    config_dir = CustomConfig("myapp").user_config_dir
+
+    # after
+    from pathlib import Path
+    from platformdirs import user_config_dir
+
+    config_dir = Path(user_config_dir("myapp"))
+    config_dir.mkdir(parents=True, exist_ok=True)
+
 Changelog
 ---------
 
 ========= ==========================================================================
 Version   Description
 ========= ==========================================================================
+0.15.0    * fix ``is_mac`` (always returned False)
+          * ``assert_list_almost_equal`` now warns (FutureWarning) when called without
+            ``places``/``deltas`` (nothing is compared); raises ``ListMismatchError``
+            (both ValueError and AssertionError)
+          * add a migration guide (README and documentation) explaining how to
+            replace easydev tools with the standard library, platformdirs, etc.
+          * require Python >= 3.9
 0.13.3    * update pyproject with contribs from @s-t-e-v-e-n-k see PR37
 0.13.2    * replace mock with unittest.mock (fixes
             https://github.com/cokelaer/easydev/issues/20)

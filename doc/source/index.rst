@@ -18,7 +18,7 @@ EASYDEV documentation
 :contributions: Please join https://github.com/cokelaer/easydev
 :source: Please use https://github.com/cokelaer/easydev
 :issues: Please use https://github.com/cokelaer/easydev/issues
-:Python version supported:     3.7, 3.8, 3.9
+:Python version supported:     3.9, 3.10, 3.11, 3.12, 3.13, 3.14
 
 
 
@@ -64,7 +64,9 @@ exhaustive list of tools available.
 
 Note also that **easydev** was starting a few years ago and that some
 functionalities did not exist back then. Some functionalities available in
-easydev may now exist in standard modules of Python.
+easydev may now exist in standard modules of Python. See :ref:`migration` for
+the replacement of each tool (e.g., ``CustomConfig`` can be replaced by
+``platformdirs``).
 
 .. toctree::
     :maxdepth: 2
@@ -72,4 +74,5 @@ easydev may now exist in standard modules of Python.
 
     installation
     quickstart
+    migration
     references

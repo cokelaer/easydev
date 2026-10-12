@@ -16,14 +16,22 @@
 # $:Id $
 
 import tempfile
+import warnings
 
 __all__ = ["assert_list_almost_equal", "trysetattr", "TempFile"]
+
+
+class ListMismatchError(ValueError, AssertionError):
+    """Raised by :func:`assert_list_almost_equal` (ValueError kept for backward compatibility)"""
 
 
 def assert_list_almost_equal(first, second, places=None, deltas=None):
     """Combined version nose.tools.assert_almost_equal and assert_list_equal
 
     This function checks that 2 lists contain identical items.
+    Without *places* or *deltas* nothing is compared and a FutureWarning is
+    issued. On mismatch, :class:`ListMismatchError` is raised (it derives from
+    both ValueError, for backward compatibility, and AssertionError).
     The equality between pair of items is checked with assert_almost_equal
     function, which means you can check for the places argument
 
@@ -44,7 +52,14 @@ def assert_list_almost_equal(first, second, places=None, deltas=None):
     if deltas:
         for x, y in zip(first, second):
             if abs(x - y) > deltas:
-                raise ValueError
+                raise ListMismatchError("{} != {} within tolerance {}".format(x, y, deltas))
+    else:
+        warnings.warn(
+            "assert_list_almost_equal called without places or deltas: nothing is compared. "
+            "This will become a strict comparison in a future release.",
+            FutureWarning,
+            stacklevel=2,
+        )
 
 
 def trysetattr(this, attrname, value, possible):

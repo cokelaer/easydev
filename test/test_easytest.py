@@ -1,3 +1,5 @@
+import pytest
+
 from easydev.easytest import *
 
 
@@ -24,20 +26,18 @@ def test_tempfile():
 
 
 def test_list_almost_equal():
-    assert_list_almost_equal([1, 2], [1, 2])
-    try:
+    with pytest.warns(FutureWarning):
+        assert_list_almost_equal([1, 2], [1, 2])
+    # legacy: no tolerance means nothing is compared
+    with pytest.warns(FutureWarning):
         assert_list_almost_equal([1, 2], [1, 3])
-        assert False
-    except:
-        assert True
 
     assert_list_almost_equal([1, 1], [1, 0.9999], places=3)
     assert_list_almost_equal([1, 1], [1, 0.9999], deltas=1e-4)
-    try:
+    with pytest.raises(ValueError):
         assert_list_almost_equal([1, 1], [1, 0.9999], deltas=1e-5)
-        assert False
-    except:
-        assert True
+    with pytest.raises(AssertionError):
+        assert_list_almost_equal([1, 1], [1, 0.9999], deltas=1e-5)
 
 
 test_list_almost_equal()

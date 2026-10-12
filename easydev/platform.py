@@ -64,7 +64,7 @@ def is_linux():
 
 
 def is_mac():
-    if get_platform() == "Mac":
+    if get_platform() in ("Darwin", "Mac"):
         return True
     else:
         return False
