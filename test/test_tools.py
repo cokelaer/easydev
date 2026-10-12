@@ -91,6 +91,16 @@ def test_shellcmd_ignore_errors():
     shellcmd("lssssssss", verbose=True, ignore_errors=True)
 
 
+def test_shellcmd_legacy_stderr_raises_even_with_zero_exit():
+    with pytest.raises(Exception):
+        shellcmd("echo warn >&2; echo ok")
+    assert b"ok" in shellcmd("echo warn >&2; echo ok", ignore_errors=True)
+
+
+def test_shellcmd_legacy_nonzero_exit_without_stderr_does_not_raise():
+    assert shellcmd("false") == b""
+
+
 def test_shellcmd_raises_on_bad_command():
     with pytest.raises(Exception):
         shellcmd("lsss", verbose=False)

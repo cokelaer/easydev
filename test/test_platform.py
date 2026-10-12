@@ -23,7 +23,7 @@ def test_platform(mocker):
     assert is_windows() is True
 
     mocker.patch.object(easydev.platform, "get_platform")
-    easydev.platform.get_platform.return_value = "Mac"
+    easydev.platform.get_platform.return_value = "Darwin"
     assert is_linux() is False
     assert is_windows() is False
     assert is_mac() is True

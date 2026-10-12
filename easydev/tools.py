@@ -33,7 +33,7 @@ __all__ = [
 
 
 def precision(data, digit=2):
-    """Round values in a list keeping only N digits precision
+    """Truncate a value (not round) keeping only N digits precision
 
     ::
 
@@ -116,24 +116,26 @@ def shellcmd(cmd, show=False, verbose=False, ignore_errors=False):
     :param str cmd: the command to call
     :param bool show: print the command
     :param bool verbose: print the output
+    :param bool ignore_errors: do not raise when the command writes to stderr
 
-    :return: the output as a string
+    :return: the output as bytes (stripped)
     """
     if show:
         print(cmd)
     try:
         ret = subprocess.Popen([cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 
-        output = ret.stdout.read().strip()
-        error = ret.stderr.read().strip()
-        ret.wait()
+        output, error = ret.communicate()
+        output = output.strip()
+        error = error.strip()
 
+        # Legacy behaviour kept on purpose (many packages rely on it): any
+        # output on stderr is an error, the exit status is not checked.
         if len(error) > 0:
             if ignore_errors is False:
                 raise Exception(error)
-            else:
-                if verbose is True:
-                    print("Errors/Warning" + str(error))
+            elif verbose is True:
+                print("Errors/Warning" + str(error))
 
         if verbose is True:
             print(output)
